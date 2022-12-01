@@ -1,0 +1,354 @@
+/*-------- COLOR MAGENTA --------*/
+/*General links color*/
+a {
+  color: #FF3A65;
+}
+a:hover, a:focus {
+  color: #111;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Main navigation */
+header.sticky .main-menu > ul > li > a, header.header_in .main-menu > ul > li > a {
+  color: #444;
+}
+header.sticky .main-menu > ul > li:hover > a, header.header_in .main-menu > ul > li:hover > a {
+  color: #FF3A65;
+}
+
+@media only screen and (min-width: 992px) {
+  /* Submenu*/
+  .main-menu ul ul {
+    border-top: 2px solid #FF3A65;
+  }
+  .main-menu ul ul:before {
+    border-bottom-color: #FF3A65;
+  }
+
+  .main-menu ul ul li:hover > a {
+    color: #FF3A65;
+  }
+
+  /* Submenu 3rd level */
+  .main-menu ul ul li.third-level > a:hover {
+    color: #FF3A65;
+  }
+}
+@media only screen and (max-width: 991px) {
+  #header_menu {
+    background-color: #FF3A65;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .main-menu ul li a:hover,
+  a.show-submenu:hover {
+    color: #FF3A65 !important;
+  }
+
+  .main-menu > ul > li.submenu:hover > a:after {
+    color: #FF3A65;
+  }
+}
+/*-------- 1.3 Structure --------*/
+.custom-search-input input[type='submit'] {
+  background-color: #FF3A65;
+}
+
+.hero_in.detail_page .wrapper .buttons a.btn_hero:hover {
+  color: #FF3A65 !important;
+}
+
+.detail_page_head ul.tags li a:hover {
+  color: #FF3A65;
+}
+
+@media (max-width: 767px) {
+  .page_header.sticky {
+    background-color: #FF3A65;
+  }
+}
+
+.breadcrumbs ul li a:hover {
+  color: #FF3A65;
+}
+
+.search_bar_list input[type='submit'] {
+  background-color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* 2.  CONTENT */
+/*============================================================================================*/
+.main_title span em {
+  background-color: #FF3A65;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  border: 2px solid #FF3A65;
+}
+
+.owl-theme .owl-dots .owl-dot span::before {
+  background-color: #FF3A65 !important;
+}
+
+.owl-theme.categories_carousel .owl-nav .owl-prev i:hover,
+.owl-theme.categories_carousel .owl-nav .owl-next i:hover {
+  color: #FF3A65;
+}
+
+.banner.version_2 {
+  background: #FF3A65 url(../img/pattern.svg) repeat;
+}
+
+.list_home ul li a:hover h3 {
+  color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* 3.  COMMON */
+/*============================================================================================*/
+a.btn_1,
+.btn_1 {
+  color: #fff;
+  background: #FF3A65;
+}
+a.btn_1.outline:hover,
+.btn_1.outline:hover {
+  border-color: #FF3A65;
+  color: #FF3A65 !important;
+}
+
+/* Forms styles */
+.container_check input:checked ~ .checkmark {
+  background-color: #FF3A65;
+}
+
+.container_radio .checkmark:after {
+  background: #FF3A65;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  border-bottom: 2px solid #FF3A65;
+  color: #FF3A65;
+}
+
+#newsletter button[type='submit'] {
+  background-color: #FF3A65;
+}
+
+/* Scroll top button */
+#toTop:hover {
+  background-color: #FF3A65;
+}
+
+#cookie-bar .cb-policy {
+  background: #FF3A65;
+}
+
+.box_topic h3 {
+  color: #FF3A65;
+}
+
+.accordion_2 .card-header h5 a i.indicator {
+  color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* DETAIL PAGE */
+/*============================================================================================*/
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: #FF3A65 !important;
+  color: #fff !important;
+}
+.ui-state-active:after,
+.ui-widget-content .ui-state-active:after,
+.ui-widget-header .ui-state-active:after {
+  color: #ffff66;
+}
+
+a.show_hide:focus {
+  color: #FF3A65;
+}
+a.show_hide:focus:hover {
+  color: #111;
+}
+
+.reviews .progress-bar {
+  background-color: #FF3A65;
+}
+
+.review_card .review_content .rating {
+  color: #FF3A65;
+}
+.review_card .review_content ul li a:hover {
+  background-color: #FF3A65;
+  color: #fff;
+}
+
+.radio_select input[type="radio"]:focus + label {
+  background-color: #FF3A65;
+}
+.radio_select input[type="radio"]:checked + label {
+  background-color: #FF3A65;
+}
+
+.follow_us_detail a:hover {
+  color: #FF3A65;
+}
+
+.dropdown-options > a {
+  color: #FF3A65;
+}
+
+#message {
+  background-color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* LISTINGS */
+/*============================================================================================*/
+.switch-field label:hover {
+  cursor: pointer;
+  color: #FF3A65;
+}
+
+a.address:hover {
+  color: #FF3A65;
+}
+
+.rangeslider__fill {
+  background: #FF3A65;
+}
+
+.rangeslider__handle {
+  background: white;
+  border: 2px solid #FF3A65;
+}
+
+.cluster-visible {
+  background-color: #FF3A65 !important;
+}
+
+.cluster-visible:before {
+  border: 7px solid #FF3A65;
+  box-shadow: inset 0 0 0 4px #FF3A65;
+}
+
+a.btn_infobox_detail:before {
+  color: #ccc;
+}
+a.btn_infobox_detail:before:hover {
+  color: #FF3A65;
+}
+
+.btn_infobox_get_directions, a.btn_infobox_phone {
+  color: #FF3A65;
+}
+
+/*-------- Leaflet cluster --------*/
+.marker-cluster div {
+  background-color: #FF3A65;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: #FF3A65;
+}
+
+.marker-cluster div:before {
+  border: 7px solid #FF3A65;
+  box-shadow: inset 0 0 0 4px #FF3A65;
+}
+
+/*============================================================================================*/
+/* BLOG */
+/*============================================================================================*/
+article.blog .post_info h2 a:hover {
+  color: #FF3A65;
+}
+
+.comments-list h3 a:hover {
+  color: #FF3A65;
+}
+
+.widget ul.cats a:hover {
+  color: #FF3A65;
+}
+
+.tags a:hover {
+  background-color: #FF3A65;
+}
+
+.postmeta ul li a:hover {
+  color: #FF3A65;
+}
+
+.dropcaps p:first-child::first-letter {
+  color: #fff;
+  background-color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* BOOKING, SIGN UP */
+/*============================================================================================*/
+.box_booking_2 .head, .sign_up .head {
+  background-color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* CONTACTS */
+/*============================================================================================*/
+.box_contacts i {
+  color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* ERROR */
+/*============================================================================================*/
+.search_bar input[type='submit'] {
+  background-color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* HELP */
+/*============================================================================================*/
+a.box_topic i {
+  color: #FF3A65;
+}
+
+.list_articles ul li a:hover {
+  color: #FF3A65;
+}
+
+/*============================================================================================*/
+/* REVIEW */
+/*============================================================================================*/
+input[type=file]::-webkit-file-upload-button, input[type=file].invalid::-webkit-file-upload-button, input[type=file].valid::-webkit-file-upload-button {
+  color: #fff;
+  background: #FF3A65 url(../img/camera.svg) 8px center no-repeat;
+}
+
+/*============================================================================================*/
+/* SUBMIT */
+/*============================================================================================*/
+.box_about h2, .box_about h3 {
+  color: #FF3A65;
+}
+
+.plan-tall .plan-title {
+  background-color: #FF3A65;
+}
+
+.plan-tall {
+  border: solid #FF3A65;
+}
+
+.plan-tall > .plan-price {
+  background: #FF3A65;
+}

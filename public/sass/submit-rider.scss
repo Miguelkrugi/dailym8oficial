@@ -1,0 +1,18 @@
+@import 'variables';
+@import 'mixin';
+
+/*Why*/
+.box_topic {
+    text-align: center;
+    background: #fff;
+    padding: 40px 30px 15px 30px;
+    @include mobile {padding: 20px 20px 5px 20px;}
+    @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+    color: $body-text-color;
+    margin-bottom: 30px;
+    @include border-radius(5px);
+    h3 {
+        @include fontSize(18px);
+        color:$color-1;
+    }
+}

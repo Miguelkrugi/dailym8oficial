@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
+
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+</head>
+
+<body>
+<textarea placeholder="Enter Area name to populate Latitude and Longitude" name="address" onFocus="initializeAutocomplete()" id="locality" ></textarea><br>
+
+<input type="text" name="city" id="city" placeholder="City" value="" ><br>
+<input type="text" name="latitude" id="latitude" placeholder="Latitude" value="" ><br>
+<input type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
+<input type="text" name="place_id" id="location_id" placeholder="Location Ids" value="" ><br>
+
+<script type="text/javascript">
+  function initializeAutocomplete(){
+    var input = document.getElementById('locality');
+    // var options = {
+    //   types: ['(regions)'],
+    //   componentRestrictions: {country: "IN"}
+    // };
+    var options = {
+
+      componentRestrictions: {country: 'PT' }
+    }
+
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
+      var placeId = place.place_id;
+      // to set city name, using the locality param
+      var componentForm = {
+        locality: 'short_name',
+      };
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          document.getElementById("city").value = val;
+        }
+      }
+      document.getElementById("latitude").value = lat;
+      document.getElementById("longitude").value = lng;
+      document.getElementById("location_id").value = placeId;
+    });
+  }
+</script>
+</body>
+</html>
+

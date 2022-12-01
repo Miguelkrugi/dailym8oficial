@@ -1,0 +1,354 @@
+/*-------- COLOR RED--------*/
+/*General links color*/
+a {
+  color: #f0151f;
+}
+a:hover, a:focus {
+  color: #111;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Main navigation */
+header.sticky .main-menu > ul > li > a, header.header_in .main-menu > ul > li > a {
+  color: #444;
+}
+header.sticky .main-menu > ul > li:hover > a, header.header_in .main-menu > ul > li:hover > a {
+  color: #f0151f;
+}
+
+@media only screen and (min-width: 992px) {
+  /* Submenu*/
+  .main-menu ul ul {
+    border-top: 2px solid #f0151f;
+  }
+  .main-menu ul ul:before {
+    border-bottom-color: #f0151f;
+  }
+
+  .main-menu ul ul li:hover > a {
+    color: #f0151f;
+  }
+
+  /* Submenu 3rd level */
+  .main-menu ul ul li.third-level > a:hover {
+    color: #f0151f;
+  }
+}
+@media only screen and (max-width: 991px) {
+  #header_menu {
+    background-color: #f0151f;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .main-menu ul li a:hover,
+  a.show-submenu:hover {
+    color: #f0151f !important;
+  }
+
+  .main-menu > ul > li.submenu:hover > a:after {
+    color: #f0151f;
+  }
+}
+/*-------- 1.3 Structure --------*/
+.custom-search-input input[type='submit'] {
+  background-color: #f0151f;
+}
+
+.hero_in.detail_page .wrapper .buttons a.btn_hero:hover {
+  color: #f0151f !important;
+}
+
+.detail_page_head ul.tags li a:hover {
+  color: #f0151f;
+}
+
+@media (max-width: 767px) {
+  .page_header.sticky {
+    background-color: #f0151f;
+  }
+}
+
+.breadcrumbs ul li a:hover {
+  color: #f0151f;
+}
+
+.search_bar_list input[type='submit'] {
+  background-color: #f0151f;
+}
+
+/*============================================================================================*/
+/* 2.  CONTENT */
+/*============================================================================================*/
+.main_title span em {
+  background-color: #f0151f;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  border: 2px solid #f0151f;
+}
+
+.owl-theme .owl-dots .owl-dot span::before {
+  background-color: #f0151f !important;
+}
+
+.owl-theme.categories_carousel .owl-nav .owl-prev i:hover,
+.owl-theme.categories_carousel .owl-nav .owl-next i:hover {
+  color: #f0151f;
+}
+
+.banner.version_2 {
+  background: #f0151f url(../img/pattern.svg) repeat;
+}
+
+.list_home ul li a:hover h3 {
+  color: #f0151f;
+}
+
+/*============================================================================================*/
+/* 3.  COMMON */
+/*============================================================================================*/
+a.btn_1,
+.btn_1 {
+  color: #fff;
+  background: #f0151f;
+}
+a.btn_1.outline:hover,
+.btn_1.outline:hover {
+  border-color: #f0151f;
+  color: #f0151f !important;
+}
+
+/* Forms styles */
+.container_check input:checked ~ .checkmark {
+  background-color: #f0151f;
+}
+
+.container_radio .checkmark:after {
+  background: #f0151f;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  border-bottom: 2px solid #f0151f;
+  color: #f0151f;
+}
+
+#newsletter button[type='submit'] {
+  background-color: #f0151f;
+}
+
+/* Scroll top button */
+#toTop:hover {
+  background-color: #f0151f;
+}
+
+#cookie-bar .cb-policy {
+  background: #f0151f;
+}
+
+.box_topic h3 {
+  color: #f0151f;
+}
+
+.accordion_2 .card-header h5 a i.indicator {
+  color: #f0151f;
+}
+
+/*============================================================================================*/
+/* DETAIL PAGE */
+/*============================================================================================*/
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: #f0151f !important;
+  color: #fff !important;
+}
+.ui-state-active:after,
+.ui-widget-content .ui-state-active:after,
+.ui-widget-header .ui-state-active:after {
+  color: #ffff66;
+}
+
+a.show_hide:focus {
+  color: #f0151f;
+}
+a.show_hide:focus:hover {
+  color: #111;
+}
+
+.reviews .progress-bar {
+  background-color: #f0151f;
+}
+
+.review_card .review_content .rating {
+  color: #f0151f;
+}
+.review_card .review_content ul li a:hover {
+  background-color: #f0151f;
+  color: #fff;
+}
+
+.radio_select input[type="radio"]:focus + label {
+  background-color: #f0151f;
+}
+.radio_select input[type="radio"]:checked + label {
+  background-color: #f0151f;
+}
+
+.follow_us_detail a:hover {
+  color: #f0151f;
+}
+
+.dropdown-options > a {
+  color: #f0151f;
+}
+
+#message {
+  background-color: #f0151f;
+}
+
+/*============================================================================================*/
+/* LISTINGS */
+/*============================================================================================*/
+.switch-field label:hover {
+  cursor: pointer;
+  color: #f0151f;
+}
+
+a.address:hover {
+  color: #f0151f;
+}
+
+.rangeslider__fill {
+  background: #f0151f;
+}
+
+.rangeslider__handle {
+  background: white;
+  border: 2px solid #f0151f;
+}
+
+.cluster-visible {
+  background-color: #f0151f !important;
+}
+
+.cluster-visible:before {
+  border: 7px solid #f0151f;
+  box-shadow: inset 0 0 0 4px #f0151f;
+}
+
+a.btn_infobox_detail:before {
+  color: #ccc;
+}
+a.btn_infobox_detail:before:hover {
+  color: #f0151f;
+}
+
+.btn_infobox_get_directions, a.btn_infobox_phone {
+  color: #f0151f;
+}
+
+/*-------- Leaflet cluster --------*/
+.marker-cluster div {
+  background-color: #f0151f;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background-color: #f0151f;
+}
+
+.marker-cluster div:before {
+  border: 7px solid #f0151f;
+  box-shadow: inset 0 0 0 4px #f0151f;
+}
+
+/*============================================================================================*/
+/* BLOG */
+/*============================================================================================*/
+article.blog .post_info h2 a:hover {
+  color: #f0151f;
+}
+
+.comments-list h3 a:hover {
+  color: #f0151f;
+}
+
+.widget ul.cats a:hover {
+  color: #f0151f;
+}
+
+.tags a:hover {
+  background-color: #f0151f;
+}
+
+.postmeta ul li a:hover {
+  color: #f0151f;
+}
+
+.dropcaps p:first-child::first-letter {
+  color: #fff;
+  background-color: #f0151f;
+}
+
+/*============================================================================================*/
+/* BOOKING, SIGN UP */
+/*============================================================================================*/
+.box_booking_2 .head, .sign_up .head {
+  background-color: #f0151f;
+}
+
+/*============================================================================================*/
+/* CONTACTS */
+/*============================================================================================*/
+.box_contacts i {
+  color: #f0151f;
+}
+
+/*============================================================================================*/
+/* ERROR */
+/*============================================================================================*/
+.search_bar input[type='submit'] {
+  background-color: #f0151f;
+}
+
+/*============================================================================================*/
+/* HELP */
+/*============================================================================================*/
+a.box_topic i {
+  color: #f0151f;
+}
+
+.list_articles ul li a:hover {
+  color: #f0151f;
+}
+
+/*============================================================================================*/
+/* REVIEW */
+/*============================================================================================*/
+input[type=file]::-webkit-file-upload-button, input[type=file].invalid::-webkit-file-upload-button, input[type=file].valid::-webkit-file-upload-button {
+  color: #fff;
+  background: #f0151f url(../img/camera.svg) 8px center no-repeat;
+}
+
+/*============================================================================================*/
+/* SUBMIT */
+/*============================================================================================*/
+.box_about h2, .box_about h3 {
+  color: #f0151f;
+}
+
+.plan-tall .plan-title {
+  background-color: #f0151f;
+}
+
+.plan-tall {
+  border: solid #f0151f;
+}
+
+.plan-tall > .plan-price {
+  background: #f0151f;
+}
