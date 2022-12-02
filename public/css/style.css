@@ -3101,11 +3101,30 @@ ul#top_menu li a.login:before {
  *  Owl Carousel - Core
  */
 .owl-carousel {
-  display: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
   width: 100%;
-  -webkit-tap-highlight-color: transparent;
+  height:100%;
+  -webkit-tap-highlight-color: aqua;
+  background-color: aqua;
   /* position relative and z-index fix webkit rendering fonts issue */
   position: relative;
+  z-index: 1;
+}
+
+#organize2 {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height:40%;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
+  background-color: transparent;
+  position: absolute;
   z-index: 1;
 }
 
@@ -3119,7 +3138,9 @@ ul#top_menu li a.login:before {
 
 .owl-carousel .owl-stage:after {
   content: ".";
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   clear: both;
   visibility: hidden;
   line-height: 0;
@@ -3185,12 +3206,12 @@ ul#top_menu li a.login:before {
 }
 
 .owl-carousel.owl-loaded {
-  display: block;
+   display: inline-block;
 }
 
 .owl-carousel.owl-loading {
   opacity: 0;
-  display: block;
+  display: inline-block;
 }
 
 .owl-carousel.owl-hidden {
