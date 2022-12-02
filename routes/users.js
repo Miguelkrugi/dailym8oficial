@@ -23,4 +23,13 @@ router.post('/loginuser', async function(req, res, next){
   res.status(result.status).send(result.result);
 });
 
+//RESTAURANTES ALEATORIOS/SUGERIDOS
+
+router.get('/showrandomsuggestedrestaurants', async function(req, res, next) {
+
+  let result = await usersModel.getRandomSuggestedRestaurants();
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;
