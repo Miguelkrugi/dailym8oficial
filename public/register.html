@@ -8,6 +8,8 @@
     <meta name="author" content="Ansonika">
     <title>DailyM8</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -15,9 +17,9 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
 
-     <!-- GOOGLE WEB FONT -->
+     <!-- GOOGLE WEB FONT 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">-->
 
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,11 +29,43 @@
     <link href="css/home.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/register.css" rel="stylesheet">
+
+    <script src="./javascripts/user.js"></script>
 
 </head>
 <body>
 
+ 
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">REGISTAR</label>
+                    <input type="text" id="fname" name="fname" class="input" placeholder="Name" required>
+					<input type="text" name="fusername" id="fusername" class="input" placeholder="Username" required>
+					<input type="email" name="femail" id="femail" class="input" placeholder="Email" required>
+					<input type="password" name="fpswd" id="fpswd" class="input" placeholder="Password" required>
+                    <a href="#">
+                        <input class="field button-field" type="button" onclick="registreamento()" value="REGISTAR" style="border: 0px; background-color: blue; color: white;">
+                    </a>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">LOGIN</label>
+					<input type="text" name="fnamelogin" id="fnamelogin" class="input" placeholder="Username" required="">
+					<input type="password" name="fpswdlogin" id="fpswdlogin" class="input" placeholder="Password" required="">
+					<a href="#">
+                        <input class="field button-field" type="button" onclick="login()" value="LOGIN" style="border: 0px; background-color: blue; color: white;">
+                    </a>
+				</form>
+			</div>
+
+            
+	</div>
 </body>
 </html>
 
