@@ -15,24 +15,36 @@ window.onload = function exampleFunction() {
 
 }
 
+async function openrestaurant(restaurante){
+
+  console.log("FUNÇÃO CHAMADA!");
+  /*
+  console.log("ID DO RESTAURANTE: " + restaurante.establishment_id);
+  sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+  sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+  sessionStorage.setItem('restaurant_id', restaurante.restaurant_id);
+  sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
+  sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+  sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+  sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
+  sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);
+*/
+/////////////////////TERMINAR NA TERÇA FEIRA OU AMANHA SE DESPACHAR A MATERIA MAIS CEDO E FAZER AS TAREFAS MARCADAS
+
+}
+
 function createrestaurantHTML(restaurante){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<a href='detail-restaurant.html' onclick='openrestaurant(" + JSON.stringify(restaurante) + ")'><div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-restaurant.html' class='strip_info' onclick='printtest()'><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div></a></figure></div></div>"
+    return "<a onclick='openrestaurant(" + JSON.stringify(restaurante) + ")'><div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a class='strip_info' onclick='printtest()'><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
   }
 
-async function openrestaurant(restaurante){
 
-  
-
-/////////////////////TERMINAR NA TERÇA FEIRA OU AMANHA SE DESPACHAR A MATERIA MAIS CEDO E FAZER AS TAREFAS MARCADAS
-
-}
 
 async function getAleatorioRestaurantes(){
 

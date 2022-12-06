@@ -29,6 +29,8 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
+	<script src="./javascripts/detailrestaurant.js"></script>
+
 </head>
 
 <body>
@@ -151,36 +153,19 @@
 	
 	<main>
 
+		<!--A FAZER AS FUNÇÕES-->
+
+		<button class="button" onclick="addlike()" style="position: absolute; margin-left:63%; height:6%; font-size: 10px; visibility: hidden;" >Deixar um Gosto</button>	
+		
+		<button class="button" onclick="removelike()" style="position: absolute; margin-left:63%; height:6%; font-size: 10px; background-color: red; visibility: hidden;">Remover um Gosto</button>	
+
 		<h1 id="titulorestaurante" style="margin-left: 7%;">Título do Restaurante</h1>
 
-		<div class="hero_in detail_page background-image" data-background="url(img/restaurant_detail_hero.jpg)" style="width:84%; margin-left: 7%;">
-			<div class="wrapper opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-				
-				<div class="container">
-					<div class="main_info">
-						<div class="row">
-							<div class="col-xl-4 col-lg-5 col-md-6">
-								<div class="head"><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></div>
-								
-								ITALIAN - 27 Old Gloucester St, 4530 - <a href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361" target="blank">Get directions</a>
-							</div>
-							<div class="col-xl-8 col-lg-7 col-md-6 position-relative">
-								<div class="buttons clearfix">
-									<span class="magnific-gallery">
-										<a href="img/detail_1.jpg" class="btn_hero" title="Photo title" data-effect="mfp-zoom-in"><i class="icon_image"></i>View photos</a>
-										<a href="img/detail_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
-										<a href="img/detail_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
-									</span>
-									<a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
-								</div>
-							</div>
-						</div>
-						<!-- /row -->
-					</div>
-					<!-- /main_info -->
-				</div>
-			</div>
-		</div>
+		<h3 id="quantidadelikes" style="position: absolute; margin-top:-3%; margin-left: 75%;">Likes: </h3>
+
+		
+
+		
 		<!--/hero_in-->
 		
 		<div class="container margin_detail">
@@ -212,10 +197,8 @@
 		                            	<p>An malorum ornatus nostrum vel, graece iracundia laboramus cu ius. No pro mazim blandit instructior, sumo voluptaria has et, vide persecuti abhorreant ne est.</p>
 		                            	<div class="add_bottom_25"></div>
 		                                <h2>Likes</h2>
-		                                <img src="./images/likenotmarked-removebg-preview.png" id="likenaomarcado" style="margin-left: 15%; visibility: hidden;">
-										<img src="./images/dislikenotmarked-removebg-preview.png" id="dislikenaomarcado" style="margin-left: 15%; visibility: hidden;">
-										<img src="./images/likemarked-removebg-preview.png" id="likemarcado" style="margin-left: 15%; width:26%; height:14%; margin-top: -40%; visibility: hidden;">
-										<img src="./images/dislikesmarked-removebg-preview.png" id="dislikemarcado" style="margin-left: 15%; width:27%; height:14%; margin-top: -30%; visibility: hidden;">
+		                                
+										
 		                                <!-- /pictures -->
 		                                <h2>Da Alfredo Menu</h2>
 		                                <h3>Starters</h3>
