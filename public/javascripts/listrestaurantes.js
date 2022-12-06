@@ -28,6 +28,8 @@ function createrestaurantHTML(restaurante){
 
 async function openrestaurant(restaurante){
 
+  
+
 /////////////////////TERMINAR NA TERÇA FEIRA OU AMANHA SE DESPACHAR A MATERIA MAIS CEDO E FAZER AS TAREFAS MARCADAS
 
 }

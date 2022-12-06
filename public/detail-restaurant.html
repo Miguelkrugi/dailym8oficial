@@ -151,7 +151,9 @@
 	
 	<main>
 
-		<div class="hero_in detail_page background-image" data-background="url(img/restaurant_detail_hero.jpg)">
+		<h1 id="titulorestaurante" style="margin-left: 7%;">Título do Restaurante</h1>
+
+		<div class="hero_in detail_page background-image" data-background="url(img/restaurant_detail_hero.jpg)" style="width:84%; margin-left: 7%;">
 			<div class="wrapper opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
 				
 				<div class="container">
@@ -188,10 +190,10 @@
 		            <div class="tabs_detail">
 		                <ul class="nav nav-tabs" role="tablist">
 		                    <li class="nav-item">
-		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Information</a>
+		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Descrição</a>
 		                    </li>
 		                    <li class="nav-item">
-		                        <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Reviews</a>
+		                        <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Mais Restaurantes deste tipo</a>
 		                    </li>
 		                </ul>
 
@@ -206,17 +208,14 @@
 		                        </div>
 		                        <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
 		                            <div class="card-body info_content">
-		                            	<p>Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>
+		                            	<p id="descricaorestaurante">Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>
 		                            	<p>An malorum ornatus nostrum vel, graece iracundia laboramus cu ius. No pro mazim blandit instructior, sumo voluptaria has et, vide persecuti abhorreant ne est.</p>
 		                            	<div class="add_bottom_25"></div>
-		                                <h2>Pictures from our users</h2>
-		                                <div class="pictures magnific-gallery clearfix">
-		                                    <figure><a href="img/detail_gallery/detail_1.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/thumb_detail_placeholder.jpg" data-src="img/thumb_detail_1.jpg" class="lazy" alt=""></a></figure>
-		                                    <figure><a href="img/detail_gallery/detail_2.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/thumb_detail_placeholder.jpg" data-src="img/thumb_detail_2.jpg" class="lazy" alt=""></a></figure>
-		                                    <figure><a href="img/detail_gallery/detail_3.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/thumb_detail_placeholder.jpg" data-src="img/thumb_detail_3.jpg" class="lazy" alt=""></a></figure>
-		                                    <figure><a href="img/detail_gallery/detail_4.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/thumb_detail_placeholder.jpg" data-src="img/thumb_detail_4.jpg" class="lazy" alt=""></a></figure>
-		                                    <figure><a href="img/detail_gallery/detail_5.jpg" title="Photo title" data-effect="mfp-zoom-in"><span class="d-flex align-items-center justify-content-center">+10</span><img src="img/thumb_detail_placeholder.jpg" data-src="img/thumb_detail_5.jpg" class="lazy" alt=""></a></figure>
-		                                </div>
+		                                <h2>Likes</h2>
+		                                <img src="./images/likenotmarked-removebg-preview.png" id="likenaomarcado" style="margin-left: 15%; visibility: hidden;">
+										<img src="./images/dislikenotmarked-removebg-preview.png" id="dislikenaomarcado" style="margin-left: 15%; visibility: hidden;">
+										<img src="./images/likemarked-removebg-preview.png" id="likemarcado" style="margin-left: 15%; width:26%; height:14%; margin-top: -40%; visibility: hidden;">
+										<img src="./images/dislikesmarked-removebg-preview.png" id="dislikemarcado" style="margin-left: 15%; width:27%; height:14%; margin-top: -30%; visibility: hidden;">
 		                                <!-- /pictures -->
 		                                <h2>Da Alfredo Menu</h2>
 		                                <h3>Starters</h3>
