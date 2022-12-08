@@ -159,7 +159,7 @@
 		
 		<button class="button" onclick="removelike()" style="position: absolute; margin-left:63%; height:6%; font-size: 10px; background-color: red; visibility: hidden;">Remover um Gosto</button>	
 
-		<h1 id="titulorestaurante" style="margin-left: 7%;">Título do Restaurante</h1>
+		<h1 id="titulorestaurante" style="margin-left: 7%;"></h1>
 
 		<h3 id="quantidadelikes" style="position: absolute; margin-top:-3%; margin-left: 75%;">Likes: </h3>
 
@@ -175,10 +175,13 @@
 		            <div class="tabs_detail">
 		                <ul class="nav nav-tabs" role="tablist">
 		                    <li class="nav-item">
-		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Descrição</a>
+		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Informação</a>
 		                    </li>
 		                    <li class="nav-item">
 		                        <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Mais Restaurantes deste tipo</a>
+		                    </li>
+							<li class="nav-item">
+		                        <a id="tab-C" href="#pane-C" class="nav-link" data-bs-toggle="tab" role="tab">Mesas Disponiveis</a>
 		                    </li>
 		                </ul>
 
@@ -193,15 +196,14 @@
 		                        </div>
 		                        <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
 		                            <div class="card-body info_content">
-		                            	<p id="descricaorestaurante">Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>
-		                            	<p>An malorum ornatus nostrum vel, graece iracundia laboramus cu ius. No pro mazim blandit instructior, sumo voluptaria has et, vide persecuti abhorreant ne est.</p>
-		                            	<div class="add_bottom_25"></div>
-		                                <h2>Likes</h2>
+		                            	<p id="descricaorestaurante">Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>		                            	<div class="add_bottom_25"></div>
+		                                
 		                                
 										
 		                                <!-- /pictures -->
-		                                <h2>Da Alfredo Menu</h2>
-		                                <h3>Starters</h3>
+		                                <h2 id="titleformenu">EMENTA</h2>
+		                                <h3>Aperitivos</h3>
+										<div id="organize12">
 		                                <div class="menu_item">
 		                                    <em>€9.90</em>
 		                                    <h4>Imported Salmon Steak</h4>
@@ -217,8 +219,9 @@
 		                                    <h4>Ensalada cesar</h4>
 		                                    <p>lechuga, tomate, espinacas, pollo asado, picatostes, queso proteínico y salsa césar 0%</p>
 		                                </div>
+									</div>
 		                                <hr>
-		                                <h3>Main Course</h3>
+		                                <h3>Entradas</h3>
 		                                <div class="menu_item">
 		                                    <em>€15.90</em>
 		                                    <h4>Oriental</h4>
@@ -252,9 +255,44 @@
 		                                    </div>
 		                                </div>
 		                                <!-- /content_more -->
-		                                <a href="#0" class="show_hide" data-content="toggle-text">Read More</a>
+		                                
 		                                <hr>
-		                                <h3>Dessert</h3>
+		                                <h3>Pratos Principais</h3>
+		                                <div class="menu_item">
+		                                    <em>€15.90</em>
+		                                    <h4>Oriental</h4>
+		                                    <p>Cama de tabule con taquitos de pollo a la mostaza light</p>
+		                                </div>
+		                                <div class="menu_item">
+		                                    <em>€11.90</em>
+		                                    <h4>Vegan Burguer</h4>
+		                                    <p>Medio pollo asado acompañado de arroz o patatas al toque masala</p>
+		                                </div>
+		                                <div class="menu_item">
+		                                    <em>€10.90</em>
+		                                    <h4>Indio Fit</h4>
+		                                    <p>lechuga, tomate, espinacas, pollo asado, picatostes, queso proteínico y salsa césar 0%</p>
+		                                </div>
+		                                <div class="content_more">
+		                                    <div class="menu_item">
+		                                        <em>€15.90</em>
+		                                        <h4>Oriental</h4>
+		                                        <p>Cama de tabule con taquitos de pollo a la mostaza light</p>
+		                                    </div>
+		                                    <div class="menu_item">
+		                                        <em>€11.90</em>
+		                                        <h4>Vegan Burguer</h4>
+		                                        <p>Medio pollo asado acompañado de arroz o patatas al toque masala</p>
+		                                    </div>
+		                                    <div class="menu_item">
+		                                        <em>€10.90</em>
+		                                        <h4>Indio Fit</h4>
+		                                        <p>lechuga, tomate, espinacas, pollo asado, picatostes, queso proteínico y salsa césar 0%</p>
+		                                    </div>
+		                                </div>
+										
+										<hr>
+										<h3>Sobremesas</h3>
 		                                <div class="menu_item">
 		                                    <em>€15.90</em>
 		                                    <h4>Oriental</h4>
@@ -288,10 +326,10 @@
 		                                    </div>
 		                                </div>
 		                                <!-- /content_more -->
-		                                <a href="#0" class="show_hide" data-content="toggle-text">Read More</a>
+		                                
 		                                <div class="add_bottom_45"></div>
 		                                <div class="special_offers add_bottom_45">
-		                                    <h2>Special Offers</h2>
+		                                    <h2>Pratos do Dia</h2>
 		                                    <div class="menu_item">
 		                                        <em>€10.90</em>
 		                                        <h4>Indio Fit</h4>
@@ -313,6 +351,7 @@
 		                                        <p>lechuga, tomate, espinacas, pollo asado, picatostes, queso proteínico y salsa césar 0%</p>
 		                                    </div>
 		                                </div>
+										
 		                                <!-- /special_offers -->
 
 		                                <div class="other_info">

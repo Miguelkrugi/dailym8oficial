@@ -104,6 +104,25 @@ router.get('/showrandomrestaurants/nrmesas/decrescente', async function(req, res
 
 //RESTAURANTES ALEATORIOS/SUGERIDOS
 
+router.get('/countlikerestaurant/:idrestaurante', async function(req, res, next) {
+
+  let idrestaurante = req.params.idrestaurante;
+  let result = await usersModel.getCountLikeRestaurant(idrestaurante);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/seeplates/filter/:idestabelecimento/:idplatetype', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let plate_type_id = req.params.idplatetype;
+
+  let result = await usersModel.getRestaurantPlatesFilter(estabelecimento_id, plate_type_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
 router.get('/showrandomsuggestedrestaurants', async function(req, res, next) {
 
   let result = await usersModel.getRandomSuggestedRestaurants();

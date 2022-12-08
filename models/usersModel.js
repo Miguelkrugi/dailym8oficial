@@ -255,6 +255,36 @@ module.exports.getFilterRestaurants = async function(type) {
     }
 }
 
+
+module.exports.getCountLikeRestaurant = async function(restaurant_id) {
+    try {
+        let sql = "SELECT COUNT(*) FROM like_restaurante WHERE like_restaurante = " + restaurant_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getRestaurantPlatesFilter = async function(est_id, plate_identifier) {
+    try {
+        let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + est_id + " AND plate.plate_availability = '0' AND plate_type.plate_type_id = " + plate_identifier;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+
 module.exports.getRandomServicesAcomodacao = async function() {
     try {
         let sql = "SELECT *,  place_servico_acomodacoes.local_id, place_servico_acomodacoes.local_morada, place_servico_acomodacoes.ref_system_id, place_servico_acomodacoes.geometry_info_point, place_servico_acomodacoes.local_servico_acomodacoes_id, place_servico_acomodacoes.local_latitude, place_servico_acomodacoes.local_longitude FROM equipment_service INNER JOIN place_servico_acomodacoes ON place_servico_acomodacoes.local_servico_acomodacoes_id = equipment_service.equipment_service_id ORDER BY random() LIMIT 12";
