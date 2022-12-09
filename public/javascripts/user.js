@@ -166,6 +166,7 @@ async function printtest(){
 
     console.log("NOME: " + restaurante.establishment_name)
     console.log("DESCRICAO: " + restaurante.establishment_description)
+    console.log("ID: " + restaurante.restaurant_id)
     
     sessionStorage.setItem('establishment_id', restaurante.establishment_id);
     sessionStorage.setItem('establishment_name', restaurante.establishment_name);

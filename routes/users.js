@@ -122,6 +122,34 @@ router.get('/seeplates/filter/:idestabelecimento/:idplatetype', async function(r
 
 });
 
+router.get('/seeplates/filter/:idestabelecimento', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+
+  let result = await usersModel.getPlates(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/seetables/filter/:idestabelecimento', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+
+  let result = await usersModel.getRestaurantTables(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/seetables/filter/:idestabelecimento/:idtype', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let table_type_id = req.params.idtype;
+
+  let result = await usersModel.getRestaurantTablesInterior(estabelecimento_id, table_type_id);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.get('/showrandomsuggestedrestaurants', async function(req, res, next) {
 

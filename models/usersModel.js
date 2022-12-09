@@ -283,6 +283,57 @@ module.exports.getRestaurantPlatesFilter = async function(est_id, plate_identifi
     }
 }
 
+module.exports.getRestaurantTablesFilter = async function(rest_id, table_type_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + rest_id + " AND mesa.mesa_availability = '0' AND mesa.mesa_type_id = " + table_type_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getRestaurantTables = async function(rest_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + rest_id + " AND mesa.mesa_availability = '0'";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getRestaurantTablesInterior = async function(rest_id, table_type_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + rest_id + " AND mesa.mesa_availability = '0' AND mesa.mesa_type_id = " + table_type_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getPlates = async function(est_id) {
+    try {
+        let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + est_id + " AND plate.plate_availability = '0'";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
 
 module.exports.getRandomServicesAcomodacao = async function() {

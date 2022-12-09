@@ -26,53 +26,12 @@ async function getNumberLikesRestaurant(restaurante_id){
     }
     }
 
-
-    async function getAperitivos(restaurant_id, type_id){
-
-        console.log("Obtendo os restaurantes")
-        
-        // let recipeName = document.getElementById("nome1")
-         let restaurantesElem = document.getElementById("organize2");
-         var utilizador_id = sessionStorage.getItem("utilizador_id");
-         console.log("setItem->userId = " + utilizador_id);
-        
-        try{
-        
-        let suggestedrestaurants = await $.ajax({
-        
-        url: "/users/seeplates/filter/" + restaurant_id + "/" + type_id,
-        method: "get",
-        dataType: "json",
-        
-        });
-        
-        console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
-        
-        let html = "";
-        
-        for(let restaurant of suggestedrestaurants){
-         console.log("Restaurante: " + restaurant);
-         html += createplateHTML(restaurant);
-        }
-        
-        console.log("OBTEVE");
-        //  recipeName.innerHTML = html;
-        
-       // restaurantesElem.innerHTML = html;
-      
-         restaurantesElem.innerHTML = html;
-        
-        
-        } catch(err){
-         console.log(err);
-        }
-        }
+  
 
 
 
 window.onload = function exampleFunction() {
-    console.log('The Script will load now.');
-  
+
     var utilizador_id = sessionStorage.getItem("utilizador_id")
     var utilizador_name = sessionStorage.getItem("utilizador_name");
     let utilizador_username = sessionStorage.getItem("utilizador_username");
@@ -89,13 +48,7 @@ window.onload = function exampleFunction() {
  var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
  var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
 
-    getNumberLikesRestaurant(restaurant_id);
-
-    getAperitivos(restaurant_id, 1);
-    getEntradas(restaurant_id, 2);
-    getPratosPrincipais(restaurant_id, 3);
-    getSobremesas(restaurant_id, 4);
-    getPratosdoDia(restaurant_id, 5);
+    console.log('The Script will load now.');
 
     console.log("A chamar a funcao");
   
@@ -105,11 +58,24 @@ window.onload = function exampleFunction() {
 
     console.log("RESTAURANTE NAME: " + establishment_name);
     console.log("RESTAURANTE ID: " + establishment_id);
+    console.log("REST DEFINITIVO ID: " + restaurant_id);
     console.log("DESCRIPTION RESTAURANTE: " + establishment_description);
+  
+ document.getElementById("titulorestaurante").innerHTML = establishment_name;
 
-    document.getElementById("titulorestaurante").innerHTML = establishment_name;
+ document.getElementById("descricaorestaurante").innerHTML = establishment_description;
 
-    document.getElementById("descricaorestaurante").innerHTML = establishment_description;
+    getNumberLikesRestaurant(restaurant_id);
+
+   // getAperitivos(restaurant_id, 1);
+   // getEntradas(restaurant_id, 2);
+   // getPratosPrincipais(restaurant_id, 3);
+   // getSobremesas(restaurant_id, 4);
+   // getPratosdoDia(restaurant_id, 5);
+
+  
+
+    
 
     //getAleatorioRestaurantes();
 
