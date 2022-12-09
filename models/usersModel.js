@@ -309,6 +309,19 @@ module.exports.getRestaurantTables = async function(rest_id) {
     }
 }
 
+module.exports.getRestaurantPlace = async function(rest_id) {
+    try {
+        let sql = "SELECT * FROM place_restaurante WHERE place_restaurante.local_restaurante_id = " + rest_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
 module.exports.getRestaurantTablesInterior = async function(rest_id, table_type_id) {
     try {
         let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + rest_id + " AND mesa.mesa_availability = '0' AND mesa.mesa_type_id = " + table_type_id;
@@ -321,6 +334,8 @@ module.exports.getRestaurantTablesInterior = async function(rest_id, table_type_
         return { status: 500, data: err };
     }
 }
+
+
 
 module.exports.getPlates = async function(est_id) {
     try {

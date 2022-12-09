@@ -150,6 +150,15 @@ router.get('/seetables/filter/:idestabelecimento/:idtype', async function(req, r
 
 });
 
+router.get('/place/position/:idestabelecimento', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+
+  let result = await usersModel.getRestaurantPlace(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.get('/showrandomsuggestedrestaurants', async function(req, res, next) {
 

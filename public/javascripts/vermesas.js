@@ -9,7 +9,48 @@ function createtableHTML(prato){
   
   }
 
+  async function getExterior(){
 
+    console.log("Obtendo os restaurantes")
+    
+    // let recipeName = document.getElementById("nome1")
+     let restaurantesElem = document.getElementById("organize13");
+     var restaurant_id = sessionStorage.getItem("restaurant_id");
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+     console.log("Restaurante ID: " + restaurant_id);
+    
+    try{
+    
+    let suggestedrestaurants = await $.ajax({
+    
+    url: "/users/seetables/filter/" + restaurant_id + "/" + 2,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+    
+    let html = "";
+    
+    for(let restaurant of suggestedrestaurants){
+     console.log("Restaurante: " + restaurant);
+     html += createtableHTML(restaurant);
+    }
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     restaurantesElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
 
 
 async function getInterior(){
@@ -39,7 +80,7 @@ async function getInterior(){
     
     for(let restaurant of suggestedrestaurants){
      console.log("Restaurante: " + restaurant);
-     html += createplateHTML(restaurant);
+     html += createtableHTML(restaurant);
     }
     
     console.log("OBTEVE");

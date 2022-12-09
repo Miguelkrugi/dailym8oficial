@@ -27,7 +27,30 @@ async function getNumberLikesRestaurant(restaurante_id){
     }
 
   
+    async function getPlacePosition(restaurante_id){
 
+        console.log("Obtendo os likes")
+        
+         var utilizador_id = sessionStorage.getItem("utilizador_id");
+         console.log("setItem->userId = " + utilizador_id);
+        
+        try{
+        
+        let position = await $.ajax({
+        
+        url: "/users/place/position/" + restaurante_id,
+        method: "get",
+        dataType: "json",
+        
+        });
+    
+        console.log();
+        
+        
+        } catch(err){
+         console.log(err);
+        }
+        }
 
 
 window.onload = function exampleFunction() {
@@ -64,6 +87,8 @@ window.onload = function exampleFunction() {
  document.getElementById("titulorestaurante").innerHTML = establishment_name;
 
  document.getElementById("descricaorestaurante").innerHTML = establishment_description;
+
+    getPlacePosition();
 
     getNumberLikesRestaurant(restaurant_id);
 

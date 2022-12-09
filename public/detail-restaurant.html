@@ -19,6 +19,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+	<!--GOOGLE MAPS API-->
+
+	<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACJOCY_dVNmJ2GTYD4bKErFSuDey8h4KE&callback=initMap&v=weekly"
+	defer
+  ></script>
+
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -347,25 +354,10 @@
 
 		                                <div class="other_info">
 		                                <h2>MAPA</h2>
-		                                <div class="row">
-		                                	<div class="col-md-4">
-		                                		<h3>Address</h3>
-		                                		<p>27 Old Gloucester St, 4530<br><a href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361" target="blank"><strong>Get directions</strong></a></p>
-		                                		<strong>Follow Us</strong><br>
-		                                		<p class="follow_us_detail"><a href="#0"><i class="social_facebook_square"></i></a><a href="#0"><i class="social_instagram_square"></i></a><a href="#0"><i class="social_twitter_square"></i></a></p>
-		                                	</div>
-		                                	<div class="col-md-4">
-		                                		<h3>Opening Time</h3>
-		                                		<p><strong>Lunch</strong><br> Mon. to Sat. 11.00am - 3.00pm<p>
-		                                		<p><strong>Dinner</strong><br> Mon. to Sat. 6.00pm- 1.00am</p>
-		                                		<p><span class="loc_closed">Sunday Closed</span></p>
-		                                	</div>
-		                                	<div class="col-md-4">
-		                                		<h3>Services</h3>
-		                                		<p><strong>Credit Cards</strong><br> Mastercard, Visa, Amex</p>
-		                                		<p><strong>Other</strong><br> Wifi, Parking, Wheelchair Accessible</p>
-		                                	</div>
-		                                </div>
+		                               <div id="map" style="height:400px; width:100%;">
+
+
+									   </div>
 		                                <!-- /row -->
 		                            	</div>
 		                            </div>
@@ -493,6 +485,23 @@
     <script src="js/specific_detail.js"></script>
 	<script src="js/datepicker.min.js"></script>
 	<script src="js/datepicker_func_1.js"></script>
+
+	<script>
+
+      function initMap(){
+
+		var options = {
+
+			zoom: 8,
+			center:{lat: 42.3601, lng:-71.0589}
+
+		}
+
+		var map = new google.maps.Map(document.getElementById('map'), options);
+
+	  }
+
+	</script>
 
 </body>
 </html>
