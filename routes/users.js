@@ -11,6 +11,15 @@ router.get('/ok', function(req, res, next) {
   res.send('ok');
 });
 
+///////ALL USER
+
+router.get('/allusers', async function(req, res, next) {
+
+  let result = await usersModel.getUsers();
+  res.status(result.status).send(result.data);
+
+});
+
 router.post('/insertnewuser', async function(req, res, next) {
   let newUser = req.body;
   //console.log("[usersRoutes] Saving user " + JSON.stringify(newUser));
