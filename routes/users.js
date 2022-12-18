@@ -7,6 +7,10 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/ok', function(req, res, next) {
+  res.send('ok');
+});
+
 router.post('/insertnewuser', async function(req, res, next) {
   let newUser = req.body;
   //console.log("[usersRoutes] Saving user " + JSON.stringify(newUser));
