@@ -8,6 +8,10 @@
     <meta name="author" content="Ansonika">
     <title>Foogra - Discover & Book the best restaurants at the best price</title>
 
+    <!--CSS W3SCHOOLS-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -24,21 +28,22 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- SPECIFIC CSS -->
-    <link href="css/about.css" rel="stylesheet">
+    <link href="css/listing.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
+
+	<script src="./javascripts/gestao.js"></script>
 
 </head>
 
 <body>
 				
-	<header class="header clearfix element_to_stick">
+	<header class="header_in clearfix">
 		<div class="container">
 		<div id="logo">
 			<a href="index.html">
-				<img src="img/logo-removebg-preview.png" width="200" height="200" alt="" class="logo_normal">
-				<img src="img/logo-removebg-preview.png" width="200" height="200" alt="" class="logo_sticky">
+				<img src="img/logo_sticky.svg" width="140" height="35" alt="">
 			</a>
 		</div>
 		<ul id="top_menu">
@@ -59,91 +64,20 @@
 			<ul>
 				<li class="submenu">
 					<a href="#0" class="show-submenu">Home</a>
-					<ul>
-						<li><a href="index.html">Default</a></li>			
-						<li class="third-level"><a href="#0">Sliders - Parallax <strong>New!</strong></a>
-							<ul>
-								<li><a href="index-16.html">Kenburns slider <strong>New!</strong></a></li>
-								<li><a href="index-8.html">Revolution Slider 1</a></li>
-								<li><a href="index-9.html">Revolution Slider 2</a></li>
-								<li><a href="index-3.html">Owl Carousel</a></li>
-								<li><a href="index-10.html">Parallax Youtube</a></li>
-								<li><a href="index-11.html">Parallax Vimeo</a></li>
-								<li><a href="index-12.html">Parallax Mp4 Video</a></li>
-								<li><a href="index-13.html">Parallax Video Fullscreen</a></li>
-								<li><a href="index-14.html">Parallax Image</a></li>
-							</ul>
-						</li>
-						<li><a href="index-15.html">Text Rotator</a></li>
-						<li><a href="index-5.html">Address Autocomplete</a></li>
-						<li><a href="index-6.html">Search Version 2</a></li>
-						<li><a href="index-7.html">Delivery/Takeaway version</a></li>
-						<li><a href="modal-advertise.html">Modal Advertise</a></li>
-						<li><a href="modal-newsletter.html">Modal Newsletter</a></li>
-						<li><a href="index-2.html">Video Bg Fallback Mobile</a></li>
-						<li><a href="index-4.html">GDPR Cookie Bar EU Law</a></li>
-					</ul>
+					
 				</li>
 				<li class="submenu">
-					<a href="#0" class="show-submenu">Listing</a>
-					<ul>
-						<li class="third-level"><a href="#0">List pages</a>
-							<ul>
-								<li><a href="grid-listing-filterscol.html">List default</a></li>
-								<li><a href="grid-listing-filterscol-map.html">List with map</a></li>
-								<li><a href="listing-map.html">List side map</a></li>
-								<li><a href="grid-listing-filterscol-full-width.html">List full width</a></li>
-								<li><a href="grid-listing-filterscol-full-masonry.html">List Masonry Filter</a></li>
-								<li><a href="grid-listing-filterscol-delivery.html">List Delivery/Takeaway</a></li>
-							</ul>
-						</li>
-						<li class="third-level"><a href="#0">Detail pages</a>
-							<ul>
-								<li><a href="detail-restaurant.html">Detail page 1</a></li>
-								<li><a href="detail-restaurant-2.html">Detail page 2</a></li>
-								<li><a href="detail-restaurant-3.html">Mobile Fixed Booking</a></li>
-								<li><a href="detail-restaurant-delivery.html">Delivery/Takeaway</a></li>
-								<li><a href="detail-restaurant-4.html">Detail Menu Thumbs</a></li>
-								<li><a href="detail-restaurant-5.html">Detail Contact Form</a></li>
-							</ul>
-						</li>
-						<li class="third-level"><a href="#0">OpenStreetMap</a>
-							<ul>
-								<li><a href="grid-listing-filterscol-map-openstreetmap.html">List with map</a></li>
-								<li><a href="listing-map-openstreetmap.html">List side map</a></li>
-								<li><a href="grid-listing-filterscol-full-width-openstreetmap.html">List full width</a></li>
-								<li><a href="grid-listing-filterscol-full-masonry-openstreetmap.html">List Masonry Filter</a></li>
-							</ul>
-						</li>
-						<li><a href="submit-restaurant.html">Submit Restaurant</a></li>
-						<li><a href="submit-rider.html">Submit Rider</a></li>
-						<li><a href="wishlist.html">Wishlist</a></li>
-						<li><a href="booking.html">Booking</a></li>
-						<li><a href="confirm.html">Confirm Booking</a></li>
-						<li><a href="confirm-delivery.html">Confirm Order</a></li>
-						<li><a href="booking-delivery-2.html">Order Delivery/Takeaway</a></li>
-						<li><a href="booking-delivery.html">Order Delivery/Takeaway 2</a></li>
-						<li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
-					</ul>
+					<a href="listrestaurantes.html" class="show-submenu">Restaurantes</a>
 				</li>
 				<li class="submenu">
-					<a href="#0" class="show-submenu">Other Pages</a>
-					<ul>
-						<li><a href="404.html">404 Error</a></li>
-						<li><a href="help.html">Help and Faq</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="leave-review.html">Leave a review</a></li>
-						<li><a href="user-logged-1.html">User Logged 1</a></li>
-						<li><a href="user-logged-2.html">User Logged 2</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
-						<li><a href="coming_soon/index.html">Coming Soon</a></li>
-						<li><a href="account.html">Sign Up</a></li>
-						<li><a href="icon-pack-1.html">Icon Pack 1</a></li>
-						<li><a href="icon-pack-2.html">Icon Pack 2</a></li>
-					</ul>
+					<a href="listacomodacoes.html" class="show-submenu">Acomodações</a>
 				</li>
-				<li><a href="submit-restaurant.html">Submit</a></li>
-				<li><a href="#0">Buy this template</a></li>
+				<li><a href="listestacionamentos.html">Estacionamentos</a></li>
+				<li><a href="listpacks.html">Packs</a></li>
+				<li><a href="sobrenos.html">Sobre Nós</a></li>
+				<li><a href="minhaconta.html">A Minha Conta</a></li>
+				
+				
 			</ul>
 		</nav>
 	</div>
@@ -151,67 +85,107 @@
 	<!-- /header -->
 	
 	<main>
-		<div class="hero_single inner_pages background-image" data-background="url(img/hero_general.jpg)">
-			<div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.4)">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-xl-9 col-lg-10 col-md-8">
-							<h1>A Minha Wishlist</h1>
-							<p>Experiências que gostei</p>
-						</div>
-					</div>
-					<!-- /row -->
-				</div>
-			</div>
+
+        <!--BARRA DE NAVEGAÇÃO | SIDEBAR-->
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Estabelecimentos
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myRestaurantes()">Restaurantes</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAcomodacoes()">Acomodações</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myEstacionamentos()">Estacionamentos</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Outros
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="myFavoritos()">Meus Favoritos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myReservas()">Minhas Reservas</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAccount()">Minha Conta</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myLogout()">Logout</a>
+                </li>
+               
+            </ul>
+        </div>
+
+        <div id="tipoestabelecimento" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
+            <button class="dropbtn">Filtrar Estabelecimento</button>
+            <div class="dropdown-content">
+                
+                <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                      
+               
+              <a href="#" onclick="getAcomodacaoTipo(1)">Restaurantes</a>
+                
+                
+              <a href="#" onclick="getAcomodacaoTipo(1)">Acomodações</a>
+
+              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
+            
+            </div>
+        </div>
+
+
+
+
+        <!---->
+		<div class="page_header element_to_stick">
+		    <div class="container">
+		    	<div class="row">
+		    		<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
+		    			
+		        		<h1 style="font-size: 35px; margin-left: -14%;">Gestão de Estabelecimentos</h1>
+		    		</div>
+		    		
+		    	</div>
+		    	<!-- /row -->		       
+		    </div>
 		</div>
+		<!-- /page_header -->
 
-		<div class="dropdown" style="position: absolute; margin-top: 4%; width: 15%; margin-left: 77%; z-index: 27;">
-			<button class="dropbtn">Filtrar Estabelecimento</button>
-			<div class="dropdown-content">
-				
-				<a href="#" onclick="getRandomLikedEstablishment()">Todos</a>
-					  
-			   
-			  <a href="#" onclick="getLikedEstablishment(1)">Restaurantes</a>
-				
-				
-			  <a href="#" onclick="getLikedEstablishment(2)">Acomodações</a>
-				
-				
-			  <a href="#" onclick="getLikedEstablishment(3)">Estacionamentos</a>
+        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Os Meus Estabelecimentos</h1>
+        <h1 id="textomeusfavoritos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Meus Favoritos</h1>
+        <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
+        <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
+	
 
+        <!-------------- ELEMENTOS DA ABA "MINHA CONTA" --------------->
 
-			  
-			</div>
-		</div>
-		<!-- /hero_single -->
+        <h1 id="textominhacontainformacoes" style="font-size: 25px; margin-left: 19%; margin-top: 7%; position: absolute; ">Informações</h1>
 
-		<div class="container margin_60_30">
-			<div class="main_title center">
-			    <span><em></em></span>
-			    <h2>Experiências de que gostei</h2>
-			    
-			</div>
-			<div class="row">
-				<div class="col-xl-4 col-lg-6 col-md-6">
-					 
-					<div id="organize15"> <!--LIKED ESTABLISHMENTS DIV-->
+        <div id="informacoesdiv" style="background-color: lightgray; width: 75.2%; height:45%; position: absolute; margin-left: 19%; border-radius: 15px; margin-top: 10%;">
+        
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 4%; position: absolute; ">Nome: </h1>
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 7%; position: absolute; ">Username: </h1>
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 10%; position: absolute; ">Email: </h1>
 
-
-
-					</div>
-			        
-				</div>
-				<!-- /box_grid -->
-			</div>			
-			
-		</div>
-		<!-- /container -->
-		
+            <button style="background-color: salmon; color: white; margin-top: 15%; margin-left: 4%;" onclick="deleteAccount()">APAGAR CONTA</button>
+        
+        </div>
 	</main>
 	<!-- /main -->
 
-	<footer style="margin-top: 50%;">
+	<footer style="margin-top: 80%; position: absolute; width:100%;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
@@ -367,11 +341,9 @@
     <script src="js/common_func.js"></script>
     <script src="assets/validate.js"></script>
 
-    <script>
-		$('.wish_bt').on('click', function (c) {
-			$(this).parent().parent().parent().parent().fadeOut('slow', function (c) {});
-		});
-	</script>
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/sticky_sidebar.min.js"></script>
+    <script src="js/specific_listing.js"></script>
 
 </body>
 </html>
