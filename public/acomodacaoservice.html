@@ -19,13 +19,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-	<!--GOOGLE MAPS API-->
-
-	<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACJOCY_dVNmJ2GTYD4bKErFSuDey8h4KE&callback=initMap&v=weekly"
-	defer
-  ></script>
-
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -38,7 +31,7 @@
 
 	<link href="css/listing.css" rel="stylesheet">
 
-	<script src="./javascripts/detailrestaurant.js"></script>
+	<script src="./javascripts/menurestaurant.js"></script>
 
 </head>
 
@@ -184,70 +177,92 @@
 		            <div class="tabs_detail">
 		                <ul class="nav nav-tabs" role="tablist">
 		                    <li class="nav-item">
-		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Informação</a>
+		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">ACOMODAÇÕES</a>
 		                    </li>
 		                
 						</ul>
 
-						<a href="menurestaurant.html">
-						<button  style="position: absolute; margin-top: -2%; margin-left: 40%;">VER MENÚ</button>
+						<a href="detail-acomodacao.html">
+						<button  style="position: absolute; margin-top: -2%; margin-left: 40%;">VOLTAR</button>
 						</a>
-						<a href="vermesas.html">
-						<button style="position: absolute; margin-top: -2%; margin-left: 47%;">VER MESAS</button>
-						</a>
+						
 
-		                <div class="tab-content" role="tablist">
-		                    <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
-		                        <div class="card-header" role="tab" id="heading-A">
-		                            <h5>
-		                                <a class="collapsed" data-bs-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
-		                                    Information
-		                                </a>
-		                            </h5>
-		                        </div>
-		                        <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
-		                            <div class="card-body info_content">
-		                            	<p id="descricaorestaurante">Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>		                            	<div class="add_bottom_25"></div>
-		                                
-		                                
-										
-		                              
-										
-		                                <!-- /special_offers -->
-
-		                                <div class="other_info">
-		                                <h2>MAPA</h2>
-		                               <div id="map" style="height:400px; width:100%;">
-
-
-									   </div>
-		                                <!-- /row -->
-		                            	</div>
-		                            </div>
+		                
 		                        </div>
 		                    </div>
 		                    <!-- /tab -->
 
-		                    <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+		                   
 		                        
 								
-								<div class="dropdown" >
-									<button class="dropbtn">Filtrar Pratos</button>
+								<div class="dropdown" style="width:9%; margin-top: -1%; position: absolute; margin-left: 60%;">
+									<button class="dropbtn">Filtrar Linha</button>
 									<div class="dropdown-content">
-									  <a href="#">Aperitivos</a>
-									  <a href="#">Entradas</a>
-									  <a href="#">Pratos Principais</a>
-									  <a href="#">Sobremesas</a>
-									  <a href="#">Pratos do Dia</a>
+                                       
+                                      <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                                    
+                                        
+									  <a href="#" onclick="getAcomodacaoLinha(1)">Linha 1</a>
+                                     
+                                        
+									  <a href="#" onclick="getAcomodacaoLinha(2)">Linha 2</a>
+                                       
+                                       
+									  <a href="#" onclick="getAcomodacaoLinha(3)">Linha 3</a>
+                                    
+                                    
+									  <a href="#" onclick="getAcomodacaoLinha(4)">Linha 4</a>
+                                    
+                                    
+									  <a href="#" onclick="getAcomodacaoLinha(5)">Linha 5</a>
+                                    
+									</div>
+								</div>
+                                <div class="dropdown" style="position: absolute; margin-top: -1%; width: 10%; margin-left: 70%;">
+									<button class="dropbtn">Filtrar Coluna</button>
+									<div class="dropdown-content">
+                                        
+                                        <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                                              
+                                       
+									  <a href="#" onclick="getAcomodacaoColuna(1)">Coluna 1</a>
+                                        
+                                        
+									  <a href="#" onclick="getAcomodacaoColuna(2)">Coluna 2</a>
+                                        
+                                        
+									  <a href="#" onclick="getAcomodacaoColuna(3)">Coluna 3</a>
+                                    
+                                    
+									  <a href="#" onclick="getAcomodacaoColuna(4)">Coluna 4</a>
+                                    
+                                    
+									  <a href="#" onclick="getAcomodacaoColuna(5)">Coluna 5</a>
+                                    
+									</div>
+								</div>
+
+                                <div class="dropdown" style="position: absolute; margin-top: -1%; width: 10%; margin-left: 80%;">
+									<button class="dropbtn">Filtrar Tipo</button>
+									<div class="dropdown-content">
+                                        
+                                        <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                                              
+                                       
+									  <a href="#" onclick="getAcomodacaoTipo(1)">Toldo</a>
+                                        
+                                        
+									  <a href="#" onclick="getAcomodacaoTipo(1)">Palhota</a>
+                                    
 									</div>
 								</div>
 								<div id="organize13">
 									
-									<h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
+									
 									
 								</div>
 
-		                    </div>
+		                   
 
 							
 
@@ -280,66 +295,6 @@
 		</div>
 		<!-- /container -->
 		
-		<div style="background-color: rgb(243, 243, 243); width:29%; height:84%; position: absolute; margin-left: 65%; margin-top: -44%; ">
-
-			<!--TEXTOS PARA ALTERNAR-->
-            <h2 id="reservamesatexto" style="margin-left: 21%; margin-top: 10%; font-size: 25px; ">RESERVAR UMA MESA</h2>
-			<h2 id="reservaacomodacaotexto" style="margin-left: 7%; margin-top: -8.6%; font-size: 25px; position: absolute; visibility: hidden;">RESERVAR UMA ACOMODAÇÃO</h2>
-			<h2 id="reservalugartexto" style="margin-left: 23%; margin-top: -8.6%; font-size: 25px; position: absolute; visibility: hidden;">RESERVAR UM LUGAR</h2>
-
-			<!--BOTÕES PARA ALTERNAR-->
-			<button id="reservamesabotao" style="position: absolute; margin-left: 38%; margin-top: 96%;">RESERVAR MESA</button>
-			<button id="reservaacomodacaobotao" style="position: absolute; margin-left: 30%; margin-top: 96%; visibility: hidden;">RESERVAR ACOMODACAO</button>
-			<button id="reservalugarbotao" style="position: absolute; margin-left: 38%; margin-top: 96%; visibility: hidden;">RESERVAR LUGAR</button>
-
-
-			<!--DROPDOWN PARA ALTERNAR-->
-
-			
-			<div class="dropdown" style="width:70%; margin-left: 7%; margin-top: 9%;">
-				<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Mesa</button>
-				<div class="dropdown-content" style="">
-					
-				 <button id="buttonoption" onclick="showValue()" style="background-color: transparent; border: 0;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-				  <a href="#">Numero da Mesa</a>
-				 </button>
-				
-				
-				</div>
-			</div>
-			
-
-
-			<div>
-
-             <input type="text" placeholder="DD-MM-AAAA" style="margin-left:7%; margin-top: 17%; position:absolute;">
-
-			</div>
-
-			<h3 style="margin-left: 7%; font-size: 15px;">Mesa Selecionada: </h3> <!--MOSTRAR O NUMERO DA MESA QUE FOI SELECIONADO-->
- 
-            <h3 style="margin-left: 7%; font-size: 15px; margin-top: 7%;">Data </h3>
-
-			<h3 style="margin-left: 7%; font-size: 20px; margin-top: 13%;">Detalhes de Pagamento </h3>
-
-			<h3 style="margin-left: 7%; font-size: 15px; margin-top: 1%; position: absolute;">Cartão de Crédito: </h3>
-
-			<h3 style="margin-left: 7%; font-size: 15px; margin-top: 14%; position: absolute;">CVC: </h3>
-
-			<div style="margin-top: 7%;">
-
-			<input id="creditparte1" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:7%; margin-top: 1%; position:absolute;">
-			<input id="creditparte2" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:21%; margin-top: 7%; margin-top: 1%; position:absolute;">
-			<input id="creditparte3" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:35%; margin-top: 1%; position:absolute;">
-			<input id="creditparte4" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:49%; margin-top: 7%; margin-top: 1%; position:absolute;">
-				
-			</div>
-
-			<input id="cvcnumber" type="tel" maxlength="3" placeholder="XXX" style="width: 13%; margin-left:7%; margin-top: 14%; position:absolute;">
-
-
-		</div>
-
 	</main>
 	<!-- /main -->
 
@@ -409,29 +364,5 @@
 	<script src="js/datepicker.min.js"></script>
 	<script src="js/datepicker_func_1.js"></script>
 
-	<script>
-
-      function initMap(){
-
-		var options = {
-
-			zoom: 8,
-			center:{lat: 42.3601, lng:-71.0589}
-
-		}
-
-		var map = new google.maps.Map(document.getElementById('map'), options);
-
-	  }
-
-	</script>
-
-
-<script>
-	function showValue(){
-
-
-	}
-</script>
 </body>
 </html>

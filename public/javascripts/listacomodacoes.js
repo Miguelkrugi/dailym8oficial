@@ -97,11 +97,37 @@ async function numeroacomodacoescrescente(){
     }
     }
 
+    async function openacomodacao2(restaurante){
+
+      console.log("FUNÇÃO CHAMADA!");
+      console.log("NOME: " + restaurante.establishment_name)
+        console.log("DESCRICAO: " + restaurante.establishment_description)
+        console.log("ID: " + restaurante.equipment_service_id)
+        console.log("LATITUDE: " + restaurante.local_latitude)
+        console.log("LONGITUDE: " + restaurante.local_longitude)
+        
+        sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+        sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+        sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+        sessionStorage.setItem('restaurant_id', restaurante.equipment_service_id);
+        sessionStorage.setItem('restaurante_number_tables', restaurante.number_acomodacoes);
+        sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+        sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+        sessionStorage.setItem('local_id', restaurante.local_id);
+        sessionStorage.setItem('local_morada', restaurante.local_morada);
+        sessionStorage.setItem('ref_system_id', restaurante.ref_system_id);
+        sessionStorage.setItem('geometry_info_point', restaurante.geometry_info_point);
+        sessionStorage.setItem('local_servico_acomodacoes_id', restaurante.local_servico_acomodacoes_id);
+        sessionStorage.setItem('local_latitude', restaurante.local_latitude);
+        sessionStorage.setItem('local_longitude', restaurante.local_longitude);
+    
+    }
+
 function createserviceHTML(service){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-restaurant.html' class='strip_info' onclick='printtest()'><small>" + service.local_morada + "</small><div class='item_title'><h3>" + service.establishment_name + "</h3><small>" + service.number_acomodacoes + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-acomodacao.html' class='strip_info' onclick='openacomodacao2(" + JSON.stringify(service) + ")'><small>" + service.local_morada + "</small><div class='item_title'><h3>" + service.establishment_name + "</h3><small>" + service.number_acomodacoes + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/

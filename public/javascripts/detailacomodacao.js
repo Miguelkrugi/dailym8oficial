@@ -68,8 +68,17 @@ window.onload = function exampleFunction() {
  var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
  var establishment_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
  var type_service_identifier = sessionStorage.getItem('type_service_identifier');
- var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
- var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
+ 
+
+
+ var local_id = sessionStorage.getItem('local_id');
+ var local_morada = sessionStorage.getItem('local_morada');
+ var ref_system_id = sessionStorage.getItem('ref_system_id');
+ var geometry_info_id = sessionStorage.getItem('geometry_info_point');
+ var local_servico_acomodacoes_id = sessionStorage.getItem('local_servico_acomodacoes_id');
+ var local_latitude = sessionStorage.getItem('local_latitude');
+ var local_longitude = sessionStorage.getItem('local_id');
+
 
     console.log('The Script will load now.');
 
@@ -83,6 +92,8 @@ window.onload = function exampleFunction() {
     console.log("RESTAURANTE ID: " + establishment_id);
     console.log("REST DEFINITIVO ID: " + restaurant_id);
     console.log("DESCRIPTION RESTAURANTE: " + establishment_description);
+    console.log("LATITUDE: " + local_latitude);
+    console.log("LONGITUDE: " + local_longitude);
   
  document.getElementById("titulorestaurante").innerHTML = establishment_name;
 
