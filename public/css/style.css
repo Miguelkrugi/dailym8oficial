@@ -3206,6 +3206,18 @@ ul#top_menu li a.login:before {
 
 }
 
+#organizeitems {
+
+  width: 72%;
+  height:150%;
+  background-color: lightgray;
+  position: absolute;
+  margin-top: 7%;
+  margin-left: 19%;
+  border-radius: 10px;
+
+}
+
 #organize6 {
   width: 62.2%;
   display: flex;

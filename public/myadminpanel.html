@@ -96,16 +96,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                    <a href="#" onclick="newChangeReports()">Reports</a>
                 </li>
                 <li>
-                    <a href="#" onclick="myRestaurantes()">Restaurantes</a>
+                    <a href="#" onclick="newChange()">Estabelecimentos em Análise</a>
                 </li>
-                <li>
-                    <a href="#" onclick="myAcomodacoes()">Acomodações</a>
-                </li>
-                <li>
-                    <a href="#" onclick="myEstacionamentos()">Estacionamentos</a>
+				<li>
+                    <a href="#" onclick="newChangePromotion()">Promoção</a>
                 </li>
                 <li class="sidebar-brand">
                     <a href="#">
@@ -129,22 +126,38 @@
         </div>
 
         <div id="tipoestabelecimento" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
-            <button class="dropbtn">Filtrar Estabelecimento</button>
+            <button class="dropbtn">Ordenar Reports</button>
             <div class="dropdown-content">
                 
                 <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
                       
                
-              <a href="#" onclick="getAcomodacaoTipo(1)">Restaurantes</a>
+              <a href="#" onclick="getAcomodacaoTipo(1)">Mais Recentes</a>
                 
                 
-              <a href="#" onclick="getAcomodacaoTipo(1)">Acomodações</a>
+              <a href="#" onclick="getAcomodacaoTipo(1)">Mais Antigos</a>
 
-              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
             
             </div>
         </div>
 
+		<div id="tipocliente" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
+            <button class="dropbtn">Filtrar Tipo</button>
+            <div class="dropdown-content">
+                
+                <a href="#" onclick="getAllUsers()">Todos</a>
+                      
+               
+              <a href="#" onclick="getUsersClienteType(1)">Cliente</a>
+                
+                
+              <a href="#" onclick="getUsersGestorType(2)">Gestor</a>
+
+			  <a href="#" onclick="getUsersAdministradorType(3)">Administrador</a>
+
+            
+            </div>
+        </div>
 
 
 
@@ -154,7 +167,7 @@
 		    	<div class="row">
 		    		<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
 		    			
-		        		<h1 style="font-size: 35px; margin-left: -14%;">Gestão de Estabelecimentos</h1>
+		        		<h1 style="font-size: 35px; margin-left: -14%;">Painel de Administrador</h1>
 		    		</div>
 		    		
 		    	</div>
@@ -163,7 +176,7 @@
 		</div>
 		<!-- /page_header -->
 
-        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Os Meus Estabelecimentos</h1>
+        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: visible;">Teste</h1>
         <h1 id="textomeusfavoritos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Meus Favoritos</h1>
         <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
         <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
@@ -182,6 +195,16 @@
             <button style="background-color: salmon; color: white; margin-top: 15%; margin-left: 4%;" onclick="deleteAccount()">APAGAR CONTA</button>
         
         </div>
+
+
+		<!--DIV PRINCIPAL QUE VAI SENDO SUBSTITUIDO COM OS REPORTS, ESTABELECIMENTOS MARCADOS PARA ANALISE, FAVORITOS, ETC,-->
+
+		<div id="organizeitems">
+
+ 
+
+
+		</div>
 	</main>
 	<!-- /main -->
 

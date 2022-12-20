@@ -11,14 +11,15 @@ window.onload = function exampleFunction() {
     console.log("ID: " + utilizador_id);
     console.log("TYPE ID: " + utilizador_type_id);
 
-    document.getElementById('textomeusestabelecimentos').style.visibility = "visible";
-    document.getElementById('tipoestabelecimento').style.visibility = "visible";
-    document.getElementById('textominhasreservas').style.visibility = "hidden";
+    document.getElementById('textomeusestabelecimentos').innerHTML = "Reports";
+  
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
   
     document.getElementById('informacoesdiv').style.visibility = "hidden";
+    document.getElementById('tipocliente').style.visibility = "hidden";
+    
 
    // getAleatorioRestaurantes();
 
@@ -26,15 +27,58 @@ window.onload = function exampleFunction() {
 
 }
 
+async function newChangeReports(){
+
+  document.getElementById('textominhasreservas').style.visibility = "hidden";
+  document.getElementById('textominhaconta').style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Reports";
+  document.getElementById('tipocliente').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimento').style.visibility = "visible";
+  document.getElementById('textomeusfavoritos').style.visibility = "hidden";
+  document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
+  document.getElementById('informacoesdiv').style.visibility = "hidden";
+  document.getElementById('organizeitems').style.visibility = "visible";
+
+}
+
+async function newChangePromotion(){
+
+  document.getElementById('textominhasreservas').style.visibility = "hidden";
+  document.getElementById('textominhaconta').style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Promoção";
+  document.getElementById('tipocliente').style.visibility = "visible";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('textomeusfavoritos').style.visibility = "hidden";
+  document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
+  document.getElementById('informacoesdiv').style.visibility = "hidden";
+  document.getElementById('organizeitems').style.visibility = "visible";
+
+}
+
+async function newChange(){
+
+  document.getElementById('textominhasreservas').style.visibility = "hidden";
+  document.getElementById('textominhaconta').style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Estabelecimentos em Análise";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('textomeusfavoritos').style.visibility = "hidden";
+  document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
+  document.getElementById('informacoesdiv').style.visibility = "hidden";
+  document.getElementById('organizeitems').style.visibility = "visible";
+  document.getElementById('tipocliente').style.visibility = "hidden";
+
+}
+
 async function myFavoritos(){
 
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
-    document.getElementById('textomeusestabelecimentos').style.visibility = "hidden";
+    document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
     document.getElementById('tipoestabelecimento').style.visibility = "hidden";
-    document.getElementById('textomeusfavoritos').style.visibility = "visible";
+    document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
     document.getElementById('informacoesdiv').style.visibility = "hidden";
+    document.getElementById('tipocliente').style.visibility = "hidden";
 
 }
 
@@ -42,11 +86,12 @@ async function myReservas(){
 
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
-    document.getElementById('textomeusestabelecimentos').style.visibility = "hidden";
+    document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas";
     document.getElementById('tipoestabelecimento').style.visibility = "hidden";
-    document.getElementById('textominhasreservas').style.visibility = "visible";
+    document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
     document.getElementById('informacoesdiv').style.visibility = "hidden";
+    document.getElementById('tipocliente').style.visibility = "hidden";
    
   }
 
@@ -54,11 +99,13 @@ async function myReservas(){
 
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
-    document.getElementById('textomeusestabelecimentos').style.visibility = "hidden";
+    document.getElementById('textomeusestabelecimentos').innerHTML = "Minha Conta";
     document.getElementById('tipoestabelecimento').style.visibility = "hidden";
-    document.getElementById('textominhaconta').style.visibility = "visible";
+    document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textominhacontainformacoes').style.visibility = "visible";
     document.getElementById('informacoesdiv').style.visibility = "visible";
+    document.getElementById('organizeitems').style.visibility = "hidden";
+    document.getElementById('tipocliente').style.visibility = "hidden";
   
   }
 
