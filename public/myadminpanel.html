@@ -86,16 +86,75 @@
 	
 	<main>
 
-     
+        <!--BARRA DE NAVEGAÇÃO | SIDEBAR-->
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Estabelecimentos
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myRestaurantes()">Restaurantes</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAcomodacoes()">Acomodações</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myEstacionamentos()">Estacionamentos</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Outros
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="myFavoritos()">Meus Favoritos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myReservas()">Minhas Reservas</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myAccount()">Minha Conta</a>
+                </li>
+                <li>
+                    <a href="#" onclick="myLogout()">Logout</a>
+                </li>
+               
+            </ul>
+        </div>
+
+        <div id="tipoestabelecimento" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
+            <button class="dropbtn">Filtrar Estabelecimento</button>
+            <div class="dropdown-content">
+                
+                <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                      
+               
+              <a href="#" onclick="getAcomodacaoTipo(1)">Restaurantes</a>
+                
+                
+              <a href="#" onclick="getAcomodacaoTipo(1)">Acomodações</a>
+
+              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
+            
+            </div>
+        </div>
+
+
+
+
+        <!---->
 		<div class="page_header element_to_stick">
 		    <div class="container">
 		    	<div class="row">
 		    		<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
 		    			
-                        <a href="myestablishments.html">
-                        <button style="margin-top: 0.7%; position: absolute; margin-left: -7%;">VOLTAR</button>
-                        </a>
-		        		<h1 style="font-size: 35px; margin-left: 0.1%;">Restaurantes</h1>
+		        		<h1 style="font-size: 35px; margin-left: -14%;">Gestão de Estabelecimentos</h1>
 		    		</div>
 		    		
 		    	</div>
@@ -104,82 +163,29 @@
 		</div>
 		<!-- /page_header -->
 
-        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 1.7%; margin-top: 2%; position: absolute; visibility: visible;">Nome do Restaurante</h1>
+        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Os Meus Estabelecimentos</h1>
         <h1 id="textomeusfavoritos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Meus Favoritos</h1>
         <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
         <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
 	
-        <!--DIV DAS 10 ULTIMAS RESERVAS-->
 
-        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
-        <h3 style="margin-left: 70%; margin-top: 5.5%; position: absolute;">MENÚ</h3>
-        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;">CRIAR PRATO</button>
-        <button style="position:absolute; margin-top: 53.4%; margin-left: 37%;">CRIAR MESA</button>
-        <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
-            <button class="dropbtn">Disponibilidade</button>
-            <div class="dropdown-content">
-                
-                    <a href="#">Todos</a>
-                      
-                
-              <a href="#">Disponiveis</a>
-                
-              <a href="#">Indisponiveis</a>
-            
-            </div>
+        <!-------------- ELEMENTOS DA ABA "MINHA CONTA" --------------->
+
+        <h1 id="textominhacontainformacoes" style="font-size: 25px; margin-left: 19%; margin-top: 7%; position: absolute; ">Informações</h1>
+
+        <div id="informacoesdiv" style="background-color: lightgray; width: 75.2%; height:45%; position: absolute; margin-left: 19%; border-radius: 15px; margin-top: 10%;">
+        
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 4%; position: absolute; ">Nome: </h1>
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 7%; position: absolute; ">Username: </h1>
+            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 10%; position: absolute; ">Email: </h1>
+
+            <button style="background-color: salmon; color: white; margin-top: 15%; margin-left: 4%;" onclick="deleteAccount()">APAGAR CONTA</button>
+        
         </div>
-        <div class="dropdown" style="position: absolute; margin-top: 4.4%; margin-left: 86.5%;">
-            <button class="dropbtn">Disponibilidade</button>
-            <div class="dropdown-content">
-                
-                    <a href="#">Todos</a>
-                      
-                
-              <a href="#">Disponiveis</a>
-                
-              <a href="#">Indisponiveis</a>
-            
-            </div>
-        </div>
-        <h3 style="margin-left: 2%; margin-top: 53%; position: absolute; z-index: 30;">MESAS</h3>
-        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">INFORMAÇÕES ADICIONAIS</h3>
-        <div id="page" style="margin-top: 3%;">
-        <div id="organizereserva">
-
-          
-
-
-        </div>
-
-        <!-- MENU PLATES -->
-
-        <div id="organizemenu">
-
-
-
-        </div>
-
-        <!-- INFORMAÇÕES DO RESTAURANTE -->
-
-        <div id="organizeinforestaurant">
-
-            <h3 id="restaurantnameinfo" style="margin-left: 4%; margin-top: 4%;">Nome: </h3>
-            <h3 id="restauranttypeinfo" style="margin-left: 4%; margin-top: 4%;">Tipo: </h3>
-            <h3 id="restaurantinfo" style="margin-left: 4%; margin-top: 4%;">Numero de Mesas: </h3>
-            <h3 id="restaurantmorada" style="margin-left: 4%; margin-top: 4%;">Morada: </h3>
-
-        </div>
-
-        <div id="organizeinforestauranttables">
-
-            
-
-        </div>
-      
 	</main>
 	<!-- /main -->
 
-	<footer style="margin-top: 84%; position: absolute; width:100%;">
+	<footer style="margin-top: 80%; position: absolute; width:100%;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
