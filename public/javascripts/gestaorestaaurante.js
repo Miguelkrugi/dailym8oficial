@@ -11,7 +11,7 @@ window.onload = function exampleFunction() {
     console.log("ID: " + utilizador_id);
     console.log("TYPE ID: " + utilizador_type_id);
 
-    document.getElementById('textomeusestabelecimentos').innerHTML = "Reports";
+    document.getElementById('textomeusestabelecimentos').innerHTML = "Nome do Estabelecimento";
    
   
     document.getElementById('textominhaconta').style.visibility = "hidden";

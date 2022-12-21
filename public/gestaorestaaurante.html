@@ -33,7 +33,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
-	<script src="./javascripts/gestao.js"></script>
+	<script src="./javascripts/gestaorestaaurante.js"></script>
 
 </head>
 
@@ -113,8 +113,8 @@
 
         <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
         <h3 style="margin-left: 70%; margin-top: 5.5%; position: absolute;">MENÚ</h3>
-        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;">CRIAR PRATO</button>
-        <button style="position:absolute; margin-top: 53.4%; margin-left: 37%;">CRIAR MESA</button>
+        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button2" class="button">CRIAR PRATO</button>
+        <button style="position:absolute; margin-top: 53.4%; margin-left: 37%;" id="button3" class="button">CRIAR MESA</button>
         <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
             <button class="dropbtn">Disponibilidade</button>
             <div class="dropdown-content">
@@ -175,7 +175,57 @@
             
 
         </div>
-      
+
+		<!--POPUP PARA CRIAR PRATO-->
+
+		<div class="bg-modal">
+			<div class="modal-contents">
+		
+				<div class="close2">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+				<h2>CRIAR PRATO</h2>
+				<hr style="margin-top: -1%;">
+		
+				<form action="">
+					<input style="width: 70%;" type="text" placeholder="Nome">
+					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " onclick="createPlate()">Criar Prato</a>
+					<input style="width: 70%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Preço">
+
+					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
+					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+
+					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
+
+					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Aperitivo</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Entradas</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -40%;" value="3">Pratos Principais</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -35%;" value="4">Sobremesas</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -30%;" value="5">Pratos do Dia</button>
+
+					<h5 style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+
+				</form>
+		
+			</div>
+		</div>
+
+		<div class="bg-modal2">
+			<div class="modal-contents2">
+		
+				<div class="close3">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+		
+				<form action="">
+					<input id="inputname" type="text" placeholder="Name">
+					<input id="inputmail" type="email" placeholder="E-Mail">
+					<a href="#" class="button">Submit</a>
+				</form>
+		
+			</div>
+		</div>
+		</div>
 	</main>
 	<!-- /main -->
 
@@ -338,6 +388,39 @@
     <!-- SPECIFIC SCRIPTS -->
     <script src="js/sticky_sidebar.min.js"></script>
     <script src="js/specific_listing.js"></script>
+
+	<script>
+
+
+////////////PRATO
+
+document.getElementById('button2').addEventListener("click", function() {
+	  
+  document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close2').addEventListener("click", function() {
+
+  document.querySelector('.bg-modal').style.display = "none";
+});
+
+
+
+	</script>
+
+	<script>
+
+		/////////////MESA
+		document.getElementById('button3').addEventListener("click", function() {
+	  
+	  document.querySelector('.bg-modal2').style.display = "flex";
+	});
+	
+	document.querySelector('.close3').addEventListener("click", function() {
+	
+	  document.querySelector('.bg-modal2').style.display = "none";
+	});
+	</script>
 
 </body>
 </html>

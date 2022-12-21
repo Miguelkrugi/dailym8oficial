@@ -88,9 +88,12 @@ window.onload = function exampleFunction() {
 
  document.getElementById("descricaorestaurante").innerHTML = establishment_description;
 
+
     getPlacePosition();
 
     getNumberLikesRestaurant(restaurant_id);
+
+    
 
     
 
