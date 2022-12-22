@@ -3159,7 +3159,7 @@ ul#top_menu li a.login:before {
 
 #organizereserva {
 
-  width: 65%;
+  width: 95%;
   height:90%;
   background-color: rgb(246, 246, 246);
   position: absolute;
@@ -3265,7 +3265,7 @@ ul#top_menu li a.login:before {
 .bg-modal {
 	background-color: rgba(0, 0, 0, 0.8);
 	width: 100%;
-	height: 100%;
+	height: 250%;
 	position: absolute;
 	top: 0;
 	display: none;
@@ -3282,6 +3282,7 @@ ul#top_menu li a.login:before {
 	padding: 20px;
 	position: relative;
 	border-radius: 4px;
+  margin-top: -65%;
 }
 
 
@@ -3312,22 +3313,24 @@ input {
 .bg-modal2 {
 	background-color: rgba(0, 0, 0, 0.8);
 	width: 100%;
-	height: 100%;
+	height: 250%;
 	position: absolute;
 	top: 0;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 }
 
 .modal-contents2{
-	height: 300px;
-	width: 500px;
+	height: 500px;
+	width: 700px;
 	background-color: white;
 	text-align: center;
 	padding: 20px;
 	position: relative;
 	border-radius: 4px;
+  margin-top: 25%; 
+  z-index: 45;
 }
 
 
@@ -3359,6 +3362,116 @@ input {
 }
 
 /*FIM DO CSS DO POPUP DE CRIAR MESA*/
+
+/*CSS DO POPUP DE ADICIONAR POSICAO DA ACOMODACAO*/
+
+.bg-modal3 {
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.modal-contents3{
+	height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+  margin-top: 94%; 
+  z-index: 55;
+}
+
+
+#inputname {
+	margin: 15px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+}
+
+#inputmail {
+	margin: 15px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+}
+
+.close4 {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+
+}
+
+/*--------------------------------------------------------*/
+
+/*CSS DO POPUP DE EDITAR LOCAL*/
+
+.bg-modal5 {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.modal-contents5{
+	height: 400px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+
+
+#inputname {
+	margin: 15px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+}
+
+#inputmail {
+	margin: 15px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+}
+
+.close6 {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+
+}
+
+/*--------------------------------------------------------*/
 
 /*SWITCH PARA DETERMINAR DISPONIBILIDADE*/
 

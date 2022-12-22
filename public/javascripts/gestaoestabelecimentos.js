@@ -14,6 +14,10 @@ window.onload = function exampleFunction() {
     
    document.getElementById('textomeusestabelecimentos').style.visibility = "visible";
    document.getElementById('tipoestabelecimento').style.visibility = "visible";
+   
+
+  
+  
   
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
@@ -26,6 +30,7 @@ window.onload = function exampleFunction() {
 
 async function myAllEstabelecimentos(){
 
+  document.getElementById('criarestabelecimentobutton').style.visibility = "visible";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
@@ -34,6 +39,7 @@ async function myAllEstabelecimentos(){
     document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Estabelecimentos";
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
     document.getElementById('informacoesdiv').style.visibility = "hidden";
+    
   
     console.log("chamada");
   }
@@ -41,6 +47,7 @@ async function myAllEstabelecimentos(){
 
 async function myFavoritos(){
 
+  document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -54,6 +61,7 @@ async function myFavoritos(){
 
 async function myReservas(){
 
+  document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas";
@@ -67,6 +75,7 @@ async function myReservas(){
 
   async function myAccount(){
 
+    document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textomeusestabelecimentos').innerHTML = "Minha Conta";
@@ -81,6 +90,7 @@ async function myReservas(){
 
   async function myRestaurantes(){
 
+    document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
@@ -94,6 +104,7 @@ async function myReservas(){
 
   async function myAcomodacoes(){
 
+    document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
@@ -108,6 +119,8 @@ async function myReservas(){
 
   async function myEstacionamentos(){
 
+    document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
+    document.getElementById('criarestabelecimentobutton').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";

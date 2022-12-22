@@ -6,21 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="css/popupplate.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
 
 </head>
 <body>
-    <a href="#" id="button2" class="button">Click Me</a>
+    <a href="#" id="button8" class="button">Click Me</a>
     <!--DIV DO POPUP DE CRIAÇÃO DE PRATO-->
-    <div class="bg-modal">
-        <div class="modal-contents2">
+    <div class="bg-modal5">
+        <div class="modal-contents5">
     
-            <div class="close2">+</div>
+            <div class="close6">+</div>
             <img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+            <h2>ADICIONAR POSIÇÃO</h2>
+				<hr style="margin-top: -1%;">
     
             <form action="">
-                <input id="inputname" type="text" placeholder="Name">
-                <input id="inputmail" type="email" placeholder="E-Mail">
-                <a href="#" class="button">Submit</a>
+              <h4 style="position: absolute; margin-top: -0.2%;">Morada</h4>
+              <textarea  style="width: 100%; margin-top: 4%;" placeholder="Insira a morada do seu estabelecimento" name="address" onFocus="initializeAutocomplete()" id="locality" ></textarea><br>
+
+              <h4 style="position: absolute; margin-top: -0.2%;">Detalhes</h4>
+              <h4 style="position: absolute; margin-top: 3.5%; font-size: 10px;">Cidade</h4>
+              <input style="width: 92%; position: absolute; margin-left: -46%; margin-top: 6%;" type="text" name="city" id="city" placeholder="Cidade" value="" ><br>
+              <h4 style="position: absolute; margin-top: 9.5%; font-size: 10px;">Latitude</h4>
+              <input style="width: 92%; position: absolute; margin-left: -46%; margin-top: 12%;" type="text" name="latitude" id="latitude" placeholder="Latitude" value="" ><br>
+
+              <h4 style="position: absolute; margin-top: 15.5%; font-size: 10px;">Longitude</h4>
+              <input style="width: 92%; position: absolute; margin-left: -46%; margin-top: 18%;" type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
+              <button style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
             </form>
     
         </div>
@@ -28,19 +41,57 @@
 
     <script>
 
-      document.getElementById('button2').addEventListener("click", function() {
+      document.getElementById('button8').addEventListener("click", function() {
 	    
-        document.querySelector('.bg-modal').style.display = "flex";
+        document.querySelector('.bg-modal5').style.display = "flex";
       });
 
-      document.querySelector('.close2').addEventListener("click", function() {
+      document.querySelector('.close6').addEventListener("click", function() {
 	    
-        document.querySelector('.bg-modal').style.display = "none";
+        document.querySelector('.bg-modal5').style.display = "none";
       });
 
+    
     </script>
     
+ <!---   /////////////////////////// OBTER DETALHES DO LOCAL //////////////////////////// -->
 
+    <script type="text/javascript">
+function initializeAutocomplete(){
+  var input = document.getElementById('locality');
+  // var options = {
+  //   types: ['(regions)'],
+  //   componentRestrictions: {country: "IN"}
+  // };
+  var options = {
+
+    componentRestrictions: {country: 'PT' }
+  }
+
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    var place = autocomplete.getPlace();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+    var placeId = place.place_id;
+    // to set city name, using the locality param
+    var componentForm = {
+      locality: 'short_name',
+    };
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById("city").value = val;
+      }
+    }
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lng;
+    document.getElementById("location_id").value = placeId;
+  });
+}
+</script>
 
       
 

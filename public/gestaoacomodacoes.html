@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Foogra - Discover & Book the best restaurants at the best price">
+    <meta name="author" content="Ansonika">
+    <title>Foogra - Discover & Book the best restaurants at the best price</title>
+
+    <!--CSS W3SCHOOLS-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+     <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="css/listing.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+	<script src="./javascripts/gestaorestaaurante.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
+
+</head>
+
+<body>
+				
+	<header class="header_in clearfix">
+		<div class="container">
+		<div id="logo">
+			<a href="index.html">
+				<img src="img/logo_sticky.svg" width="140" height="35" alt="">
+			</a>
+		</div>
+		<ul id="top_menu">
+			<li><a href="#sign-in-dialog" id="sign-in" class="login">Sign In</a></li>
+			<li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
+		</ul>
+		<!-- /top_menu -->
+		<a href="#0" class="open_close">
+			<i class="icon_menu"></i><span>Menu</span>
+		</a>
+		<nav class="main-menu">
+			<div id="header_menu">
+				<a href="#0" class="open_close">
+					<i class="icon_close"></i><span>Menu</span>
+				</a>
+				<a href="index.html"><img src="img/logo.svg" width="140" height="35" alt=""></a>
+			</div>
+			<ul>
+				<li class="submenu">
+					<a href="#0" class="show-submenu">Home</a>
+					
+				</li>
+				<li class="submenu">
+					<a href="listrestaurantes.html" class="show-submenu">Restaurantes</a>
+				</li>
+				<li class="submenu">
+					<a href="listacomodacoes.html" class="show-submenu">Acomodações</a>
+				</li>
+				<li><a href="listestacionamentos.html">Estacionamentos</a></li>
+				<li><a href="listpacks.html">Packs</a></li>
+				<li><a href="sobrenos.html">Sobre Nós</a></li>
+				<li><a href="minhaconta.html">A Minha Conta</a></li>
+				
+				
+			</ul>
+		</nav>
+	</div>
+	</header>
+	<!-- /header -->
+	
+	<main>
+
+     
+		<div class="page_header element_to_stick">
+		    <div class="container">
+		    	<div class="row">
+		    		<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
+		    			
+                        <a href="myestablishments.html">
+                        <button style="margin-top: 0.7%; position: absolute; margin-left: -7%;">VOLTAR</button>
+                        </a>
+		        		<h1 style="font-size: 35px; margin-left: 0.1%;">Acomodações</h1>
+		    		</div>
+		    		
+		    	</div>
+		    	<!-- /row -->		       
+		    </div>
+		</div>
+		<!-- /page_header -->
+
+        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 1.7%; margin-top: 2%; position: absolute; visibility: visible;">Nome do Restaurante</h1>
+        <h1 id="textomeusfavoritos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Meus Favoritos</h1>
+        <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
+        <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
+	
+		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">EDITAR LOCAL</button>
+        <!--DIV DAS 10 ULTIMAS RESERVAS-->
+
+        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
+        
+       <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button5" class="button">VER TODOS</button>
+        <button style="position:absolute; margin-top: 53.4%; margin-left: 18%;" id="button3" class="button">CRIAR ACOMODAÇÃO</button>
+        <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
+            <button class="dropbtn">Filtrar Data</button>
+            <div class="dropdown-content">
+                
+                    <a href="#">Todos</a>
+                      
+                
+              <a href="#">Mais Recentes</a>
+                
+              <a href="#">Mais Antigos</a>
+            
+            </div>
+        </div>
+        <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:30%;">
+            <button class="dropbtn">Tipo de Acomodação</button>
+            <div class="dropdown-content">
+                
+                    <a href="#">Todos</a>
+                      
+                
+              <a href="#">Toldo</a>
+                
+              <a href="#">Palhota</a>
+            
+            </div>
+        </div>
+        <div class="dropdown" style="position: absolute; margin-top: 4.4%; margin-left: 86.5%;">
+            <button class="dropbtn">Disponibilidade</button>
+            <div class="dropdown-content">
+                
+                    <a href="#">Todos</a>
+                      
+                
+              <a href="#">Disponiveis</a>
+                
+              <a href="#">Indisponiveis</a>
+            
+            </div>
+        </div>
+
+        
+        <h3 style="margin-left: 2%; margin-top: 53%; position: absolute; z-index: 30;">ACOMODAÇÕES</h3>
+        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">INFORMAÇÕES ADICIONAIS</h3>
+        <div id="page" style="margin-top: 3%;">
+        <div id="organizereserva">
+
+          
+
+
+        </div>
+
+        <!-- MENU PLATES -->
+
+       
+
+        <!-- INFORMAÇÕES DO RESTAURANTE -->
+
+        <div id="organizeinforestaurant">
+
+            <h3 id="restaurantnameinfo" style="margin-left: 4%; margin-top: 4%;">Nome: </h3>
+            <h3 id="restauranttypeinfo" style="margin-left: 4%; margin-top: 4%;">Tipo: </h3>
+            <h3 id="restaurantinfo" style="margin-left: 4%; margin-top: 4%;">Numero de Acomodações: </h3>
+            <h3 id="restaurantmorada" style="margin-left: 4%; margin-top: 4%;">Morada: </h3>
+
+        </div>
+
+        <div id="organizeinforestauranttables">
+
+            
+
+        </div>
+
+		<!--POPUP PARA CRIAR PRATO-->
+
+		<div class="bg-modal">
+			<div class="modal-contents">
+		
+				<div class="close2">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+				<h2>CRIAR PRATO</h2>
+				<hr style="margin-top: -1%;">
+		
+				<form action="">
+					<input style="width: 70%;" type="text" placeholder="Nome">
+					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " onclick="createPlate()">Criar Prato</a>
+					<input style="width: 70%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Preço">
+
+					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
+					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+
+					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
+
+					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Aperitivo</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Entradas</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -40%;" value="3">Pratos Principais</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -35%;" value="4">Sobremesas</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -30%;" value="5">Pratos do Dia</button>
+
+					<h5 style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+
+				</form>
+		
+			</div>
+		</div>
+
+		<div class="bg-modal2">
+			<div class="modal-contents2">
+		
+				<div class="close3">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+				<h2>CRIAR ACOMODAÇÃO</h2>
+				<hr style="margin-top: -1%;">
+		
+				<form action="">
+					<input style="width: 70%;" type="text" placeholder="Nome">
+					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>
+					<a href="#" class="button" id="button4" style="margin-top: 40.6%; margin-left: 1.3%; position: absolute; font-size: 21px; " onclick="createTable()">Criar Acomodação</a>
+					<input style="width: 26%;" type="number" id="foodprice" name="roodprice" min="0" maxlength="300" placeholder="Preço">
+					<input style="width: 38%;margin-left: 27.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número da Acomodação">
+
+					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
+					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+
+					<h4 style="position: absolute; margin-top: -54.4%; margin-left: 66.7%; font-size: 19px;">Tipo de Acomodação:</h4>
+
+					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Toldo</button>
+					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Palhota</button>
+
+					<h5 style="position: absolute; margin-top: -40.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+				</form>
+		
+			</div>
+		</div>
+
+		<div class="bg-modal5">
+			<div class="modal-contents5">
+		
+				<div class="close6">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+	
+				<h2>ADICIONAR POSIÇÃO</h2>
+					<hr style="margin-top: -1%;">
+		
+				<form action="">
+				  <h4 style="position: absolute; margin-top: -2%;">Morada</h4>
+				  <textarea  style="width: 100%; margin-top: 4%;" placeholder="Insira a morada do seu estabelecimento" name="address" onFocus="initializeAutocomplete()" id="locality" ></textarea><br>
+	
+				  <h4 style="position: absolute; margin-top: -1.6%;">Detalhes</h4>
+				  <h4 style="position: absolute; margin-top: 3.5%; font-size: 10px;">Cidade</h4>
+				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 6%;" type="text" name="city" id="city" placeholder="Cidade" value="" ><br>
+				  <h4 style="position: absolute; margin-top: 9.5%; font-size: 10px;">Latitude</h4>
+				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 12%;" type="text" name="latitude" id="latitude" placeholder="Latitude" value="" ><br>
+	
+				  <h4 style="position: absolute; margin-top: 15.5%; font-size: 10px;">Longitude</h4>
+				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 18%;" type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
+				  <button style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
+				</form>
+		
+			</div>
+		</div>
+
+         <!----------------------POPUP PARA ADICIONAR POSIÇÃO PARA UM x ESTABELECIMENTO------------------->
+
+		 <div class="bg-modal3">
+			<div class="modal-contents3">
+		
+				<div class="close4">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+	
+				<h2>ADICIONAR POSIÇÃO</h2>
+					<hr style="margin-top: -1%;">
+		
+				<form action="">
+				  <button style=" position: absolute; margin-left: -46%; margin-top: 4.5%;" value="1">Linha 1</button>
+				  <button style=" position: absolute; margin-left: -32%; margin-top: 4.5%;" value="2">Linha 2</button>
+				  <button style=" position: absolute; margin-left: -18%; margin-top: 4.5%;" value="3">Linha 3</button>
+				  <button style=" position: absolute; margin-left: -4%; margin-top: 4.5%;" value="4">Linha 4</button>
+				  <button style=" position: absolute; margin-left: 10%; margin-top: 4.5%;" value="5">Linha 5</button>
+				 
+				 
+					<h4 style="margin-left: 0.1%; margin-top: -2%; position: absolute;">Selecionar Linha (relativamente ao mar): </h4>
+				 
+					<h4 style="margin-left: 0.5%; margin-top: 10%; position: absolute; font-size: 12px;">Linha Selecionada: </h4>
+	
+					<h4 style="margin-left: 0.5%; margin-top: 13%; position: absolute;">Selecionar Coluna (relativamente ao mar): </h4>
+					
+				   
+	
+					<button style=" position: absolute; margin-left: -44%; margin-top:19.5% ;" value="1">Coluna 1</button>
+				  <button style=" position: absolute; margin-left: -29%; margin-top: 19.5%;" value="2">Coluna 2</button>
+				  <button style=" position: absolute; margin-left: -13%; margin-top: 19.5%;" value="3">Coluna 3</button>
+				  <button style=" position: absolute; margin-left: 3%; margin-top: 19.5%;" value="4">Coluna 4</button>
+				  <button style=" position: absolute; margin-left: 19%; margin-top: 19.5%;" value="5">Coluna 5</button>
+					
+				  <h4 style="margin-left: 0.5%; margin-top: 26%; position: absolute; font-size: 12px;">Coluna Selecionada: </h4>
+	
+				  <button style="position: absolute; margin-top: 30%; margin-left: 17%;">ADICIONAR POSIÇÃO</button>
+				</form>
+		
+			</div>
+		</div>
+
+
+		 <!----------------------------------------------------------------------------------------------->
+
+
+		</div>
+	</main>
+	<!-- /main -->
+
+	<footer style="margin-top: 84%; position: absolute; width:100%;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3 data-bs-target="#collapse_1">Quick Links</h3>
+					<div class="collapse dont-collapse-sm links" id="collapse_1">
+						<ul>
+							<li><a href="submit-rider.html">Become a Rider</a></li>
+							<li><a href="submit-restaurant.html">Add your restaurant</a></li>
+							<li><a href="help.html">Help</a></li>
+							<li><a href="account.html">My account</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="contacts.html">Contacts</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3 data-bs-target="#collapse_2">Categories</h3>
+					<div class="collapse dont-collapse-sm links" id="collapse_2">
+						<ul>
+							<li><a href="grid-listing-filterscol.html">Top Categories</a></li>
+							<li><a href="grid-listing-filterscol-full-masonry.html">Best Rated</a></li>
+							<li><a href="grid-listing-filterscol-full-width.html">Best Price</a></li>
+							<li><a href="grid-listing-filterscol-full-masonry.html">Latest Submissions</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+						<h3 data-bs-target="#collapse_3">Contacts</h3>
+					<div class="collapse dont-collapse-sm contacts" id="collapse_3">
+						<ul>
+							<li><i class="icon_house_alt"></i>97845 Baker st. 567<br>Los Angeles - US</li>
+							<li><i class="icon_mobile"></i>+94 423-23-221</li>
+							<li><i class="icon_mail_alt"></i><a href="#0">info@domain.com</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+						<h3 data-bs-target="#collapse_4">Keep in touch</h3>
+					<div class="collapse dont-collapse-sm" id="collapse_4">
+						<div id="newsletter">
+							<div id="message-newsletter"></div>
+							<form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
+								<div class="form-group">
+									<input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
+									<button type="submit" id="submit-newsletter"><i class="arrow_carrot-right"></i></button>
+								</div>
+							</form>
+						</div>
+						<div class="follow_us">
+							<h5>Follow Us</h5>
+							<ul>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/instagram_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/youtube_icon.svg" alt="" class="lazy"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /row-->
+			<hr>
+			<div class="row add_bottom_25">
+				<div class="col-lg-6">
+					<ul class="footer-selector clearfix">
+						<li>
+							<div class="styled-select lang-selector">
+								<select>
+									<option value="English" selected>English</option>
+									<option value="French">French</option>
+									<option value="Spanish">Spanish</option>
+									<option value="Russian">Russian</option>
+								</select>
+							</div>
+						</li>
+						<li>
+							<div class="styled-select currency-selector">
+								<select>
+									<option value="US Dollars" selected>US Dollars</option>
+									<option value="Euro">Euro</option>
+								</select>
+							</div>
+						</li>
+						<li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
+					</ul>
+				</div>
+				<div class="col-lg-6">
+					<ul class="additional_links">
+						<li><a href="#0">Terms and conditions</a></li>
+						<li><a href="#0">Privacy</a></li>
+						<li><span>© Foogra</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--/footer-->
+
+	<div id="toTop"></div><!-- Back to top button -->
+	
+	<div class="layer"></div><!-- Opacity Mask Menu Mobile -->
+	
+	<!-- Sign In Modal -->
+	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+		<div class="modal_header">
+			<h3>Sign In</h3>
+		</div>
+		<form>
+			<div class="sign-in-wrapper">
+				<a href="#0" class="social_bt facebook">Login with Facebook</a>
+				<a href="#0" class="social_bt google">Login with Google</a>
+				<div class="divider"><span>Or</span></div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" id="email">
+					<i class="icon_mail_alt"></i>
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" name="password" id="password" value="">
+					<i class="icon_lock_alt"></i>
+				</div>
+				<div class="clearfix add_bottom_15">
+					<div class="checkboxes float-start">
+						<label class="container_check">Remember me
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+					</div>
+					<div class="float-end"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+				</div>
+				<div class="text-center">
+					<input type="submit" value="Log In" class="btn_1 full-width mb_5">
+					Don’t have an account? <a href="account.html">Sign up</a>
+				</div>
+				<div id="forgot_pw">
+					<div class="form-group">
+						<label>Please confirm login email below</label>
+						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
+						<i class="icon_mail_alt"></i>
+					</div>
+					<p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
+					<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+				</div>
+			</div>
+		</form>
+		<!--form -->
+	</div>
+	<!-- /Sign In Modal -->
+	
+	<!-- COMMON SCRIPTS -->
+    <script src="js/common_scripts.min.js"></script>
+    <script src="js/common_func.js"></script>
+    <script src="assets/validate.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/sticky_sidebar.min.js"></script>
+    <script src="js/specific_listing.js"></script>
+
+	<script>
+
+
+////////////PRATO
+
+document.getElementById('button2').addEventListener("click", function() {
+	  
+  document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close2').addEventListener("click", function() {
+
+  document.querySelector('.bg-modal').style.display = "none";
+});
+
+
+
+	</script>
+
+	<script>
+
+		/////////////MESA
+		document.getElementById('button3').addEventListener("click", function() {
+	  
+	  document.querySelector('.bg-modal2').style.display = "flex";
+	});
+	
+	document.querySelector('.close3').addEventListener("click", function() {
+	
+	  document.querySelector('.bg-modal2').style.display = "none";
+	  document.querySelector('.bg-modal3').style.display = "none";
+	});
+
+
+    //////////////BUTTON 4 | POSICAO DE ACOMODACAO
+
+    document.getElementById('button4').addEventListener("click", function() {
+	  
+	  document.querySelector('.bg-modal3').style.display = "flex";
+	});
+	
+	document.querySelector('.close4').addEventListener("click", function() {
+	
+	  document.querySelector('.bg-modal3').style.display = "none";
+	});
+	</script>
+
+
+<script>
+
+	document.getElementById('button8').addEventListener("click", function() {
+		  
+		  document.querySelector('.bg-modal5').style.display = "flex";
+		});
+		
+		document.querySelector('.close6').addEventListener("click", function() {
+		
+		  document.querySelector('.bg-modal5').style.display = "none";
+		});
+	
+		</script>
+
+
+<script type="text/javascript">
+
+	///////////// OBTER DETALHES DO LOCAL ///////////////
+	
+	
+	function initializeAutocomplete(){
+		var input = document.getElementById('locality');
+		// var options = {
+		//   types: ['(regions)'],
+		//   componentRestrictions: {country: "IN"}
+		// };
+		var options = {
+	
+		  componentRestrictions: {country: 'PT' }
+		}
+	
+		var autocomplete = new google.maps.places.Autocomplete(input, options);
+	
+		google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		  var place = autocomplete.getPlace();
+		  var lat = place.geometry.location.lat();
+		  var lng = place.geometry.location.lng();
+		  var placeId = place.place_id;
+		  // to set city name, using the locality param
+		  var componentForm = {
+			locality: 'short_name',
+		  };
+		  for (var i = 0; i < place.address_components.length; i++) {
+			var addressType = place.address_components[i].types[0];
+			if (componentForm[addressType]) {
+			  var val = place.address_components[i][componentForm[addressType]];
+			  document.getElementById("city").value = val;
+			}
+		  }
+		  document.getElementById("latitude").value = lat;
+		  document.getElementById("longitude").value = lng;
+		  document.getElementById("location_id").value = placeId;
+		});
+	  }
+	
+	  </script>
+
+</body>
+</html>

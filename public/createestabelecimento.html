@@ -33,7 +33,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
-	<script src="./javascripts/gestaoestabelecimentos.js"></script>
+	<script src="./javascripts/createestabelecimento.js"></script>
 
 </head>
 
@@ -42,7 +42,7 @@
 	<header class="header_in clearfix">
 		<div class="container">
 		<div id="logo">
-			<a href="index-2.html">
+			<a href="index.html">
 				<img src="img/logo_sticky.svg" width="140" height="35" alt="">
 			</a>
 		</div>
@@ -86,78 +86,39 @@
 	
 	<main>
 
+        <h2></h2>
+
         <!--BARRA DE NAVEGAÇÃO | SIDEBAR-->
 
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" style="height: 85%;">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Estabelecimentos
+                        Criação
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                    <a href="#" onclick="createRestaurante()">Restaurante</a>
                 </li>
                 <li>
-                    <a href="#" onclick="myRestaurantes()">Restaurantes</a>
+                    <a href="#" onclick="createAcomodacao()">Acomodação</a>
                 </li>
                 <li>
-                    <a href="#" onclick="myAcomodacoes()">Acomodações</a>
+                    <a href="#" onclick="createEstacionamento()">Estacionamento</a>
                 </li>
-                <li>
-                    <a href="#" onclick="myEstacionamentos()">Estacionamentos</a>
-                </li>
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Outros
-                    </a>
-                </li>
-                <li>
-                    <a href="#" onclick="myFavoritos()">Meus Favoritos</a>
-                </li>
-                <li>
-                    <a href="#" onclick="myReservas()">Minhas Reservas</a>
-                </li>
-                <li>
-                    <a href="#" onclick="myAccount()">Minha Conta</a>
-                </li>
-                <li>
-                    <a href="#" onclick="myLogout()">Logout</a>
-                </li>
+                
                
             </ul>
         </div>
 
-		<a href="createestabelecimento.html">
-		<button id="criarestabelecimentobutton" style="position: absolute; margin-top: 8%; margin-left: 65%;">CRIAR ESTABELECIMENTO</button>
-		</a>
-        <div id="tipoestabelecimento" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
-            <button class="dropbtn">Filtrar Estabelecimento</button>
-            <div class="dropdown-content">
-                
-                <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
-                      
-               
-              <a href="#" onclick="getAcomodacaoTipo(1)">Restaurantes</a>
-                
-                
-              <a href="#" onclick="getAcomodacaoTipo(1)">Acomodações</a>
-
-              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
-            
-            </div>
-        </div>
-
-
-
-
+        
         <!---->
 		<div class="page_header element_to_stick">
 		    <div class="container">
 		    	<div class="row">
 		    		<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
 		    			
-		        		<h1 style="font-size: 35px; margin-left: -14%;">Gestão de Estabelecimentos</h1>
+		        		<h1 style="font-size: 35px; margin-left: -14%;">Criação de Estabelecimentos</h1>
 		    		</div>
 		    		
 		    	</div>
@@ -166,29 +127,34 @@
 		</div>
 		<!-- /page_header -->
 
-        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Os Meus Estabelecimentos</h1>
-        <h1 id="textomeusfavoritos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Meus Favoritos</h1>
-        <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
-        <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
-	
+        <h1 id="textomeusestabelecimentos" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute;">Teste</h1>
 
-        <!-------------- ELEMENTOS DA ABA "MINHA CONTA" --------------->
+        <!--ESTRUTURA NECESSÁRIA PARA CRIAR UM RESTAURANTE-->
 
-        <h1 id="textominhacontainformacoes" style="font-size: 25px; margin-left: 19%; margin-top: 7%; position: absolute; ">Informações</h1>
+        <h4 id="nometexto" style="position: absolute; margin-left: 19%; margin-top: 6%;">Nome</h4>
 
-        <div id="informacoesdiv" style="background-color: lightgray; width: 75.2%; height:45%; position: absolute; margin-left: 19%; border-radius: 15px; margin-top: 10%;">
+        <input id="nomeinput" type="text" placeholder="Nome" style="margin-left: 19%; margin-top: 8%;">
+
+        <h4 id="descricaotexto" style="position: absolute; margin-left: 19%; margin-top: 0.1%;">Descrição</h4>
+
+        <textarea id="descricaoinput" placeholder="Descrição (até 600 caractéres)" style="height:30%; margin-left: 19%; margin-top: 2%; position: absolute; width: 50%;"></textarea>
+
+        <h4 id="numeromesastexto" style="position: absolute; margin-left: 19%; margin-top: 17%;">Número Teste</h4>
+
+        <input id="numeromesasinput" type="number" placeholder="Número de Mesas" style="margin-left: 19%; margin-top: 20%; visibility: hidden;">
+
+        <input id="numeroacomodacoesinput" type="number" placeholder="Número de Acomodações" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
+
+        <input id="numerolugaresinput" type="number" placeholder="Número de Lugares" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
+
+        <h4 style="position: absolute; margin-left: 19%; font-size: 15px; margin-top: 0.1%;">Nota: O Local é adicionado após a criação do estabelecimento.</h4>
         
-            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 4%; position: absolute; ">Nome: </h1>
-            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 7%; position: absolute; ">Username: </h1>
-            <h1 style="font-size: 20px; margin-left: 4%; margin-top: 10%; position: absolute; ">Email: </h1>
+        <button style="position: absolute; margin-left: 57.6%;">CRIAR ESTABELECIMENTO</button>
 
-            <button style="background-color: salmon; color: white; margin-top: 15%; margin-left: 4%;" onclick="deleteAccount()">APAGAR CONTA</button>
-        
-        </div>
 	</main>
 	<!-- /main -->
 
-	<footer style="margin-top: 80%; position: absolute; width:100%;">
+	<footer style="margin-top: 6%; position: absolute; width:100%; z-index: 60;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
