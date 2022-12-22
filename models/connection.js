@@ -1,21 +1,14 @@
-var pg = require('pg');
- //const connectionString = "postgres://postgres:tftprojeto@localhost:5432/dailym8nodejs"
-
-const connectionString = "postgres://dailym8database:LJMX8Mq8g14Lv2IVN7EFLD7zKFxXsgam@dpg-cef5npda499e21q1sdjg-a.oregon-postgres.render.com/dailym8database_goe5"
-const Pool = pg.Pool
-//const pool = new Pool({
- //connectionString,
- //max: 10,
- //ssl: {
- //require: true,
- //rejectUnauthorized: false
- //}
-//})
-
-const pool = new Pool({
-    //connectionString: process.env.DATABASE_URL || 'postgres://postgres:rFeZvIpl3lmOXfB@dailym8nodejs.internal:5432',
-   // connectionString: process.env.DATABASE_URL || 'postgres://postgres:tftprojeto@localhost:5432/dailym8nodejs',
-   connectionString: process.env.DATABASE_URL || 'postgres://dailym8database:LJMX8Mq8g14Lv2IVN7EFLD7zKFxXsgam@dpg-cef5npda499e21q1sdjg-a.oregon-postgres.render.com/dailym8database_goe5',
-    ssl: process.env.DATABASE_URL ? true : false
-})
+var pg = require('pg'); 
+ 
+const connectionString = "postgres://lsiqflfccoyfjt:ca69c8a390dd18782a0378ac317515dbb55d5fd783833de0e88847998db01d1d@ec2-3-217-251-77.compute-1.amazonaws.com:5432/d41r51pav8k8tq" 
+const Pool = pg.Pool 
+const pool = new Pool({ 
+    connectionString, 
+    max: 10, 
+    ssl: { 
+        require: true,  
+        rejectUnauthorized: false 
+    } 
+}) 
+ 
 module.exports = pool;
