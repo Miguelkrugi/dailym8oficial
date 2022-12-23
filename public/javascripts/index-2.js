@@ -17,7 +17,7 @@ window.onload = function exampleFunction() {
   
     getSuggestedAcomodacoes();
   
-    getSuggestedEstacionamentos();
+   // getSuggestedEstacionamentos();
   
     getThreeComments();
   
@@ -65,7 +65,7 @@ window.onload = function exampleFunction() {
 
 async function getSuggestedRestaurants(){
 
-  console.log("Obtendo os restaurantes")
+  console.log("Obtendo os restaurantes");
   
   // let recipeName = document.getElementById("nome1")
    let restaurantesElem = document.getElementById("organize2");
@@ -86,19 +86,23 @@ async function getSuggestedRestaurants(){
   
   let html = "";
   
-  if(suggestedrestaurants > 0){
+    if(suggestedrestaurants.length > 0){
 
-    for(let restaurant of suggestedrestaurants){
-     console.log("Restaurante: " + restaurant);
-     html += createrestaurantHTML(restaurant);
+      for(let restaurant of suggestedrestaurants){
+       console.log("Restaurante: " + restaurant);
+       html += createrestaurantHTML(restaurant);
+      }
+
+    } else {
+
+      console.log("NADA ENCONTRADO");
+
     }
 
-  } else {
 
   //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
-    console.log("NADA ENCONTRADO");
+   // console.log("NADA ENCONTRADO");
 
-  }
   
   console.log("OBTEVE");
   //  recipeName.innerHTML = html;
@@ -148,7 +152,7 @@ async function getSuggestedRestaurants(){
     
     let html = "";
     
-    if(suggestedacomodacoes > 0){
+    if(suggestedacomodacoes.length > 0){
 
        for(let acomodacao of suggestedacomodacoes){
         console.log("Restaurante: " + acomodacao);
