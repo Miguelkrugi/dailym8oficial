@@ -409,7 +409,7 @@ async function registreamento() {
 
     
     console.log(authUser.user_id);
-    window.location.replace("http://localhost:3000/index-2.html");
+    window.location.replace("https://daily-m8.onrender.com/register.html");
    }  catch (err) {
     console.log(err);
   //  window.alert('something wron;g')
