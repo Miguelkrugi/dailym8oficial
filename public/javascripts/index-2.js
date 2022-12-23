@@ -95,7 +95,7 @@ async function getSuggestedRestaurants(){
 
   } else {
 
-    document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+  //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
     console.log("NADA ENCONTRADO");
 
   }
@@ -115,6 +115,7 @@ async function getSuggestedRestaurants(){
 
   function createacomodacoesHTML(servico_acomodacao){
   
+    console.log("Função chamada para criar o div da acomodação");
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
     return "<div  style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-acomodacao.html'  class='strip_info' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")'><div class='item_title'  class='item'><h3>" + servico_acomodacao.establishment_name + "</h3><small>" + servico_acomodacao.number_acomodacoes + "</small></div></a></figure></div></div>"
@@ -156,7 +157,7 @@ async function getSuggestedRestaurants(){
 
     } else{
 
-        document.getElementById("withoutresultspraia").style.visibility = "visible";
+    //    document.getElementById("withoutresultspraia").style.visibility = "visible";
         console.log("NADA ENCONTRADO");
     
     }
