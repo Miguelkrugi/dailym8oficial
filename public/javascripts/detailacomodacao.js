@@ -129,6 +129,8 @@ window.onload = function exampleFunction() {
  var local_servico_acomodacoes_id = sessionStorage.getItem('local_servico_acomodacoes_id');
  var local_latitude = sessionStorage.getItem('local_latitude');
  var local_longitude = sessionStorage.getItem('local_id');
+ var state_id = sessionStorage.getItem('state_id');
+
 
 
     console.log('The Script will load now.');
