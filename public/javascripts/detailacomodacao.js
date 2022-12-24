@@ -15,7 +15,7 @@ async function getNumberLikesRestaurant(restaurante_id){
     
     });
 
-    console.log("Likes: " + qlikes.count);
+    console.log("Likes: " + qlikes[0].count);
     
    
    document.getElementById("quantidadelikes").innerHTML = "Likes: " + qlikes.count;
@@ -64,8 +64,8 @@ window.onload = function exampleFunction() {
  var establishment_id = sessionStorage.getItem('establishment_id');
  var establishment_name = sessionStorage.getItem('establishment_name');
  var establishment_description = sessionStorage.getItem('establishment_description');
- var restaurant_id = sessionStorage.getItem('restaurant_id');
- var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
+ var equipment_service_id = sessionStorage.getItem('equipment_service_id');
+ var number_acomodacoes = sessionStorage.getItem('number_acomodacoes');
  var establishment_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
  var type_service_identifier = sessionStorage.getItem('type_service_identifier');
  
@@ -90,7 +90,7 @@ window.onload = function exampleFunction() {
 
     console.log("RESTAURANTE NAME: " + establishment_name);
     console.log("RESTAURANTE ID: " + establishment_id);
-    console.log("REST DEFINITIVO ID: " + restaurant_id);
+    console.log("REST DEFINITIVO ID: " + equipment_service_id);
     console.log("DESCRIPTION RESTAURANTE: " + establishment_description);
     console.log("LATITUDE: " + local_latitude);
     console.log("LONGITUDE: " + local_longitude);
@@ -101,7 +101,7 @@ window.onload = function exampleFunction() {
 
     getPlacePosition();
 
-    getNumberLikesRestaurant(restaurant_id);
+    getNumberLikesAcomodacao(equipment_service_id);
 
     
 

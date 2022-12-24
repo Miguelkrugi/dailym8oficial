@@ -1,3 +1,32 @@
+async function getNumberLikesRestaurant(restaurante_id){
+
+  console.log("Obtendo os likes")
+  
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let qlikes = await $.ajax({
+  
+  url: "/users/countlikerestaurant/" + restaurante_id,
+  method: "get",
+  dataType: "json",
+  
+  });
+
+  console.log("Likes: " + qlikes[0].count);
+  
+ 
+  document.getElementById("quantidadelikes").innerHTML = "Likes: " + qlikes[0].count;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+
+
 function createplateHTML(prato){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
@@ -288,6 +317,7 @@ window.onload = function exampleFunction() {
  var type_service_identifier = sessionStorage.getItem('type_service_identifier');
  var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
  var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
+ 
 
  console.log("A chamar a funcao");
   

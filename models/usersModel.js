@@ -269,6 +269,18 @@ module.exports.getCountLikeRestaurant = async function(restaurant_id) {
     }
 }
 
+module.exports.getCountLikeAcomodacao = async function(equipment_service_id) {
+    try {
+        let sql = "SELECT COUNT(*) FROM like_servico_acomodacao WHERE like_servico_acomodacao = " + equipment_service_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
 module.exports.getRestaurantPlatesFilter = async function(est_id, plate_identifier) {
     try {

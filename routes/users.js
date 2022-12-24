@@ -125,6 +125,14 @@ router.get('/countlikerestaurant/:idrestaurante', async function(req, res, next)
 
 });
 
+router.get('/countlikeacomodacao/:idacomodacao', async function(req, res, next) {
+
+  let idacomodacao = req.params.idacomodacao;
+  let result = await usersModel.getCountLikeAcomodacao(idacomodacao);
+  res.status(result.status).send(result.data);
+
+});
+
 router.get('/seeplates/filter/:idestabelecimento/:idplatetype', async function(req, res, next) {
 
   let estabelecimento_id = req.params.idestabelecimento;

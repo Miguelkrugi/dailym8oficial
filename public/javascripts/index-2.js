@@ -17,7 +17,7 @@ window.onload = function exampleFunction() {
   
     getSuggestedAcomodacoes();
   
-   // getSuggestedEstacionamentos();
+    getSuggestedEstacionamentos();
   
     getThreeComments();
   
@@ -52,16 +52,40 @@ window.onload = function exampleFunction() {
   
   }
 
+  async function openrestaurant2(restaurante){
+
+    console.log("FUNÇÃO CHAMADA!");
+    console.log("NOME: " + restaurante.establishment_name)
+      console.log("DESCRICAO: " + restaurante.establishment_description)
+      console.log("ID: " + restaurante.restaurant_id)
+      console.log("STATE ID: " + restaurante.state_id)
+      
+      sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+      sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+      sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+      sessionStorage.setItem('restaurant_id', restaurante.restaurant_id);
+      sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
+      sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+      sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+      sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
+      sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);
+      sessionStorage.setItem('state_id', restaurante.state_id);
+  
+  
+  }
+
   function createrestaurantHTML(restaurante){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openrestaurant2(" + JSON.stringify(restaurante) + ")' class='strip_info' onclick='printtest()'><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openrestaurant2(" + JSON.stringify(restaurante) + ")' class='strip_info' ><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
   }
+
+
 
 async function getSuggestedRestaurants(){
 
@@ -115,6 +139,26 @@ async function getSuggestedRestaurants(){
   } catch(err){
    console.log(err);
   }
+  }
+
+  async function openacomodacao(restaurante){
+
+    console.log("FUNÇÃO CHAMADA!");
+    console.log("NOME: " + restaurante.establishment_name)
+      console.log("DESCRICAO: " + restaurante.establishment_description)
+      console.log("ID: " + restaurante.equipment_service_id)
+      console.log("STATE ID: " + restaurante.state_id)
+      
+      sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+      sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+      sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+      sessionStorage.setItem('equipment_service_id', restaurante.equipment_service_id);
+      sessionStorage.setItem('number_acomodacoes', restaurante.number_acomodacoes);
+      sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+      sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+      sessionStorage.setItem('state_id', restaurante.state_id);
+  
+  
   }
 
   function createacomodacoesHTML(servico_acomodacao){
@@ -213,17 +257,17 @@ async function getSuggestedRestaurants(){
         
         let html = "";
         
-        if(suggestedestacionamentos > 0){
+       
         for(let spot of suggestedestacionamentos){
          console.log("Restaurante: " + spot);
          html += createestacionamentoHTML(spot);
         }
-        } else {
+       
       
-          document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+          //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
           console.log("NADA ENCONTRADO");
       
-        }
+        
         
         console.log("OBTEVE");
         //  recipeName.innerHTML = html;
