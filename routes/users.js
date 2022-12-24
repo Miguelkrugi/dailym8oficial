@@ -229,4 +229,11 @@ router.get('/getacomodacoes/:idestabelecimento', async function(req, res, next) 
 
 });
 
+router.get('/getlatestreports', async function(req, res, next) {
+
+  let result = await usersModel.getLatestReports();
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

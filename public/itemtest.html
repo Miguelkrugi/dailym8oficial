@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="reportitem" style="border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 60%; height:25%; position: absolute;">
+ 
+      <h3 id="restaurantname" style="margin-left: 1.6%; font-size: 27px;">Nome do Restaurante</h3>
+
+      <h3 id="createdbyname" style="margin-left: 1.6%; margin-top: -1.6%;">Criado por: <i>utilizadorx</i></h3>
+
+      <h3 id="statename" style="margin-left: 1.6%; margin-top: -0.8%;">Estado do Local: Não Analisado</h3>
+
+      <h3 id="datename" style="margin-left: 1.6%; margin-top: -0.8%;">Data do Report: 29/09/2022 5:34:71</h3>
+
+      <button id="colocarsobanalise" style="margin-left: 60%; margin-top: -14.5%; position: absolute;">COLOCAR SOBRE ANÁLISE</button>
+
+      <button style="margin-left:83%; margin-top: -14.5%; position: absolute;" id="button9">VER DETALHES</button>
+
+    </div>
+
+    <div class="bg-modal8">
+        <div class="modal-contents8">
+    
+            <div class="close9">+</div>
+            <img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+            <h2>VER DETALHES</h2>
+				<hr style="margin-top: -1%;">
+    
+            <form action="">
+              <h4 style="position: absolute; margin-top: -0.2%;">Nome do Estabelecimento: Nome</h4>
+              
+              <h4 style="position: absolute; margin-top: 7%;">Nº de Reports: 2</h4>
+
+              <h4 style="position: absolute; margin-top: 14%;">Estado do Local: Estado</h4>
+
+              <h4 style="position: absolute; margin-top: 21%;">Local criado por: <i>Username</i></h4>
+
+              <button style="margin-top: 35%; margin-left: -1%;">ELIMINAR ESTABELECIMENTO</button>
+
+              <button style="margin-top: 35%; margin-left: 17%;">VER DETALHES DO LOCAL</button>
+
+            </form>
+    
+        </div>
+
+        <script>
+              document.getElementById('button9').addEventListener("click", function() {
+	    
+        document.querySelector('.bg-modal8').style.display = "flex";
+      });
+
+      document.querySelector('.close9').addEventListener("click", function() {
+	    
+        document.querySelector('.bg-modal8').style.display = "none";
+      });
+
+        </script>
+</body>
+</html>

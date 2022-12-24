@@ -3418,6 +3418,40 @@ input {
 
 }
 
+/*CSS DO POPUP DE VER DETALHES DO REPORT*/
+
+.bg-modal8 {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-contents8{
+	height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+
+.close9 {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+
+}
+
 /*--------------------------------------------------------*/
 
 /*CSS DO POPUP DE EDITAR LOCAL*/
