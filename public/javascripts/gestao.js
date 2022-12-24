@@ -30,6 +30,66 @@ window.onload = function exampleFunction() {
 
 }
 
+function createrestaurantHTML(rest){
+  
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 60%; height:15%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + rest.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + rest.utilizador_username + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -7.8%; position: absolute;'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -9.5%; position: absolute;' id='button9' onclick='openpopupdetails()'>VER DETALHES</button></div>";
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function newChange(){
+
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizeitems");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/getinanalysis/places/restaurant/",
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+  
+  let html = "";
+  
+ 
+  for(let spot of suggestedestacionamentos){
+   console.log("Report: " + spot);
+   html += createrestaurantHTML(spot);
+  }
+ 
+
+    //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+    console.log("NADA ENCONTRADO");
+
+  
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+   lugaresElem.innerHTML = html;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+
+}
+
 async function getFilterReportsAcomodacao(){
 
   console.log("Obtendo os reports")

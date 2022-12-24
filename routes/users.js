@@ -243,4 +243,27 @@ router.get('/getlatestreports/acomodacao', async function(req, res, next) {
 
 });
 
+///////AINDA N FOI APLICADO ///////
+
+router.get('/getinanalysis/places/restaurant', async function(req, res, next) {
+
+  let result = await usersModel.getInAnalysisPlacesRestaurant();
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getinanalysis/places/acomodacao', async function(req, res, next) {
+
+  let result = await usersModel.getInAnalysisPlacesAcomodacao();
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getinanalysis/places/estacionamento', async function(req, res, next) {
+
+  let result = await usersModel.getInAnalysisPlacesEstacionamento();
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

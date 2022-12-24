@@ -442,3 +442,33 @@ module.exports.getLatestReportsAcomodacao = async function() {
     }
 }
 
+/////////////// AINDA  N FOI APLICADO /////////////////
+
+module.exports.getInAnalysisPlacesRestaurant = async function() {
+    try {
+        let sql = "SELECT *, utilizador.utilizador_name, utilizador.utilizador_id, utilizador.utilizador_username, state_type.state_id, state_type.state_name, type_restaurant.type_restaurant_id, type_restaurant.type_restaurant_name FROM restaurant INNER JOIN utilizador ON utilizador.utilizador_id = restaurant.establishment_utilizador_id INNER JOIN state_type ON  state_type.state_id = restaurant.state_id INNER JOIN type_restaurant ON type_restaurant.type_restaurant_id = restaurant.restaurant_type_id WHERE state_type.state_id = 2 ";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+
+module.exports.getInAnalysisPlacesAcomodacao = async function() {
+    try {
+        let sql = "SELECT *, utilizador.utilizador_name, utilizador.utilizador_id, utilizador.utilizador_username, state_type.state_id, state_type.state_name FROM equipment_service INNER JOIN utilizador ON utilizador.utilizador_id = equipment_service.establishment_utilizador_id INNER JOIN state_type ON  state_type.state_id = equipment_service.state_id WHERE state_type.state_id = 2 ";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
