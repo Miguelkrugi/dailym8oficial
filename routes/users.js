@@ -266,4 +266,13 @@ router.get('/getinanalysis/places/estacionamento', async function(req, res, next
 
 });
 
+//////// PROMOÇÃO DE UTILIZADORES (SELECT) /////////´
+
+router.get('/getusers/promotion/', async function(req, res, next) {
+
+  let result = await usersModel.getUsersForPromotion();
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

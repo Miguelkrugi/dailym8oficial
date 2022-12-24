@@ -472,3 +472,16 @@ module.exports.getInAnalysisPlacesAcomodacao = async function() {
     }
 }
 
+
+module.exports.getUsersForPromotion = async function() {
+    try {
+        let sql = "SELECT *, utilizador_type.utilizador_type_id, utilizador_type.utilizador_type_name FROM utilizador INNER JOIN utilizador_type ON utilizador_type.utilizador_type_id = utilizador.utilizador_type_id WHERE utilizador_type.utilizador_type_id = 1 OR utilizador_type.utilizador_type_id = 2";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}

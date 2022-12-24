@@ -3219,6 +3219,33 @@ ul#top_menu li a.login:before {
 
 }
 
+#organizeitems2 {
+
+  width: 72%;
+  height:150%;
+  background-color: lightgray;
+  position: absolute;
+  margin-top: 7%;
+  margin-left: 19%;
+  border-radius: 10px;
+  overflow-y: scroll;
+
+}
+
+#organizeitems3 {
+
+  width: 72%;
+  height:150%;
+  background-color: lightgray;
+  position: absolute;
+  margin-top: 7%;
+  margin-left: 19%;
+  border-radius: 10px;
+  overflow-y: scroll;
+
+}
+
+
 #organize6 {
   width: 62.2%;
   display: flex;
