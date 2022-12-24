@@ -118,6 +118,7 @@ async function newChangePromotion(){
   document.getElementById('organizeitems').style.visibility = "hidden";
   document.getElementById('organizeitems2').style.visibility = "hidden";
   document.getElementById('organizeitems3').style.visibility = "visible";
+  document.getElementById('organizeitems4').style.visibility = "hidden";
 
   console.log("Obtendo os reports")
 
@@ -139,6 +140,8 @@ async function newChangeReports(){
   document.getElementById('organizeitems').style.visibility = "visible";
   document.getElementById('organizeitems2').style.visibility = "hidden";
   document.getElementById('organizeitems3').style.visibility = "hidden";
+  document.getElementById('organizeitems4').style.visibility = "hidden";
+
 
   console.log("Obtendo os reports")
   
@@ -171,6 +174,7 @@ async function newChange(){
   document.getElementById("organizeitems").style.visibility = "hidden";
   document.getElementById("organizeitems2").style.visibility = "visible";
   document.getElementById('organizeitems3').style.visibility = "hidden";
+  document.getElementById('organizeitems4').style.visibility = "hidden";
 
   console.log("Obtendo os reports")
   
@@ -408,7 +412,7 @@ async function myFavoritos(){
   document.getElementById('textominhasreservas').style.visibility = "hidden";
   document.getElementById('textominhaconta').style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
-  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+ // document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('textomeusfavoritos').style.visibility = "hidden";
   document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
   document.getElementById('informacoesdiv').style.visibility = "hidden";
@@ -491,12 +495,26 @@ async function myReservas(){
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
     document.getElementById('textominhasreservas').style.visibility = "hidden";
     document.getElementById('textomeusestabelecimentos').innerHTML = "Minha Conta";
-    document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+ //   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textominhacontainformacoes').style.visibility = "visible";
-    document.getElementById('informacoesdiv').style.visibility = "visible";
     document.getElementById('organizeitems').style.visibility = "hidden";
     document.getElementById('tipocliente').style.visibility = "hidden";
+    document.getElementById("organizeitems").style.visibility = "hidden";
+    document.getElementById("organizeitems2").style.visibility = "hidden";
+    document.getElementById('organizeitems3').style.visibility = "hidden";
+    document.getElementById('organizeitems4').style.visibility = "hidden";
+    document.getElementById('informacoesdiv').style.visibility = "visible";
+
+    var utilizador_id = sessionStorage.getItem("utilizador_id")
+    var utilizador_name = sessionStorage.getItem("utilizador_name");
+    let utilizador_username = sessionStorage.getItem("utilizador_username");
+    var utilizador_email = sessionStorage.getItem("utilizador_email");
+    var utilizador_type_id = sessionStorage.getItem("utilizador_type_id");
+
+    document.getElementById('nomeutilizadorfield').innerHTML = utilizador_name;
+    document.getElementById('usernameutilizadorfield').innerHTML = utilizador_username;
+    document.getElementById('emailutilizadorfield').innerHTML = utilizador_email;
   
   }
 
