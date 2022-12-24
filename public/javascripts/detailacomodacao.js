@@ -53,6 +53,8 @@ async function getNumberLikesAcomodacao(restaurante_id){
         }
 
         function initMap(lat, lng) {
+
+           
             // The location of Uluru
             const uluru = { lat: lat, lng: lng };
             // The map, centered at Uluru
@@ -85,7 +87,7 @@ async function getNumberLikesAcomodacao(restaurante_id){
             
             });
     
-            
+            console.log("SOUL")
         
             console.log("Morada: " + position[0].local_morada);
             console.log("Latitude: " + position[0].local_latitude);
@@ -93,6 +95,8 @@ async function getNumberLikesAcomodacao(restaurante_id){
 
             var latitude = position[0].local_latitude;
             var longitude = position[0].local_longitude;
+
+            console.log("Latitude again: " + latitude)
 
             initMap(latitude, longitude);       
             
@@ -103,6 +107,7 @@ async function getNumberLikesAcomodacao(restaurante_id){
             
             }
 
+            
 
 window.onload = function exampleFunction() {
 

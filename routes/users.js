@@ -218,4 +218,15 @@ router.get('/showrandomsuggestcomments', async function(req, res, next) {
 
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+router.get('/getacomodacoes/:idestabelecimento', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+
+  let result = await usersModel.getAcomodacoesService(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;
