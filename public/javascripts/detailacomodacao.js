@@ -150,7 +150,7 @@ window.onload = function exampleFunction() {
 
  document.getElementById("descricaorestaurante").innerHTML = establishment_description;
 
- getLatitudePlace(restaurant_id);
+ getLatitudePlace(equipment_service_id);
 
  if(state_id == 1){
    document.getElementById("createdplacestate").style.visibility = "visible";
