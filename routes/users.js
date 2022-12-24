@@ -275,4 +275,33 @@ router.get('/getusers/promotion/', async function(req, res, next) {
 
 });
 
+//////////// RESTAURANTES FAVORITOS /////////////
+
+router.get('/getfavoritos/restaurante/:idrestaurante', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getFavoritosRestaurante(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getfavoritos/acomodacao/:idacomodacao', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getFavoritosAcomodacao(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getfavoritos/estacionamento/:idestacionamento', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getFavoritosEstacionamento(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

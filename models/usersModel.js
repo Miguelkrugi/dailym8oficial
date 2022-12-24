@@ -485,3 +485,17 @@ module.exports.getUsersForPromotion = async function() {
         return { status: 500, data: err };
     }
 }
+
+
+module.exports.getFavoritosRestaurante = async function(est_id) {
+    try {
+        let sql = "SELECT *, utilizador.utilizador_id, utilizador.utilizador_name, utilizador.utilizador_username, restaurant.establishment_id, restaurant.establishment_description, restaurant.establishment_name, restaurant.restaurante_number_tables, restaurant.state_id, restaurant.restaurant_type_id, type_restaurant.type_restaurant_id, type_restaurant.type_restaurant_name FROM like_restaurante INNER JOIN utilizador ON utilizador.utilizador_id = like_restaurante.like_utilizador INNER JOIN restaurant ON restaurant.restaurant_id = like_restaurante.like_restaurante INNER JOIN type_restaurant ON type_restaurant.type_restaurant_id = restaurant.restaurant_type_id where utilizador.utilizador_id = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
