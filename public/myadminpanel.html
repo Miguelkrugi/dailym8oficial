@@ -125,23 +125,25 @@
             </ul>
         </div>
 
-        <div id="tipoestabelecimento" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
-            <button class="dropbtn">Ordenar Reports</button>
+      
+
+		<div id="tipoestabeleciment" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
+            <button class="dropbtn">Filtrar Reports</button>
             <div class="dropdown-content">
                 
-                <a href="#" onclick="getRandomAcomodacoes()">Todos</a>
+                <a href="#" onclick="getFilterReportsRestaurant()">Restaurantes</a>
                       
                
-              <a href="#" onclick="getAcomodacaoTipo(1)">Mais Recentes</a>
+              <a href="#" onclick="getFilterReportsAcomodacao()">Acomodações</a>
                 
                 
-              <a href="#" onclick="getAcomodacaoTipo(1)">Mais Antigos</a>
+              <a href="#" onclick="getFilterReportsEstacionamento()">Estacionamentos</a>
 
             
             </div>
         </div>
 
-		<div id="tipocliente" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%;">
+		<div id="tipocliente" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 60%;">
             <button class="dropbtn">Filtrar Tipo</button>
             <div class="dropdown-content">
                 
@@ -205,6 +207,35 @@
 
 
 		</div>
+
+
+		<!-----------DIV DO POPUP PARA VER OS DETALHES ----------------------->
+
+		<div class="bg-modal8">
+			<div class="modal-contents8">
+		
+				<div class="close9">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+	
+				<h2>VER DETALHES</h2>
+					<hr style="margin-top: -1%;">
+		
+				<form action="">
+				  <h4 id="popuprestaurantname" style="position: absolute; margin-top: -0.2%;">Nome do Estabelecimento: Nome</h4>
+				  
+				  <h4 id="popupnumberreports" style="position: absolute; margin-top: 7%;">Nº de Reports: 2</h4>
+	
+				  <h4 id="statelocal" style="position: absolute; margin-top: 14%;">Estado do Local: Estado</h4>
+	
+				  <h4 id="placecreatedby" style="position: absolute; margin-top: 21%;">Local criado por: <i>Username</i></h4>
+	
+				  <button style="margin-top: 35%; margin-left: -1%;">ELIMINAR ESTABELECIMENTO</button>
+	
+				  <button style="margin-top: 35%; margin-left: 17%;">VER DETALHES DO LOCAL</button>
+	
+				</form>
+		
+			</div>
 	</main>
 	<!-- /main -->
 

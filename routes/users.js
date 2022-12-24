@@ -236,4 +236,11 @@ router.get('/getlatestreports', async function(req, res, next) {
 
 });
 
+router.get('/getlatestreports/acomodacao', async function(req, res, next) {
+
+  let result = await usersModel.getLatestReportsAcomodacao();
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;
