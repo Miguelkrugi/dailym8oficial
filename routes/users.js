@@ -180,6 +180,15 @@ router.get('/place/position/:idestabelecimento', async function(req, res, next) 
 
 });
 
+router.get('/place/position/acomodacao/:idacomodacaoservice', async function(req, res, next) {
+
+  let acomodacao_service_id = req.params.idacomodacaoservice;
+
+  let result = await usersModel.getAcomodacaoPlace(acomodacao_service_id);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.get('/showrandomsuggestedrestaurants', async function(req, res, next) {
 
