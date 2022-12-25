@@ -49,8 +49,12 @@ window.onload = function exampleFunction() {
 
 
     } 
+
+   
   
   }
+
+ 
 
   async function openrestaurant2(restaurante){
 

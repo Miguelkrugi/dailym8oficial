@@ -527,3 +527,16 @@ module.exports.UpdateGestor = async function(id_user){
     }
 
 }
+
+module.exports.getMyRestaurants = async function(est_id) {
+    try {
+        let sql = "SELECT *, type_restaurant.type_restaurant_id, type_restaurant.type_restaurant_name, state_type.state_id, state_type.state_name, place_restaurante.local_morada, place_restaurante.local_id, place_restaurante.ref_system_id, place_restaurante.geometry_info_point, place_restaurante.local_restaurante_id, place_restaurante.local_latitude, place_restaurante.local_longitude, utilizador.utilizador_id, utilizador.utilizador_username FROM restaurant INNER JOIN type_restaurant ON type_restaurant.type_restaurant_id = restaurant.restaurant_type_id INNER JOIN  state_type ON state_type.state_id = restaurant.state_id INNER JOIN place_restaurante ON place_restaurante.local_restaurante_id = restaurant.restaurant_id INNER JOIN utilizador ON utilizador.utilizador_id = restaurant.establishment_utilizador_id where utilizador.utilizador_id = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}

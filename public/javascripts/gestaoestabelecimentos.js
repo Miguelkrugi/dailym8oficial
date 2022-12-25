@@ -24,11 +24,26 @@ window.onload = function exampleFunction() {
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
   
     document.getElementById('informacoesdiv').style.visibility = "hidden";
-    document.getElementById('tipocliente').style.visibility = "hidden";
+   // document.getElementById('tipocliente').style.visibility = "hidden";
    // getAleatorioRestaurantes();
+
+   myAllEstabelecimentos(utilizador_id);
 }
 
-async function myAllEstabelecimentos(){
+
+
+function createrestaurantHTML(restaurante){
+  
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openrestaurant2(" + JSON.stringify(restaurante) + ")' class='strip_info'><small>Tipo: " + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>Nome: " + restaurante.establishment_name + "</h3><small>Rua: " + restaurante.local_morada + "</small></div></a></figure></div></div>"
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function myAllEstabelecimentos(id_user){
 
   document.getElementById('criarestabelecimentobutton').style.visibility = "visible";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
@@ -40,7 +55,49 @@ async function myAllEstabelecimentos(){
     document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
     document.getElementById('informacoesdiv').style.visibility = "hidden";
     
+    console.log("Obtendo os restaurantes");
   
+    // let recipeName = document.getElementById("nome1")
+     let restaurantesElem = document.getElementById("organize15");
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedrestaurants = await $.ajax({
+    
+    url: "/users/get/myestablishments/restaurant/" + id_user,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+    
+    let html = "";
+    
+  
+        for(let restaurant of suggestedrestaurants){
+         console.log("Restaurante: " + restaurant);
+         html += createrestaurantHTML(restaurant);
+        }
+  
+    //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+     // console.log("NADA ENCONTRADO");
+  
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     restaurantesElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+
     console.log("chamada");
   }
 

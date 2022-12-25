@@ -319,4 +319,17 @@ router.put('/become/gestor/:idutilizador', async function(req, res, next){
 
 });
 
+
+////////////////////////////////////////////////
+
+router.get('/get/myestablishments/restaurant/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyRestaurants(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
 module.exports = router;
