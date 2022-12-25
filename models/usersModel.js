@@ -540,3 +540,16 @@ module.exports.getMyRestaurants = async function(est_id) {
         return { status: 500, data: err };
     }
 }
+
+module.exports.getMyAcomodacao = async function(est_id) {
+    try {
+        let sql = "SELECT *, state_type.state_id, state_type.state_name, place_servico_acomodacoes.local_morada, place_servico_acomodacoes.local_id, place_servico_acomodacoes.ref_system_id, place_servico_acomodacoes.geometry_info_point, place_servico_acomodacoes.local_servico_acomodacoes_id, place_servico_acomodacoes.local_latitude, place_servico_acomodacoes.local_longitude, utilizador.utilizador_id, utilizador.utilizador_username FROM equipment_service INNER JOIN  state_type ON state_type.state_id = equipment_service.state_id INNER JOIN place_servico_acomodacoes ON place_servico_acomodacoes.local_servico_acomodacoes_id = equipment_service.equipment_service_id INNER JOIN utilizador ON utilizador.utilizador_id = equipment_service.establishment_utilizador_id where utilizador.utilizador_id = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
