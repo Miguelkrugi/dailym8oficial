@@ -286,9 +286,9 @@ router.get('/getfavoritos/restaurante/:idrestaurante', async function(req, res, 
 
 });
 
-router.get('/getfavoritos/acomodacao/:idacomodacao', async function(req, res, next) {
+router.get('/getfavoritoss/acomodacao/:idacomodacao', async function(req, res, next) {
 
-  let estabelecimento_id = req.params.idrestaurante;
+  let estabelecimento_id = req.params.idacomodacao;
 
   let result = await usersModel.getFavoritosAcomodacao(estabelecimento_id);
   res.status(result.status).send(result.data);

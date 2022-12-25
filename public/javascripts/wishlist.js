@@ -39,7 +39,7 @@ window.onload = function exampleFunction() {
 
 }
 
-function createacomodacoesHTML(servico_acomodacao){
+function createlikedacomodacaoHTML(servico_acomodacao){
   
     console.log("Função chamada para criar o div da acomodação");
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
@@ -64,7 +64,7 @@ async function getLikedAcomodacao(id_user){
     
     let suggestedrestaurants = await $.ajax({
     
-    url: "/users/getfavoritos/acomodacao/" + id_user,
+    url: "/users/getfavoritoss/acomodacao/" + id_user,
     method: "get",
     dataType: "json",
     
