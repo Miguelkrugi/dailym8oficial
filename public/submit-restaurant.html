@@ -29,6 +29,8 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
+	<script src="./javascripts/becomegestor.js"></script>
+
 </head>
 
 <body>
@@ -156,8 +158,8 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-xl-9 col-lg-10 col-md-8">
-							<h1>Attract New Customers</h1>
-							<p>More bookings from diners around the corner</p>
+							<h1>Tornar-me Gestor</h1>
+							<p>Comece a gerir os seus estabelecimentos hoje com o DailyM8.</p>
 						</div>
 					</div>
 					<!-- /row -->
@@ -193,17 +195,16 @@
                 <div class="plan plan-tall col-md-4" style="margin-left: 33%;">
                 	<div class="plan-title">
 	                    <h3>GESTOR</h3>
-	                    <p>One time fee for one listing, highlighted in search results</p>
+	                    <p>Comece a gerir os seus estabelecimentos ao tornar-se um gestor no DailyM8.</p>
                 	</div>
-                    <p class="plan-price">$199</p>
+                    <p class="plan-price"><img src="./css/images/construction-worker-icon-18-256.png" style="width: 70%; height:70%; margin-left: -11%;"></p>
                     <ul class="plan-features">
-                    	<li><strong>Premium</strong> support</li>
-                        <li><strong>Check and go</strong> included</li>
-                         <li><strong>APP</strong> included</li>
-                        <li><strong>6 months</strong> valid</li>
-                        <li><strong>Unsubscribe</strong> anytime</li>
+						<li><strong>Este plano permite:</strong></li>
+                    	<li><strong>Gerir</strong> restaurantes</li>
+                        <li><strong>Gerir</strong> serviços de acomodação</li>
+                        <li><strong>Gerir</strong> estacionamentos</li>
                     </ul>
-                    <a href="#submit" class="btn_1 btn_scroll">Tornar-me Gestor</a>
+                    <a href="#submit" class="btn_1 btn_scroll" id="becomegestorbtn">Tornar-me Gestor</a>
                 </div><!-- End col-md-4 -->
                 
           <!---      <div class="plan col-md-4">
@@ -224,84 +225,7 @@
 		</div>
 		<!-- /container -->
 
-		<div class="bg_gray pattern" id="submit">
-			<div class="container margin_60_40">
-				<div class="row justify-content-center">
-					<div class="col-lg-5">
-						<div class="text-center add_bottom_15">
-							<h4>Please fill the form below</h4>
-							<p>Id persius indoctum sed, audiam verear his in, te eum quot comprehensam. Sed impetus vocibus repudiare et.</p>
-						</div>
-						<div id="message-register"></div>
-							<form method="post" action="assets/register.php" id="register">
-								<h6>Personal data</h6>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name and Last Name" name="name_register" id="name_register">
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<div class="row add_bottom_15">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<input type="email" class="form-control" placeholder="Email Address" name="email_register" id="email_register">
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<h6>Restaurant data</h6>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Restaurant Name" name="restaurantname_register" id="restaurantname_register">
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Address" name="address_register" id="address_register">
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<div class="row add_bottom_15">
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="City" name="city_register" id="city_register">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<select class="form-control" name="country_register" id="country_register">
-												<option value="">Country</option>
-												<option value="Europe">Europe</option>
-												<option value="Asia">Asia</option>
-												<option value="Unated States">Unated States</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<h6>I am not a robot</h6>
-								<div class="row add_bottom_25">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<input type="text" id="verify_register" class="form-control" placeholder="Human verify: 3 + 1 =?">
-										</div>
-									</div>
-								</div>
-								<!-- /row -->
-								<div class="form-group text-center"><input type="submit" class="btn_1" value="Submit" id="submit-register"></div>
-							</form>
-					</div>
-				</div>
-			</div>
-			<!-- /container -->
-		</div>
+		
 		<!-- /bg_gray -->
 		
 	</main>

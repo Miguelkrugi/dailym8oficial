@@ -304,4 +304,19 @@ router.get('/getfavoritos/estacionamento/:idestacionamento', async function(req,
 
 });
 
+
+
+
+//////////////////////////////////////////////////////// UPDATE UTILIZADOR GESTOR //////////////////////////////////////////////////
+
+
+router.put('/become/gestor/:idutilizador', async function(req, res, next){
+
+  let id_user = req.params.idutilizador;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateGestor(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

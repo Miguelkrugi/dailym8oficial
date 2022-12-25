@@ -29,6 +29,8 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
+	<script src="./javascripts/wishlist.js"></script>
+
 </head>
 
 <body>
@@ -168,17 +170,15 @@
 		<div class="dropdown" style="position: absolute; margin-top: 4%; width: 15%; margin-left: 77%; z-index: 27;">
 			<button class="dropbtn">Filtrar Estabelecimento</button>
 			<div class="dropdown-content">
-				
-				<a href="#" onclick="getRandomLikedEstablishment()">Todos</a>
 					  
 			   
-			  <a href="#" onclick="getLikedEstablishment(1)">Restaurantes</a>
+			  <a href="#" id="restaurantoption">Restaurantes</a>
 				
 				
-			  <a href="#" onclick="getLikedEstablishment(2)">Acomodações</a>
+			  <a href="#" id="acomodacaooption">Acomodações</a>
 				
 				
-			  <a href="#" onclick="getLikedEstablishment(3)">Estacionamentos</a>
+			  <a href="#" id="estacionamentooption">Estacionamentos</a>
 
 
 			  
