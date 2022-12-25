@@ -29,6 +29,7 @@ window.onload = function exampleFunction() {
 
    document.getElementById('acomoption').addEventListener("click", function(){
 
+    console.log("USER ID: " + utilizador_id)
     getMyAcomodacoes(utilizador_id);
 
 
