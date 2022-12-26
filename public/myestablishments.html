@@ -98,13 +98,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                    <a href="#" id="alloption">Todos</a>
                 </li>
                 <li>
-                    <a href="#" onclick="myAllEstabelecimentos()">Restaurantes</a>
+                    <a href="#" id="restoption">Restaurantes</a>
                 </li>
                 <li>
-                    <a href="#">Acomodações</a>
+                    <a href="#" id="acomodacaooption" >Acomodações</a>
                 </li>
                 <li>
                     <a href="#" onclick="myEstacionamentos()">Estacionamentos</a>
@@ -115,10 +115,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="myFavoritos()">Meus Favoritos</a>
+                    <a href="#" id="favoritosoption">Meus Favoritos</a>
                 </li>
                 <li>
-                    <a href="#" onclick="myReservas()">Minhas Reservas</a>
+                    <a href="#" id="reservasoption">Minhas Reservas</a>
                 </li>
                 <li>
                     <a href="#" onclick="myAccount()">Minha Conta</a>
@@ -137,10 +137,10 @@
             <button class="dropbtn">Filtrar Estabelecimento</button>
             <div class="dropdown-content">
                 
-                <a href="#" onclick="myAllEstabelecimentos()">Todos</a>
+                <a href="#" id="todosoption">Todos</a>
                       
                
-              <a href="#" onclick="myAllEstabelecimentos()">Restaurantes</a>
+              <a href="#" id="resteoption">Restaurantes</a>
                 
                 
               <a href="#" id="acomoption">Acomodações</a>
@@ -150,8 +150,39 @@
             </div>
         </div>
 
+		<div id="tipoestabelecimentofavoritos" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%; visibility: hidden;">
+            <button class="dropbtn">Filtrar Estabelecimento</button>
+            <div class="dropdown-content">
+                
+                <a href="#" id="todosoption2">Todos</a>
+                      
+               
+              <a href="#" id="resteoption2">Restaurantes</a>
+                
+                
+              <a href="#" id="acomoption2">Acomodações</a>
 
+              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
+            
+            </div>
+        </div>
 
+		<div id="tipoestabelecimentoreservas" class="dropdown" style="position: absolute; margin-top: 7%; width: 15%; margin-left: 80%; visibility: hidden;">
+            <button class="dropbtn">Filtrar Estabelecimento</button>
+            <div class="dropdown-content">
+                
+                <a href="#" id="todosoption3">Todos</a>
+                      
+               
+              <a href="#" id="resteoption3">Restaurantes</a>
+                
+                
+              <a href="#" id="acomoption3">Acomodações</a>
+
+              <a href="#" onclick="getAcomodacaoTipo(2)">Estacionamentos</a>
+            
+            </div>
+        </div>
 
         <!---->
 		<div class="page_header element_to_stick">

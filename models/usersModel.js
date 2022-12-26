@@ -553,3 +553,34 @@ module.exports.getMyAcomodacao = async function(est_id) {
         return { status: 500, data: err };
     }
 }
+
+
+module.exports.getMyReservasRestaurant = async function(est_id) {
+    try {
+        let sql = "SELECT *, mesa.mesa_number, mesa.mesa_size, mesa.mesa_restaurant_id, mesa.mesa_type_id, mesa.mesa_price, mesa_type.mesa_type_id, mesa_type.mesa_type_name, restaurant.establishment_id, restaurant.establishment_name, place_restaurante.local_id, place_restaurante.ref_system_id, place_restaurante.geometry_info_point, place_restaurante.local_restaurante_id, place_restaurante.local_morada FROM reserva_mesa INNER JOIN mesa ON mesa.mesa_id = reserva_mesa.mesa_identifier_reservation INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id INNER JOIN restaurant ON restaurant.restaurant_id = mesa.mesa_restaurant_id INNER JOIN place_restaurante ON place_restaurante.local_restaurante_id = restaurant.restaurant_id WHERE reserva_mesa.user_identifier_reservation = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getMyReservasAcomodacao = async function(est_id) {
+    try {
+        let sql = "SELECT *, acomodacao.acomodacao_number, acomodacao.acomodacao_price, acomodacao.acomodacao_type_id, acomodacao.acomodacao_equipment_service_id, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name, equipment_service.establishment_id, equipment_service.establishment_name, place_servico_acomodacoes.local_id, place_servico_acomodacoes.ref_system_id, place_servico_acomodacoes.geometry_info_point, place_servico_acomodacoes.local_servico_acomodacoes_id, place_servico_acomodacoes.local_morada FROM reserva_acomodacao INNER JOIN acomodacao ON acomodacao.acomodacao_id = reserva_acomodacao.acomodacao_identifier_reservation INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id INNER JOIN equipment_service ON equipment_service.equipment_service_id = acomodacao.acomodacao_equipment_service_id INNER JOIN place_servico_acomodacoes ON place_servico_acomodacoes.local_servico_acomodacoes_id = equipment_service.equipment_service_id WHERE reserva_servico_acomodacao.user_identifier_reservation = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+

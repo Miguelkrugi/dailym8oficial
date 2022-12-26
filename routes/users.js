@@ -340,5 +340,27 @@ router.get('/get/myestablishments/acomodacao/:iduser', async function(req, res, 
 
 });
 
+////////////////////////////////// OBTER RESERVAS DE MESAS /////////////////////////////////////
+
+
+router.get('/get/myreservas/restaurant/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyReservasRestaurant(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
+////////////////////////////////// OBTER RESERVAS DE ACOMODAÇÕES /////////////////////////////////////
+
+router.get('/get/myreservas/acomodacao/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyReservasAcomodacao(user_id);
+  res.status(result.status).send(result.data);
+
+});
 
 module.exports = router;
