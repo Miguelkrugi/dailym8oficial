@@ -1,3 +1,70 @@
+
+function createreservaacomodacaoHTML(reserva){
+  
+  console.log("Função chamada para criar o div da acomodação");
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.acomodacao_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Acomodação: " + reserva.mesa_type_name + " | Linha: " + reserva.position_line + " | Coluna: " + reserva.position_column + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.acomodacao_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button></div>" 
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function getMyReservasAcomodacoes(id_user){
+
+  console.log("Obtendo os restaurantes");
+  
+  // let recipeName = document.getElementById("nome1")
+   let restaurantesElem = document.getElementById("organize16");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let suggestedrestaurants = await $.ajax({
+  
+  url: "/users/get/myreservas/acomodacao/" + id_user,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+  
+  let html = "";
+  
+   
+
+      for(let restaurant of suggestedrestaurants){
+       console.log("Restaurante: " + restaurant);
+       html += createreservaacomodacaoHTML(restaurant);
+      }
+
+    
+
+      console.log("NADA ENCONTRADO");
+
+    
+
+
+  //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+   // console.log("NADA ENCONTRADO");
+
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+   restaurantesElem.innerHTML = html;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+
 /////////////////////// MINHAS RESERVAS - AINDA N FOI APLICADO //////////////////////
 
 
@@ -13,7 +80,6 @@ function createreservamesaHTML(reserva){
 
 }
 
-<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:23%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: numero</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Nome do Restaurante: <i>nome</i></h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: <i>data</i></h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: <i>morada</i></h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Mesa: <i>tipo</i></h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button></div> 
 
 
 async function getMyReservasRestaurantes(id_user){
@@ -136,6 +202,28 @@ async function getLikedAcomodacao(id_user){
   } catch(err){
    console.log(err);
   }
+  }
+
+  async function openrestaurant2(restaurante){
+
+    console.log("FUNÇÃO CHAMADA!");
+    console.log("NOME: " + restaurante.establishment_name)
+      console.log("DESCRICAO: " + restaurante.establishment_description)
+      console.log("ID: " + restaurante.restaurant_id)
+      console.log("STATE ID: " + restaurante.state_id)
+      
+      sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+      sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+      sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+      sessionStorage.setItem('restaurant_id', restaurante.restaurant_id);
+      sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
+      sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+      sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+      sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
+      sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);
+      sessionStorage.setItem('state_id', restaurante.state_id);
+  
+  
   }
 
 /////////////////// FAVORITOS RESTAURANTES //////////////////////
@@ -285,7 +373,7 @@ function createrestaurantHTML(restaurante){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openrestaurant2(" + JSON.stringify(restaurante) + ")' class='strip_info'><small>Tipo: " + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>Nome: " + restaurante.establishment_name + "</h3><small>Rua: " + restaurante.local_morada + "</small></div></a></figure></div></div>"
+  return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='gestaorestaaurante.html' onclick='openrestaurant2(" + JSON.stringify(restaurante) + ")' class='strip_info'><small>Tipo: " + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>Nome: " + restaurante.establishment_name + "</h3><small>Rua: " + restaurante.local_morada + "</small></div></a></figure></div></div>"
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -425,11 +513,48 @@ document.getElementById('favoritosoption').addEventListener("click", function(){
 document.getElementById('reservasoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
-  //getMyReservas(utilizador_id);
+  getMyReservasRestaurantes(utilizador_id);
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas";
+
+
+});
+
+document.getElementById('todosoption3').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getMyReservasRestaurantes(utilizador_id);
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas - Restaurantes";
+
+
+});
+
+
+document.getElementById('resteoption3').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getMyReservasRestaurantes(utilizador_id);
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas - Restaurantes";
+
+
+});
+
+document.getElementById('acomoption3').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getMyReservasAcomodacoes(utilizador_id);
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas - Acomodações";
 
 
 });

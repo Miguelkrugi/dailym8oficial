@@ -363,4 +363,14 @@ router.get('/get/myreservas/acomodacao/:iduser', async function(req, res, next) 
 
 });
 
+
+router.get('/getlocation/restaurante/:idrestaurant', async function(req, res, next) {
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getPlaceFromRestaurant(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

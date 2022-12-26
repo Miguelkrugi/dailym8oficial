@@ -1,3 +1,44 @@
+ /////////////////////// OBTER A MORADA //////////////////////////
+
+ async function getMorada(id_restaurante){
+
+  console.log("Obtendo os restaurantes");
+  
+  try{
+  
+  let suggestedrestaurants = await $.ajax({
+  
+  url: "/users/getlocation/restaurante/" + id_restaurante,
+  method: "get",
+  dataType: "json",
+  
+  });
+
+  console.log("MORADA: " + suggestedrestaurants[0].local_morada)
+
+      console.log("NADA ENCONTRADO");
+
+    
+
+
+  //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+   // console.log("NADA ENCONTRADO");
+
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+ document.getElementById('restaurantmorada').innerHTML = "Morada: " + suggestedrestaurants[0].local_morada;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+
+
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
@@ -6,22 +47,42 @@ window.onload = function exampleFunction() {
     let utilizador_username = sessionStorage.getItem("utilizador_username");
     var utilizador_email = sessionStorage.getItem("utilizador_email");
     var utilizador_type_id = sessionStorage.getItem("utilizador_type_id");
+
+    var estabelecimento_id = sessionStorage.getItem('establishment_id');
+    var estabelecimento_name = sessionStorage.getItem('establishment_name');
+    var estabelecimento_description = sessionStorage.getItem('establishment_description');
+    var restaurant_id = sessionStorage.getItem('restaurant_id');
+    var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
+    var estabelecimento_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
+    var type_service_identifier = sessionStorage.getItem('type_service_identifier');
+    var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
+    var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
+    var state_id = sessionStorage.getItem('state_id');
   
     console.log("USERNAME: " + utilizador_username);
     console.log("ID: " + utilizador_id);
     console.log("TYPE ID: " + utilizador_type_id);
+    console.log("NOME DO RESTAURANTE: " + estabelecimento_name)
 
     document.getElementById('textomeusestabelecimentos').innerHTML = "Nome do Estabelecimento";
-   
+
   
     document.getElementById('textominhaconta').style.visibility = "hidden";
     document.getElementById('textomeusfavoritos').style.visibility = "hidden";
-    document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
+ //   document.getElementById('textominhacontainformacoes').style.visibility = "hidden";
   
-    document.getElementById('informacoesdiv').style.visibility = "hidden";
-    document.getElementById('tipocliente').style.visibility = "hidden";
+  //  document.getElementById('informacoesdiv').style.visibility = "hidden";
+   // document.getElementById('tipocliente').style.visibility = "hidden";
     
    // getAleatorioRestaurantes();
+
+   document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
+   document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
+   document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
+
+   getMorada(restaurant_id);
+
+   
 
 
 
