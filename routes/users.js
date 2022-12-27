@@ -384,4 +384,6 @@ router.get('/getinformacao/:idutilizador', async function(req, res, next) { //TI
 
 });
 
+//Vou começar aqui Ass:Bruno Mata
+
 module.exports = router;
