@@ -1,3 +1,34 @@
+async function myAccountUtilizador(id){
+
+  console.log("ID DO UTILIZADOR: " + id);
+
+  try{
+  
+    let suggestedrestaurants = await $.ajax({
+    
+    url: "/users/getinformacao/" + id,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+    
+  
+  
+    document.getElementById("nomeuser").innerHTML = "Nome: " + suggestedrestaurants[0].utilizador_name;
+
+    document.getElementById("usernameuser").innerHTML = "Username: " + suggestedrestaurants[0].utilizador_username;
+
+    document.getElementById("emailuser").innerHTML = "Email: " + suggestedrestaurants[0].utilizador_email;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+
+}
+
 
 function createreservaacomodacaoHTML(reserva){
   
@@ -293,7 +324,7 @@ async function getLikedRestaurants(id_user){
   }
   }
 
-///////////////////////// ACOMODACOES DO UTILIZADOR ///////////////////////////
+///////////////////////// aACOMODACOES DO UTILIZADOR ///////////////////////////
 
 function createacomodacaoHTML(servico_acomodacao){
   
@@ -475,6 +506,7 @@ document.getElementById('alloption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   myAllEstabelecimentos(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Estabelecimentos";
 
 
@@ -484,6 +516,7 @@ document.getElementById('resteoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   myAllEstabelecimentos(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Restaurantes";
  
@@ -493,6 +526,7 @@ document.getElementById('acomodacaooption').addEventListener("click", function()
 
   console.log("USER ID: " + utilizador_id)
   getMyAcomodacoes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Acomodações";
 
@@ -503,6 +537,7 @@ document.getElementById('favoritosoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getLikedRestaurants(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -514,6 +549,7 @@ document.getElementById('reservasoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -526,6 +562,7 @@ document.getElementById('todosoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -539,6 +576,7 @@ document.getElementById('resteoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -551,6 +589,7 @@ document.getElementById('acomoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasAcomodacoes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -565,6 +604,7 @@ document.getElementById('todosoption2').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getLikedRestaurants(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -576,6 +616,7 @@ document.getElementById('resteoption2').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getLikedRestaurants(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -587,6 +628,7 @@ document.getElementById('acomoption2').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getLikedAcomodacao(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -599,6 +641,7 @@ document.getElementById('acomoption2').addEventListener("click", function(){
    document.getElementById('acomoption').addEventListener("click", function(){
 
     console.log("USER ID: " + utilizador_id)
+    document.getElementById("organize16").style.visibility = "visible";
     getMyAcomodacoes(utilizador_id);
 
 
@@ -607,6 +650,7 @@ document.getElementById('acomoption2').addEventListener("click", function(){
  document.getElementById('todosoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
+  document.getElementById("organize16").style.visibility = "visible";
   myAllEstabelecimentos(utilizador_id);
 
 
@@ -615,7 +659,19 @@ document.getElementById('acomoption2').addEventListener("click", function(){
 document.getElementById('restoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
+  document.getElementById("organize16").style.visibility = "visible";
   myAllEstabelecimentos(utilizador_id);
+
+
+});
+
+document.getElementById('myaccountoption').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Informações";
+  document.getElementById("informacoesdiv").style.visibility = "visible";
+  myAccountUtilizador(utilizador_id);
 
 
 });

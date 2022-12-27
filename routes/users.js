@@ -364,11 +364,22 @@ router.get('/get/myreservas/acomodacao/:iduser', async function(req, res, next) 
 });
 
 
-router.get('/getlocation/restaurante/:idrestaurant', async function(req, res, next) {
+router.get('/getlocation/restaurante/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
 
-  let restaurant_id = req.params.idrestaurant;
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
 
-  let result = await usersModel.getPlaceFromRestaurant(restaurant_id);
+  let result = await usersModel.getPlaceFromRestaurant(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+/////////////// OBTER INFOS DO UTILIZADOR ////////////////
+
+router.get('/getinformacao/:idutilizador', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let utilizador_id = req.params.idutilizador; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getUserInfo(utilizador_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
   res.status(result.status).send(result.data);
 
 });

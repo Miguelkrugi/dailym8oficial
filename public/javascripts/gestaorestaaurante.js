@@ -1,8 +1,6 @@
  /////////////////////// OBTER A MORADA //////////////////////////
 
  async function getMorada(id_restaurante){
-
-  console.log("Obtendo os restaurantes");
   
   try{
   
@@ -14,11 +12,7 @@
   
   });
 
-  console.log("MORADA: " + suggestedrestaurants[0].local_morada)
-
-      console.log("NADA ENCONTRADO");
-
-    
+  console.log("MORADA: " + suggestedrestaurants[0].local_morada) //detalhe
 
 
   //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
@@ -57,7 +51,7 @@ window.onload = function exampleFunction() {
     var type_service_identifier = sessionStorage.getItem('type_service_identifier');
     var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
     var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
-    var state_id = sessionStorage.getItem('state_id');
+    var state_id = sessionStorage.getItem('state_id');  //EXPLICAR
   
     console.log("USERNAME: " + utilizador_username);
     console.log("ID: " + utilizador_id);

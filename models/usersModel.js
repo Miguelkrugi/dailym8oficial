@@ -595,3 +595,15 @@ module.exports.getPlaceFromRestaurant = async function(est_id) {
     }
 }
 
+module.exports.getUserInfo = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM utilizador WHERE utilizador.utilizador_id = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
