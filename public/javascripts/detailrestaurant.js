@@ -119,6 +119,40 @@ async function getNumberLikesRestaurant(restaurante_id){
 
             }
 
+async function getChangeLike(utilizador_id ,restaurant_id){
+
+  try{
+  
+    let suggestedrestaurants = await $.ajax({
+    
+    url: "/users/checklike/restaurante/" + utilizador_id + "/" + restaurant_id, //FALTA COLOCAR
+    method: "get",
+    dataType: "json",
+    
+    });
+  
+    console.log("MORADA: " + suggestedrestaurants[0].local_morada) //detalhe
+  
+  
+    //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+     // console.log("NADA ENCONTRADO");
+  
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+   document.getElementById('restaurantmorada').innerHTML = "Morada: " + suggestedrestaurants[0].local_morada;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+
+
+}
+
 window.onload = function exampleFunction() {
 
     var utilizador_id = sessionStorage.getItem("utilizador_id")
@@ -167,6 +201,8 @@ window.onload = function exampleFunction() {
   } 
 
   getNumberLikesRestaurant(restaurant_id);
+
+  getChangeLike(utilizador_id, restaurant_id);
 
    // initMap(latitude_teste);
 
