@@ -677,3 +677,29 @@ module.exports.getMesasUnavailable = async function(est_id) {
 }
 
 
+
+module.exports.getCheckLikeRestaurante = async function(utilizador_id ,restaurant_id) {
+    try {
+        let sql = "SELECT * FROM like_restaurante WHERE like_restaurante.like_utilizador = " + utilizador_id + " AND like_restaurante.like_restaurante = " + restaurant_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getCheckLikeAcomodacao = async function(utilizador_id ,acomodacao_id) {
+    try {
+        let sql = "SELECT * FROM like_servico_acomodacao WHERE like_servico_acomodacao.like_utilizador = " + utilizador_id + " AND like_servico_acomodacao.like_servico_acomodacao = " + acomodacao_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}

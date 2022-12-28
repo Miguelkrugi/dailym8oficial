@@ -125,11 +125,23 @@ async function getChangeLike(utilizador_id ,restaurant_id){
   
     let suggestedrestaurants = await $.ajax({
     
-    url: "/users/checklike/restaurante/" + utilizador_id + "/" + restaurant_id, //FALTA COLOCAR
+    url: "/users/getlike/checklike/restaurante/" + utilizador_id + "/" + restaurant_id, //FALTA COLOCAR
     method: "get",
     dataType: "json",
     
     });
+
+    if(length(suggestedrestaurants) > 0){
+
+       document.getElementById("removelike").style.visibility = "visible";
+       document.getElementById("addlike").style.visibility = "hidden";
+
+    } else {
+
+      document.getElementById("removelike").style.visibility = "hidden";
+      document.getElementById("addlike").style.visibility = "visible";
+
+    }
   
     console.log("MORADA: " + suggestedrestaurants[0].local_morada) //detalhe
   

@@ -1,4 +1,127 @@
+function createtableHTML(mesa){
+  
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 26%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -10%; position: absolute;' id='button9'>ELIMINAR MESA</button></div>";
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function getMesas(id_restaurante){
+  
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/gettables/" + id_restaurante,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+  
+  let html = "";
+  
+ 
+  for(let reserva of suggestedestacionamentos){
+   console.log("Reserva: " + reserva);
+   html += createtableHTML(reserva);
+  }
+ 
+
+    //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+    console.log("NADA ENCONTRADO");
+
+  
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+   lugaresElem.innerHTML = html;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////7
+
+function createplateHTML(plate){
+  
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 26%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:50%; margin-top: -16.7%; position: absolute;' id='button9'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:50%; margin-top: -10%; position: absolute;' id='button9'>ELIMINAR PRATO</button></div>";
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function getMenu(id_restaurante){
+  
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizemenu"); //VERIFICAR O ID
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/getmenu/" + id_restaurante,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+  
+  let html = "";
+  
+ 
+  for(let reserva of suggestedestacionamentos){
+   console.log("Reserva: " + reserva);
+   html += createplateHTML(reserva);
+  }
+ 
+
+    //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+    console.log("NADA ENCONTRADO");
+
+  
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+   lugaresElem.innerHTML = html;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+ 
+ 
  /////////////////////// OBTER A MORADA //////////////////////////
+
+
 
  async function getMorada(id_restaurante){
   
@@ -31,6 +154,67 @@
    console.log(err);
   }
   }
+
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  function createreservaHTML(reserva){
+  
+    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+   
+    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 60%; height:23%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva.utilizador_name + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva.mesa_number + "</h3><h3 id='tipoetamanhoname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tamanho: <i>" + reserva.mesa_size + "</i> | Tipo: <i>" + reserva.mesa_type_name + "</i></h3><h3 id='dataname' style='margin-left: 1.6%;  margin-top: -1.2%;'>Data: " + reserva.date_marcada_reservation + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9'>CANCELAR A RESERVA</button></div>";
+    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+  
+   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+  
+  }
+  
+  async function getReservasRestaurante(id_restaurante){
+  
+    console.log("Obtendo os reports")
+    
+    // let recipeName = document.getElementById("nome1")
+     let lugaresElem = document.getElementById("organizereserva"); //VERIFICAR O ID
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedestacionamentos = await $.ajax({
+    
+    url: "/users/getreservas/" + id_restaurante,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+    
+    let html = "";
+    
+   
+    for(let reserva of suggestedestacionamentos){
+     console.log("Reserva: " + reserva);
+     html += createreservaHTML(reserva);
+    }
+   
+  
+      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+      console.log("NADA ENCONTRADO");
+  
+    
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     lugaresElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
 
 
 window.onload = function exampleFunction() {
@@ -76,9 +260,11 @@ window.onload = function exampleFunction() {
 
    getMorada(restaurant_id);
 
-   
+   getReservasRestaurante(restaurant_id);
 
+   getMenu(restaurant_id);
 
+   getMesas(restaurant_id);
 
 }
 

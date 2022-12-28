@@ -407,7 +407,7 @@ router.get('/getmenu/:idrestaurant', async function(req, res, next) { //TIPO | P
 
 });
 
-router.get('/getmenu/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+router.get('/getmenu/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO | AINDA N FOI APLICADO
 
   let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
 
@@ -427,7 +427,7 @@ router.get('/gettables/:idrestaurant', async function(req, res, next) { //TIPO |
 
 });
 
-router.get('/gettables/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+router.get('/gettables/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
   let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
 
@@ -435,6 +435,30 @@ router.get('/gettables/unavailable/:idrestaurant', async function(req, res, next
   res.status(result.status).send(result.data);
 
 });
+
+///////////////////////////////// VERIFICAR LIKE //////////////////////////////////
+
+
+router.get('/getlike/checklike/restaurante/:idutilizador/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let utilizador_id = req.params.idutilizador;
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getCheckLikeRestaurante(utilizador_id ,restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getlike/checklike/acomodacao/:idutilizador/:idacomodacao', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let utilizador_id = req.params.idutilizador;
+  let acomodacao_id = req.params.idacomodacao; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getCheckLikeAcomodacao(utilizador_id ,acomodacao_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
 
 
 //Vou começar aqui Ass:Bruno Mata
