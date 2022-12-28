@@ -384,6 +384,59 @@ router.get('/getinformacao/:idutilizador', async function(req, res, next) { //TI
 
 });
 
+
+////////////// OBTER ULTIMAS RESERVAS ///////////////
+
+router.get('/getreservas/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getRestaurantReservas(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+////////////// OBTER O MENU ///////////////
+
+router.get('/getmenu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getRestaurantMenu(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmenu/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getRestaurantMenuUnavailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+/////////////// OBTER AS MESAS /////////////////
+
+router.get('/gettables/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getMesasAvailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/gettables/unavailable/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getMesasUnavailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+
 //Vou começar aqui Ass:Bruno Mata
 
 module.exports = router;
