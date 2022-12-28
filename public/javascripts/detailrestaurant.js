@@ -131,7 +131,7 @@ async function getChangeLike(utilizador_id ,restaurant_id){
     
     });
 
-    if(length(suggestedrestaurants) > 0){
+    if(suggestedrestaurants.length > 0){
 
        document.getElementById("removelike").style.visibility = "visible";
        document.getElementById("addlike").style.visibility = "hidden";
