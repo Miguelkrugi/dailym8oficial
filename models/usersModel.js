@@ -901,3 +901,167 @@ module.exports.saveRestaurant = async function(pedido) {
             return { status: 500, data: err };
     }
 }
+
+module.exports.saveMesa = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO mesa " +
+            "(mesa_availability, mesa_number, mesa_size, mesa_restaurant_id, mesa_type_id, mesa_price) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING mesa_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.mesa_availability, pedido.mesa_number, pedido.mesa_size, pedido.mesa_restaurant_id, pedido.mesa_type_id, pedido.mesa_price]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
+module.exports.savePratoo = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO plate " +
+            "(plate_name, plate_price, plate_restaurant_id, plate_availability, plate_type_identifier, plate_type_description) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING plate_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.plate_name, pedido.plate_price, pedido.plate_restaurant_id, pedido.plate_availability, pedido.plate_type_identifier, pedido.plate_type_description]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
+///////AINDA N FOI APLICADO///////
+
+module.exports.UpdateOffPlate = async function(id_plate){
+
+    try {
+        let sql = "UPDATE plate " + "SET plate_availability = '1' " + "WHERE plate_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.UpdateOnPlate = async function(id_plate){
+
+    try {
+        let sql = "UPDATE plate " + "SET plate_availability = '0' " + "WHERE plate_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeletePlate = async function(plate_id){
+
+    try{
+        let sql = "DELETE FROM plate " + "WHERE plate_id = " + plate_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeleteMesa = async function(mesa_id){
+
+    try{
+        let sql = "DELETE FROM mesa " + "WHERE mesa_id = " + mesa_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.saveReservaMesa = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO reserva_mesa " +
+            "(date_marcacao_reservation, user_identifier_reservation, mesa_identifier_reservation, date_marcada_reservation, payment_credit_card_number, payment_cvc_number) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING id_reservation";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pedido.payment_credit_card_number, pedido.payment_cvc_number]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}

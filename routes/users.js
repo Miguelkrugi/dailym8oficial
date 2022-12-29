@@ -483,6 +483,68 @@ router.post('/insertnewrestaurant', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+//AINDA N FOI APLICADO //
+router.post('/insertnewmesa', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveMesa(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.post('/insertnewplate', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.savePratoo(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.put('/become/plateavailability/off/:idplate', async function(req, res, next){
+
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateOffPlate(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/become/plateavailability/on/:idplate', async function(req, res, next){
+
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateOnPlate(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deleteprato/:idprato', async function(req, res, next){
+
+  let plate_id = req.params.idprato;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeletePlate(plate_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deletemesa/:idmesa', async function(req, res, next){
+
+  let mesa_id = req.params.idmesa;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteMesa(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.post('/insertnewreservamesa', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReservaMesa(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Vou começar aqui Ass:Bruno Mata
 
 router.get('/getmenu/menu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO

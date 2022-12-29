@@ -5,7 +5,6 @@ async function criarRestaurant(user_id){
      
      var userr_id = user_id
    
-     establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id
 
       let data = {
    
