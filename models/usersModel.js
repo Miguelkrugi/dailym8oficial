@@ -703,3 +703,50 @@ module.exports.getCheckLikeAcomodacao = async function(utilizador_id ,acomodacao
         return { status: 500, data: err };
     }
 }
+
+
+module.exports.saveLikeRestaurante = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+
+        let sql =
+            "INSERT " +
+            "INTO like_restaurante " +
+            "(like_utilizador, like_restaurante) " +
+            "VALUES ($1, $2) " +
+            "RETURNING like_id";
+
+            console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.like_utilizador, pedido.like_restaurante]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
+module.exports.DeleteLike = async function(user_id, rest_id){
+
+    try{
+        let sql = "DELETE FROM like_restaurante " + "WHERE like_utilizador = " + user_id + " AND like_restaurante = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}

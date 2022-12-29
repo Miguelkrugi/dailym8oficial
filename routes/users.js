@@ -459,6 +459,22 @@ router.get('/getlike/checklike/acomodacao/:idutilizador/:idacomodacao', async fu
 
 });
 
+router.post('/insertnewlike', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveLikeRestaurante(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.delete('/deletelike/restaurante/:idutilizador/:idrestaurante', async function(req, res, next){
+
+  let utilizador_id = req.params.idutilizador;
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteLike(utilizador_id, restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
 
 
 //Vou começar aqui Ass:Bruno Mata

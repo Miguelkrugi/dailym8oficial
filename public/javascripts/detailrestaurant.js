@@ -165,6 +165,74 @@ async function getChangeLike(utilizador_id ,restaurant_id){
 
 }
 
+
+async function putLike(rest_id, user_id){
+
+  var rest_id = rest_id
+  var user_id = user_id
+
+ try {
+
+   let data = {
+
+    like_utilizador: user_id,
+    like_restaurante: rest_id,
+
+   }
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/insertnewlike",
+    method: "post",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+   // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+
+
+
+}
+
+async function deleteLike(rest_id, user_id){
+
+  var rest_id = rest_id
+  var user_id = user_id
+
+ try {
+
+  
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/deletelike/restaurante/" + user_id + "/" + rest_id,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+   // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+
+
+
+}
+
 window.onload = function exampleFunction() {
 
     var utilizador_id = sessionStorage.getItem("utilizador_id")
@@ -234,7 +302,23 @@ window.onload = function exampleFunction() {
 
   
 
-    
+   document.getElementById('addlike').addEventListener("click", function(){
+
+    putLike(restaurant_id, utilizador_id);
+    document.getElementById('addlike').style.visibility = "hidden"
+    document.getElementById('removelike').style.visibility = "visible"
+  
+  });
+
+  document.getElementById('removelike').addEventListener("click", function(){
+
+    deleteLike(restaurant_id, utilizador_id);
+    document.getElementById('addlike').style.visibility = "visible"
+    document.getElementById('removelike').style.visibility = "hidden"
+  
+  });
+
+
 
     //getAleatorioRestaurantes();
 
