@@ -168,27 +168,28 @@ async function getChangeLike(utilizador_id ,restaurant_id){
 
 async function putLike(rest_id, user_id){
 
-  var rest_id = rest_id
-  var user_id = user_id
-
  try {
+
+  var resta_id = rest_id
+  var userr_id = user_id
 
    let data = {
 
-    like_utilizador: user_id,
-    like_restaurante: rest_id,
+    like_utilizador: userr_id,
+    like_restaurante: resta_id,
 
    }
 
    //ENVIAR METODO
    let newExercise = await $.ajax({
-    url: "/users/insertnewlike",
+    url: "/users/insertnewlike/",
     method: "post",
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
     });
 
+    location.reload();
    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
 
 
@@ -204,12 +205,9 @@ async function putLike(rest_id, user_id){
 
 async function deleteLike(rest_id, user_id){
 
-  var rest_id = rest_id
-  var user_id = user_id
+  console.log("READY TO DELETE");
 
  try {
-
-  
 
    //ENVIAR METODO
    let newExercise = await $.ajax({
@@ -221,13 +219,14 @@ async function deleteLike(rest_id, user_id){
     });
 
    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-
+   location.reload();
 
  } catch (err){
 
   window.alert("Receita Criada.");
 
  }
+ 
 
 
 
@@ -304,17 +303,19 @@ window.onload = function exampleFunction() {
 
    document.getElementById('addlike').addEventListener("click", function(){
 
+    console.log("Funcao Chamada");
     putLike(restaurant_id, utilizador_id);
-    document.getElementById('addlike').style.visibility = "hidden"
-    document.getElementById('removelike').style.visibility = "visible"
+    document.getElementById('addlike').style.visibility = "hidden";
+    document.getElementById('removelike').style.visibility = "visible";
   
   });
 
   document.getElementById('removelike').addEventListener("click", function(){
 
+    console.log("Funcao Chamada");
     deleteLike(restaurant_id, utilizador_id);
-    document.getElementById('addlike').style.visibility = "visible"
-    document.getElementById('removelike').style.visibility = "hidden"
+    document.getElementById('addlike').style.visibility = "visible";
+    document.getElementById('removelike').style.visibility = "hidden";
   
   });
 

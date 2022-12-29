@@ -476,7 +476,12 @@ router.delete('/deletelike/restaurante/:idutilizador/:idrestaurante', async func
 
 });
 
-
+router.post('/insertnewrestaurant', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveRestaurant(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
 
 //Vou começar aqui Ass:Bruno Mata
 

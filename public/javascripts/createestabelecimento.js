@@ -1,3 +1,47 @@
+async function criarRestaurant(user_id){
+
+    try {
+   
+     
+     var userr_id = user_id
+   
+     establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id
+
+      let data = {
+   
+       establishment_name: document.getElementById("nomeinput").value,
+       establishment_description: document.getElementById("descricaoinput").value,
+       establishment_utilizador_id: user_id,
+       restaurant_type_id: 1, //DEFAULT FOR NOW
+       restaurante_number_tables: document.getElementById("numeromesasinput").value,
+       type_service_identifier: 1,
+       state_id: 1
+   
+      }
+   
+      //ENVIAR METODO
+      let newExercise = await $.ajax({
+       url: "/users/insertnewrestaurant/",
+       method: "post",
+       data: JSON.stringify(data),
+       contentType: "application/json",
+       dataType: "json"
+       });
+   
+       location.reload();
+      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   
+   
+    } catch (err){
+   
+     window.alert("Receita Criada.");
+   
+    }
+   
+   
+   
+   }
+
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
@@ -20,6 +64,23 @@ window.onload = function exampleFunction() {
     document.getElementById('numeroacomodacoesinput').style.visibility = "hidden"
 
     document.getElementById('numerolugaresinput').style.visibility = "hidden"
+
+
+    document.getElementById('createrestaurant').addEventListener("click", function(){
+
+        console.log("Funcao Chamada");
+        criarRestaurant(utilizador_id);
+        
+      
+      });
+
+      document.getElementById('createacomodacao').addEventListener("click", function(){
+
+        console.log("Funcao Chamada");
+        criarAcomodacao(utilizador_id);
+        
+      
+      });
    
    
    // getAleatorioRestaurantes();
@@ -37,6 +98,10 @@ function createRestaurante() {
     document.getElementById('numeroacomodacoesinput').style.visibility = "hidden"
 
     document.getElementById('numerolugaresinput').style.visibility = "hidden"
+    
+    document.getElementById('createrestaurant').style.visibility = "visible"
+
+    document.getElementById('createacomodacao').style.visibility = "hidden"
 
 }
 
@@ -51,6 +116,10 @@ function createAcomodacao() {
     document.getElementById('numeroacomodacoesinput').style.visibility = "visible"
 
     document.getElementById('numerolugaresinput').style.visibility = "hidden"
+
+    document.getElementById('createrestaurant').style.visibility = "hidden"
+
+    document.getElementById('createacomodacao').style.visibility = "visible"
 
 }
 

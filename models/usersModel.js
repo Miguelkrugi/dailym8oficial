@@ -866,3 +866,38 @@ module.exports.DeleteLike = async function(user_id, rest_id){
     }
 
 }
+
+
+module.exports.saveRestaurant = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO restaurant " +
+            "(establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) " +
+            "VALUES ($1, $2, $3, $4, $5, $6, $7) " +
+            "RETURNING restaurant_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.restaurant_type_id, pedido.restaurante_number_tables, pedido.type_service_identifier, pedido.state_id]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
