@@ -703,3 +703,119 @@ module.exports.getCheckLikeAcomodacao = async function(utilizador_id ,acomodacao
         return { status: 500, data: err };
     }
 }
+
+module.exports.getMenu = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + restaurant_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+// Pedir ao Mike para ver comigo esta
+module.exports.get50Reservas = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, utilizador.utilizador_id, utilizador.utilizador_name, mesa.mesa_number, mesa.mesa_size, mesa_type.mesa_type_id, mesa_type.mesa_type_name, mesa.mesa_restaurant_id FROM reserva_mesa INNER JOIN utilizador ON utilizador.utilizador_id = reserva_mesa.user_identifier_reservation INNER JOIN mesa ON mesa.mesa_id = reserva_mesa.mesa_identifier_reservation INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + restaurant_id + " =   LIMIT 50 " ;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getMenuDisponivel = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + restaurant_id + " AND plate.plate_availability = '0'" ;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getIndispinivel = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + restaurant_id + " AND plate.plate_availability = '1'";
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getMesas = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + restaurant_id;
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getMesaDisp = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + restaurant_id + " AND mesa.mesa_availability = '0'";
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getMesaIndisp = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM mesa INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE mesa.mesa_restaurant_id = " + restaurant_id +" AND mesa.mesa_availability = '1'";
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getLikeRest = async function(restaurant_id) {
+    try {
+        let sql = "SELECT * FROM like_restaurante WHERE like_restaurante.like_utilizador =  AND like_restaurante.like_restaurante = " + restaurant_id;
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getLikeAco = async function(acomodacao_id) {
+    try {
+        let sql = "SELECT * FROM like_servico_acomodacao WHERE like_servico_acomodacao.like_utilizador =  AND like_servico_acomodacao.like_servico_acomodacao =" + acomodacao_id;
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+

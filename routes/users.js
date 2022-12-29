@@ -461,6 +461,90 @@ router.get('/getlike/checklike/acomodacao/:idutilizador/:idacomodacao', async fu
 
 
 
+
 //Vou começar aqui Ass:Bruno Mata
+
+router.get('/getmenu/menu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getCheckLikeMenu(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+// Pedir ao Mike para ver comigo esta
+router.get('/getmenu/menu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.get50Reservas(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmenu/menudisp/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getMenuDisponivel(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmenu/pratoindi/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getIndispinivel(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmesas/mesas/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getMesas(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmesas/mesadisp/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getMesaDisp(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+
+router.get('/getmesas/mesadindisp/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getMesaIndisp(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getlike/checklike/likeRest/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getLikeRest(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getlike/checklike/likeAco/:idacomodacao', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let acomodacao_id = req.params.idacomodacao;
+
+  let result = await usersModel.getLikeAco(acomodacao_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
 
 module.exports = router;
