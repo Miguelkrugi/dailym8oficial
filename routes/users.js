@@ -637,14 +637,14 @@ router.get('/packss/restaurante/', async function(req, res, next) {
 
 });
 
-router.get('/packs/restaurante/mesa/:idrestaurante', async function(req, res, next) {
+router.get('/packs/restaurante/mesa/:idpack', async function(req, res, next) {
 
   let result = await usersModel.getMesaFromPackRestaurante();
   res.status(result.status).send(result.data);
 
 });
 
-router.get('/packs/restaurante/acomodacao/:idrestaurante', async function(req, res, next) {
+router.get('/packs/restaurante/acomodacao/:idpack', async function(req, res, next) {
 
   let result = await usersModel.getAcomodacaoFromPackRestaurante();
   res.status(result.status).send(result.data);

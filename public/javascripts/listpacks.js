@@ -19,7 +19,7 @@ function createpackHTML(pack){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-restaurant.html' class='strip_info' onclick='printtest()'><small>Estabelecimento:" + pack.establishment_name + "</small><div class='item_title'><h3>" + pack.pack_name + "</h3><small>Criado por:" + pack.utilizador_name + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-pack.html' class='strip_info' onclick='printtest()'><small>Estabelecimento:" + pack.establishment_name + "</small><div class='item_title'><h3>" + pack.pack_name + "</h3><small>Criado por:" + pack.utilizador_name + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -39,7 +39,7 @@ async function getAleatorioPacks(){
     
     let randomestacionamentos = await $.ajax({
     
-    url: "/users/packs/restaurante/",
+    url: "/users/packss/restaurante/",
     method: "get",
     dataType: "json",
     
