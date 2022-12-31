@@ -3182,6 +3182,7 @@ ul#top_menu li a.login:before {
 
 
 
+
 #organizeinforestaurant {
 
   width: 37%;
@@ -3316,7 +3317,31 @@ ul#top_menu li a.login:before {
   z-index: 1;
 }
 
+/*DIVS PARA ELEMENTOS DO PACK*/
 
+#map1 {
+
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 10px;
+
+overflow-y: scroll;
+z-index: 1;
+
+}
+
+#map2 {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+  overflow-y: scroll;
+  z-index: 1;
+  
+  }
 
 /*POPUP PARA CRIAR PRATO*/
 

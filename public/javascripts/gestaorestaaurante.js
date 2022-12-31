@@ -1,3 +1,119 @@
+async function criarMesa(rest_id, tipo_mesa_id){
+
+  var value_for_availability = 2;
+
+  if(document.getElementById("mesadisponibilidadeinput").value == "Sim"){
+
+    value_for_availability = 0;
+
+  } else if(document.getElementById("mesadisponibilidadeinput").value == "Não"){
+
+    value_for_availability = 1;
+  } else {
+
+    console.log("Nada selecionado!")
+  }
+
+
+
+  try {
+ 
+   
+   var restaurant_id = rest_id;
+ 
+
+    let data = {
+ 
+     mesa_availability: value_for_availability, //DEFAULT FOR NOW,
+     mesa_number: document.getElementById("mesanumberinput").value,
+     mesa_size: document.getElementById("mesasizeinput").value,
+     mesa_restaurant_id: restaurant_id,
+     mesa_type_id: tipo_mesa_id,
+     mesa_price: document.getElementById("mesaprecoinput").value
+ 
+    }
+ 
+    //ENVIAR METODO
+    let newExercise = await $.ajax({
+     url: "/users/insertnewmesa/",
+     method: "post",
+     data: JSON.stringify(data),
+     contentType: "application/json",
+     dataType: "json"
+     });
+ 
+     location.reload();
+    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+ 
+ 
+  } catch (err){
+ 
+   window.alert("Receita Criada.");
+ 
+  }
+ 
+ 
+ 
+ }
+
+async function criarPlate(rest_id, tipo_prato_id){
+
+  var value_for_availability = 2;
+
+  if(document.getElementById("platedisponibilidadeinput").value == "Sim"){
+
+    value_for_availability = 0;
+
+  } else if(document.getElementById("platedisponibilidadeinput").value == "Não"){
+
+    value_for_availability = 1;
+  } else {
+
+    console.log("Nada selecionado!")
+  }
+
+
+
+  try {
+ 
+   
+   var restaurant_id = rest_id;
+ 
+
+    let data = {
+ 
+     plate_name: document.getElementById("platenameinput").value,
+     plate_price: document.getElementById("plateprecoinput").value,
+     plate_restaurant_id: restaurant_id,
+     plate_availability: value_for_availability, //DEFAULT FOR NOW
+     plate_type_identifier: tipo_prato_id,
+     plate_type_description: document.getElementById("platedescricaoinput").value
+ 
+    }
+ 
+    //ENVIAR METODO
+    let newExercise = await $.ajax({
+     url: "/users/insertplate/",
+     method: "post",
+     data: JSON.stringify(data),
+     contentType: "application/json",
+     dataType: "json"
+     });
+ 
+     location.reload();
+    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+ 
+ 
+  } catch (err){
+ 
+   window.alert("Receita Criada.");
+ 
+  }
+ 
+ 
+ 
+ }
+
 function createtableHTML(mesa){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
@@ -265,6 +381,71 @@ window.onload = function exampleFunction() {
    getMenu(restaurant_id);
 
    getMesas(restaurant_id);
+
+   //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
+
+    var tipo_prato_id = 0;
+
+
+    document.getElementById('aperitivooption').addEventListener("click", function() {
+	    
+      tipo_prato_id = 1;
+
+    });
+
+    document.getElementById('entradaoption').addEventListener("click", function() {
+	    
+      tipo_prato_id = 2;
+      
+    });
+
+    document.getElementById('pratoprincipaloption').addEventListener("click", function() {
+	    
+      tipo_prato_id = 3;
+      
+    });
+
+    document.getElementById('sobremesaoption').addEventListener("click", function() {
+	    
+      tipo_prato_id = 4;
+      
+    });
+
+    document.getElementById('pratododiaoption').addEventListener("click", function() {
+	    
+      tipo_prato_id = 5;
+      
+    });
+
+   
+
+   document.getElementById('criarpratobtn').addEventListener("click", function() {
+	  
+    console.log("TIPO PRATO: " + tipo_prato_id);
+    criarPlate(restaurant_id, tipo_prato_id);
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+
+  var tipo_mesa_id = 0;
+
+  document.getElementById('interioroption').addEventListener("click", function() {
+	    
+    tipo_mesa_id = 1;
+
+  });
+
+  document.getElementById('exterioroption').addEventListener("click", function() {
+	    
+    tipo_mesa_id = 2;
+
+  });
+
+  document.getElementById('criarmesabtn').addEventListener("click", function() {
+	  
+    console.log("TIPO MESA: " + tipo_mesa_id);
+    criarMesa(restaurant_id, tipo_mesa_id);
+  });
 
 }
 

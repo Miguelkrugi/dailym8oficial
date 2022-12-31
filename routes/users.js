@@ -483,6 +483,13 @@ router.post('/insertnewrestaurant', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewposicao', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.savePosition(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 //AINDA N FOI APLICADO //
 router.post('/insertnewmesa', async function(req, res, next) {
   let newPedido = req.body;
@@ -540,6 +547,13 @@ router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
   let result = await usersModel.saveReservaMesa(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.post('/insertplate', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.savePlate(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
 
@@ -647,6 +661,15 @@ router.get('/packs/restaurante/mesa/:idpack', async function(req, res, next) {
 router.get('/packs/restaurante/acomodacao/:idpack', async function(req, res, next) {
 
   let result = await usersModel.getAcomodacaoFromPackRestaurante();
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getmenu/getincomplete/restaurante/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getGetIncompleteRestaurants(user_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
   res.status(result.status).send(result.data);
 
 });

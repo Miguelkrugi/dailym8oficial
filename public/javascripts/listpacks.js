@@ -15,11 +15,31 @@ window.onload = function exampleFunction() {
 
 }
 
+async function openpack2(pack){
+
+  console.log("FUNÇÃO CHAMADA!");
+  console.log("NOME: " + restaurante.establishment_name)
+    console.log("DESCRICAO: " + restaurante.establishment_description)
+    console.log("ID: " + restaurante.restaurant_id)
+    
+    sessionStorage.setItem('pack_id', pack.pack_id);
+    sessionStorage.setItem('pack_name', pack.pack_name);
+    sessionStorage.setItem('pack_restaurante_id', pack.pack_restaurante_id);
+    sessionStorage.setItem('pack_availability', pack.pack_availability);
+  /*  sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
+    sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+    sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+    sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
+    sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);*/
+
+
+}
+
 function createpackHTML(pack){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-pack.html' class='strip_info' onclick='printtest()'><small>Estabelecimento:" + pack.establishment_name + "</small><div class='item_title'><h3>" + pack.pack_name + "</h3><small>Criado por:" + pack.utilizador_name + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-pack.html' class='strip_info' onclick='openpack2(" + JSON.stringify(pack) + ")'><small>Estabelecimento:" + pack.establishment_name + "</small><div class='item_title'><h3>" + pack.pack_name + "</h3><small>Criado por:" + pack.utilizador_name + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/

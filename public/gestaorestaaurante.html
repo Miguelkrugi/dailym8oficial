@@ -193,23 +193,23 @@
 				<hr style="margin-top: -1%;">
 		
 				<form action="">
-					<input style="width: 70%;" type="text" placeholder="Nome">
-					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
-					<a href="#" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " onclick="createPlate()">Criar Prato</a>
-					<input style="width: 70%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Preço">
+					<input style="width: 70%;" type="text" id="platenameinput" placeholder="Nome">
+					<textarea id="platedescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" id="criarpratobtn" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; ">Criar Prato</a>
+					<input style="width: 70%;" id="plateprecoinput" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Preço">
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input style="width: 70%;" id="platedisponibilidadeinput" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
 					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
 
-					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Aperitivo</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Entradas</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -40%;" value="3">Pratos Principais</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -35%;" value="4">Sobremesas</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -30%;" value="5">Pratos do Dia</button>
+					<button id="aperitivooption" style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Aperitivo</button>
+					<button id="entradaoption" style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Entradas</button>
+					<button id="pratoprincipaloption" style=" position: absolute; margin-left: 20%; margin-top: -40%;" value="3">Pratos Principais</button>
+					<button id="sobremesaoption" style=" position: absolute; margin-left: 20%; margin-top: -35%;" value="4">Sobremesas</button>
+					<button id="pratododiaoption" style=" position: absolute; margin-left: 20%; margin-top: -30%;" value="5">Pratos do Dia</button>
 
-					<h5 style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+					<h5 id="tiposelecionadotext" style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
 
 				</form>
 		
@@ -226,22 +226,22 @@
 				<hr style="margin-top: -1%;">
 		
 				<form action="">
-					<input style="width: 70%;" type="text" placeholder="Nome">
-					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>
-					<a href="#" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " onclick="createTable()">Criar Mesa</a>
-					<input style="width: 11%;" type="number" id="foodprice" name="roodprice" min="0" maxlength="300" placeholder="Preço">
-					<input style="width: 23%;margin-left: 42.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número da Mesa">
-                    <input style="width: 29%;margin-left: 12%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Capacidade (Nº Pessoas)">  
+				<!---	<input style="width: 70%;" type="text" id="mesanameinput" placeholder="Nome">
+					<textarea id="mesadescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>-->
+					<a href="#" id="criarmesabtn" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " >Criar Mesa</a>
+					<input style="width: 11%;" type="number" id="mesaprecoinput" name="roodprice" min="0" maxlength="300" placeholder="Preço">
+					<input id="mesanumberinput" style="width: 23%;margin-left: 42.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número da Mesa">
+                    <input id="mesasizeinput" style="width: 29%;margin-left: 12%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Capacidade (Nº Pessoas)">  
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input id="mesadisponibilidadeinput"  style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
-					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Local da Mesa:</h4>
+					<h4 style="position: absolute; margin-top: -15%; margin-left: 66.7%;">Local da Mesa:</h4>
 
-					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Interior</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Exterior</button>
+					<button id="interioroption" style=" position: absolute; margin-left: 20%; margin-top: -10%;" value="1">Interior</button>
+					<button id="exterioroption" style=" position: absolute; margin-left: 20%; margin-top: -5%;" value="2">Exterior</button>
 
-					<h5 style="position: absolute; margin-top: -40.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+					<h5 id="tiposelecionadotext2" style="position: absolute; margin-top: -0.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
 				</form>
 		
 			</div>

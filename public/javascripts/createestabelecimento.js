@@ -65,6 +65,9 @@ window.onload = function exampleFunction() {
     document.getElementById('numerolugaresinput').style.visibility = "hidden"
 
 
+    document.getElementById('createrestaurant').style.visibility = "visible";
+
+
     document.getElementById('createrestaurant').addEventListener("click", function(){
 
         console.log("Funcao Chamada");
@@ -80,6 +83,8 @@ window.onload = function exampleFunction() {
         
       
       });
+
+      
    
    
    // getAleatorioRestaurantes();
