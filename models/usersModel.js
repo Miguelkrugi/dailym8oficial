@@ -1150,6 +1150,8 @@ module.exports.savePosition = async function(pedido) {
 
     console.log("CHEGOU AQUI");
     console.log("FUNÇÃO CHAMADA");
+
+    console.log("PEDIDO:" + pedido.local_latitude);
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
     /* checks all fields needed and ignores other fields
     if (typeof user != "object" || failUser(user)) {
@@ -1171,8 +1173,7 @@ module.exports.savePosition = async function(pedido) {
 
 
 
-
-        let sql =
+       let sql =
             "INSERT " +
             "INTO place_restaurante " +
             "(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude) " +
@@ -1181,7 +1182,7 @@ module.exports.savePosition = async function(pedido) {
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
        // let result = await pool.query(sql, [pedido.local_morada, 4326, stringforpoint, pedido.local_restaurant_id, pedido.local_latitude, pedido.local_longitude]);
-        let result = await pool.query(sql, [pedido.local_morada, pedido.ref_system_id, pedido.geometry_info_point, pedido.local_restaurante_id, pedido.local_latitude, pedido.local_longitude]);
+        let result = await pool.query(sql, [pedido.local_morada, pedido.ref_system_id, "POINT(37.3272 17.2837)", pedido.local_restaurante_id, 37.3272, 17.2837]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {

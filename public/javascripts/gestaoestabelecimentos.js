@@ -261,6 +261,8 @@ async function getLikedAcomodacao(id_user){
      //console.log("LATITUDE: " + document.getElementById("latitude").value + "| " + "LONGITUDE: " + document.getElementById("longitude").value)
    
   console.log("A METER A DATA");
+  console.log(locality);
+
       let data = {
    
        local_morada: locality,
