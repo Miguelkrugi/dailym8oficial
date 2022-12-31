@@ -235,6 +235,56 @@ async function getLikedAcomodacao(id_user){
   }
   }
 
+  
+
+  async function criarPosicao(rest_id){
+
+    try {
+   
+     
+     var restaurant_id = rest_id;
+
+
+
+     var stringforpoint = "'POINT(" + document.getElementById("latitude").value + " " + document.getElementById("longitude").value + ")'";
+   
+  
+      let data = {
+   
+       local_morada: document.getElementById("locality").value,
+       ref_system_id: 4326,
+       geometry_info_point: stringforpoint,
+       local_restaurante_id: restaurant_id, //DEFAULT FOR NOW
+       local_latitude: document.getElementById("latitude").value,
+       local_longitude: document.getElementById("longitude").value
+   
+      }
+   
+      //ENVIAR METODO
+      let newExercise = await $.ajax({
+       url: "/users/insertnewposicao/",
+       method: "post",
+       data: JSON.stringify(data),
+       contentType: "application/json",
+       dataType: "json"
+       });
+   
+       location.reload();
+
+       console.log("POSIÇÃO ADICIONADA!");
+      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   
+   
+    } catch (err){
+   
+     window.alert("Receita Criada.");
+   
+    }
+   
+   
+   
+   }
+
   async function openrestaurant2(restaurante){
 
     console.log("FUNÇÃO CHAMADA!");
@@ -257,6 +307,29 @@ async function getLikedAcomodacao(id_user){
   
   }
 
+  function openmodal(restaurante){
+    console.log("chamada");
+
+    sessionStorage.setItem('restaurant_id', restaurante.restaurant_id);
+    document.querySelector('.bg-modal15').style.display = "flex";
+
+// -> FUNCIONAL -> document.getElementById("placeidtext").innerHTML = "ID do Local: " + restaurante.restaurant_id; //FUNCIONAL
+////////// BUTTON TO SAVE POSITION /////////
+
+
+
+document.querySelector('.button200').addEventListener("click", function() {
+		  
+    criarPosicao(restaurante.restaurant_id);
+		  
+});
+    
+
+    
+  }
+
+
+
 /////////////////// FAVORITOS RESTAURANTES //////////////////////
 
 function createlikedrestaurantHTML(restaurante){
@@ -275,7 +348,7 @@ function createallrestaurantesincompletosHTML(restaurante){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div  id='button15' class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' class='strip_info' ><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div></a></figure></div></div>"
+  return "<div   class='item' style='width:23%; height:35%;'><div class='strip'><figure><a class='strip_info' ><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div><button id='button15' onclick='openmodal(" + JSON.stringify(restaurante) + ")'' style='margin-left: 6%; margin-top:15%;'>EDITAR LOCAL</button></a></figure></div></div>"
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -535,6 +608,66 @@ async function myAllEstabelecimentos(id_user){
     console.log("chamada");
   }
 
+////////////////////////// SAVE A POSITION TO AN EXISTING PLACE ////////////////////////////
+
+async function criarPlate(rest_id, tipo_prato_id){
+
+  var value_for_availability = 2;
+
+  if(document.getElementById("platedisponibilidadeinput").value == "Sim"){
+
+    value_for_availability = 0;
+
+  } else if(document.getElementById("platedisponibilidadeinput").value == "Não"){
+
+    value_for_availability = 1;
+  } else {
+
+    console.log("Nada selecionado!")
+  }
+
+
+
+  try {
+ 
+   
+   var restaurant_id = rest_id;
+ 
+
+    let data = {
+ 
+     plate_name: document.getElementById("platenameinput").value,
+     plate_price: document.getElementById("plateprecoinput").value,
+     plate_restaurant_id: restaurant_id,
+     plate_availability: value_for_availability, //DEFAULT FOR NOW
+     plate_type_identifier: tipo_prato_id,
+     plate_type_description: document.getElementById("platedescricaoinput").value
+ 
+    }
+ 
+    //ENVIAR METODO
+    let newExercise = await $.ajax({
+     url: "/users/insertplate/",
+     method: "post",
+     data: JSON.stringify(data),
+     contentType: "application/json",
+     dataType: "json"
+     });
+ 
+     location.reload();
+    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+ 
+ 
+  } catch (err){
+ 
+   window.alert("Receita Criada.");
+ 
+  }
+ }
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
@@ -761,6 +894,7 @@ document.getElementById('myaccountoption').addEventListener("click", function(){
 
 
 });
+
 
   
 }

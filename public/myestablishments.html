@@ -35,6 +35,9 @@
 
 	<script src="./javascripts/gestaoestabelecimentos.js"></script>
 
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -113,7 +116,9 @@
 
 			  <h4 style="position: absolute; margin-top: 15.5%; font-size: 10px;">Longitude</h4>
 			  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 18%;" type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
-			  <button style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
+
+			<!--- <h4 id="placeidtext">ID do Local: </h4>-->
+			  <button id="button200" style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
 			</form>
 	
 		</div>
@@ -264,19 +269,7 @@
 
 		</div>
 
-		<script>
-
-      document.getElementById('button15').addEventListener("click", function() {
-	    
-        document.querySelector('.bg-modal15').style.display = "flex";
-      });
-
-      document.querySelector('.close15').addEventListener("click", function() {
-	    
-        document.querySelector('.bg-modal15').style.display = "none";
-      });
-
-		</script>
+		
 	</main>
 	<!-- /main -->
 
@@ -440,5 +433,58 @@
     <script src="js/sticky_sidebar.min.js"></script>
     <script src="js/specific_listing.js"></script>
 
+
+	<script type="text/javascript">
+
+		/*document.getElementById('button15').addEventListener("click", function() {
+		  console.log("CHAMADA");
+		  document.querySelector('.bg-modal15').style.display = "flex";
+		});*/
+  
+		document.querySelector('.close15').addEventListener("click", function() {
+		  
+		  document.querySelector('.bg-modal15').style.display = "none";
+		});
+
+		
+  
+		  </script>
+
+		  <script>
+			function initializeAutocomplete(){
+    var input = document.getElementById('locality');
+    // var options = {
+    //   types: ['(regions)'],
+    //   componentRestrictions: {country: "IN"}
+    // };
+    var options = {
+
+      componentRestrictions: {country: 'PT' }
+    }
+
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
+      var placeId = place.place_id;
+      // to set city name, using the locality param
+      var componentForm = {
+        locality: 'short_name',
+      };
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          document.getElementById("city").value = val;
+        }
+      }
+      document.getElementById("latitude").value = lat;
+      document.getElementById("longitude").value = lng;
+      document.getElementById("location_id").value = placeId;
+    });
+  }
+		  </script>
 </body>
 </html>
