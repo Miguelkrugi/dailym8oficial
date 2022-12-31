@@ -1147,6 +1147,8 @@ module.exports.savePlate = async function(pedido) {
 }
 
 module.exports.savePosition = async function(pedido) {
+
+    console.log("CHEGOU AQUI");
     console.log("FUNÇÃO CHAMADA");
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
     /* checks all fields needed and ignores other fields
