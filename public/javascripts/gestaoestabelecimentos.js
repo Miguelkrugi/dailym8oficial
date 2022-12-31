@@ -241,12 +241,15 @@ async function getLikedAcomodacao(id_user){
 
     try {
    
+      console.log("FUNCAO CHAMADA E COM ID DE RESTAURANTE: " + rest_id);
      
      var restaurant_id = rest_id;
 
 
 
      var stringforpoint = "'POINT(" + document.getElementById("latitude").value + " " + document.getElementById("longitude").value + ")'";
+
+     console.log("LATITUDE: " + document.getElementById("latitude").value + "| " + "LONGITUDE: " + document.getElementById("longitude").value)
    
   
       let data = {
@@ -313,6 +316,8 @@ async function getLikedAcomodacao(id_user){
     sessionStorage.setItem('restaurant_id', restaurante.restaurant_id);
     document.querySelector('.bg-modal15').style.display = "flex";
 
+    var rest_id = restaurante.restaurant_id;
+
 // -> FUNCIONAL -> document.getElementById("placeidtext").innerHTML = "ID do Local: " + restaurante.restaurant_id; //FUNCIONAL
 ////////// BUTTON TO SAVE POSITION /////////
 
@@ -320,7 +325,8 @@ async function getLikedAcomodacao(id_user){
 
 document.querySelector('.button200').addEventListener("click", function() {
 		  
-    criarPosicao(restaurante.restaurant_id);
+  console.log("BOTAO CLICADO");
+    criarPosicao(rest_id);
 		  
 });
     
