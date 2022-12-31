@@ -272,7 +272,7 @@ async function getLikedAcomodacao(id_user){
        dataType: "json"
        });
    
-       location.reload();
+    //   location.reload();
 
        console.log("POSIÇÃO ADICIONADA!");
       // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
@@ -323,10 +323,17 @@ async function getLikedAcomodacao(id_user){
 
 
 
-document.querySelector('.button200').addEventListener("click", function() {
+/*document.querySelector('.button200').addEventListener("click", function() {
 		  
   console.log("BOTAO CLICADO");
-    criarPosicao(rest_id);
+    //criarPosicao(rest_id);
+		  
+});*/
+
+document.querySelector('.button202').addEventListener("click", function() {
+		  
+  console.log("BOTAO CLICADO");
+    //criarPosicao(rest_id);
 		  
 });
     
