@@ -90,6 +90,37 @@
 	
 	<main>
 
+       <!--MODAL PARA ADICIONAR UMA POSIÇÃO-->
+
+	   <div class="bg-modal15">
+		<div class="modal-contents15">
+	
+			<div class="close15">+</div>
+			<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+			<h2>ADICIONAR POSIÇÃO</h2>
+				<hr style="margin-top: -1%;">
+	
+			<form action="">
+			  <h4 style="position: absolute; margin-top: -2%;">Morada</h4>
+			  <textarea  style="width: 100%; margin-top: 4%;" placeholder="Insira a morada do seu estabelecimento" name="address" onFocus="initializeAutocomplete()" id="locality" ></textarea><br>
+
+			  <h4 style="position: absolute; margin-top: -1.6%;">Detalhes</h4>
+			  <h4 style="position: absolute; margin-top: 3.5%; font-size: 10px;">Cidade</h4>
+			  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 6%;" type="text" name="city" id="city" placeholder="Cidade" value="" ><br>
+			  <h4 style="position: absolute; margin-top: 9.5%; font-size: 10px;">Latitude</h4>
+			  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 12%;" type="text" name="latitude" id="latitude" placeholder="Latitude" value="" ><br>
+
+			  <h4 style="position: absolute; margin-top: 15.5%; font-size: 10px;">Longitude</h4>
+			  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 18%;" type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
+			  <button style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
+			</form>
+	
+		</div>
+	</div>
+
+	   <!--------------------------------------------------------->
+
         <!--BARRA DE NAVEGAÇÃO | SIDEBAR-->
 
         <div id="sidebar-wrapper">
@@ -232,6 +263,20 @@
 
 
 		</div>
+
+		<script>
+
+      document.getElementById('button15').addEventListener("click", function() {
+	    
+        document.querySelector('.bg-modal15').style.display = "flex";
+      });
+
+      document.querySelector('.close15').addEventListener("click", function() {
+	    
+        document.querySelector('.bg-modal15').style.display = "none";
+      });
+
+		</script>
 	</main>
 	<!-- /main -->
 
