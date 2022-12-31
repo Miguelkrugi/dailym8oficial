@@ -1065,3 +1065,42 @@ module.exports.saveReservaMesa = async function(pedido) {
             return { status: 500, data: err };
     }
 }
+
+////////////// PACK RESTAURANTE //////////////
+
+
+module.exports.getPacksRestaurante = async function() {
+    try {
+        let sql = "SELECT *, restaurant.establishment_id, restaurant.establishment_name, restaurant.establishment_description, restaurant.establishment_utilizador_id, restaurant.restaurant_id, restaurant.restaurant_type_id, restaurant.restaurante_number_tables, utilizador.utilizador_id, utilizador.utilizador_name, type_restaurant.type_restaurant_id, type_restaurant.type_restaurant_name FROM pack_restaurante INNER JOIN restaurant ON restaurant.restaurant_id = pack_restaurante.pack_restaurante_id INNER JOIN utilizador ON utilizador.utilizador_id = restaurant.establishment_utilizador_id INNER JOIN type_restaurant ON type_restaurant.type_restaurant_id = restaurant.restaurant_type_id WHERE pack_restaurante.pack_availability = '0'";
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getMesaFromPackRestaurante = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, mesa.mesa_id, mesa.mesa_size, mesa.mesa_number, mesa.mesa_price, mesa.mesa_availability, mesa_type.mesa_type_id, mesa_type.mesa_type_name FROM item_mesa_restaurant INNER JOIN mesa ON mesa.mesa_id = item_mesa_restaurant.item_mesa_identifier_reservation INNER JOIN mesa_type ON mesa_type.mesa_type_id = mesa.mesa_type_id WHERE item_mesa_restaurant.item_pack_restaurante_id = " + restaurant_id;
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getAcomodacaoFromPackRestaurante = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, acomodacao.acomodacao_id, acomodacao.acomodacao_number, acomodacao.acomodacao_price, acomodacao.acomodacao_availability, acomodacao.acomodacao_type_id, acomodacao_type.acomodacao_type_id , acomodacao_type.acomodacao_type_name FROM item_acomodacao_restaurant INNER JOIN acomodacao ON acomodacao.acomodacao_id = item_acomodacao_restaurant.item_acomodacao_identifier_reservation INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id WHERE item_acomodacao_restaurant.item_pack_restaurante_id = " + restaurant_id;
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
