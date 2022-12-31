@@ -630,7 +630,7 @@ router.get('/getlike/checklike/likeAco/:idacomodacao', async function(req, res, 
 
 });
 
-router.get('/packs/restaurante/', async function(req, res, next) {
+router.get('/packss/restaurante/', async function(req, res, next) {
 
   let result = await usersModel.getPacksRestaurante();
   res.status(result.status).send(result.data);
