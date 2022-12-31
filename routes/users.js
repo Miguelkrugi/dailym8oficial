@@ -665,7 +665,7 @@ router.get('/packs/restaurante/acomodacao/:idpack', async function(req, res, nex
 
 });
 
-router.get('/getmenu/getincomplete/restaurante/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+router.get('/getincomplete/restaurante/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
   let user_id = req.params.iduser;
 
