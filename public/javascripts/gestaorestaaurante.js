@@ -187,21 +187,17 @@ function createplateHTML(plate){
 
 }
 async function setUnnavailable(plate){
-    console.log("ai2");
-      try{
+  var ind = plate.plate_id;  
+    try{
     
         let plates = await $.ajax({
           
-          url: "/users/become/plateavailability/off/" + plate.plate_id,
+          url: "/users/become/plateavailability/off/" + ind,
           method: "put",
           dataType: "json",
     
         });
-        console.log("ai3");
-        //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-    
-        
-    
+
     
      } catch(err){
        console.log(err);
@@ -234,10 +230,36 @@ async function setAvailable(plate){
   
 }
 
+async function deletePrato(plate){
+
+  var del = plate.plate_id;
+ try {
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/deleteprato/" + del,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+   location.reload();
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+ 
+
+
+
+}
+
 
 function updateAvailability(plate){
-  console.log("ai");
-  console.log(plate.plate_availability);
+
 
   if(plate.plate_availability == 0){
     setUnnavailable(plate);
@@ -248,7 +270,7 @@ function updateAvailability(plate){
 }
 
 function deletePlate(plate){
-
+  deletePrato(plate);
 }
 
 async function getMenu(id_restaurante){
