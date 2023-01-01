@@ -540,7 +540,7 @@ router.delete('/deleteprato/:idprato', async function(req, res, next){
   let plate_id = req.params.idprato;
 
  // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
-  let result = await usersModel.DeletePlate(id_user);
+  let result = await usersModel.DeletePlate(plate_id);
   res.status(result.status).send(result.data);
 
 });
