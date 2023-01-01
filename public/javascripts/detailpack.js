@@ -51,7 +51,7 @@ async function reservartable(id_pack){
 
           let data = {
        
-           date_marcacao_reservation: 2023-01-03, 
+           date_marcacao_reservation: "2023-01-03", 
            user_identifier_reservation: utilizador_id,
            mesa_identifier_reservation: tablepack.mesa_id,
            date_marcada_reservation: tablepack.item_date_marcada_reservation, //DEFAULT FOR NOW
@@ -119,7 +119,7 @@ async function reservartable(id_pack){
          
          ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
          
-         console.log(tablepack.mesa_price);
+       //  console.log(tablepack.mesa_price);
    
    
          //console.log(suggestedrestaurants[index].mesa_price);
@@ -127,7 +127,7 @@ async function reservartable(id_pack){
    
              let data = {
           
-              date_marcacao_reservation: 2023-01-03, 
+              date_marcacao_reservation: "2023-01-03", 
               user_identifier_reservation: utilizador_id,
               acomodacao_identifier_reservation: tablepack.acomodacao_id,
               date_marcada_reservation: tablepack.item_date_marcada_reservation, //DEFAULT FOR NOW
