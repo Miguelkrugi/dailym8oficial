@@ -2,12 +2,94 @@ function createtableHTML(mesapack){
   
    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
   
-   return "<div class='menu_item' style='background-color:lightgray; width:55%;'><em>Preço: " + mesapack.mesa_price + " $</em><h4>Numero: " + mesapack.mesa_number + " | Pessoas: " + mesapack.mesa_size + "</h4><p>Descrição: " + mesapack.mesa_type_name + "</p></div><hr>"
+   return "<div class='menu_item' style='background-color:lightgray; width:100%; height:15%;'><em>Preço: " + mesapack.mesa_price + " $</em><h4>Numero: " + mesapack.mesa_number + " | Pessoas: " + mesapack.mesa_size + "</h4><p>Descrição: " + mesapack.mesa_type_name + "</p></div><hr>"
    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
  
   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
  
  }
+
+// BRUNO MIGUEL MATA
+
+async function reservartable(id_pack){
+
+   console.log("Obtendo as mesas do pack")
+   
+   // let recipeName = document.getElementById("nome1")
+    let restaurantesElem = document.getElementById("map1");
+   // var pack_id = sessionStorage.getItem("pack_id");
+    var utilizador_id = sessionStorage.getItem("utilizador_id");
+    console.log("setItem->userId = " + utilizador_id);
+    //console.log("Restaurante ID: " + restaurant_id);
+   
+   try{
+   
+   let suggestedrestaurants = await $.ajax({
+   
+   url: "/users/packs/restaurante/mesa/" + id_pack,
+   method: "get",
+   dataType: "json",
+   
+   });
+   
+   console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+   
+   let html = "";
+   
+   for(let tablepack of suggestedrestaurants){
+      ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
+
+      try {
+
+          let data = {
+       
+           date_marcacao_reservation: document.getElementById("nomeinput").value,
+           user_identifier_reservation: utilizador_id,
+           mesa_identifier_reservation: user_id,
+           date_marcada_reservation: 1, //DEFAULT FOR NOW
+           payment_credit_card_number: document.getElementById("numeromesasinput").value,
+           payment_cvc_number: 
+       
+          }
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewrestaurant/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+       
+           location.reload();
+          // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+       
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+
+
+   }
+   
+   console.log("OBTEVE");
+   //  recipeName.innerHTML = html;
+   
+  // restaurantesElem.innerHTML = html;
+ 
+    //restaurantesElem.innerHTML = html;
+   
+   
+   } catch(err){
+    console.log(err);
+   }
+
+
+
+
+}
 
 async function getMesasFromPack(id_pack){
 
@@ -35,7 +117,7 @@ async function getMesasFromPack(id_pack){
    let html = "";
    
    for(let tablepack of suggestedrestaurants){
-    console.log("Restaurante: " + restaurant);
+   // console.log("Restaurante: " + restaurant);
     html += createtableHTML(tablepack);
    }
    
@@ -142,6 +224,12 @@ window.onload = function exampleFunction() {
 
  getAcomodacaoFromPackRestaurante(pack_id);
 
+ document.getElementById("reservarmesas").addEventListener("click", function{
+
+   reservartable(pack_id);
+
+
+ });
   
 
 }
