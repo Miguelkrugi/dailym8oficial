@@ -18,14 +18,18 @@ window.onload = function exampleFunction() {
 async function openpack2(pack){
 
   console.log("FUNÇÃO CHAMADA!");
-  console.log("NOME: " + restaurante.establishment_name)
+  /*console.log("NOME: " + restaurante.establishment_name)
     console.log("DESCRICAO: " + restaurante.establishment_description)
-    console.log("ID: " + restaurante.restaurant_id)
+    console.log("ID: " + restaurante.restaurant_id)*/
+
+    console.log("NOMEEEEEEE: " + pack.pack_name);
     
     sessionStorage.setItem('pack_id', pack.pack_id);
     sessionStorage.setItem('pack_name', pack.pack_name);
     sessionStorage.setItem('pack_restaurante_id', pack.pack_restaurante_id);
     sessionStorage.setItem('pack_availability', pack.pack_availability);
+
+
   /*  sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
     sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
     sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);

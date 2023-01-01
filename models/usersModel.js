@@ -1207,4 +1207,60 @@ module.exports.getGetIncompleteRestaurants = async function(est_id) {
     }
 }
 
+module.exports.UpdateEstadoEmAnalise = async function(id_rest){
 
+    try {
+        let sql = "UPDATE restaurant " + "SET state_id = 2 " + "WHERE restaurant_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.UpdateEstadoVerificado = async function(id_rest){
+
+    try {
+        let sql = "UPDATE restaurant " + "SET state_id = 3 " + "WHERE restaurant_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.UpdateAdmin = async function(id_rest){
+
+    try {
+        let sql = "UPDATE utilizador " + "SET utilizador_type_id = 3 " + "WHERE utilizador_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.getNumberReports = async function(restaurant_id) {
+    try {
+        let sql = "SELECT COUNT(*) FROM report_restaurante WHERE report_restaurante_id = " + restaurant_id;
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}

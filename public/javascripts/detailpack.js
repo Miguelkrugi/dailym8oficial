@@ -18,7 +18,7 @@ async function getMesasFromPack(id_pack){
    // var pack_id = sessionStorage.getItem("pack_id");
     var utilizador_id = sessionStorage.getItem("utilizador_id");
     console.log("setItem->userId = " + utilizador_id);
-    console.log("Restaurante ID: " + restaurant_id);
+    //console.log("Restaurante ID: " + restaurant_id);
    
    try{
    
@@ -72,7 +72,7 @@ async function getAcomodacaoFromPackRestaurante(id_pack){
    // var pack_id = sessionStorage.getItem("pack_id");
     var utilizador_id = sessionStorage.getItem("utilizador_id");
     console.log("setItem->userId = " + utilizador_id);
-    console.log("Restaurante ID: " + restaurant_id);
+    //sconsole.log("Restaurante ID: " + restaurant_id);
    
    try{
    

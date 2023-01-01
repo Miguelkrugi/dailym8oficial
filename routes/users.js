@@ -653,14 +653,18 @@ router.get('/packss/restaurante/', async function(req, res, next) {
 
 router.get('/packs/restaurante/mesa/:idpack', async function(req, res, next) {
 
-  let result = await usersModel.getMesaFromPackRestaurante();
+  let user_id = req.params.idpack;
+  let result = await usersModel.getMesaFromPackRestaurante(user_id);
   res.status(result.status).send(result.data);
 
 });
 
+
+
 router.get('/packs/restaurante/acomodacao/:idpack', async function(req, res, next) {
 
-  let result = await usersModel.getAcomodacaoFromPackRestaurante();
+  let user_id = req.params.idpack;
+  let result = await usersModel.getAcomodacaoFromPackRestaurante(user_id);
   res.status(result.status).send(result.data);
 
 });
@@ -673,5 +677,43 @@ router.get('/getincomplete/restaurante/:iduser', async function(req, res, next) 
   res.status(result.status).send(result.data);
 
 });
+
+router.put('/alterarestado/emanalise/restaurante/:idrestaurant', async function(req, res, next){
+
+  let id_user = req.params.idrestaurant;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateEstadoEmAnalise(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/alterarestado/verificado/restaurante/:idrestaurant', async function(req, res, next){
+
+  let id_user = req.params.idrestaurant;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateEstadoVerificado(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/updateadmin/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateAdmin(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+
+router.get('/numberreports/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let restaurant_id = req.params.idrestaurant;
+
+  let result = await usersModel.getNumberReports(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
 
 module.exports = router;
