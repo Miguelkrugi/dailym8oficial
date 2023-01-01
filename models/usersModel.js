@@ -1082,7 +1082,7 @@ module.exports.saveReservaAcomodacao = async function(pedido) {
 
         let sql =
             "INSERT " +
-            "INTO reserva_mesa " +
+            "INTO reserva_acomodacao " +
             "(date_marcacao_reservation, user_identifier_reservation, acomodacao_identifier_reservation, date_marcada_reservation, payment_credit_card_number, payment_cvc_number) " +
             "VALUES ($1, $2, $3, $4, $5, $6) " +
             "RETURNING id_reservation";
@@ -1302,7 +1302,7 @@ module.exports.getNumberReports = async function(restaurant_id) {
 module.exports.UpdateOnPack = async function(id_pack){
 
     try {
-        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_pack;
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '0' " + "WHERE pack_id = " + id_pack;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
@@ -1316,8 +1316,9 @@ module.exports.UpdateOnPack = async function(id_pack){
 
 module.exports.UpdateOffPack = async function(id_pack){
 
+    console.log("ID DO PACK PARA ALTERAR: " + id_pack)
     try {
-        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '0' " + "WHERE pack_id = " + id_pack;
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_pack;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
