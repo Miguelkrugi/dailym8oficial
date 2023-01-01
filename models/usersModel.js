@@ -1002,10 +1002,10 @@ module.exports.UpdateOnPlate = async function(id_plate){
 
 }
 
-module.exports.DeletePlate = async function(plate_id){
+module.exports.DeletePlate = async function(id_plate){
 
     try{
-        let sql = "DELETE FROM plate " + "WHERE plate_id = " + plate_id;
+        let sql = "DELETE FROM plate " + "WHERE plate_id = " + id_plate;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
