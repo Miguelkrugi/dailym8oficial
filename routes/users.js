@@ -535,7 +535,8 @@ router.put('/become/plateavailability/off/:idplate', async function(req, res, ne
 });
 
 
-router.delete('/deleteprato/:idprato', async function(req, res, next){
+
+router.delete('/deletepratos/:idprato', async function(req, res, next){
 
   let plate_id = req.params.idprato;
 

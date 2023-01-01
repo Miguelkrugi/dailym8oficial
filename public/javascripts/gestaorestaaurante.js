@@ -229,7 +229,7 @@ async function deletePrato(plate){
    //ENVIAR METODO
    let asd = await $.ajax({
 
-    url: "/users/deleteprato/" + del,
+    url: "/users/deletepratos/" + del,
     method: "delete",
     data: JSON.stringify(data),
     contentType: "application/json",
