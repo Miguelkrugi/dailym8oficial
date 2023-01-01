@@ -183,7 +183,7 @@
 
 		<!--POPUP PARA CRIAR PRATO-->
 
-		<div class="bg-modal">
+		<div class="bg-modal" style="display: flex;">
 			<div class="modal-contents">
 		
 				<div class="close2">+</div>
@@ -203,11 +203,28 @@
 
 					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
 
-					<button id="aperitivooption" style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Aperitivo</button>
-					<button id="entradaoption" style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Entradas</button>
-					<button id="pratoprincipaloption" style=" position: absolute; margin-left: 20%; margin-top: -40%;" value="3">Pratos Principais</button>
-					<button id="sobremesaoption" style=" position: absolute; margin-left: 20%; margin-top: -35%;" value="4">Sobremesas</button>
-					<button id="pratododiaoption" style=" position: absolute; margin-left: 20%; margin-top: -30%;" value="5">Pratos do Dia</button>
+					<div class="dropdown" style="width:35%; margin-left: 15%; margin-top: -50%; position: absolute;">
+						<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Tipo</button>
+						<div class="dropdown-content" style="">
+							
+							<button id="aperitivooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Aperitivo</a>
+							</button>
+							<button id="entradaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Entrada</a>
+							</button>
+							<button id="pratoprincipaloption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Prato Principal</a>
+							</button>
+							<button id="sobremesaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Sobremesa</a>
+							</button>
+							<button id="pratododiaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Pratos do Dia</a>
+							</button>
+						
+						</div>
+					</div>
 
 					<h5 id="tiposelecionadotext" style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
 

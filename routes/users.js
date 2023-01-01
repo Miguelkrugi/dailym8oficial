@@ -753,4 +753,12 @@ router.put('/become/packavailability/off/:idplate', async function(req, res, nex
 
 });
 
+router.get('/getmesas/restaurante/:idrestaurant', async function(req, res, next) {
+
+  let user_id = req.params.idrestaurant;
+  let result = await usersModel.getMesasAvailable(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

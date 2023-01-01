@@ -100,7 +100,6 @@ async function criarPlate(rest_id, tipo_prato_id){
      dataType: "json"
      });
  
-     location.reload();
     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
  
  
@@ -524,30 +523,40 @@ window.onload = function exampleFunction() {
     document.getElementById('aperitivooption').addEventListener("click", function() {
 	    
       tipo_prato_id = 1;
+      console.log(tipo_prato_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Aperitivo" 
 
     });
 
     document.getElementById('entradaoption').addEventListener("click", function() {
 	    
       tipo_prato_id = 2;
+      console.log(tipo_prato_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Entrada"  
       
     });
 
     document.getElementById('pratoprincipaloption').addEventListener("click", function() {
 	    
       tipo_prato_id = 3;
+      console.log(tipo_prato_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato Principal"
       
     });
 
     document.getElementById('sobremesaoption').addEventListener("click", function() {
 	    
       tipo_prato_id = 4;
+      console.log(tipo_prato_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Sobremesa" 
       
     });
 
     document.getElementById('pratododiaoption').addEventListener("click", function() {
 	    
       tipo_prato_id = 5;
+      console.log(tipo_prato_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato do Dia" 
       
     });
 
@@ -557,6 +566,8 @@ window.onload = function exampleFunction() {
 	  
     console.log("TIPO PRATO: " + tipo_prato_id);
     criarPlate(restaurant_id, tipo_prato_id);
+
+   
   });
 
   /////////////////////////////////////////////////////////////////////////////////////////
