@@ -227,13 +227,15 @@ async function deletePrato(plate){
  try {
 
    //ENVIAR METODO
-   let delplates = await $.ajax({
+   let asd = await $.ajax({
+
     url: "/users/deleteprato/" + del,
     method: "delete",
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
-    });
+  
+  });
     console.log("ai");
    location.reload();
 
@@ -244,6 +246,8 @@ async function deletePrato(plate){
  }
 
 }
+
+
 
 function updateAvailability(plate){
 
