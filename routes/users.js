@@ -514,6 +514,7 @@ router.put('/become/plateavailability/off/:idplate', async function(req, res, ne
 
 });
 
+//Update para disponível
 router.put('/become/plateavailability/on/:idplate', async function(req, res, next){
 
   let id_user = req.params.idplate;
@@ -522,6 +523,17 @@ router.put('/become/plateavailability/on/:idplate', async function(req, res, nex
   res.status(result.status).send(result.data);
 
 });
+
+//Update para indisponível
+router.put('/become/plateavailability/off/:idplate', async function(req, res, next){
+
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateOffPlate(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.delete('/deleteprato/:idprato', async function(req, res, next){
 
