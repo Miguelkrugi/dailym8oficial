@@ -136,7 +136,7 @@ async function criarPlate(rest_id, tipo_prato_id){
 
  } catch (err){
 
-  window.alert("O prato não foi apagado");
+  window.alert("A mesa não foi apagado");
 
  }
 
