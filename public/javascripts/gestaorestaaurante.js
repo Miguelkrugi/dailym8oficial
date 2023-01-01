@@ -187,17 +187,17 @@ function createplateHTML(plate){
 
 }
 async function setUnnavailable(plate){
-    var ind = plate.plate_id;
+    console.log("ai2");
       try{
     
         let plates = await $.ajax({
-    
-          url: "/users/become/plateavailability/off/" + ind,
+          
+          url: "/users/become/plateavailability/off/" + plate.plate_id,
           method: "put",
           dataType: "json",
     
         });
-    
+        console.log("ai3");
         //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
     
         
@@ -236,6 +236,8 @@ async function setAvailable(plate){
 
 
 function updateAvailability(plate){
+  console.log("ai");
+  console.log(plate.plate_availability);
 
   if(plate.plate_availability == 0){
     setUnnavailable(plate);

@@ -975,7 +975,7 @@ module.exports.savePratoo = async function(pedido) {
 module.exports.UpdateOffPlate = async function(id_plate){
 
     try {
-        let sql = "UPDATE plate " + "SET plate_availability = '0' " + "WHERE plate_id = " + id_plate;
+        let sql = "UPDATE plate " + "SET plate_availability = '1' " + "WHERE plate_id = " + id_plate;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
@@ -990,7 +990,7 @@ module.exports.UpdateOffPlate = async function(id_plate){
 module.exports.UpdateOnPlate = async function(id_plate){
 
     try {
-        let sql = "UPDATE plate " + "SET plate_availability = '1' " + "WHERE plate_id = " + id_plate;
+        let sql = "UPDATE plate " + "SET plate_availability = '0' " + "WHERE plate_id = " + id_plate;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
