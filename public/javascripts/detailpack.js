@@ -9,7 +9,7 @@ function createtableHTML(mesapack){
  
  }
 
-// BRUNO MIGUEL MATA
+
 
 async function reservartable(id_pack){
 
@@ -21,6 +21,8 @@ async function reservartable(id_pack){
     var utilizador_id = sessionStorage.getItem("utilizador_id");
     console.log("setItem->userId = " + utilizador_id);
     //console.log("Restaurante ID: " + restaurant_id);
+
+    ////////////// PRIMEIRO PERCORREMOS TODAS AS MESAS DO PACK, PARA CADA UMA, FAZEMOS UM POST DELA ///////////////
    
    try{
    
@@ -36,25 +38,31 @@ async function reservartable(id_pack){
    
    let html = "";
    
+   var index = 0;
    for(let tablepack of suggestedrestaurants){
+      
       ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
+      
+      console.log(tablepack.mesa_price);
 
+
+      //console.log(suggestedrestaurants[index].mesa_price);
       try {
 
           let data = {
        
-           date_marcacao_reservation: document.getElementById("nomeinput").value,
+           date_marcacao_reservation: 2023-01-03, 
            user_identifier_reservation: utilizador_id,
-           mesa_identifier_reservation: user_id,
-           date_marcada_reservation: 1, //DEFAULT FOR NOW
-           payment_credit_card_number: document.getElementById("numeromesasinput").value,
-           payment_cvc_number: 
+           mesa_identifier_reservation: tablepack.mesa_id,
+           date_marcada_reservation: tablepack.item_date_marcada_reservation, //DEFAULT FOR NOW
+           payment_credit_card_number: "2fc5a684737ce1bf7b3b239df432416e0dd07357",
+           payment_cvc_number: "7196759210defdc0"
        
           }
        
           //ENVIAR METODO
           let newExercise = await $.ajax({
-           url: "/users/insertnewrestaurant/",
+           url: "/users/insertnewreservamesa/",
            method: "post",
            data: JSON.stringify(data),
            contentType: "application/json",
@@ -71,6 +79,9 @@ async function reservartable(id_pack){
        
         }
 
+        index = index + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
+
+   
 
    }
    
@@ -85,6 +96,84 @@ async function reservartable(id_pack){
    } catch(err){
     console.log(err);
    }
+
+
+   /////////////////////// O SEGUNDO PASSO, É OBTER TODAS AS ACOMODAÇÕES DO PACK, PERCORRER E IR ADICIONANDO-AS ATRAVÉS DE UM POST ///////////////////////////
+
+   try{
+   
+      let suggestedacomodacoes = await $.ajax({
+      
+      url: "/users/packs/restaurante/mesa/" + id_pack,
+      method: "get",
+      dataType: "json",
+      
+      });
+      
+      console.log("[utilizador] utilizador = " + JSON.stringify(suggestedacomodacoes));
+      
+      let html = "";
+      
+      var index = 0;
+      for(let tablepack of suggestedacomodacoes){
+         
+         ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
+         
+         console.log(tablepack.mesa_price);
+   
+   
+         //console.log(suggestedrestaurants[index].mesa_price);
+         try {
+   
+             let data = {
+          
+              date_marcacao_reservation: 2023-01-03, 
+              user_identifier_reservation: utilizador_id,
+              mesa_identifier_reservation: tablepack.mesa_id,
+              date_marcada_reservation: tablepack.item_date_marcada_reservation, //DEFAULT FOR NOW
+              payment_credit_card_number: "2fc5a684737ce1bf7b3b239df432416e0dd07357",
+              payment_cvc_number: "7196759210defdc0"
+          
+             }
+          
+             //ENVIAR METODO
+             let newExercise = await $.ajax({
+              url: "/users/insertnewreservamesa/",
+              method: "post",
+              data: JSON.stringify(data),
+              contentType: "application/json",
+              dataType: "json"
+              });
+          
+              location.reload();
+             // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+          
+          
+           } catch (err){
+          
+            window.alert("Receita Criada.");
+          
+           }
+   
+           index = index + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
+   
+      
+   
+      }
+      
+      console.log("OBTEVE");
+      //  recipeName.innerHTML = html;
+      
+     // restaurantesElem.innerHTML = html;
+    
+       //restaurantesElem.innerHTML = html;
+      
+      
+      } catch(err){
+       console.log(err);
+      }
+
+   /////////////////////// POR FIM, O ESTADO DO PACK É ALTERADO PARA INDISPONIVEL ////////////////////
 
 
 
@@ -138,7 +227,7 @@ function createacomodacaoHTML(acomodacaopack){
   
    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
   
-   return "<div class='menu_item' style='background-color:lightgray; width:55%;'><em>Preço: " + acomodacaopack.acomodacao_price + " $</em><h4>Numero: " + acomodacaopack.acomodacao_number + " | Tipo: " + acomodacaopack.acomodacao_type_name + "</h4></div><hr>"
+   return "<div class='menu_item' style='background-color:lightgray; width:100%; height:15%;'><em>Preço: " + acomodacaopack.acomodacao_price + " $</em><h4>Numero: " + acomodacaopack.acomodacao_number + " | Tipo: " + acomodacaopack.acomodacao_type_name + "</h4></div><hr>"
    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
  
   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -171,7 +260,7 @@ async function getAcomodacaoFromPackRestaurante(id_pack){
    let html = "";
    
    for(let tablepack of suggestedrestaurants){
-    console.log("Restaurante: " + restaurant);
+   // console.log("Restaurante: " + restaurant);
     html += createacomodacaoHTML(tablepack);
    }
    
@@ -224,12 +313,13 @@ window.onload = function exampleFunction() {
 
  getAcomodacaoFromPackRestaurante(pack_id);
 
- document.getElementById("reservarmesas").addEventListener("click", function{
+ document.getElementById("reservarmesas").addEventListener("click", function() {
 
    reservartable(pack_id);
 
 
  });
+
   
 
 }

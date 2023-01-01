@@ -550,6 +550,13 @@ router.post('/insertnewreservamesa', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewreservaacomodacao', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReservaAcomodacao(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 router.post('/insertplate', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
@@ -714,6 +721,11 @@ router.get('/numberreports/:idrestaurant', async function(req, res, next) { //TI
   res.status(result.status).send(result.data);
 
 });
+
+
+////////////////// POST DE RESERVA RESTAURANTE ///////////////////
+
+
 
 
 module.exports = router;
