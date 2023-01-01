@@ -249,12 +249,9 @@ async function deletePrato(plate){
 
  } catch (err){
 
-  window.alert("Prato apagado");
+  window.alert("O prato não foi apagado");
 
  }
- 
-
-
 
 }
 
