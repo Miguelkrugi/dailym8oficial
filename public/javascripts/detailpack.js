@@ -104,7 +104,7 @@ async function reservartable(id_pack){
    
       let suggestedacomodacoes = await $.ajax({
       
-      url: "/users/packs/restaurante/mesa/" + id_pack,
+      url: "/users/packs/restaurante/acomodacao/" + id_pack,
       method: "get",
       dataType: "json",
       
@@ -114,7 +114,7 @@ async function reservartable(id_pack){
       
       let html = "";
       
-      var index = 0;
+      var index2 = 0;
       for(let tablepack of suggestedacomodacoes){
          
          ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
@@ -129,7 +129,7 @@ async function reservartable(id_pack){
           
               date_marcacao_reservation: 2023-01-03, 
               user_identifier_reservation: utilizador_id,
-              mesa_identifier_reservation: tablepack.mesa_id,
+              acomodacao_identifier_reservation: tablepack.acomodacao_id,
               date_marcada_reservation: tablepack.item_date_marcada_reservation, //DEFAULT FOR NOW
               payment_credit_card_number: "2fc5a684737ce1bf7b3b239df432416e0dd07357",
               payment_cvc_number: "7196759210defdc0"
@@ -138,7 +138,7 @@ async function reservartable(id_pack){
           
              //ENVIAR METODO
              let newExercise = await $.ajax({
-              url: "/users/insertnewreservamesa/",
+              url: "/users/insertnewreservaacomodacao/",
               method: "post",
               data: JSON.stringify(data),
               contentType: "application/json",
@@ -155,7 +155,7 @@ async function reservartable(id_pack){
           
            }
    
-           index = index + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
+           index2 = index2 + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
    
       
    
@@ -175,8 +175,25 @@ async function reservartable(id_pack){
 
    /////////////////////// POR FIM, O ESTADO DO PACK É ALTERADO PARA INDISPONIVEL ////////////////////
 
+ 
+      try{
+
+        let plates = await $.ajax({
+
+          url: "/users/become/packavailability/off/" + id_pack,
+          method: "put",
+          dataType: "json",
+
+        });
+        console.log("ai3");
+        //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
 
 
+
+
+     } catch(err){
+       console.log(err);
+     }
 
 }
 
