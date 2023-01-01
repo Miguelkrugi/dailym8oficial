@@ -237,7 +237,7 @@ async function setAvailable(plate){
 
 function updateAvailability(plate){
 
-  if(plate.plate_availability == "0"){
+  if(plate.plate_availability == 0){
     setUnnavailable(plate);
   }else{
     setAvailable(plate);
