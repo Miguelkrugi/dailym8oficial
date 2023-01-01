@@ -233,22 +233,23 @@ async function setAvailable(plate){
 async function deletePrato(plate){
 
   var del = plate.plate_id;
+  console.log(del);
  try {
 
    //ENVIAR METODO
-   let newExercise = await $.ajax({
+   let delplates = await $.ajax({
     url: "/users/deleteprato/" + del,
     method: "delete",
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
     });
-
+    console.log("ai");
    location.reload();
 
  } catch (err){
 
-  window.alert("Receita Criada.");
+  window.alert("Prato apagado");
 
  }
  
@@ -270,7 +271,9 @@ function updateAvailability(plate){
 }
 
 function deletePlate(plate){
+
   deletePrato(plate);
+
 }
 
 async function getMenu(id_restaurante){
