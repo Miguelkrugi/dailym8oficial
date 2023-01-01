@@ -734,10 +734,22 @@ router.get('/numberreports/:idrestaurant', async function(req, res, next) { //TI
 
 });
 
+router.put('/become/packavailability/on/:idplate', async function(req, res, next){
 
-////////////////// POST DE RESERVA RESTAURANTE ///////////////////
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateOnPack(id_user);
+  res.status(result.status).send(result.data);
 
+});
 
+router.put('/become/packavailability/off/:idplate', async function(req, res, next){
 
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateOffPack(id_user);
+  res.status(result.status).send(result.data);
+
+});
 
 module.exports = router;

@@ -1298,3 +1298,35 @@ module.exports.getNumberReports = async function(restaurant_id) {
         return { status: 500, data: err };
     }
 }
+
+module.exports.UpdateOnPack = async function(id_pack){
+
+    try {
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_pack;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.UpdateOffPack = async function(id_pack){
+
+    try {
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '0' " + "WHERE pack_id = " + id_pack;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+
