@@ -9,7 +9,28 @@ function createtableHTML(mesapack){
  
  }
 
+async function  callfunctionchangeavailability(id_pack){
 
+
+   console.log("FUNCAO CHAMADA COM PACK ID: " + id_pack);
+
+   try{
+
+      let plates = await $.ajax({
+
+        url: "/users/become/packavailability/off/" + id_pack,
+        method: "put",
+        dataType: "json",
+
+      });
+      console.log("ai3");
+      //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+
+     } catch(err){
+       console.log(err);
+     }
+
+}
 
 async function reservartable(id_pack){
 
@@ -173,27 +194,11 @@ async function reservartable(id_pack){
        console.log(err);
       }
 
-   /////////////////////// POR FIM, O ESTADO DO PACK É ALTERADO PARA INDISPONIVEL ////////////////////
+      
 
- 
-      try{
-
-        let plates = await $.ajax({
-
-          url: "/users/become/packavailability/off/" + id_pack,
-          method: "put",
-          dataType: "json",
-
-        });
-        console.log("ai3");
-        //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-
-
-
-
-     } catch(err){
-       console.log(err);
-     }
+   /////////////////////// POR FIM, O ESTADO DO PACK É ALTERADO PARA INDISPONIVEL - VER DEPOIS ////////////////////
+   
+       callfunctionchangeavailability(id_pack);
 
 }
 

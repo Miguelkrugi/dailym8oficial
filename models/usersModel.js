@@ -1316,7 +1316,7 @@ module.exports.UpdateOnPack = async function(id_pack){
 
 module.exports.UpdateOffPack = async function(id_pack){
 
-    console.log("ID DO PACK PARA ALTERAR: " + id_pack)
+    console.log("ID DO PACK PARA ALTERAR: " + id_pack);
     try {
         let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_pack;
         let result = await pool.query(sql);
