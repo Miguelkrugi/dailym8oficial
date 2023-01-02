@@ -1059,7 +1059,10 @@ module.exports.saveReservaMesa = async function(pedido) {
             "RETURNING id_reservation";
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
-        let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pccn, pcn]);
+       let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pccn, pcn]);
+
+       // let result = await pool.query(sql, ["2023-01-03",1, 12, "2023-01-15", "343435", "236123"]);
+
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {

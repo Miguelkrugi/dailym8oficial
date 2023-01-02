@@ -247,6 +247,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   console.log(date_marcada_reservation);
   console.log(payment_credit_card_number);
   console.log(payment_cvc_number);
+
   try {
  
    
@@ -283,6 +284,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
    }
 
   }
+  
 async function showValuee(table){
 
  
