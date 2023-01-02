@@ -47,12 +47,12 @@ module.exports.authUser = async function(uti_name){
 
         console.log("authUser.valor = " + JSON.stringify(valor));
 
-        //console.log("[usersModel.getUserDados] dados_utilizador = " + JSON.stringify(dadosfound));
+    
 
         if(result.rows.length > 0 && valor)
           
           return { status: 200, result: result.rows[0]};
-            //return { status: 200, result: result.rows[0]};
+
         else return { status: 401, result: {msg:' wrong email or passsword'}};
         
     } catch (err) {
@@ -60,25 +60,8 @@ module.exports.authUser = async function(uti_name){
         return { status: 500, result: {msg: 'wrong email or passsword'}};
     }
 
-    console.log("UTILIZADOR LOGADO");
-    /*
+   // console.log("UTILIZADOR LOGADO");
 
-       let sql = "SELECT * FROM utilizador " + "WHERE utilizador.user_name = " + uti_name + " AND utilizador.user_password = " + uti_pass; 
-       let result = await pool.query(sql);
-
-       if(result.rows > 0){
-         
-        response.send('/mainpage.html');
-
-        response.end();
-
-       } else {
-           console.log("no");
-           response.end();
-       }
-       */
-
-    
 
 }
 

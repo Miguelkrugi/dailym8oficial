@@ -22,7 +22,7 @@ router.get('/allusers', async function(req, res, next) {
 
 router.post('/insertnewuser', async function(req, res, next) {
   let newUser = req.body;
-  //console.log("[usersRoutes] Saving user " + JSON.stringify(newUser));
+
   let result = await usersModel.saveUser(newUser);
   res.status(result.status).send(result.result);
 });
