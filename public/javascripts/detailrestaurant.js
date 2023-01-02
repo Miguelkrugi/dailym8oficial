@@ -252,7 +252,6 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
  
     console.log("CHEGOU");
    
-    var restaurant_id = rest_id;
   
  
      let data = {

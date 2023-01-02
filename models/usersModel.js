@@ -1039,7 +1039,7 @@ module.exports.saveReservaMesa = async function(pedido) {
 
     let pcn = bcrypt.hashSync(pedido.payment_cvc_number, salt);
 
-    console.log(pcn);
+   // console.log(pcn);
 
     /* checks all fields needed and ignores other fields
     if (typeof user != "object" || failUser(user)) {
