@@ -119,7 +119,7 @@
         <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
         <h3 style="margin-left: 70%; margin-top: 5.5%; position: absolute;">MENÚ</h3>
         <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button2" class="button">CRIAR PRATO</button>
-        <button style="position:absolute; margin-top: 53.4%; margin-left: 37%;" id="button3" class="button">CRIAR MESA</button>
+        <button style="position:absolute; margin-top: 53.2%; margin-left: 12%; z-index: 300; " id="button3" class="button">CRIAR MESA</button>
         <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
             <button class="dropbtn">Disponibilidade</button>
             <div class="dropdown-content">
@@ -234,7 +234,7 @@
 		</div>
 
 		<div class="bg-modal2">
-			<div class="modal-contents2">
+			<div class="modal-contents2" style="margin-top: -10%;">
 		
 				<div class="close3">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
@@ -246,7 +246,7 @@
 				<!---	<input style="width: 70%;" type="text" id="mesanameinput" placeholder="Nome">
 					<textarea id="mesadescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>-->
 					<a href="#" id="criarmesabtn" class="button" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; " >Criar Mesa</a>
-					<input style="width: 11%;" type="number" id="mesaprecoinput" name="roodprice" min="0" maxlength="300" placeholder="Preço">
+					<input style="width: 11%;" type="number" id="mesaprecoinput" name="roodprice" min="0" maxlength="300" max = "300" placeholder="Preço">
 					<input id="mesanumberinput" style="width: 23%;margin-left: 42.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número da Mesa">
                     <input id="mesasizeinput" style="width: 29%;margin-left: 12%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Capacidade (Nº Pessoas)">  
 
@@ -255,8 +255,18 @@
 
 					<h4 style="position: absolute; margin-top: -15%; margin-left: 66.7%;">Local da Mesa:</h4>
 
-					<button id="interioroption" style=" position: absolute; margin-left: 20%; margin-top: -10%;" value="1">Interior</button>
-					<button id="exterioroption" style=" position: absolute; margin-left: 20%; margin-top: -5%;" value="2">Exterior</button>
+					<div class="dropdown" style="width:35%; margin-left: 14.4%; margin-top: -9.5%; position: absolute;">
+						<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Tipo</button>
+						<div class="dropdown-content" style="">
+							
+							<button id="interioroption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Interior</a>
+							</button>
+							<button id="exterioroption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+								<a href="#">Exterior</a>
+							</button>						
+						</div>
+					</div>
 
 					<h5 id="tiposelecionadotext2" style="position: absolute; margin-top: -0.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
 				</form>
