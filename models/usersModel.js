@@ -1034,6 +1034,11 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 module.exports.saveReservaMesa = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+
+    let pccn = bcrypt.hashSync(pedido.payment_credit_card_number, salt);
+
+    let pcn = bcrypt.hashSync(pedido.payment_cvc_number, salt);
+
     /* checks all fields needed and ignores other fields
     if (typeof user != "object" || failUser(user)) {
         if (user.errMsg)
@@ -1054,7 +1059,7 @@ module.exports.saveReservaMesa = async function(pedido) {
             "RETURNING id_reservation";
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
-        let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pedido.payment_credit_card_number, pedido.payment_cvc_number]);
+        let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pccn, pcn]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {

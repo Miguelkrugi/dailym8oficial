@@ -1,3 +1,4 @@
+
 async function getNumberLikesRestaurant(restaurante_id){
 
     console.log("Obtendo os likes")
@@ -232,12 +233,60 @@ async function deleteLike(rest_id, user_id){
  
 }
 
-async function showValue(){
+async function showValuee(table){
 
-  console.log("CHAMOU");
+ 
+  
+  let utilizador_id = sessionStorage.getItem("utilizador_id")
+  var utilizador_name = sessionStorage.getItem("utilizador_name");
+  let utilizador_username = sessionStorage.getItem("utilizador_username");
+  var utilizador_email = sessionStorage.getItem("utilizador_email");
+  var utilizador_type_id = sessionStorage.getItem("utilizador_type_id");
 
- //document.getElementById("selectedtable").innerHTML = "Mesa Selecionada: " + table.mesa_number;
+   console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
+  
+  let fullpaymentcreditcardnumber = "" + document.getElementById("creditparte1").value + document.getElementById("creditparte2").value + document.getElementById("creditparte3").value + document.getElementById("creditparte4").value;
 
+ //  let payment_credit_card_number = bcrypt.hashSync(fullpaymentcreditcardnumber, salt);
+
+   console.log("HASHED CREDIT CARD: " +  fullpaymentcreditcardnumber);
+
+
+  try {
+ 
+   
+    var restaurant_id = rest_id;
+  
+ 
+     let data = {
+  
+      date_marcacao_reservation: "2023-01-03", //DEFAULT FOR NOW,
+      user_identifier_reservation: utilizador_id,
+      mesa_identifier_reservation: table.mesa_id,
+      date_marcada_reservation: document.getElementById("datetext").value,
+      payment_credit_card_number: fullpaymentcreditcardnumber,
+      payment_cvc_number: document.getElementById("cvcnumber").value
+  
+     }
+  
+     //ENVIAR METODO
+     let newExercise = await $.ajax({
+      url: "/users/insertnewreservamesa/",
+      method: "post",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+  
+     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+  
+  
+   } catch (err){
+  
+    window.alert("Receita Criada.");
+  
+   }
+ 
 }
 
 
@@ -245,11 +294,12 @@ function createtableHTML(table){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<button id='buttonoption' onclick='showValue()' style='background-color: transparent; border: 0; width: 100%;'><a href='#'>" + table.mesa_number + "</a></button>"
+  return "<button id='buttonoption' onclick='showValuee(" + JSON.stringify(table) + ")' style='background-color: transparent; border: 0; width: 100%;'><a href='#'>" + table.mesa_number + "</a></button>"
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
 
 }
+
 
 
 
@@ -309,7 +359,7 @@ async function getAvailableTables(rest_id){
 
 window.onload = function exampleFunction() {
 
-    var utilizador_id = sessionStorage.getItem("utilizador_id")
+    let utilizador_id = sessionStorage.getItem("utilizador_id")
     var utilizador_name = sessionStorage.getItem("utilizador_name");
     let utilizador_username = sessionStorage.getItem("utilizador_username");
     var utilizador_email = sessionStorage.getItem("utilizador_email");

@@ -505,6 +505,13 @@ router.post('/insertnewplate', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewreservamesa', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReservaMesa(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 router.put('/become/plateavailability/off/:idplate', async function(req, res, next){
 
   let id_user = req.params.idplate;
