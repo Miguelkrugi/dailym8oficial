@@ -250,6 +250,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
 
   try {
  
+    console.log("CHEGOU");
    
     var restaurant_id = rest_id;
   
@@ -267,7 +268,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   
      //ENVIAR METODO
      let newExercise = await $.ajax({
-      url: "/users/insertnewreservamesa/",
+      url: "/users/insertresmesa/",
       method: "post",
       data: JSON.stringify(data),
       contentType: "application/json",
@@ -284,7 +285,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
    }
 
   }
-  
+
 async function showValuee(table){
 
  
