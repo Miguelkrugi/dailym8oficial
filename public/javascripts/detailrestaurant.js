@@ -232,16 +232,26 @@ async function deleteLike(rest_id, user_id){
  
 }
 
+async function showValue(){
+
+  console.log("CHAMOU");
+
+ //document.getElementById("selectedtable").innerHTML = "Mesa Selecionada: " + table.mesa_number;
+
+}
+
+
 function createtableHTML(table){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return ""
+  return "<button id='buttonoption' onclick='showValue()' style='background-color: transparent; border: 0; width: 100%;'><a href='#'>" + table.mesa_number + "</a></button>"
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
-
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
 
 }
+
+
 
 async function getAvailableTables(rest_id){
 
@@ -270,7 +280,7 @@ async function getAvailableTables(rest_id){
 
       for(let restaurant of suggestedrestaurants){
        console.log("Restaurante: " + restaurant);
-       html += createallavailabletablesHTML(restaurant);
+       html += createtableHTML(restaurant);
       }
 
     
@@ -386,7 +396,6 @@ window.onload = function exampleFunction() {
 
 
    getAvailableTables(restaurant_id);
-
 
     //getAleatorioRestaurantes();
 
