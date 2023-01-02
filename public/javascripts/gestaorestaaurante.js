@@ -42,7 +42,6 @@ async function criarMesa(rest_id, tipo_mesa_id){
      dataType: "json"
      });
  
-     location.reload();
     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
  
  
@@ -566,7 +565,10 @@ window.onload = function exampleFunction() {
 	  
     console.log("TIPO PRATO: " + tipo_prato_id);
     criarPlate(restaurant_id, tipo_prato_id);
-  
+
+
+
+    document.getElementById("bg-modal").style.display = "none";
 
    
   });
@@ -578,13 +580,13 @@ window.onload = function exampleFunction() {
   document.getElementById('interioroption').addEventListener("click", function() {
 	    
     tipo_mesa_id = 1;
-
+    document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Interior" 
   });
 
   document.getElementById('exterioroption').addEventListener("click", function() {
 	    
     tipo_mesa_id = 2;
-
+    document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Exterior" 
   });
 
   document.getElementById('criarmesabtn').addEventListener("click", function() {
