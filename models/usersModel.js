@@ -1039,6 +1039,8 @@ module.exports.saveReservaMesa = async function(pedido) {
 
     let pcn = bcrypt.hashSync(pedido.payment_cvc_number, salt);
 
+    console.log(pcn);
+
     /* checks all fields needed and ignores other fields
     if (typeof user != "object" || failUser(user)) {
         if (user.errMsg)
@@ -1048,8 +1050,6 @@ module.exports.saveReservaMesa = async function(pedido) {
     }*/
     try {
       // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
-
-
 
         let sql =
             "INSERT " +

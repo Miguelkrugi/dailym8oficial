@@ -233,25 +233,20 @@ async function deleteLike(rest_id, user_id){
  
 }
 
-async function showValuee(table){
-
- 
-  
-  let utilizador_id = sessionStorage.getItem("utilizador_id")
-  var utilizador_name = sessionStorage.getItem("utilizador_name");
-  let utilizador_username = sessionStorage.getItem("utilizador_username");
-  var utilizador_email = sessionStorage.getItem("utilizador_email");
-  var utilizador_type_id = sessionStorage.getItem("utilizador_type_id");
-
-   console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
-  
-  let fullpaymentcreditcardnumber = "" + document.getElementById("creditparte1").value + document.getElementById("creditparte2").value + document.getElementById("creditparte3").value + document.getElementById("creditparte4").value;
-
- //  let payment_credit_card_number = bcrypt.hashSync(fullpaymentcreditcardnumber, salt);
-
-   console.log("HASHED CREDIT CARD: " +  fullpaymentcreditcardnumber);
 
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
+
+async function sentPost(date_marcacao_reservation, user_identifier_reservation, mesa_identifier_reservation, date_marcada_reservation, payment_credit_card_number, payment_cvc_number){
+
+  console.log("sentposttttttttttttttttttt");
+
+  console.log(date_marcacao_reservation);
+  console.log(user_identifier_reservation);
+  console.log(mesa_identifier_reservation);
+  console.log(date_marcada_reservation);
+  console.log(payment_credit_card_number);
+  console.log(payment_cvc_number);
   try {
  
    
@@ -260,12 +255,12 @@ async function showValuee(table){
  
      let data = {
   
-      date_marcacao_reservation: "2023-01-03", //DEFAULT FOR NOW,
-      user_identifier_reservation: utilizador_id,
-      mesa_identifier_reservation: table.mesa_id,
-      date_marcada_reservation: document.getElementById("datetext").value,
-      payment_credit_card_number: fullpaymentcreditcardnumber,
-      payment_cvc_number: document.getElementById("cvcnumber").value
+      date_marcacao_reservation: date_marcacao_reservation, //DEFAULT FOR NOW,
+      user_identifier_reservation: user_identifier_reservation,
+      mesa_identifier_reservation: mesa_identifier_reservation,
+      date_marcada_reservation: date_marcada_reservation,
+      payment_credit_card_number: payment_credit_card_number,
+      payment_cvc_number: payment_cvc_number
   
      }
   
@@ -286,6 +281,34 @@ async function showValuee(table){
     window.alert("Receita Criada.");
   
    }
+
+  }
+async function showValuee(table){
+
+ 
+  
+  let utilizador_id = sessionStorage.getItem("utilizador_id")
+  var utilizador_name = sessionStorage.getItem("utilizador_name");
+  let utilizador_username = sessionStorage.getItem("utilizador_username");
+  var utilizador_email = sessionStorage.getItem("utilizador_email");
+  var utilizador_type_id = sessionStorage.getItem("utilizador_type_id");
+
+   console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
+  
+  let fullpaymentcreditcardnumber = "" + document.getElementById("creditparte1").value + document.getElementById("creditparte2").value + document.getElementById("creditparte3").value + document.getElementById("creditparte4").value;
+
+ //  let payment_credit_card_number = bcrypt.hashSync(fullpaymentcreditcardnumber, salt);
+
+   console.log("HASHED CREDIT CARD: " +  fullpaymentcreditcardnumber);
+
+   var date_marcacao_reservation = "2023-01-03"; //DEFAULT FOR NOW,
+   var user_identifier_reservation = utilizador_id;
+   var  mesa_identifier_reservation = table.mesa_id;
+   var date_marcada_reservation = document.getElementById("datetext").value;
+   var payment_credit_card_number = fullpaymentcreditcardnumber;
+   var payment_cvc_number = document.getElementById("cvcnumber").value;
+
+    sentPost(date_marcacao_reservation, user_identifier_reservation, mesa_identifier_reservation, date_marcada_reservation, payment_credit_card_number, payment_cvc_number);
  
 }
 
