@@ -566,6 +566,7 @@ window.onload = function exampleFunction() {
 	  
     console.log("TIPO PRATO: " + tipo_prato_id);
     criarPlate(restaurant_id, tipo_prato_id);
+  
 
    
   });
