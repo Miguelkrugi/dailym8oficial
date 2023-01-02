@@ -248,6 +248,8 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   console.log(payment_credit_card_number);
   console.log(payment_cvc_number);
 
+  var id_mesa = mesa_identifier_reservation;
+
   try {
  
     console.log("CHEGOU");
@@ -269,6 +271,31 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
      let newExercise = await $.ajax({
       url: "/users/insertresmesa/",
       method: "post",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+  
+     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+  
+  
+   } catch (err){
+  
+    window.alert("Receita Criada.");
+  
+   }
+
+
+   /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
+
+   try {
+ 
+    console.log("CHEGOU");
+  
+     //ENVIAR METODO
+     let newExercise = await $.ajax({
+      url: "/users/setmesaunavailable/" + id_mesa,
+      method: "put",
       data: JSON.stringify(data),
       contentType: "application/json",
       dataType: "json"

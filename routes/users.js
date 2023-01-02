@@ -770,4 +770,13 @@ router.post('/insertresmesa', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.put('/setmesaunavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateMesaUnavailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

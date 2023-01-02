@@ -1339,4 +1339,17 @@ module.exports.UpdateOffPack = async function(id_pack){
 }
 
 
+module.exports.UpdateMesaUnavailable = async function(id_plate){
 
+    try {
+        let sql = "UPDATE mesa " + "SET mesa_availability = '1' " + "WHERE mesa_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
