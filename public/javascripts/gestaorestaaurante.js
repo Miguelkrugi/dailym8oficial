@@ -129,7 +129,6 @@ async function criarPlate(rest_id, tipo_prato_id){
     dataType: "json"
   
   });
-    console.log("ai");
 
 
  } catch (err){
