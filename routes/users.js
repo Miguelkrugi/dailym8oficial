@@ -22,7 +22,7 @@ router.get('/allusers', async function(req, res, next) {
 
 router.post('/insertnewuser', async function(req, res, next) {
   let newUser = req.body;
-  //console.log("[usersRoutes] Saving user " + JSON.stringify(newUser));
+
   let result = await usersModel.saveUser(newUser);
   res.status(result.status).send(result.result);
 });
@@ -505,6 +505,7 @@ router.post('/insertnewplate', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+
 router.put('/become/plateavailability/off/:idplate', async function(req, res, next){
 
   let id_user = req.params.idplate;
@@ -556,12 +557,12 @@ router.delete('/deletemesa/:idmesa', async function(req, res, next){
 
 });
 
-router.post('/insertnewreservamesa', async function(req, res, next) {
+/*router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
   let result = await usersModel.saveReservaMesa(newPedido);
   res.sendStatus(result.status).send(result.data);
-});
+});*/
 
 router.post('/insertnewreservaacomodacao', async function(req, res, next) {
   let newPedido = req.body;
@@ -757,6 +758,23 @@ router.get('/getmesas/restaurante/:idrestaurant', async function(req, res, next)
 
   let user_id = req.params.idrestaurant;
   let result = await usersModel.getMesasAvailable(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
+router.post('/insertresmesa', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReservaMesa(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.put('/setmesaunavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateMesaUnavailable(id_user);
   res.status(result.status).send(result.data);
 
 });

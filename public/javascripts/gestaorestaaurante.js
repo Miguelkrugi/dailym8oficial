@@ -113,7 +113,7 @@ async function criarPlate(rest_id, tipo_prato_id){
  }
 
 
- async function removerMesas(mesa){
+ async function removerrrMesa(mesa){
 
   var del = mesa.mesa_id;
   console.log("ID da mesa: "+del);
@@ -129,8 +129,7 @@ async function criarPlate(rest_id, tipo_prato_id){
     dataType: "json"
   
   });
-    console.log("ai");
-   location.reload();
+
 
  } catch (err){
 
@@ -141,17 +140,12 @@ async function criarPlate(rest_id, tipo_prato_id){
 }
 
 
- function removeMesa(mesa) {
-
-  removerMesas(mesa);
-
- }
 
 function createtableHTML(mesa){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removeMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerrrMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/

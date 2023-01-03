@@ -47,12 +47,12 @@ module.exports.authUser = async function(uti_name){
 
         console.log("authUser.valor = " + JSON.stringify(valor));
 
-        //console.log("[usersModel.getUserDados] dados_utilizador = " + JSON.stringify(dadosfound));
+    
 
         if(result.rows.length > 0 && valor)
           
           return { status: 200, result: result.rows[0]};
-            //return { status: 200, result: result.rows[0]};
+
         else return { status: 401, result: {msg:' wrong email or passsword'}};
         
     } catch (err) {
@@ -60,25 +60,8 @@ module.exports.authUser = async function(uti_name){
         return { status: 500, result: {msg: 'wrong email or passsword'}};
     }
 
-    console.log("UTILIZADOR LOGADO");
-    /*
+   // console.log("UTILIZADOR LOGADO");
 
-       let sql = "SELECT * FROM utilizador " + "WHERE utilizador.user_name = " + uti_name + " AND utilizador.user_password = " + uti_pass; 
-       let result = await pool.query(sql);
-
-       if(result.rows > 0){
-         
-        response.send('/mainpage.html');
-
-        response.end();
-
-       } else {
-           console.log("no");
-           response.end();
-       }
-       */
-
-    
 
 }
 
@@ -1039,6 +1022,13 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 module.exports.saveReservaMesa = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+
+    let pccn = bcrypt.hashSync(pedido.payment_credit_card_number, salt);
+
+    let pcn = bcrypt.hashSync(pedido.payment_cvc_number, salt);
+
+   // console.log(pcn);
+
     /* checks all fields needed and ignores other fields
     if (typeof user != "object" || failUser(user)) {
         if (user.errMsg)
@@ -1049,8 +1039,6 @@ module.exports.saveReservaMesa = async function(pedido) {
     try {
       // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
 
-
-
         let sql =
             "INSERT " +
             "INTO reserva_mesa " +
@@ -1059,7 +1047,10 @@ module.exports.saveReservaMesa = async function(pedido) {
             "RETURNING id_reservation";
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
-        let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pedido.payment_credit_card_number, pedido.payment_cvc_number]);
+       let result = await pool.query(sql, [pedido.date_marcacao_reservation, pedido.user_identifier_reservation, pedido.mesa_identifier_reservation, pedido.date_marcada_reservation, pccn, pcn]);
+
+       // let result = await pool.query(sql, ["2023-01-03",1, 12, "2023-01-15", "343435", "236123"]);
+
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
@@ -1335,5 +1326,20 @@ module.exports.UpdateOffPack = async function(id_pack){
 
 }
 
+
+module.exports.UpdateMesaUnavailable = async function(id_plate){
+
+    try {
+        let sql = "UPDATE mesa " + "SET mesa_availability = '1' " + "WHERE mesa_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
 
 
