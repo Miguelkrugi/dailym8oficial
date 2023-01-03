@@ -124,7 +124,6 @@ async function criarPlate(rest_id, tipo_prato_id){
 
     url: "/users/deletemesa/" + del,
     method: "delete",
-    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
   
@@ -132,7 +131,7 @@ async function criarPlate(rest_id, tipo_prato_id){
 
 
  } catch (err){
-
+console.log(err);
   window.alert("A mesa não foi apagada");
 
  }
@@ -258,7 +257,6 @@ async function deletePrato(plate){
 
     url: "/users/deletepratos/" + del,
     method: "delete",
-    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
   
