@@ -365,6 +365,7 @@ module.exports.getRestaurantTablesInterior = async function(rest_id, table_type_
 
 module.exports.getPlates = async function(est_id) {
     try {
+        console.error("_______________________________________________________________________________________");
         let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + est_id + " AND plate.plate_availability = '0'";
         let result = await pool.query(sql);
         let users = result.rows;
@@ -405,6 +406,7 @@ module.exports.getRandomServicesAcomodacao = async function() {
 
 module.exports.getUsers = async function() {
     try {
+        console.error("------------------------------------------------");
         let sql = "select * from utilizador";
         let result = await pool.query(sql);
         let users = result.rows;
@@ -706,6 +708,7 @@ module.exports.getCheckLikeAcomodacao = async function(utilizador_id ,acomodacao
 
 module.exports.getMenu = async function(restaurant_id) {
     try {
+        console.error("---------------------------------------------------------------------------");
         let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + restaurant_id;
         let result = await pool.query(sql);
         let users = result.rows;
@@ -734,6 +737,7 @@ module.exports.get50Reservas = async function(restaurant_id) {
 
 module.exports.getMenuDisponivel = async function(restaurant_id) {
     try {
+        console.error("---------------------------------------------------------------");
         let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + restaurant_id + " AND plate.plate_availability = '0'" ;
         let result = await pool.query(sql);
         let users = result.rows;
@@ -1020,6 +1024,7 @@ module.exports.DeletePlate = async function(id_plate){
 module.exports.DeleteMesa = async function(mesa_id){
 
     try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
         let sql = "DELETE FROM mesa " + "WHERE mesa_id = " + mesa_id;
         let result = await pool.query(sql);
         let pedidofound = result.rows;

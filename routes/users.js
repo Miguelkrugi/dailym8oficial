@@ -146,7 +146,7 @@ router.get('/seeplates/filter/:idestabelecimento/:idplatetype', async function(r
 router.get('/seeplates/filter/:idestabelecimento', async function(req, res, next) {
 
   let estabelecimento_id = req.params.idestabelecimento;
-
+  console.error("------------------------------------------------------");
   let result = await usersModel.getPlates(estabelecimento_id);
   res.status(result.status).send(result.data);
 
@@ -582,7 +582,7 @@ router.post('/insertplate', async function(req, res, next) {
 //Vou começar aqui Ass:Bruno Mata
 
 router.get('/getmenu/menu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
-
+  console.error("---------------------------------------");
   let restaurant_id = req.params.idrestaurant;
 
   let result = await usersModel.getCheckLikeMenu(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
@@ -603,7 +603,7 @@ router.get('/getmenu/menu/:idrestaurant', async function(req, res, next) { //TIP
 router.get('/getmenu/menudisp/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
   let restaurant_id = req.params.idrestaurant;
-
+console.error("-----------------------------------------------");
   let result = await usersModel.getMenuDisponivel(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
   res.status(result.status).send(result.data);
 
