@@ -267,6 +267,7 @@ module.exports.getCountLikeAcomodacao = async function(equipment_service_id) {
 
 module.exports.getRestaurantPlatesFilter = async function(est_id, plate_identifier) {
     try {
+        console.error("__________________________________________________________");
         let sql = "SELECT *, plate_type.plate_type_id, plate_type.plate_type_name FROM plate INNER JOIN plate_type ON plate_type.plate_type_id = plate.plate_type_identifier WHERE plate.plate_restaurant_id = " + est_id + " AND plate.plate_availability = '0' AND plate_type.plate_type_id = " + plate_identifier;
         let result = await pool.query(sql);
         let users = result.rows;
