@@ -113,7 +113,7 @@ async function criarPlate(rest_id, tipo_prato_id){
  }
 
 
- async function removerrrMesa(mesa){
+ async function removerMesa(mesa){
 
   var del = mesa.mesa_id;
   console.log("ID da mesa: "+del);
