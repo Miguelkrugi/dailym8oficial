@@ -15,12 +15,9 @@ async function reservartable(id_pack){
 
    console.log("Obtendo as mesas do pack")
    
-   // let recipeName = document.getElementById("nome1")
     let restaurantesElem = document.getElementById("map1");
-   // var pack_id = sessionStorage.getItem("pack_id");
     var utilizador_id = sessionStorage.getItem("utilizador_id");
     console.log("setItem->userId = " + utilizador_id);
-    //console.log("Restaurante ID: " + restaurant_id);
 
     ////////////// PRIMEIRO PERCORREMOS TODAS AS MESAS DO PACK, PARA CADA UMA, FAZEMOS UM POST DELA ///////////////
    
@@ -45,8 +42,6 @@ async function reservartable(id_pack){
       
       console.log(tablepack.mesa_price);
 
-
-      //console.log(suggestedrestaurants[index].mesa_price);
       try {
 
           let data = {
@@ -70,29 +65,17 @@ async function reservartable(id_pack){
            });
        
            location.reload();
-          // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-       
+        
        
         } catch (err){
        
          window.alert("Receita Criada.");
        
         }
-
         index = index + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
-
-   
-
    }
    
-   console.log("OBTEVE");
-   //  recipeName.innerHTML = html;
-   
-  // restaurantesElem.innerHTML = html;
- 
-    //restaurantesElem.innerHTML = html;
-   
-   
+    
    } catch(err){
     console.log(err);
    }
@@ -118,11 +101,7 @@ async function reservartable(id_pack){
       for(let tablepack of suggestedacomodacoes){
          
          ///PARA CADA UM, FAZER UM POST DESSE TABLE PACK
-         
-       //  console.log(tablepack.mesa_price);
-   
-   
-         //console.log(suggestedrestaurants[index].mesa_price);
+
          try {
    
              let data = {
@@ -146,9 +125,7 @@ async function reservartable(id_pack){
               });
           
               location.reload();
-             // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-          
-          
+            
            } catch (err){
           
             window.alert("Receita Criada.");
@@ -157,18 +134,10 @@ async function reservartable(id_pack){
    
            index2 = index2 + 1; //DEPOIS DE ADICIONADA, PASSA PARA A PROXIMA MESA, E POR AÍ SUCESSIVAMENTE, ATÉ TERMINAR TODAS AS MESAS//
    
-      
-   
       }
       
       console.log("OBTEVE");
-      //  recipeName.innerHTML = html;
-      
-     // restaurantesElem.innerHTML = html;
-    
-       //restaurantesElem.innerHTML = html;
-      
-      
+
       } catch(err){
        console.log(err);
       }
