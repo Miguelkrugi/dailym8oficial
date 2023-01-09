@@ -1370,3 +1370,17 @@ module.exports.getAvailableAcomodacoesRest = async function(restaurant_id) {
         return { status: 500, data: err };
     }
 }
+
+
+module.exports.getAvailableLugaresRest = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, parking_lot.establishment_name, parking_lot.establishment_id FROM spot INNER JOIN parking_lot ON parking_lot.parking_lot_id = spot.spot_parking_lot_id WHERE parking_lot.establishment_utilizador_id = " + restaurant_id + " AND spot.spot_availability = '0'";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}

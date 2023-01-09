@@ -799,4 +799,13 @@ router.get('/getavailable/acomodacoes/items/:idutilizador', async function(req, 
 
 });
 
+router.get('/getavailable/lugares/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableLugaresRest(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;
