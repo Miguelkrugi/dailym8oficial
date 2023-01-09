@@ -47,7 +47,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
  
   } catch (err){
  
-   window.alert("Receita Criada.");
+   window.alert("Mesa criada com sucesso.");
  
   }
  
@@ -104,7 +104,7 @@ async function criarPlate(rest_id, tipo_prato_id){
  
   } catch (err){
  
-   window.alert("Receita Criada.");
+   window.alert("Prato criado com sucesso.");
  
   }
  
@@ -132,7 +132,7 @@ async function criarPlate(rest_id, tipo_prato_id){
 
  } catch (err){
 console.log(err);
-  window.alert("A mesa não foi apagada");
+  window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
 
  }
 
