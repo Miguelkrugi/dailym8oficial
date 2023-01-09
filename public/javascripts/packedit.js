@@ -140,65 +140,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
   
   
-  function createtableHTML(mesa){
-    
-    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
-   
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
-  
-   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
-  
-  }
-  
-  async function getMesas(id_restaurante){
-    
-    console.log("Obtendo os reports")
-    
-    // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
-     var utilizador_id = sessionStorage.getItem("utilizador_id");
-     console.log("setItem->userId = " + utilizador_id);
-    
-    try{
-    
-    let suggestedestacionamentos = await $.ajax({
-    
-    url: "/users/gettables/" + id_restaurante,
-    method: "get",
-    dataType: "json",
-    
-    });
-    
-    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
-    
-    let html = "";
-    
-   
-    for(let reserva of suggestedestacionamentos){
-     console.log("Reserva: " + reserva);
-     html += createtableHTML(reserva);
-    }
-   
-  
-      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
-      console.log("NADA ENCONTRADO");
-  
-    
-    
-    console.log("OBTEVE");
-    //  recipeName.innerHTML = html;
-    
-   // restaurantesElem.innerHTML = html;
-  
-     lugaresElem.innerHTML = html;
-    
-    
-    } catch(err){
-     console.log(err);
-    }
-    }
-  
+ 
   ////////////////////////////////////////////////////////////////////////////////////////////////7
   
   
@@ -404,59 +346,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
       }
   
-      async function getAvailableTables(rest_id){
-
-        console.log("Obtendo os restaurantes");
-        
-        // let recipeName = document.getElementById("nome1")
-         let restaurantesElem = document.getElementById("dropdown-content");
-         var utilizador_id = sessionStorage.getItem("utilizador_id");
-         console.log("setItem->userId = " + utilizador_id);
-        
-        try{
-        
-        let suggestedrestaurants = await $.ajax({
-        
-        url: "/users/getmesas/restaurante/" + rest_id,
-        method: "get",
-        dataType: "json",
-        
-        });
-        
-        console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
-        
-        let html = "";
-        
-         
-      
-            for(let restaurant of suggestedrestaurants){
-             console.log("Restaurante: " + restaurant);
-             html += createtableHTML(restaurant);
-            }
-      
-          
-      
-            console.log("NADA ENCONTRADO");
-      
-          
-      
-      
-        //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
-         // console.log("NADA ENCONTRADO");
-      
-        
-        console.log("OBTEVE");
-        //  recipeName.innerHTML = html;
-        
-       // restaurantesElem.innerHTML = html;
-      
-         restaurantesElem.innerHTML = html;
-        
-        
-        } catch(err){
-         console.log(err);
-        }
-        }
+     
 
         function createtable2HTML(table){
   
@@ -468,61 +358,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
           
           }
 
-        //////////77GET AVAILABLE ACOMODACOES/////////////
-
-        async function getAvailableAcom(uti_id){
-
-            console.log("Obtendo os restaurantes");
-            
-            // let recipeName = document.getElementById("nome1")
-             let restaurantesElem = document.getElementById("dropdown-content4");
-             var utilizador_id = sessionStorage.getItem("utilizador_id");
-             console.log("setItem->userId = " + utilizador_id);
-            
-            try{
-            
-            let suggestedrestaurants = await $.ajax({
-            
-            url: "/users/getavailable/acomodacoes/items/" + uti_id,
-            method: "get",
-            dataType: "json",
-            
-            });
-            
-            console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
-            
-            let html = "";
-            
-             
-          
-                for(let restaurant of suggestedrestaurants){
-                 console.log("Restaurante: " + restaurant);
-                 html += createtable2HTML(restaurant);
-                }
-          
-              
-          
-                console.log("NADA ENCONTRADO");
-          
-              
-          
-          
-            //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
-             // console.log("NADA ENCONTRADO");
-          
-            
-            console.log("OBTEVE");
-            //  recipeName.innerHTML = html;
-            
-           // restaurantesElem.innerHTML = html;
-          
-             restaurantesElem.innerHTML = html;
-            
-            
-            } catch(err){
-             console.log(err);
-            }
-            }
+       
 
             function createtable3HTML(table){
   
@@ -534,59 +370,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
               
               }
 
-            async function getAvailableLugar(uti_id){
-
-                console.log("Obtendo os restaurantes");
-                
-                // let recipeName = document.getElementById("nome1")
-                 let restaurantesElem = document.getElementById("dropdown-content5");
-                 var utilizador_id = sessionStorage.getItem("utilizador_id");
-                 console.log("setItem->userId = " + utilizador_id);
-                
-                try{
-                
-                let suggestedrestaurants = await $.ajax({
-                
-                url: "/users/getavailable/lugares/items/" + uti_id,
-                method: "get",
-                dataType: "json",
-                
-                });
-                
-                console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
-                
-                let html = "";
-                
-                 
-              
-                    for(let restaurant of suggestedrestaurants){
-                     console.log("Restaurante: " + restaurant);
-                     html += createtable3HTML(restaurant);
-                    }
-              
-                  
-              
-                    console.log("NADA ENCONTRADO");
-              
-                  
-              
-              
-                //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
-                 // console.log("NADA ENCONTRADO");
-              
-                
-                console.log("OBTEVE");
-                //  recipeName.innerHTML = html;
-                
-               // restaurantesElem.innerHTML = html;
-              
-                 restaurantesElem.innerHTML = html;
-                
-                
-                } catch(err){
-                 console.log(err);
-                }
-                }
+            
 
                 function createtable33HTML(mesapack){
   
@@ -605,7 +389,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
                     console.log("Obtendo as mesas do pack")
                     
                     // let recipeName = document.getElementById("nome1")
-                     let restaurantesElem = document.getElementById("organizereserva");
+                     let restaurantesElem = document.getElementById("this1");
                     // var pack_id = sessionStorage.getItem("pack_id");
                      var utilizador_id = sessionStorage.getItem("utilizador_id");
                      console.log("setItem->userId = " + utilizador_id);
@@ -803,65 +587,26 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
      getLugaresFromPack(pack_id);
 
-     getMorada(restaurant_id);
+  //   getMorada(restaurant_id);
   
     // getReservasRestaurante(restaurant_id);
   
    //  getMenu(restaurant_id);
   
-     getMesas(restaurant_id);
+   //  getMesas(restaurant_id);
 
-     getAvailableTables(restaurant_id);
+     //getAvailableTables(restaurant_id);
 
-     getAvailableAcom(utilizador_id); //OBTER ACOMODACOES DISPONIVEIS EM VÁRIOS SERVIÇOS DE TOLDOS DO UTILIZADOR
+     //getAvailableAcom(utilizador_id); //OBTER ACOMODACOES DISPONIVEIS EM VÁRIOS SERVIÇOS DE TOLDOS DO UTILIZADOR
 
-     getAvailableLugar(utilizador_id);
+     //getAvailableLugar(utilizador_id);
   
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   
       var tipo_prato_id = 0;
   
   
-      document.getElementById('aperitivooption').addEventListener("click", function() {
-          
-        tipo_prato_id = 1;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Aperitivo" 
-  
-      });
-  
-      document.getElementById('entradaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 2;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Entrada"  
-        
-      });
-  
-      document.getElementById('pratoprincipaloption').addEventListener("click", function() {
-          
-        tipo_prato_id = 3;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato Principal"
-        
-      });
-  
-      document.getElementById('sobremesaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 4;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Sobremesa" 
-        
-      });
-  
-      document.getElementById('pratododiaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 5;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato do Dia" 
-        
-      });
-  
+   
      
   
      document.getElementById('criarpratobtn').addEventListener("click", function() {

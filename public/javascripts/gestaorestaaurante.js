@@ -156,7 +156,7 @@ async function getMesas(id_restaurante){
   console.log("Obtendo os reports")
   
   // let recipeName = document.getElementById("nome1")
-   let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
+   let lugaresElem = document.getElementById("organizeinfoestauranttables"); //VERIFICAR O ID
    var utilizador_id = sessionStorage.getItem("utilizador_id");
    console.log("setItem->userId = " + utilizador_id);
   

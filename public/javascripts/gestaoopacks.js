@@ -537,13 +537,13 @@ async function criarMesa(rest_id, tipo_mesa_id){
       document.getElementById("bg-modal666").style.display = "flex";
     });
   
-     getMorada(restaurant_id);
+    // getMorada(restaurant_id);
   
      getReservasRestaurante(restaurant_id);
   
-     getMenu(restaurant_id);
+   //  getMenu(restaurant_id);
   
-     getMesas(restaurant_id);
+   //  getMesas(restaurant_id);
   
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   

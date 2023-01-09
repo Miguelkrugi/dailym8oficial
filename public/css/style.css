@@ -3169,6 +3169,18 @@ ul#top_menu li a.login:before {
 
 }
 
+#this1 {
+
+  width: 67%;
+  height:90%;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  
+  margin-top: 6%;
+  margin-left: 2%;
+
+}
+
 #organizemenu {
 
   width: 27%;
@@ -3198,7 +3210,7 @@ ul#top_menu li a.login:before {
 
 }
 
-#organizeinforestaurant233 {
+#organizeinfrestaurant {
 
   width: 37%;
   height:60%;
@@ -3209,6 +3221,7 @@ ul#top_menu li a.login:before {
   border-radius: 10px;
 
 }
+
 
 
 #organizeinforestauratables {
@@ -3223,6 +3236,17 @@ ul#top_menu li a.login:before {
 
 }
 
+#organizeinfoestauranttables {
+
+  width: 56%;
+  height:60%;
+  background-color: red;
+  position: absolute;
+  margin-top: 53%;
+  margin-left: 2%;
+  border-radius: 10px;
+
+}
 
 #organizeitems {
 
