@@ -779,4 +779,24 @@ router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
 });
 
+////GET DE PACKS DISPONIVEIS////
+
+router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getAvailablePacksRestaurante(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/acomodacoes/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableAcomodacoesRest(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

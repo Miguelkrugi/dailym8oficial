@@ -1343,4 +1343,30 @@ module.exports.UpdateMesaUnavailable = async function(id_plate){
 
 }
 
+///GET DE PACKS DISPONIVEIS DE UM RESTAURANTE///
+module.exports.getAvailablePacksRestaurante = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, restaurant.establishment_id, restaurant.establishment_name, restaurant.establishment_description, restaurant.establishment_utilizador_id, restaurant.restaurant_id, restaurant.restaurant_type_id, restaurant.restaurante_number_tables, utilizador.utilizador_id, utilizador.utilizador_name, type_restaurant.type_restaurant_id, type_restaurant.type_restaurant_name FROM pack_restaurante INNER JOIN restaurant ON restaurant.restaurant_id = pack_restaurante.pack_restaurante_id INNER JOIN utilizador ON utilizador.utilizador_id = restaurant.establishment_utilizador_id INNER JOIN type_restaurant ON type_restaurant.type_restaurant_id = restaurant.restaurant_type_id WHERE pack_restaurante.pack_restaurante_id = " + restaurant_id + " AND pack_restaurante.pack_availability = '0' ORDER BY pack_restaurante.created_at DESC";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
+
+module.exports.getAvailableAcomodacoesRest = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, equipment_service.establishment_name, equipment_service.establishment_id FROM acomodacao INNER JOIN equipment_service ON equipment_service.equipment_service_id = acomodacao.acomodacao_equipment_service_id WHERE equipment_service.establishment_utilizador_id = " + restaurant_id + " AND acomodacao.acomodacao_availability = '0'";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
