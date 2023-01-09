@@ -1141,6 +1141,20 @@ module.exports.getAcomodacaoFromPackRestaurante = async function(restaurant_id) 
     }
 }
 
+module.exports.getSpotFromRestaurant = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, spot.spot_id, spot.spot_price, spot.spot_availability, spot.spot_parking_lot_id, spot.spot_number FROM item_spot_restaurant INNER JOIN spot ON spot.spot_id = item_spot_restaurant.item_spot_identifier_reservation  WHERE item_spot_restaurant.item_pack_restaurante_id = " + restaurant_id;
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 
 module.exports.savePlate = async function(pedido) {
@@ -1382,5 +1396,40 @@ module.exports.getAvailableLugaresRest = async function(restaurant_id) {
     } catch (err) {
         console.log(err);
         return { status: 500, data: err };
+    }
+}
+
+
+module.exports.saveCreateMesaItem = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO item_mesa_restaurant " +
+            "(item_mesa_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id) " +
+            "VALUES ($1, $2, $3, $4) " +
+            "RETURNING item_mesa_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.item_mesa_identifier_reservation, pedido.item_date_marcacao_reservation, pedido.item_date_marcada_reservation, pedido.item_pack_restaurante_id]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
     }
 }

@@ -690,6 +690,14 @@ router.get('/packs/restaurante/acomodacao/:idpack', async function(req, res, nex
 
 });
 
+router.get('/packs/restaurante/spots/:idpack', async function(req, res, next) {
+
+  let user_id = req.params.idpack;
+  let result = await usersModel.getSpotFromRestaurant(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
 router.get('/getincomplete/restaurante/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
   let user_id = req.params.iduser;
@@ -806,6 +814,14 @@ router.get('/getavailable/lugares/items/:idutilizador', async function(req, res,
   let result = await usersModel.getAvailableLugaresRest(estabelecimento_id);
   res.status(result.status).send(result.data);
 
+});
+
+
+router.post('/insertmesaitem', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveCreateMesaItem(newPedido);
+  res.sendStatus(result.status).send(result.data);
 });
 
 module.exports = router;
