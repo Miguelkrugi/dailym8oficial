@@ -3181,6 +3181,18 @@ ul#top_menu li a.login:before {
 
 }
 
+#this2 {
+
+  width: 37%;
+  height:60%;
+  background-color: lightgray;
+  position: absolute;
+  margin-top: 53%;
+  margin-left: 60%;
+  border-radius: 10px;
+
+}
+
 #organizemenu {
 
   width: 27%;

@@ -442,7 +442,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
                   console.log("Obtendo as mesas do pack")
                   
                   // let recipeName = document.getElementById("nome1")
-                   let restaurantesElem = document.getElementById("organizeinforestauratables");
+                   let restaurantesElem = document.getElementById("this2");
                   // var pack_id = sessionStorage.getItem("pack_id");
                    var utilizador_id = sessionStorage.getItem("utilizador_id");
                    console.log("setItem->userId = " + utilizador_id);
@@ -580,7 +580,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
      getMesasFromPack(pack_id);
 
-  //   getAcomodacaoFromPackRestaurante(pack_id);
+     getAcomodacaoFromPackRestaurante(pack_id);
 
   //   getLugaresFromPack(pack_id);
 
