@@ -816,7 +816,7 @@ router.get('/getavailable/lugares/items/:idutilizador', async function(req, res,
 
 });
 
-
+//VALIDAR//
 router.post('/insertmesaitem', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));

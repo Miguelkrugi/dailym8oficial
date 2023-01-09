@@ -386,13 +386,13 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
                 async function getMesasFromPack(id_pack){
 
-                    console.log("Obtendo as mesas do pack")
+                    console.log("Obtendo as mesas do pack");
                     
                     // let recipeName = document.getElementById("nome1")
                      let restaurantesElem = document.getElementById("this1");
                     // var pack_id = sessionStorage.getItem("pack_id");
                      var utilizador_id = sessionStorage.getItem("utilizador_id");
-                     console.log("setItem->userId = " + utilizador_id);
+                     console.log("setItem-> PACK ID= " + id_pack);
                      //console.log("Restaurante ID: " + restaurant_id);
                     
                     try{
@@ -410,15 +410,12 @@ async function criarMesa(rest_id, tipo_mesa_id){
                     let html = "";
                     
                     for(let tablepack of suggestedrestaurants){
-                    // console.log("Restaurante: " + restaurant);
+                    console.log("Restaurante: " + tablepack);
                      html += createtable33HTML(tablepack);
                     }
                     
                     console.log("OBTEVE");
-                    //  recipeName.innerHTML = html;
-                    
-                   // restaurantesElem.innerHTML = html;
-                  
+
                      restaurantesElem.innerHTML = html;
                     
                     
@@ -583,24 +580,11 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
      getMesasFromPack(pack_id);
 
-     getAcomodacaoFromPackRestaurante(pack_id);
+  //   getAcomodacaoFromPackRestaurante(pack_id);
 
-     getLugaresFromPack(pack_id);
+  //   getLugaresFromPack(pack_id);
 
-  //   getMorada(restaurant_id);
-  
-    // getReservasRestaurante(restaurant_id);
-  
-   //  getMenu(restaurant_id);
-  
-   //  getMesas(restaurant_id);
 
-     //getAvailableTables(restaurant_id);
-
-     //getAvailableAcom(utilizador_id); //OBTER ACOMODACOES DISPONIVEIS EM VÁRIOS SERVIÇOS DE TOLDOS DO UTILIZADOR
-
-     //getAvailableLugar(utilizador_id);
-  
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   
       var tipo_prato_id = 0;
