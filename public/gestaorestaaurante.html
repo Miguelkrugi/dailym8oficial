@@ -113,7 +113,8 @@
         <h1 id="textominhasreservas" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minhas Reservas</h1>
         <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
 	
-		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">EDITAR LOCAL</button>
+		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">CRIAR PACK</button>
+		<button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%; visibility: hidden;">EDITAR PACK</button>
         <!--DIV DAS 10 ULTIMAS RESERVAS-->
 
         <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
@@ -277,34 +278,36 @@
 
         <!--POPUP PARA EDITAR LOCAL-->
 
-		<div class="bg-modal5">
+		<div class="bg-modal5" style="">
 			<div class="modal-contents5">
 		
 				<div class="close6">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
 	
-				<h2>ADICIONAR POSIÇÃO</h2>
+				<h2>CRIAR PACK</h2>
 					<hr style="margin-top: -1%;">
 		
 				<form action="">
-				  <h4 style="position: absolute; margin-top: -2%;">Morada</h4>
-				  <textarea  style="width: 100%; margin-top: 4%;" placeholder="Insira a morada do seu estabelecimento" name="address" onFocus="initializeAutocomplete()" id="locality" ></textarea><br>
+				  <h4 style="position: absolute; margin-top: -5%;">Nome</h4>
+				  <input  style="width: 100%; margin-top: 8%;" id="namepack" placeholder="Digite o nome do pack" name="address" ><br>
 	
 				  <h4 style="position: absolute; margin-top: -1.6%;">Detalhes</h4>
-				  <h4 style="position: absolute; margin-top: 3.5%; font-size: 10px;">Cidade</h4>
-				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 6%;" type="text" name="city" id="city" placeholder="Cidade" value="" ><br>
-				  <h4 style="position: absolute; margin-top: 9.5%; font-size: 10px;">Latitude</h4>
-				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 12%;" type="text" name="latitude" id="latitude" placeholder="Latitude" value="" ><br>
+				  <h4 style="position: absolute; margin-top: 3.5%; font-size: 10px;">Descrição</h4>
+				  <textarea style="width: 92%; position: absolute; margin-left: -47%; margin-top: 6%; height: 20%;" type="text" name="city" id="descpack" placeholder="Descrição" value="" ></textarea><br>
 	
-				  <h4 style="position: absolute; margin-top: 15.5%; font-size: 10px;">Longitude</h4>
-				  <input style="width: 92%; position: absolute; margin-left: -0.1%; margin-top: 18%;" type="text" name="longitude" id="longitude" placeholder="Longitude" value="" ><br>
-				  <button style="position: absolute; margin-top: 25%; margin-left: -14%;">ADICIONAR POSIÇÃO</button>
+				  <h4 style="position: absolute; margin-top: 19.5%; font-size: 10px;">Disponibilidade</h4>
+				  <input  style="width: 100%; margin-top: 25%;" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)" id="disponibilidadepack" name="address" ><br>
+				  <button style="position: absolute; margin-top: 0.2%; margin-left: -12%;">CRIAR PACK</button>
 				</form>
 		
 			</div>
 		</div>
 
 		<!--FIM DO POPUP PARA EDITAR LOCAL-->
+
+		<!------------------ DIV PARA ESCOLHER PACKS PARA EDITAR -->
+
+		
 
 		</div>
 	</main>

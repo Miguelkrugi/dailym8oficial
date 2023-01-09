@@ -498,6 +498,14 @@ window.onload = function exampleFunction() {
    document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
    document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
 
+   document.getElementById('button9').addEventListener("click", function() {
+	  
+    //console.log("TIPO MESA: " + tipo_mesa_id);
+   // criarMesa(restaurant_id, tipo_mesa_id);
+
+    document.getElementById("bg-modal666").style.display = "flex";
+  });
+
    getMorada(restaurant_id);
 
    getReservasRestaurante(restaurant_id);
@@ -586,6 +594,8 @@ window.onload = function exampleFunction() {
     console.log("TIPO MESA: " + tipo_mesa_id);
     criarMesa(restaurant_id, tipo_mesa_id);
   });
+
+
 
 }
 
