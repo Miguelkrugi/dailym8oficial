@@ -1442,7 +1442,7 @@ module.exports.saveCreateMesaItem = async function(pedido) {
 
 module.exports.getAcomodacoesAvailableUtilizador = async function(est_id) {
     try {
-        let sql = "SELECT *, equipment_service.establishment_id, equipment_service.establishment_name, equipment_service.establishment_utilizador_id FROM acomodacao INNER JOIN equipment_service ON equipment_service.equipment_service_id = acomodacao.acomodacao_id WHERE equipment_service.establishment_utilizador_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
+        let sql = "SELECT *, equipment_service.establishment_id, equipment_service.establishment_name, equipment_service.establishment_utilizador_id FROM acomodacao INNER JOIN equipment_service ON equipment_service.equipment_service_id = acomodacao.acomodacao_equipment_service_id WHERE equipment_service.establishment_utilizador_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
