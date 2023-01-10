@@ -3234,6 +3234,17 @@ ul#top_menu li a.login:before {
 
 }
 
+#this3 {
+
+  width: 56%;
+  height:60%;
+  background-color: lightgray;
+  position: absolute;
+  margin-top: 53%;
+  margin-left: 2%;
+  border-radius: 10px;
+
+}
 
 
 #organizeinforestauratables {

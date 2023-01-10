@@ -770,6 +770,14 @@ router.get('/getmesas/restaurante/:idrestaurant', async function(req, res, next)
 
 });
 
+router.get('/getacomodacoes/restaurante/:idutilizador', async function(req, res, next) {
+
+  let user_id = req.params.idrestaurant;
+  let result = await usersModel.getAcomodacoesAvailableUtilizador(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.post('/insertresmesa', async function(req, res, next) {
   let newPedido = req.body;
@@ -815,6 +823,8 @@ router.get('/getavailable/lugares/items/:idutilizador', async function(req, res,
   res.status(result.status).send(result.data);
 
 });
+
+
 
 //VALIDAR//
 router.post('/insertmesaitem', async function(req, res, next) {
