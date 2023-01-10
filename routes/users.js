@@ -772,7 +772,7 @@ router.get('/getmesas/restaurante/:idrestaurant', async function(req, res, next)
 
 router.get('/getacomodacoes/restaurante/:idutilizador', async function(req, res, next) {
 
-  let user_id = req.params.idrestaurant;
+  let user_id = req.params.idutilizador;
   let result = await usersModel.getAcomodacoesAvailableUtilizador(user_id);
   res.status(result.status).send(result.data);
 
