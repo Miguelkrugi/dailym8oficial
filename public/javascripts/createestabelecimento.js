@@ -41,6 +41,53 @@ async function criarRestaurant(user_id){
    
    }
 
+
+   async function criarAcomodacao(user_id){
+
+    try {
+   
+     
+     var userr_id = user_id
+   
+
+      let data = {
+   
+       establishment_name: document.getElementById("nomeinput").value,
+       establishment_description: document.getElementById("descricaoinput").value,
+       establishment_utilizador_id: user_id,
+       restaurant_type_id: 1, //DEFAULT FOR NOW
+       restaurante_number_tables: document.getElementById("numeromesasinput").value,
+       type_service_identifier: 1,
+       state_id: 1
+   
+      }
+   
+      //ENVIAR METODO
+      let newExercise = await $.ajax({
+       url: "/users/insertnewacomodacao/",
+       method: "post",
+       data: JSON.stringify(data),
+       contentType: "application/json",
+       dataType: "json"
+       });
+   
+       location.reload();
+      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   
+   
+    } catch (err){
+   
+     window.alert("Receita Criada.");
+   
+    }
+   
+   
+   
+   }
+
+
+
+
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
