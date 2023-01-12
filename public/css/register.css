@@ -37,7 +37,7 @@ label{
 }
 input{
 	width: 60%;
-	height: 20px;
+	height: 30px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
@@ -49,7 +49,7 @@ input{
 }
 button{
 	width: 60%;
-	height: 40px;
+	height: 50px;
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
