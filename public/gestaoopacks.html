@@ -33,7 +33,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
-	<script src="./javascripts/gestaorestaaurante.js"></script>
+	<script src="./javascripts/gestaoopacks.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
 
 
@@ -97,7 +97,7 @@
                         <a href="myestablishments.html">
                         <button style="margin-top: 0.7%; position: absolute; margin-left: -7%;">VOLTAR</button>
                         </a>
-		        		<h1 style="font-size: 35px; margin-left: 0.1%;">Restaurantes</h1>
+		        		<h1 style="font-size: 35px; margin-left: 0.1%;">Packs</h1>
 		    		</div>
 		    		
 		    	</div>
@@ -114,13 +114,11 @@
         <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
 	
 		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">CRIAR PACK</button>
-		
-		<a href="gestaoopacks.html"><button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%;">EDITAR PACK</button></a>
+		<button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%; visibility: hidden;">EDITAR PACK</button>
         <!--DIV DAS 10 ULTIMAS RESERVAS-->
 
-        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
-        <h3 style="margin-left: 70%; margin-top: 5.5%; position: absolute;">MENÚ</h3>
-        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button2" class="button">CRIAR PRATO</button>
+        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">EDITAR PACKS</h3>
+       <!--- <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button2" class="button">CRIAR PRATO</button>
         <button style="position:absolute; margin-top: 53.2%; margin-left: 12%; z-index: 300; " id="button3" class="button">CRIAR MESA</button>
         <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
             <button class="dropbtn">Disponibilidade</button>
@@ -149,26 +147,19 @@
             </div>
         </div>
         <h3 style="margin-left: 2%; margin-top: 53%; position: absolute; z-index: 30;">MESAS</h3>
-        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">INFORMAÇÕES ADICIONAIS</h3>
+        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">INFORMAÇÕES ADICIONAIS</h3>-->
         <div id="page" style="margin-top: 3%;">
-        <div id="organizereserva" style="overflow-y: scroll;">
+        <div id="organizereserva" style="overflow-y: scroll; width: 94%;">
 
           
 
 
         </div>
 
-        <!-- MENU PLATES -->
-
-        <div id="organizemenu" style="overflow-y: scroll;">
-
-
-
-        </div>
 
         <!-- INFORMAÇÕES DO RESTAURANTE -->
 
-        <div id="organizeinfrestaurant">
+        <div id="organizeinforestaurant">
 
             <h3 id="restaurantnameinfo" style="margin-left: 4%; margin-top: 4%;">Nome: </h3>
             <h3 id="restauranttypeinfo" style="margin-left: 4%; margin-top: 4%;">Tipo: </h3>
@@ -177,7 +168,7 @@
 
         </div>
 
-        <div id="organizeinfoestauranttables">
+        <div id="organizeinforestauranttables">
 
             
 

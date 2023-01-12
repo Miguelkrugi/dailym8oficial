@@ -47,7 +47,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
  
   } catch (err){
  
-   window.alert("Receita Criada.");
+   window.alert("Mesa criada com sucesso.");
  
   }
  
@@ -104,7 +104,7 @@ async function criarPlate(rest_id, tipo_prato_id){
  
   } catch (err){
  
-   window.alert("Receita Criada.");
+   window.alert("Prato criado com sucesso.");
  
   }
  
@@ -132,7 +132,7 @@ async function criarPlate(rest_id, tipo_prato_id){
 
  } catch (err){
 console.log(err);
-  window.alert("A mesa não foi apagada");
+  window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
 
  }
 
@@ -156,7 +156,7 @@ async function getMesas(id_restaurante){
   console.log("Obtendo os reports")
   
   // let recipeName = document.getElementById("nome1")
-   let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
+   let lugaresElem = document.getElementById("organizeinfoestauranttables"); //VERIFICAR O ID
    var utilizador_id = sessionStorage.getItem("utilizador_id");
    console.log("setItem->userId = " + utilizador_id);
   
@@ -498,6 +498,14 @@ window.onload = function exampleFunction() {
    document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
    document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
 
+   document.getElementById('button9').addEventListener("click", function() {
+	  
+    //console.log("TIPO MESA: " + tipo_mesa_id);
+   // criarMesa(restaurant_id, tipo_mesa_id);
+
+    document.getElementById("bg-modal666").style.display = "flex";
+  });
+
    getMorada(restaurant_id);
 
    getReservasRestaurante(restaurant_id);
@@ -586,6 +594,8 @@ window.onload = function exampleFunction() {
     console.log("TIPO MESA: " + tipo_mesa_id);
     criarMesa(restaurant_id, tipo_mesa_id);
   });
+
+
 
 }
 

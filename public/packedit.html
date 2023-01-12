@@ -33,7 +33,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
-	<script src="./javascripts/gestaorestaaurante.js"></script>
+	<script src="./javascripts/packedit.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
 
 
@@ -114,13 +114,13 @@
         <h1 id="textominhaconta" style="font-size: 35px; margin-left: 19%; margin-top: 2%; position: absolute; visibility: hidden;">Minha Conta</h1>
 	
 		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">CRIAR PACK</button>
-		
-		<a href="gestaoopacks.html"><button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%;">EDITAR PACK</button></a>
+		<button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%; visibility: hidden;">EDITAR PACK</button>
         <!--DIV DAS 10 ULTIMAS RESERVAS-->
 
-        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
-        <h3 style="margin-left: 70%; margin-top: 5.5%; position: absolute;">MENÚ</h3>
-        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button2" class="button">CRIAR PRATO</button>
+        <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">MESAS</h3>
+        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button222" class="button">CRIAR MESA</button>
+        <button style="position:absolute; margin-top: 5.7%; margin-left: 67%;" id="button233" class="button">CRIAR ACOMODAÇÃO</button>
+        <button style="position:absolute; margin-top: 5.7%; margin-left: 60%;" id="button244" class="button">CRIAR LUGAR</button>
         <button style="position:absolute; margin-top: 53.2%; margin-left: 12%; z-index: 300; " id="button3" class="button">CRIAR MESA</button>
         <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
             <button class="dropbtn">Disponibilidade</button>
@@ -148,36 +148,26 @@
             
             </div>
         </div>
-        <h3 style="margin-left: 2%; margin-top: 53%; position: absolute; z-index: 30;">MESAS</h3>
-        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">INFORMAÇÕES ADICIONAIS</h3>
+        <h3 style="margin-left: 2%; margin-top: 53%; position: absolute; z-index: 30;">LUGARES</h3>
+        <h3 style="margin-left: 60%; margin-top: 53%; position: absolute; z-index: 30;">ACOMODAÇÕES</h3>
         <div id="page" style="margin-top: 3%;">
-        <div id="organizereserva" style="overflow-y: scroll;">
+        <div id="this1" style="overflow-y: scroll; width: 94%;">
 
           
 
 
         </div>
 
-        <!-- MENU PLATES -->
-
-        <div id="organizemenu" style="overflow-y: scroll;">
-
-
-
-        </div>
 
         <!-- INFORMAÇÕES DO RESTAURANTE -->
 
-        <div id="organizeinfrestaurant">
+        <div id="this3">
 
-            <h3 id="restaurantnameinfo" style="margin-left: 4%; margin-top: 4%;">Nome: </h3>
-            <h3 id="restauranttypeinfo" style="margin-left: 4%; margin-top: 4%;">Tipo: </h3>
-            <h3 id="restaurantinfo" style="margin-left: 4%; margin-top: 4%;">Numero de Mesas: </h3>
-            <h3 id="restaurantmorada" style="margin-left: 4%; margin-top: 4%;">Morada: </h3>
+           
 
         </div>
 
-        <div id="organizeinfoestauranttables">
+        <div id="this2">
 
             
 
@@ -185,50 +175,108 @@
 
 		<!--POPUP PARA CRIAR PRATO-->
 
-		<div class="bg-modal">
-			<div class="modal-contents">
+		<div class="bg-modal222" style="display: none;">
+			<div class="modal-contents222">
 		
-				<div class="close2">+</div>
+				<div class="close222">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
 
-				<h2>CRIAR PRATO</h2>
+				<h2>ADICIONAR MESA</h2>
 				<hr style="margin-top: -1%;">
 		
 				<form action="">
-					<input style="width: 70%;" type="text" id="platenameinput" placeholder="Nome">
-					<textarea id="platedescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
-					<a href="#" class="button" id="criarpratobtn" style="margin-top: 40.6%; margin-left: 7%; position: absolute; font-size: 23px; ">Criar Prato</a>
-					<input style="width: 70%;" id="plateprecoinput" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Preço">
+					<input style="width: 70%;" type="text" id="datamarcacaonameinput" placeholder="Inserir Data: YYYY-MM-DD">
+					<textarea id="platedescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%; visibility: hidden;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" id="criarpratobtn" style="margin-top: 40.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Mesa</a>
+					<input style="width: 70%; visibility: hidden;" id="plateprecoinput" type="number" id="foodprice"  name="roodprice"min="0" max="300" placeholder="Preço">
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
 					<input style="width: 70%;" id="platedisponibilidadeinput" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
 					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
 
-					<div class="dropdown" style="width:35%; margin-left: 15%; margin-top: -50%; position: absolute;">
-						<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Tipo</button>
-						<div class="dropdown-content" style="">
-							
-							<button id="aperitivooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-								<a href="#">Aperitivo</a>
-							</button>
-							<button id="entradaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-								<a href="#">Entrada</a>
-							</button>
-							<button id="pratoprincipaloption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-								<a href="#">Prato Principal</a>
-							</button>
-							<button id="sobremesaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-								<a href="#">Sobremesa</a>
-							</button>
-							<button id="pratododiaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
-								<a href="#">Pratos do Dia</a>
-							</button>
-						
-						</div>
-					</div>
+					<div class="dropdown" style="width:38%; margin-left: 14%; margin-top: -50%; position: absolute;">
+                        <button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Mesa</button>
+                        <div class="dropdown-content" id="dropdown-content" style="">
+                            
+                     <!--TERMINAR LOGO Á NOITE, DEPOIS DE ESTUDAR ES-->
+                        
+                        </div>
+                    </div>
 
-					<h5 id="tiposelecionadotext" style="position: absolute; margin-top: -25.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+					
+
+				</form>
+		
+			</div>
+		</div>
+
+        <div class="bg-modal233" style="display: none;">
+			<div class="modal-contents233">
+		
+				<div class="close233">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+				<h2>ADICIONAR ACOMODAÇÃO</h2>
+				<hr style="margin-top: -1%;">
+		
+				<form action="">
+					<input style="width: 70%;" type="text" id="datamarcacaonameinput2" placeholder="Inserir Data: YYYY-MM-DD">
+					<textarea id="platedescricaoinput2" style="height:200px; margin-left: -30.8%; width: 70%; visibility: hidden;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" id="criarpratobtn2" style="margin-top: 40.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Acom.</a>
+					<input style="width: 70%; visibility: hidden;" id="plateprecoinput" type="number" id="foodprice"  name="roodprice"min="0" max="300" placeholder="Preço">
+
+					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
+					<input style="width: 70%;" id="platedisponibilidadeinput2" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+
+					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Numero:</h4>
+
+					<div class="dropdown" style="width:38%; margin-left: 14%; margin-top: -50%; position: absolute;">
+                        <button id="restaurantbutton2" class="dropbtn" style="width: 70%;">Selecionar Acom.</button>
+                        <div class="dropdown-content" id="dropdown-content4" style="">
+                            
+                        
+                        
+                        </div>
+                    </div>
+
+					
+
+				</form>
+		
+			</div>
+		</div>
+
+        <div class="bg-modal244" style="display: none;">
+			<div class="modal-contents244">
+		
+				<div class="close244">+</div>
+				<img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+				<h2>ADICIONAR LUGAR</h2>
+				<hr style="margin-top: -1%;">
+		
+				<form action="">
+					<input style="width: 70%;" type="text" id="datamarcacaonameinput3" placeholder="Inserir Data: YYYY-MM-DD">
+					<textarea id="platedescricaoinput3" style="height:200px; margin-left: -30.8%; width: 70%; visibility: hidden;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
+					<a href="#" class="button" id="criarpratobtn3" style="margin-top: 40.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Lugar</a>
+					<input style="width: 70%; visibility: hidden;" id="plateprecoinput" type="number" id="foodprice"  name="roodprice"min="0" max="300" placeholder="Preço">
+
+					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
+					<input style="width: 70%;" id="platedisponibilidadeinput3" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+
+					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Numero:</h4>
+
+					<div class="dropdown" style="width:38%; margin-left: 14%; margin-top: -50%; position: absolute;">
+                        <button id="restaurantbutton3" class="dropbtn" style="width: 70%;">Selecionar Lugar</button>
+                        <div class="dropdown-content" id="dropdown-content5" style="">
+                            
+                        
+                        
+                        </div>
+                    </div>
+
+					
 
 				</form>
 		
@@ -522,15 +570,35 @@ function initializeAutocomplete(){
 
 ////////////PRATO
 
-document.getElementById('button2').addEventListener("click", function() {
+document.getElementById('button222').addEventListener("click", function() {
 	  
-  document.querySelector('.bg-modal').style.display = "flex";
+  document.querySelector('.bg-modal222').style.display = "flex";
 });
 
-document.querySelector('.close2').addEventListener("click", function() {
+document.querySelector('.close222').addEventListener("click", function() {
 
-  document.querySelector('.bg-modal').style.display = "none";
+  document.querySelector('.bg-modal222').style.display = "none";
 });
+
+document.getElementById('button233').addEventListener("click", function() {
+	  
+      document.querySelector('.bg-modal233').style.display = "flex";
+    });
+    
+    document.querySelector('.close233').addEventListener("click", function() {
+    
+      document.querySelector('.bg-modal233').style.display = "none";
+    });
+
+    document.getElementById('button244').addEventListener("click", function() {
+	  
+      document.querySelector('.bg-modal244').style.display = "flex";
+    });
+    
+    document.querySelector('.close244').addEventListener("click", function() {
+    
+      document.querySelector('.bg-modal244').style.display = "none";
+    });
 
 
 
