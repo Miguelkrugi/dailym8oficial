@@ -335,7 +335,7 @@ async function getLikedAcomodacao(id_user){
     try {
 
       console.log("CHEGOU");
-      
+    
        let data = {
     
         local_morada: local_1, //DEFAULT FOR NOW,
