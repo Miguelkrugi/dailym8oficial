@@ -412,12 +412,15 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
       var pack_id = sessionStorage.getItem('pack_id');
 
-    
+    const current_date = Date();
        console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
     
        var item_mesa_identifier_reservation = table.mesa_id; //DEFAULT FOR NOW,
        var item_date_marcacao_reservation = "2023-01-18";
-       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput");
+       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput") + " " + current_date.getHours() + ":" + current_date.getMinutes() + ":" + current_date.getSeconds();
+
+
+
        var item_pack_restaurante_id = pack_id;
     
         sentPostTT2(item_mesa_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id);
@@ -500,12 +503,13 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
       var pack_id = sessionStorage.getItem('pack_id');
 
+      const current_date2 = Date();
     
        console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
     
        var item_acomodacao_identifier_reservation = acomodacao.acomodacao_id; //DEFAULT FOR NOW,
        var item_date_marcacao_reservation = "2023-01-18";
-       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput2");
+       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput2") + " " + current_date2.getHours() + ":" + current_date2.getMinutes() + ":" + current_date2.getSeconds();
        var item_pack_restaurante_id = pack_id;
     
         sentPostTT3(item_acomodacao_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id);
