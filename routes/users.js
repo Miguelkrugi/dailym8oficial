@@ -795,6 +795,15 @@ router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
 });
 
+router.put('/setacomodacaounavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateAcomodacaoUnavailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 ////GET DE PACKS DISPONIVEIS////
 
 router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req, res, next) {
@@ -831,6 +840,13 @@ router.post('/insertmesaitem', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
   let result = await usersModel.saveCreateMesaItem(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.post('/insertacomodacaoitem', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveCreateAcomodacaoItem(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
 
