@@ -41,8 +41,7 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
    
    }
 
-
-   async function criarAcomodacao(user_id){
+   async function criarEstacionamento(user_id){
 
     try {
    
@@ -55,16 +54,60 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
        establishment_name: document.getElementById("nomeinput").value,
        establishment_description: document.getElementById("descricaoinput").value,
        establishment_utilizador_id: user_id,
-       restaurant_type_id: 1, //DEFAULT FOR NOW
-       restaurante_number_tables: document.getElementById("numeromesasinput").value,
-       type_service_identifier: 1,
+       parking_lot_number_spots: document.getElementById("numerolugaresinput").value,
+       type_service_identifier: 3,
        state_id: 1
    
       }
    
       //ENVIAR METODO
       let newExercise = await $.ajax({
-       url: "/users/insertnewacomodacao/",
+       url: "/users/insertnewestacionamento",
+       method: "post",
+       data: JSON.stringify(data),
+       contentType: "application/json",
+       dataType: "json"
+       });
+   
+       location.reload();
+      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   
+   
+    } catch (err){
+   
+     window.alert("Receita Criada.");
+   
+    }
+   
+   
+   
+   }
+
+
+
+   async function criarAcomodacao(user_id,acomodacao_tipo_id){
+
+    try {
+   
+     
+     var userr_id = user_id
+   
+
+      let data = {
+   
+       acomodacao_number: document.getElementById("nomeinput").value,
+       acomodacao_availability: 0,
+       acomodacao_type_id: acomodacao_tipo_id,
+       acomodacao_equipment_service_id: 1, //DEFAULT FOR NOW
+       acomodacao_price: document.getElementById("numeroacomodacoesinput").value,
+       acomodacao_description: document.getElementById("descricaoinput").value,
+       state_id: 1
+   
+      }
+   
+      //ENVIAR METODO
+      let newExercise = await $.ajax({
+       url: "/users/insertnewacomodacao",
        method: "post",
        data: JSON.stringify(data),
        contentType: "application/json",
@@ -115,6 +158,7 @@ window.onload = function exampleFunction() {
     document.getElementById('createrestaurant').style.visibility = "visible";
 
     var tipo_restaurant_id = 0;
+    var acomodacao_tipo_id = 0;
 
 
     document.getElementById('portuguesoption').addEventListener("click", function() {
@@ -181,6 +225,22 @@ window.onload = function exampleFunction() {
       
     });
 
+    document.getElementById('toldooption').addEventListener("click", function() {
+	    
+      acomodacao_tipo_id = 1;
+      console.log(acomodacao_tipo_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Toldo" 
+      
+    });
+
+    document.getElementById('palhotaoption').addEventListener("click", function() {
+	    
+      acomodacao_tipo_id = 2;
+      console.log(acomodacao_tipo_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Palhota" 
+      
+    });
+
     document.getElementById('createrestaurant').addEventListener("click", function(){
 
         console.log("Funcao Chamada");
@@ -192,11 +252,19 @@ window.onload = function exampleFunction() {
       document.getElementById('createacomodacao').addEventListener("click", function(){
 
         console.log("Funcao Chamada");
-        criarAcomodacao(utilizador_id);
+        criarAcomodacao(utilizador_id,acomodacao_tipo_id);
         
       
       });
 
+
+      document.getElementById('createestacionamento').addEventListener("click", function(){
+
+        console.log("Funcao Chamada");
+        criarEstacionamento(utilizador_id);
+        
+      
+      });
       
    
    
@@ -218,7 +286,15 @@ function createRestaurante() {
     
     document.getElementById('createrestaurant').style.visibility = "visible"
 
+    document.getElementById('dropdown1').style.visibility = "visible"
+
     document.getElementById('createacomodacao').style.visibility = "hidden"
+
+    document.getElementById('nometexto').style.visibility = "visible"
+
+    document.getElementById('nomeinput').style.visibility = "visible"
+    
+    
 
 }
 
@@ -226,8 +302,12 @@ function createAcomodacao() {
 
     document.getElementById('textomeusestabelecimentos').innerHTML = "Criar Serviço de Acomodação"
 
-    document.getElementById('numeromesastexto').innerHTML = "Número de Acomodações"
+    document.getElementById('numeromesastexto').innerHTML = "Preço da Acomodação"
 
+    document.getElementById('nometexto').innerHTML = "Número da Acomodação"
+
+    document.getElementById('dropdown1').style.visibility = "visible"
+  
     document.getElementById('numeromesasinput').style.visibility = "hidden"
 
     document.getElementById('numeroacomodacoesinput').style.visibility = "visible"
@@ -238,6 +318,8 @@ function createAcomodacao() {
 
     document.getElementById('createacomodacao').style.visibility = "visible"
 
+    document.getElementById('createestacionamento').style.visibility = "hidden"
+
 }
 
 function createEstacionamento() {
@@ -246,10 +328,20 @@ function createEstacionamento() {
 
     document.getElementById('numeromesastexto').innerHTML = "Número de Lugares"
 
+    document.getElementById('nometexto').innerHTML = "Nome do estacionamento"
+
+    document.getElementById('dropdown1').style.visibility = "hidden"
+
     document.getElementById('numeromesasinput').style.visibility = "hidden"
 
     document.getElementById('numeroacomodacoesinput').style.visibility = "hidden"
 
     document.getElementById('numerolugaresinput').style.visibility = "visible"
+
+    document.getElementById('createrestaurant').style.visibility = "hidden"
+
+    document.getElementById('createacomodacao').style.visibility = "hidden"
+
+    document.getElementById('createestacionamento').style.visibility = "visible"
 
 }

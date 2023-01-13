@@ -292,7 +292,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   
    } catch (err){
   
-    window.alert("Receita Criada.");
+    window.alert("Reserva criada.");
   
    }
 

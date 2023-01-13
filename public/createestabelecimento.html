@@ -134,16 +134,16 @@
 
         <h4 id="nometexto" style="position: absolute; margin-left: 19%; margin-top: 5%;">Nome</h4>
 
-        <input id="nomeinput" type="text" placeholder="Nome" style="margin-left: 19%; margin-top: 7%;">
+        <input id="nomeinput" type="text" style="margin-left: 19%; margin-top: 7%;">
 
         <h4 id="descricaotexto" style="position: absolute; margin-left: 19%; margin-top: 6%;">Descrição</h4>
 
         <textarea id="descricaoinput" placeholder="Descrição (até 600 caractéres)" style="height:30%; margin-left: 19%; margin-top: 8%; position: absolute; width: 50%;"></textarea>
 		
-		<div class="dropdown" style="position: absolute; margin-left: 19%; margin-top: 0.2%;">
+		<div id ="dropdown1" class="dropdown" style="position: absolute; margin-left: 19%; margin-top: 0.2%;visibility: hidden;" >
 			<h5 id="tiposelecionadotext" style="position: absolute; margin-left: 75%; margin-top: 0.2%;">Tipo selecionado:</h5>
 			<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Tipo</button>
-			<div class="dropdown-content" style="">
+			<div class="dropdown-content" style="width: 30%">
 				
 				<button id="portuguesoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
 					<a href="#">Português</a>
@@ -169,6 +169,13 @@
 				<button id="outrooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
 					<a href="#">Outro</a>
 				</button>
+
+				<button id="toldooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Toldo</a>
+				</button>
+				<button id="palhotaoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Palhota</a>
+				</button>
 			
 			</div>
 		</div>
@@ -179,7 +186,7 @@
 
         <input id="numeromesasinput" type="number" placeholder="Número de Mesas" style="margin-left: 19%; margin-top: 29%; visibility: hidden;">
 
-        <input id="numeroacomodacoesinput" type="number" placeholder="Número de Acomodações" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
+        <input id="numeroacomodacoesinput" type="number" placeholder="Preço" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
 
         <input id="numerolugaresinput" type="number" placeholder="Número de Lugares" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
 
@@ -188,6 +195,8 @@
         <button style="position: absolute; margin-left: 57.6%; visibility: hidden;" id="createrestaurant">CRIAR ESTABELECIMENTO</button>
 
 		<button style="position: absolute; margin-left: 57.6%; visibility: hidden;" id="createacomodacao">CRIAR ESTABELECIMENTO</button>
+
+		<button style="position: absolute; margin-left: 57.6%; visibility: hidden;" id="createestacionamento">CRIAR ESTABELECIMENTO</button>
 
 		
 
