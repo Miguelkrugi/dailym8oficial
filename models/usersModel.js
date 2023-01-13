@@ -890,6 +890,30 @@ module.exports.saveRestaurant = async function(pedido) {
     }
 }
 
+module.exports.saveAcomodacao = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+
+    try {
+
+        let sql =
+            "INSERT " +
+            "INTO acomodacao " +
+            "(acomodacao_number, acomodacao_availability, acomodacao_type_id, acomodacao_equipment_service_id, acomodacao_price, acomodacao_description) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING acomodacao_id";
+
+        let result = await pool.query(sql, [pedido.acomodacao_number, pedido.acomodacao_availability, pedido.acomodacao_type_id, pedido.acomodacao_equipment_service_id, pedido.acomodacao_price, pedido.acomodacao_description]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
 module.exports.saveMesa = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
     /* checks all fields needed and ignores other fields
