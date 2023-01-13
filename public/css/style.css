@@ -3326,7 +3326,7 @@ ul#top_menu li a.login:before {
 
 
 #organize6 {
-  width: 62.2%;
+  width: 300%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -3335,7 +3335,7 @@ ul#top_menu li a.login:before {
   margin-top: 10px;
   margin-left: 5px;
   background-color: transparent;
-  position: absolute;
+  position: relative;
   z-index: 1;
 }
 
