@@ -345,6 +345,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
  
         console.log("CHEGOU");
        
+        console.log("ID MESA: " + item_mesa_identifier_reservation);
       
      
          let data = {
@@ -367,8 +368,21 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
           window.alert("Mesa adicionada ao Pack");
           //UPDATE
-          console.log("ID MESA: " + item_mesa_identifier_reservation);
-         
+
+          try{
+          
+          //VERIFICAR O PORQUE DE NÃO-ALTERAR O ESTADO///
+
+          let newExercise2 = await $.ajax({
+            url: "users/setmesaunavailable/"+ item_mesa_identifier_reservation,
+            method: "put",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json"
+            });
+          } catch (err){
+            window.alert("ALERTA");
+          }
           
              // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
           
@@ -378,7 +392,6 @@ async function criarMesa(rest_id, tipo_mesa_id){
         window.alert("Receita Criada.");
       
        }
-
        //O PRÓXIMO PASSO É ALTERAR A DISPONIBILIDADE DA MESA
 
         /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
@@ -880,17 +893,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
    
      
   
-     document.getElementById('criarpratobtn').addEventListener("click", function() {
-        
-      console.log("TIPO PRATO: " + tipo_prato_id);
-      criarPlate(restaurant_id, tipo_prato_id);
   
-  
-  
-      document.getElementById("bg-modal").style.display = "none";
-  
-     
-    });
   
     /////////////////////////////////////////////////////////////////////////////////////////
   

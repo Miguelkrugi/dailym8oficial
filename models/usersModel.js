@@ -1227,7 +1227,7 @@ module.exports.savePosition = async function(pedido) {
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
        // let result = await pool.query(sql, [pedido.local_morada, 4326, stringforpoint, pedido.local_restaurant_id, pedido.local_latitude, pedido.local_longitude]);
-        let result = await pool.query(sql, [pedido.local_morada, pedido.ref_system_id, "POINT(37.3272 17.2837)", pedido.local_restaurante_id, 37.3272, 17.2837]);
+        let result = await pool.query(sql, [pedido.local_morada, pedido.ref_system_id, pedido.geometry_info_point, pedido.local_restaurante_id, pedido.local_latitude, pedido.local_longitude]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
@@ -1498,5 +1498,36 @@ module.exports.getAcomodacoesAvailableUtilizador = async function(est_id) {
     } catch (err) {
         console.log(err);
         return { status: 500, data: err };
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+module.exports.savePositionRestaurante = async function(pedido) {
+
+    console.log("CHEGOU AQUI");
+    console.log("FUNÇÃO CHAMADA");
+
+    console.log("PEDIDO:" + pedido.local_latitude);
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+
+    try {
+
+       let sql =
+            "INSERT " +
+            "INTO place_restaurante " +
+            "(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING local_id";
+
+        let result = await pool.query(sql, [pedido.local_morada, pedido.ref_system_id, pedido.geometry_info_point, pedido.local_restaurante_id, pedido.local_latitude, pedido.local_longitude]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
     }
 }

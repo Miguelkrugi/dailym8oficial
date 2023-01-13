@@ -321,6 +321,49 @@ async function getLikedAcomodacao(id_user){
   
   }
 
+  async function addposition(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude){
+
+    let local_1 = local_morada;
+    let local_2 = ref_system_id;
+    let local_3 =geometry_info_point;
+    let local_4 = local_restaurante_id;
+    let local5 =local_latitude;
+    let local6 = local_longitude;
+
+
+
+    try {
+
+      console.log("CHEGOU");
+      
+       let data = {
+    
+        local_morada: local_1, //DEFAULT FOR NOW,
+        ref_system_id: local_2,
+        geometry_info_point: local_3,
+        local_restaurante_id: local_4,
+        local_latitude: local5,
+        local_longitude: local6
+    
+       }
+
+       //ENVIAR METODO
+       let newExercise = await $.ajax({
+        url: "/users/insertlocalizacaoplace/restaurante/",
+        method: "post",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "json"
+        });
+    
+        window.alert("Mesa adicionada ao Pack");
+
+      } catch (err) {
+        window.alert("Alert");
+      }
+
+    }
+
   function openmodal(restaurante){
     console.log("chamada");
 
@@ -329,7 +372,20 @@ async function getLikedAcomodacao(id_user){
 
     var rest_id = restaurante.restaurant_id;
 
-    document.getElementById("botaounico").addEventListener("click", myFunction(rest_id));
+    document.getElementById('botaounico').addEventListener("click", function() {
+      
+      let local_morada = document.getElementById("locality").value;
+      let ref_system_id = 4326;
+      let local_latitude = document.getElementById("latitude").value;
+      let local_longitude = document.getElementById("longitude").value;
+      let local_restaurante_id = restaurante.restaurant_id;
+      let geometry_info_point = "'POINT(" + local_latitude + " " + local_longitude + ")'";
+
+      addposition(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude);
+      
+    });
+
+   // document.getElementById("botaounico").addEventListener("click", myFunction(rest_id));
 
 // -> FUNCIONAL -> document.getElementById("placeidtext").innerHTML = "ID do Local: " + restaurante.restaurant_id; //FUNCIONAL
 ////////// BUTTON TO SAVE POSITION /////////
@@ -1021,4 +1077,3 @@ async function myReservas(){
     console.log("chamada");
   }
 
- 
