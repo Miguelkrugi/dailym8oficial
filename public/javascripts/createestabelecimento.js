@@ -41,6 +41,49 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
    
    }
 
+   async function criarEstacionamento(user_id){
+
+    try {
+   
+     
+     var userr_id = user_id
+   
+
+      let data = {
+   
+       establishment_name: document.getElementById("nomeinput").value,
+       establishment_description: document.getElementById("descricaoinput").value,
+       establishment_utilizador_id: user_id,
+       parking_lot_number_spots: document.getElementById("numerolugaresinput").value,
+       type_service_identifier: 3,
+       state_id: 1
+   
+      }
+   
+      //ENVIAR METODO
+      let newExercise = await $.ajax({
+       url: "/users/insertnewestacionamento",
+       method: "post",
+       data: JSON.stringify(data),
+       contentType: "application/json",
+       dataType: "json"
+       });
+   
+       location.reload();
+      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   
+   
+    } catch (err){
+   
+     window.alert("Receita Criada.");
+   
+    }
+   
+   
+   
+   }
+
+
 
    async function criarAcomodacao(user_id,acomodacao_tipo_id){
 
@@ -214,6 +257,14 @@ window.onload = function exampleFunction() {
       
       });
 
+
+      document.getElementById('createestacionamento').addEventListener("click", function(){
+
+        console.log("Funcao Chamada");
+        criarEstacionamento(utilizador_id);
+        
+      
+      });
       
    
    
@@ -235,6 +286,8 @@ function createRestaurante() {
     
     document.getElementById('createrestaurant').style.visibility = "visible"
 
+    document.getElementById('dropdown1').style.visibility = "visible"
+
     document.getElementById('createacomodacao').style.visibility = "hidden"
 
     document.getElementById('nometexto').style.visibility = "visible"
@@ -252,6 +305,8 @@ function createAcomodacao() {
     document.getElementById('numeromesastexto').innerHTML = "Preço da Acomodação"
 
     document.getElementById('nometexto').innerHTML = "Número da Acomodação"
+
+    document.getElementById('dropdown1').style.visibility = "visible"
   
     document.getElementById('numeromesasinput').style.visibility = "hidden"
 
@@ -263,6 +318,8 @@ function createAcomodacao() {
 
     document.getElementById('createacomodacao').style.visibility = "visible"
 
+    document.getElementById('createestacionamento').style.visibility = "hidden"
+
 }
 
 function createEstacionamento() {
@@ -271,12 +328,20 @@ function createEstacionamento() {
 
     document.getElementById('numeromesastexto').innerHTML = "Número de Lugares"
 
-    document.getElementById('dropdown1').style.visibility = "visible"
+    document.getElementById('nometexto').innerHTML = "Nome do estacionamento"
+
+    document.getElementById('dropdown1').style.visibility = "hidden"
 
     document.getElementById('numeromesasinput').style.visibility = "hidden"
 
     document.getElementById('numeroacomodacoesinput').style.visibility = "hidden"
 
     document.getElementById('numerolugaresinput').style.visibility = "visible"
+
+    document.getElementById('createrestaurant').style.visibility = "hidden"
+
+    document.getElementById('createacomodacao').style.visibility = "hidden"
+
+    document.getElementById('createestacionamento').style.visibility = "visible"
 
 }

@@ -890,6 +890,30 @@ module.exports.saveRestaurant = async function(pedido) {
     }
 }
 
+module.exports.saveEstacionamento = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+
+    try {
+
+        let sql =
+            "INSERT " +
+            "INTO parking_lot " +
+            "(establishment_name, establishment_description, establishment_utilizador_id, parking_lot_number_spots, type_service_identifier, state_id) " +
+            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "RETURNING parking_lot_id";
+
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.parking_lot_number_spots, pedido.type_service_identifier, pedido.state_id]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
 module.exports.saveAcomodacao = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
 
