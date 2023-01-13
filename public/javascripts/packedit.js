@@ -320,6 +320,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
       }
 
+      
     ///////////////////////////////
   
     ////CRIAÇÃO DOS ITEMS DOS PACKS PARA EDITAR////
@@ -333,6 +334,8 @@ async function criarMesa(rest_id, tipo_mesa_id){
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
     
     }
+
+   
 
     async function sentPostTT2(item_mesa_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id){
 
@@ -365,6 +368,23 @@ async function criarMesa(rest_id, tipo_mesa_id){
           window.alert("Mesa adicionada ao Pack");
       
       
+          //UPDATE
+          
+ 
+            console.log("CHEGOU PARA TORNAR INDISPONIVEL");
+          
+             //ENVIAR METODO
+             let newExercise2 = await $.ajax({
+              url: "/users/setmesaunavailable/" + item_mesa_identifier_reservation,
+              method: "put",
+              data: JSON.stringify(data),
+              contentType: "application/json",
+              dataType: "json"
+              });
+          
+             // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+          
+
        } catch (err){
       
         window.alert("Receita Criada.");
@@ -375,30 +395,10 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
         /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
 
-   try {
- 
-    console.log("CHEGOU");
-  
-     //ENVIAR METODO
-     let newExercise = await $.ajax({
-      url: "/users/setmesaunavailable/" + item_mesa_identifier_reservation,
-      method: "put",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
-      });
-  
-     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-  
-  
-   } catch (err){
-  
-    window.alert("Receita Criada.");
-  
-   }
 
 
     }
+
     
     ///SHOW VALUE PARA CADA MESA///
 
@@ -412,12 +412,16 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
       var pack_id = sessionStorage.getItem('pack_id');
 
-    const current_date = Date();
+      const date = new Date();
+    const current_date_hours = date.getHours();
+    const current_date_minutes = date.getMinutes();
+    const current_date_seconds = date.getSeconds();
+
        console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
     
        var item_mesa_identifier_reservation = table.mesa_id; //DEFAULT FOR NOW,
-       var item_date_marcacao_reservation = "2023-01-18";
-       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput") + " " + current_date.getHours() + ":" + current_date.getMinutes() + ":" + current_date.getSeconds();
+       var item_date_marcacao_reservation = document.getElementById("datamarcacaonameinput").value;
+       var item_date_marcada_reservation = "2023-01-18" + " " + current_date_hours + ":" + current_date_minutes + ":" + current_date_seconds;
 
 
 
@@ -426,6 +430,8 @@ async function criarMesa(rest_id, tipo_mesa_id){
         sentPostTT2(item_mesa_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id);
      
     }
+
+    
 
     async function sentPostTT3(item_acomodacao_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id){
 
@@ -457,6 +463,14 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
           window.alert("Mesa adicionada ao Pack");
       
+           //ENVIAR METODO
+           let newExercise2 = await $.ajax({
+            url: "/users/setacomodacaounavailable/" + item_acomodacao_identifier_reservation,
+            method: "put",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json"
+            });
       
        } catch (err){
       
@@ -468,27 +482,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
         /////////// 2º PASSO - TORNAR A ACOMODACAO INDISPONIVEL ////////////
 
-   try {
- 
-    console.log("CHEGOU");
-  
-     //ENVIAR METODO
-     let newExercise = await $.ajax({
-      url: "/users/setacomodacaounavailable/" + item_acomodacao_identifier_reservation,
-      method: "put",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
-      });
-  
-     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-  
-  
-   } catch (err){
-  
-    window.alert("Receita Criada.");
-  
-   }
+        
 
 
     }
@@ -503,13 +497,17 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
       var pack_id = sessionStorage.getItem('pack_id');
 
-      const current_date2 = Date();
+      const current_date2 = new Date();
+
+      const current_date_hours2 = date.getHours();
+      const current_date_minutes2 = date.getMinutes();
+      const current_date_seconds2 = date.getSeconds();
     
        console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
     
        var item_acomodacao_identifier_reservation = acomodacao.acomodacao_id; //DEFAULT FOR NOW,
-       var item_date_marcacao_reservation = "2023-01-18";
-       var item_date_marcada_reservation = document.getElementById("datamarcacaonameinput2") + " " + current_date2.getHours() + ":" + current_date2.getMinutes() + ":" + current_date2.getSeconds();
+       var item_date_marcacao_reservation = document.getElementById("datamarcacaonameinput2").value;
+       var item_date_marcada_reservation = "2023-01-18" + " " + current_date_hours2 + ":" + current_date_minutes2 + ":" + current_date_seconds2;
        var item_pack_restaurante_id = pack_id;
     
         sentPostTT3(item_acomodacao_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id);
