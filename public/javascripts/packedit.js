@@ -366,21 +366,9 @@ async function criarMesa(rest_id, tipo_mesa_id){
           });
       
           window.alert("Mesa adicionada ao Pack");
-      
-      
           //UPDATE
-          
- 
-            console.log("CHEGOU PARA TORNAR INDISPONIVEL");
-          
-             //ENVIAR METODO
-             let newExercise2 = await $.ajax({
-              url: "users/setmesaunavailable/"+ item_mesa_identifier_reservation,
-              method: "put",
-              data: JSON.stringify(data),
-              contentType: "application/json",
-              dataType: "json"
-              });
+          console.log("ID MESA: " + item_mesa_identifier_reservation);
+         
           
              // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
           
@@ -395,9 +383,13 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
         /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
 
-
-
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  
+
+     //////////////////////////////////////////////////////////////////////////////////////////////
 
     
     ///SHOW VALUE PARA CADA MESA///
@@ -462,6 +454,8 @@ async function criarMesa(rest_id, tipo_mesa_id){
           });
       
           window.alert("Mesa adicionada ao Pack");
+
+          try{
       
            //ENVIAR METODO
            let newExercise2 = await $.ajax({
@@ -471,6 +465,11 @@ async function criarMesa(rest_id, tipo_mesa_id){
             contentType: "application/json",
             dataType: "json"
             });
+
+          } catch (err){
+
+            window.alert("RECEITA CRIADA");
+          }
       
        } catch (err){
       
@@ -499,9 +498,9 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
       const current_date2 = new Date();
 
-      const current_date_hours2 = date.getHours();
-      const current_date_minutes2 = date.getMinutes();
-      const current_date_seconds2 = date.getSeconds();
+      const current_date_hours2 = current_date2.getHours();
+      const current_date_minutes2 = current_date2.getMinutes();
+      const current_date_seconds2 = current_date2.getSeconds();
     
        console.log("UTILIZADOR ID AGAIN: " + utilizador_id);
     
