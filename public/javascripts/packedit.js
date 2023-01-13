@@ -375,7 +375,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
           
              //ENVIAR METODO
              let newExercise2 = await $.ajax({
-              url: "/users/setmesaunavailable/" + item_mesa_identifier_reservation,
+              url: "users/setmesaunavailable/"+ item_mesa_identifier_reservation,
               method: "put",
               data: JSON.stringify(data),
               contentType: "application/json",
