@@ -786,6 +786,7 @@ router.post('/insertresmesa', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+
 router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
   let id_user = req.params.iduser;
@@ -795,9 +796,9 @@ router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
 });
 
-router.put('/setacomodacaounavailable/:iduser', async function(req, res, next){
+router.put('/setacomodacaounavailable/:iduserrrr', async function(req, res, next){
 
-  let id_user = req.params.iduser;
+  let id_user = req.params.iduserrrr;
   console.log("[artigosRoutes] Update pedido with id: " + id_user);
   let result = await usersModel.UpdateAcomodacaoUnavailable(id_user);
   res.status(result.status).send(result.data);

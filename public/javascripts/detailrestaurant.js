@@ -275,25 +275,11 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
       contentType: "application/json",
       dataType: "json"
       });
-  
-     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-  
-  
-   } catch (err){
-  
-    window.alert("Receita Criada.");
-  
-   }
 
-
-   /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
-
-   try {
- 
-    console.log("CHEGOU");
+      console.log("CHEGOU");
   
      //ENVIAR METODO
-     let newExercise = await $.ajax({
+     let newExercise2 = await $.ajax({
       url: "/users/setmesaunavailable/" + id_mesa,
       method: "put",
       data: JSON.stringify(data),
@@ -309,6 +295,17 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
     window.alert("Receita Criada.");
   
    }
+
+
+   /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
+
+ 
+    
+  
+     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+  
+  
+   
 
   }
 
