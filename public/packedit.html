@@ -176,7 +176,7 @@
 		<!--POPUP PARA CRIAR PRATO-->
 
 		<div class="bg-modal222" style="display: none;">
-			<div class="modal-contents222">
+			<div class="modal-contents222" style="height: 15%;">
 		
 				<div class="close222">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
@@ -187,13 +187,13 @@
 				<form action="">
 					<input style="width: 70%;" type="text" id="datamarcacaonameinput" placeholder="Inserir Data: YYYY-MM-DD">
 					<textarea id="platedescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%; visibility: hidden;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
-					<a href="#" class="button" id="criarpratobtn" style="margin-top: 40.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Mesa</a>
+					<a href="#" class="button" id="criaraddmesabtn" style="margin-top: 10.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Mesa</a>
 					<input style="width: 70%; visibility: hidden;" id="plateprecoinput" type="number" id="foodprice"  name="roodprice"min="0" max="300" placeholder="Preço">
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input style="width: 70%;" id="platedisponibilidadeinput" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input style="width: 70%; visibility: hidden;" id="mesadisponibilidadeinput" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
-					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Tipo de Prato:</h4>
+					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Numero da Mesa:</h4>
 
 					<div class="dropdown" style="width:38%; margin-left: 14%; margin-top: -50%; position: absolute;">
                         <button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Mesa</button>
@@ -204,6 +204,7 @@
                         </div>
                     </div>
 
+					<h3 style="position: absolute; margin-top: -40%; margin-left: 67%; font-size: 14px;">Numero da Mesa: </h3>
 					
 
 				</form>
@@ -211,8 +212,8 @@
 			</div>
 		</div>
 
-        <div class="bg-modal233" style="display: none;">
-			<div class="modal-contents233">
+        <div class="bg-modal233" style="display: flex;">
+			<div class="modal-contents233" style="height: 15%;">
 		
 				<div class="close233">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
@@ -223,11 +224,11 @@
 				<form action="">
 					<input style="width: 70%;" type="text" id="datamarcacaonameinput2" placeholder="Inserir Data: YYYY-MM-DD">
 					<textarea id="platedescricaoinput2" style="height:200px; margin-left: -30.8%; width: 70%; visibility: hidden;" type="email" placeholder="Descrição (até 250 caracteres)"></textarea>
-					<a href="#" class="button" id="criarpratobtn2" style="margin-top: 40.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Acom.</a>
+					<a href="#" class="button" id="criaraddacomodacaobtn2" style="margin-top: 11.6%; margin-left: 3%; position: absolute; font-size: 23px; ">Adicionar Acom.</a>
 					<input style="width: 70%; visibility: hidden;" id="plateprecoinput" type="number" id="foodprice"  name="roodprice"min="0" max="300" placeholder="Preço">
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input style="width: 70%;" id="platedisponibilidadeinput2" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input style="width: 70%; visibility: hidden;" id="acomodacaodisponibilidadeinput2" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
 					<h4 style="position: absolute; margin-top: -55%; margin-left: 66.7%;">Numero:</h4>
 

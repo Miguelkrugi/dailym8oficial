@@ -1357,6 +1357,21 @@ module.exports.UpdateMesaUnavailable = async function(id_plate){
 
 }
 
+module.exports.UpdateAcomodacaoUnavailable = async function(id_plate){
+
+    try {
+        let sql = "UPDATE acomodacao " + "SET acomodacao_availability = '1' " + "WHERE acomodacao_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 ///GET DE PACKS DISPONIVEIS DE UM RESTAURANTE///
 module.exports.getAvailablePacksRestaurante = async function(restaurant_id) {
     try {
@@ -1437,6 +1452,39 @@ module.exports.saveCreateMesaItem = async function(pedido) {
     }
 }
 
+module.exports.saveCreateAcomodacaoItem = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO item_acomodacao_restaurant " +
+            "(item_acomodacao_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id) " +
+            "VALUES ($1, $2, $3, $4) " +
+            "RETURNING item_acomodacao_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.item_acomodacao_identifier_reservation, pedido.item_date_marcacao_reservation, pedido.item_date_marcada_reservation, pedido.item_pack_restaurante_id]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
