@@ -1,4 +1,4 @@
-async function criarRestaurant(user_id){
+async function criarRestaurant(user_id,tipo_restaurant_id){
 
     try {
    
@@ -11,7 +11,7 @@ async function criarRestaurant(user_id){
        establishment_name: document.getElementById("nomeinput").value,
        establishment_description: document.getElementById("descricaoinput").value,
        establishment_utilizador_id: user_id,
-       restaurant_type_id: 1, //DEFAULT FOR NOW
+       restaurant_type_id: tipo_restaurant_id, //DEFAULT FOR NOW
        restaurante_number_tables: document.getElementById("numeromesasinput").value,
        type_service_identifier: 1,
        state_id: 1
@@ -114,11 +114,77 @@ window.onload = function exampleFunction() {
 
     document.getElementById('createrestaurant').style.visibility = "visible";
 
+    var tipo_restaurant_id = 0;
+
+
+    document.getElementById('portuguesoption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 1;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Português" 
+
+    });
+
+    document.getElementById('italianooption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 2;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Italiano"  
+      
+    });
+
+    document.getElementById('veganoption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 3;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Vegan"
+      
+    });
+
+    document.getElementById('fastfoodoption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 4;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Fast Food" 
+      
+    });
+
+    document.getElementById('japonesption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 5;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Japonês" 
+      
+    });
+
+    document.getElementById('indianooption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 6;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Indiano" 
+      
+    });
+
+    document.getElementById('rodiziooption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 7;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Rodizio" 
+      
+    });
+
+    document.getElementById('outrooption').addEventListener("click", function() {
+	    
+      tipo_restaurant_id = 8;
+      console.log(tipo_restaurant_id);
+      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Outro" 
+      
+    });
 
     document.getElementById('createrestaurant').addEventListener("click", function(){
 
         console.log("Funcao Chamada");
-        criarRestaurant(utilizador_id);
+        criarRestaurant(utilizador_id,tipo_restaurant_id);
         
       
       });

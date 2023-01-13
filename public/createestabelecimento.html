@@ -131,17 +131,52 @@
 
         <!--ESTRUTURA NECESSÁRIA PARA CRIAR UM RESTAURANTE-->
 
-        <h4 id="nometexto" style="position: absolute; margin-left: 19%; margin-top: 6%;">Nome</h4>
+        <h4 id="nometexto" style="position: absolute; margin-left: 19%; margin-top: 5%;">Nome</h4>
 
-        <input id="nomeinput" type="text" placeholder="Nome" style="margin-left: 19%; margin-top: 8%;">
+        <input id="nomeinput" type="text" placeholder="Nome" style="margin-left: 19%; margin-top: 7%;">
 
-        <h4 id="descricaotexto" style="position: absolute; margin-left: 19%; margin-top: 0.1%;">Descrição</h4>
+        <h4 id="descricaotexto" style="position: absolute; margin-left: 19%; margin-top: 6%;">Descrição</h4>
 
-        <textarea id="descricaoinput" placeholder="Descrição (até 600 caractéres)" style="height:30%; margin-left: 19%; margin-top: 2%; position: absolute; width: 50%;"></textarea>
+        <textarea id="descricaoinput" placeholder="Descrição (até 600 caractéres)" style="height:30%; margin-left: 19%; margin-top: 8%; position: absolute; width: 50%;"></textarea>
+		
+		<div class="dropdown" style="position: absolute; margin-left: 19%; margin-top: 0.2%;">
+			<h5 id="tiposelecionadotext" style="position: absolute; margin-left: 75%; margin-top: 0.2%;">Tipo selecionado:</h5>
+			<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Tipo</button>
+			<div class="dropdown-content" style="">
+				
+				<button id="portuguesoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Português</a>
+				</button>
+				<button id="italianooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Italiano</a>
+				</button>
+				<button id="veganoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Vegan</a>
+				</button>
+				<button id="fastfoodoption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Fast Food</a>
+				</button>
+				<button id="japonesption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Japonês</a>
+				</button>
+				<button id="indianooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Indiano</a>
+				</button>
+				<button id="rodiziooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Rodizio</a>
+				</button>
+				<button id="outrooption"  style="background-color: transparent; border: 0; width: 100%;"> <!--AS OPÇÕES SÃO GERADAS PELO OBJETO, SENDO SÓ EXIBIDO O NUMERO, MAS NA VERDADE CLICAMOS NO OBJETO DA MESA-->
+					<a href="#">Outro</a>
+				</button>
+			
+			</div>
+		</div>
 
-        <h4 id="numeromesastexto" style="position: absolute; margin-left: 19%; margin-top: 17%;">Número Teste</h4>
+		
 
-        <input id="numeromesasinput" type="number" placeholder="Número de Mesas" style="margin-left: 19%; margin-top: 20%; visibility: hidden;">
+        <h4 id="numeromesastexto" style="position: absolute; margin-left: 19%; margin-top: 26%;">Número Teste</h4>
+
+        <input id="numeromesasinput" type="number" placeholder="Número de Mesas" style="margin-left: 19%; margin-top: 29%; visibility: hidden;">
 
         <input id="numeroacomodacoesinput" type="number" placeholder="Número de Acomodações" style="margin-left: 19%; margin-top: -3.47%; visibility: hidden;">
 
