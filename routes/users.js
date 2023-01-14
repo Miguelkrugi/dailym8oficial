@@ -900,4 +900,12 @@ router.get('/getlugares/estacionamento/:idrestaurant', async function(req, res, 
 
 });
 
+router.get('/getlugares/filtercrescente/:idrestaurant', async function(req, res, next) {
+
+  let user_id = req.params.idrestaurant;
+  let result = await usersModel.getLugarAvailableCrescente(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
 module.exports = router;

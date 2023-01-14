@@ -675,6 +675,31 @@ module.exports.getLugarAvailable = async function(est_id) {
     }
 }
 
+module.exports.getLugarAvailableDecrescente = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY DESC";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getLugarAvailableCrescente = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY ASC";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
 module.exports.getCheckLikeRestaurante = async function(utilizador_id ,restaurant_id) {
     try {

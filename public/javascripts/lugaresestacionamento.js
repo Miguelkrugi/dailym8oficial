@@ -31,7 +31,7 @@ async function getNumberLikesRestaurant(restaurante_id){
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<hr><div class='menu_item'><em>Preço: " + prato.spot_price + " $</em><h4>" + prato.spot_number + "</h4></div><hr>"
+      return "<hr><div class='menu_item'><em>Preço: " + prato.spot_price + " $</em><h4>Numero:" + prato.spot_number + "</h4></div><hr>"
       // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -41,13 +41,13 @@ async function getNumberLikesRestaurant(restaurante_id){
   
   
   
-  async function getAperitivos(){
+  async function getCaros(){
   
       console.log("Obtendo os restaurantes")
       
       // let recipeName = document.getElementById("nome1")
        let restaurantesElem = document.getElementById("organize13");
-       var restaurant_id = sessionStorage.getItem("restaurant_id");
+       var restaurant_id = sessionStorage.getItem("parking_lot_id");
        var utilizador_id = sessionStorage.getItem("utilizador_id");
        console.log("setItem->userId = " + utilizador_id);
        console.log("Restaurante ID: " + restaurant_id);
@@ -56,7 +56,7 @@ async function getNumberLikesRestaurant(restaurante_id){
       
       let suggestedrestaurants = await $.ajax({
       
-      url: "/users/seeplates/filter/" + restaurant_id + "/" + 1,
+      url: "/users/getlugares/filterdecrescente/" + restaurant_id,
       method: "get",
       dataType: "json",
       
@@ -84,6 +84,49 @@ async function getNumberLikesRestaurant(restaurante_id){
       }
       }
   
+      async function getBaratos(){
+  
+        console.log("Obtendo os restaurantes")
+        
+        // let recipeName = document.getElementById("nome1")
+         let restaurantesElem = document.getElementById("organize13");
+         var restaurant_id = sessionStorage.getItem("parking_lot_id");
+         var utilizador_id = sessionStorage.getItem("utilizador_id");
+         console.log("setItem->userId = " + utilizador_id);
+         console.log("Restaurante ID: " + restaurant_id);
+        
+        try{
+        
+        let suggestedrestaurants = await $.ajax({
+        
+        url: "/users/getlugares/filtercrescente/" + restaurant_id,
+        method: "get",
+        dataType: "json",
+        
+        });
+        
+        console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+        
+        let html = "";
+        
+        for(let restaurant of suggestedrestaurants){
+         console.log("Restaurante: " + restaurant);
+         html += createplateHTML(restaurant);
+        }
+        
+        console.log("OBTEVE");
+        //  recipeName.innerHTML = html;
+        
+       // restaurantesElem.innerHTML = html;
+      
+         restaurantesElem.innerHTML = html;
+        
+        
+        } catch(err){
+         console.log(err);
+        }
+        }
+
       async function getEntradas(){
   
           console.log("Obtendo os restaurantes")
@@ -271,7 +314,7 @@ async function getNumberLikesRestaurant(restaurante_id){
           
           let suggestedrestaurants = await $.ajax({
           
-          url: "/users/seeplates/filter/" + restaurant_id,
+          url: "/users/getlugares/estacionamento/" + restaurant_id,
           method: "get",
           dataType: "json",
           
@@ -305,7 +348,7 @@ async function getNumberLikesRestaurant(restaurante_id){
             
             // let recipeName = document.getElementById("nome1")
              let restaurantesElem = document.getElementById("organize13");
-             var restaurant_id = sessionStorage.getItem("restaurant_id");
+             var restaurant_id = sessionStorage.getItem("parking_lot_id");
              var utilizador_id = sessionStorage.getItem("utilizador_id");
              console.log("setItem->userId = " + utilizador_id);
              console.log("Restaurante ID: " + restaurant_id);
@@ -314,7 +357,7 @@ async function getNumberLikesRestaurant(restaurante_id){
             
             let suggestedrestaurants = await $.ajax({
             
-            url: "/users/getacomodacoes/" + restaurant_id,
+            url: "users/getlugares/estacionamento/" + restaurant_id,
             method: "get",
             dataType: "json",
             
@@ -371,9 +414,9 @@ async function getNumberLikesRestaurant(restaurante_id){
    getAcomodacoes();
    document.getElementById("titulorestaurante").innerHTML = establishment_name;
   
-   document.getElementById("descricaorestaurante").innerHTML = establishment_description;
+ //  document.getElementById("descricaorestaurante").innerHTML = establishment_description;
   
-      getNumberLikesRestaurant(restaurant_id);
+     // getNumberLikesRestaurant(restaurant_id);
   
       
   

@@ -332,7 +332,7 @@ window.onload = function exampleFunction() {
  getPratos();
  document.getElementById("titulorestaurante").innerHTML = establishment_name;
 
- document.getElementById("descricaorestaurante").innerHTML = establishment_description;
+// document.getElementById("descricaorestaurante").innerHTML = establishment_description;
 
     getNumberLikesRestaurant(restaurant_id);
 
