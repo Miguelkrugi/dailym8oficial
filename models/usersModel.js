@@ -1559,6 +1559,7 @@ module.exports.savePositionRestaurante = async function(pedido) {
     console.log("PEDIDO:" + pedido.local_latitude);
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
 
+
     try {
 
        let sql =

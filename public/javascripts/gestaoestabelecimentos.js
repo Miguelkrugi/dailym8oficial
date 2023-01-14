@@ -379,7 +379,9 @@ async function getLikedAcomodacao(id_user){
       let local_latitude = document.getElementById("latitude").value;
       let local_longitude = document.getElementById("longitude").value;
       let local_restaurante_id = restaurante.restaurant_id;
-      let geometry_info_point = "'POINT(" + local_latitude + " " + local_longitude + ")'";
+     // let geometry_info_point = "'POINT(" + local_latitude + local_longitude + ")'";
+     let geometry_info_point = "POINT(${local_latitude} ${local_longitude})"
+     // let geometry_info_point = '"POINT(" local_latitude + " " + local_longitude + ")'
 
       addposition(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude);
       
