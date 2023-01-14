@@ -594,6 +594,11 @@ window.onload = function exampleFunction() {
     criarMesa(restaurant_id, tipo_mesa_id);
   });
 
+  document.getElementById('criarlugarbtn').addEventListener("click", function() {
+	  
+    console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
+    criarLugar(restaurant_id, tipo_mesa_id);
+  });
 
 
 }

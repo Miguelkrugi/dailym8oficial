@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Foogra - Discover & Book the best restaurants at the best price">
+    <meta name="author" content="Ansonika">
+    <title>DailyM8</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+     <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<!--GOOGLE MAPS API-->
+
+	<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACJOCY_dVNmJ2GTYD4bKErFSuDey8h4KE&callback=initMap&v=weekly"
+	defer
+  ></script>
+
+    <!-- BASE CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="css/detail-page.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+	<link href="css/listing.css" rel="stylesheet">
+
+	<script src="./javascripts/detailestacionamento.js"></script>
+
+</head>
+
+<body>
+				
+	<header class="header_in clearfix">
+		<div class="container">
+		<div id="logo">
+			<a href="index-2.html">
+				<img src="img/logo-removebg-preview.png" width="200" height="200" alt="" class="logo_normal">
+				
+			</a>
+		</div>
+		<ul id="top_menu">
+			<li><a href="register.html" id="sign-in" class="login">Sign In</a></li>
+			<li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
+		</ul>
+		<!-- /top_menu -->
+		<a href="#0" class="open_close">
+			<i class="icon_menu"></i><span>Menu</span>
+		</a>
+		<nav class="main-menu">
+			<div id="header_menu">
+				<a href="#0" class="open_close">
+					<i class="icon_close"></i><span>Menu</span>
+				</a>
+				<a href="index.html"><img src="img/logo.svg" width="140" height="35" alt=""></a>
+			</div>
+			<ul>
+				<li class="submenu">
+					<a href="#0" class="show-submenu">Home</a>
+					
+				</li>
+				<li class="submenu">
+					<a href="listrestaurantes.html" class="show-submenu">Restaurantes</a>
+				</li>
+				<li class="submenu">
+					<a href="listacomodacoes.html" class="show-submenu">Acomodações</a>
+				</li>
+				<li><a href="listestacionamentos.html">Estacionamentos</a></li>
+				<li><a href="listpacks.html">Packs</a></li>
+				<li><a href="sobrenos.html">Sobre Nós</a></li>
+				<li><a href="minhaconta.html">A Minha Conta</a></li>
+				
+				
+			</ul>
+		</nav>
+	</div>
+	</header>
+	<!-- /header -->
+	
+	<main>
+
+		
+		<!--A FAZER AS FUNÇÕES-->
+
+		<button class="button" id="addlike" style="position: absolute; margin-left:63%; height:6%; font-size: 10px; visibility: hidden;" >Deixar um Gosto</button>	
+		
+		<button class="button" id="removelike" style="position: absolute; margin-left:63%; height:6%; font-size: 10px; background-color: red; visibility: hidden;">Remover um Gosto</button>	
+
+		<h1 id="titulorestaurante" style="margin-left: 7%;"></h1>
+
+		<h3 id="quantidadelikes" style="position: absolute; margin-top:-3%; margin-left: 75%;">Likes: </h3>
+
+		
+
+		
+		<!--/hero_in-->
+		
+		<div class="container margin_detail">
+		    <div class="row">
+		        <div class="col-lg-8">
+
+		            <div class="tabs_detail">
+		                <ul class="nav nav-tabs" role="tablist">
+		                    <li class="nav-item">
+		                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Informação</a>
+		                    </li>
+		                
+						</ul>
+
+						<a href="lugaresestacionamento.html">
+						<button  style="position: absolute; margin-top: -2%; margin-left: 40%;">VER LUGARES</button>
+						</a>
+						<a href="vermesas.html">
+						<button style="position: absolute; margin-top: -2%; margin-left: 47%; visibility: hidden;">VER MESAS</button>
+						</a>
+
+		                <div class="tab-content" role="tablist">
+		                    <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+		                        <div class="card-header" role="tab" id="heading-A">
+		                            <h5>
+		                                <a class="collapsed" data-bs-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
+		                                    Information
+		                                </a>
+		                            </h5>
+		                        </div>
+		                        <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+		                            <div class="card-body info_content">
+		                            	<p id="descricaorestaurante">Mei at intellegat reprehendunt, te facilisis definiebas dissentiunt usu. Choro delicata voluptatum cu vix. Sea error splendide at. Te sed facilisi persequeris definitiones, ad per scriptorem instructior, vim latine adipiscing no. Cu tacimates salutandi his, mel te dicant quodsi aperiri. Unum timeam his eu.</p>		                            	<div class="add_bottom_25"></div>
+		                                
+		                                
+										
+		                              
+										
+		                                <!-- /special_offers -->
+
+		                                <div class="other_info">
+		                                <h2>MAPA</h2>
+		                               <div id="map" style="height:400px; width:100%;">
+
+
+									   </div>
+		                                <!-- /row -->
+		                            	</div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!-- /tab -->
+
+		                    <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+		                        
+								
+								<div class="dropdown" >
+									<button class="dropbtn">Filtrar Pratos</button>
+									<div class="dropdown-content">
+									  <a href="#">Aperitivos</a>
+									  <a href="#">Entradas</a>
+									  <a href="#">Pratos Principais</a>
+									  <a href="#">Sobremesas</a>
+									  <a href="#">Pratos do Dia</a>
+									</div>
+								</div>
+								<div id="organize13">
+									
+									<h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
+									
+								</div>
+
+		                    </div>
+
+							
+
+		                                
+		                                    <!-- /review_card -->
+		                                  
+		                                    <!-- /review_card -->
+		                                   
+		                                    <!-- /review_card -->
+		                                </div>
+		                                <!-- /reviews -->
+		                                
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <!-- /tab-content -->
+		            </div>
+		            <!-- /tabs_detail -->
+		        </div>
+		        <!-- /col -->
+
+		        
+		            <!-- /box_booking -->
+		           
+		        </div>
+
+		    </div>
+		    <!-- /row -->
+		</div>
+		<!-- /container -->
+		
+		<div style="background-color: rgb(243, 243, 243); width:29%; height:84%; position: absolute; margin-left: 65%; margin-top: -44%; ">
+
+			<!--TEXTOS PARA ALTERNAR-->
+            <h2 id="reservamesatexto" style="margin-left: 21%; margin-top: 10%; font-size: 25px; visibility: hidden;">RESERVAR UMA MESA</h2>
+			<h2 id="reservaacomodacaotexto" style="margin-left: 7%; margin-top: -8.6%; font-size: 25px; position: absolute; visibility: hidden;">RESERVAR UMA ACOMODAÇÃO</h2>
+			<h2 id="reservalugartexto" style="margin-left: 23%; margin-top: -8.6%; font-size: 25px; position: absolute;">RESERVAR UM LUGAR</h2>
+
+			<!--BOTÕES PARA ALTERNAR-->
+			<button id="reservamesabotao" style="position: absolute; margin-left: 38%; margin-top: 96%;">RESERVAR MESA</button>
+			<button id="reservaacomodacaobotao" style="position: absolute; margin-left: 30%; margin-top: 96%; visibility: hidden;">RESERVAR ACOMODACAO</button>
+			<button id="reservalugarbotao" style="position: absolute; margin-left: 38%; margin-top: 96%; visibility: hidden;">RESERVAR LUGAR</button>
+
+
+			<!--DROPDOWN PARA ALTERNAR-->
+
+			
+			<div class="dropdown" style="width:70%; margin-left: 7%; margin-top: 9%;">
+				<button id="restaurantbutton" class="dropbtn" style="width: 70%;">Selecionar Lugar</button>
+				<div class="dropdown-content" id="dropdown-content" style="">
+					
+				
+				
+				</div>
+			</div>
+			
+
+
+			<div>
+
+             <input id="datetext" type="text" placeholder="DD-MM-AAAA" style="margin-left:7%; margin-top: 17%; position:absolute;">
+
+			</div>
+
+			<h3 id="selectedtable" style="margin-left: 7%; font-size: 15px;">Lugar Selecionado: </h3> <!--MOSTRAR O NUMERO DA MESA QUE FOI SELECIONADO-->
+ 
+            <h3 style="margin-left: 7%; font-size: 15px; margin-top: 7%;">Data </h3>
+
+			<h3 style="margin-left: 7%; font-size: 20px; margin-top: 13%;">Detalhes de Pagamento </h3>
+
+			<h3 style="margin-left: 7%; font-size: 15px; margin-top: 1%; position: absolute;">Cartão de Crédito: </h3>
+
+			<h3 style="margin-left: 7%; font-size: 15px; margin-top: 14%; position: absolute;">CVC: </h3>
+
+			<div style="margin-top: 7%;">
+
+			<input id="creditparte1" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:7%; margin-top: 1%; position:absolute;">
+			<input id="creditparte2" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:21%; margin-top: 7%; margin-top: 1%; position:absolute;">
+			<input id="creditparte3" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:35%; margin-top: 1%; position:absolute;">
+			<input id="creditparte4" type="tel" maxlength="4" placeholder="XXXX" style="width: 13%; margin-left:49%; margin-top: 7%; margin-top: 1%; position:absolute;">
+				
+			</div>
+
+			<input id="cvcnumber" type="tel" maxlength="3" placeholder="XXX" style="width: 13%; margin-left:7%; margin-top: 14%; position:absolute;">
+
+
+		</div>
+
+		<button style="position: absolute; background-color: salmon; color: white; margin-left: 88.4%; margin-top: -2%;">REPORTAR</button>
+
+		<h3 style="position: absolute; margin-left: 10%; margin-top: -3%;">ESTADO: </h3>
+
+		<img style="width: 4%; height:9%; margin-top: -4%; margin-left: 18%; position: absolute; visibility: hidden;" src="./css/images/createdplace-removebg-preview.png" id="createdplacestate">
+
+        <img style="width: 3.1%; height:9%; margin-top: -4%; margin-left: 18%; position: absolute; visibility: hidden;" src="./css/images/verifiedplace-removebg-preview.png" id="verifiedplacestate">
+
+		<img style="width: 3.1%; height:7.6%; margin-top: -4%; margin-left: 18%; position: absolute; visibility: hidden;" src="./css/images/inanalysisplace-removebg-preview.png" id="inanalysisplacestate">
+
+		
+
+	</main>
+	<!-- /main -->
+
+	
+	<!--/footer-->
+
+	<div id="toTop"></div><!-- Back to top button -->
+	
+	<div class="layer"></div><!-- Opacity Mask Menu Mobile -->
+	
+	<!-- Sign In Modal -->
+	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+		<div class="modal_header">
+			<h3>Sign In</h3>
+		</div>
+		<form>
+			<div class="sign-in-wrapper">
+				<a href="#0" class="social_bt facebook">Login with Facebook</a>
+				<a href="#0" class="social_bt google">Login with Google</a>
+				<div class="divider"><span>Or</span></div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" id="email">
+					<i class="icon_mail_alt"></i>
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" name="password" id="password" value="">
+					<i class="icon_lock_alt"></i>
+				</div>
+				<div class="clearfix add_bottom_15">
+					<div class="checkboxes float-start">
+						<label class="container_check">Remember me
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+					</div>
+					<div class="float-end"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+				</div>
+				<div class="text-center">
+					<input type="submit" value="Log In" class="btn_1 full-width mb_5">
+					Don’t have an account? <a href="account.html">Sign up</a>
+				</div>
+				<div id="forgot_pw">
+					<div class="form-group">
+						<label>Please confirm login email below</label>
+						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
+						<i class="icon_mail_alt"></i>
+					</div>
+					<p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
+					<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+				</div>
+			</div>
+		</form>
+		<!--form -->
+	</div>
+	<!-- /Sign In Modal -->
+	
+	<!-- COMMON SCRIPTS -->
+    <script src="js/common_scripts.min.js"></script>
+    <script src="js/common_func.js"></script>
+    <script src="assets/validate.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="js/sticky_sidebar.min.js"></script>
+    <script src="js/specific_detail.js"></script>
+	<script src="js/datepicker.min.js"></script>
+	<script src="js/datepicker_func_1.js"></script>
+
+	<script>
+
+//function initMap(){
+
+//var options = {
+
+//	zoom: 8,
+//	center:{lat: 42.3601, lng:-71.0589}
+
+//}
+
+//var map = new google.maps.Map(document.getElementById('map'), options);
+
+//}
+
+	</script>
+
+
+<script>
+	function showValue(){
+
+
+	}
+</script>
+</body>
+</html>

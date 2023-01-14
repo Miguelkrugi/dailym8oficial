@@ -329,7 +329,7 @@ window.onload = function exampleFunction() {
  console.log("RESTAURANTE ID: " + establishment_id);
  console.log("RESTAURANTE ID: " + restaurant_id);
 
- getAcomodacoes();
+ getPratos();
  document.getElementById("titulorestaurante").innerHTML = establishment_name;
 
  document.getElementById("descricaorestaurante").innerHTML = establishment_description;

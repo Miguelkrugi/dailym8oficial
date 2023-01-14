@@ -15,11 +15,29 @@ window.onload = function exampleFunction() {
 
 }
 
+async function openestacionamento2(restaurante){
+
+  console.log("FUNÇÃO CHAMADA!");
+  console.log("NOME: " + restaurante.establishment_name)
+    console.log("DESCRICAO: " + restaurante.establishment_description)
+    console.log("ID: " + restaurante.restaurant_id)
+    
+    sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+    sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+    sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+    sessionStorage.setItem('parking_lot_id', restaurante.parking_lot_id);
+    sessionStorage.setItem('parking_lot_number_spots', restaurante.parking_lot_number_spots);
+    sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+    sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+    sessionStorage.setItem('state_id', restaurante.state_id)
+
+}
+
 function createestacionamentoHTML(estacionamento){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-restaurant.html' class='strip_info' onclick='printtest()'><small>" + estacionamento.local_morada + "</small><div class='item_title'><h3>" + estacionamento.establishment_name + "</h3><small>" + estacionamento.parking_lot_number_spots + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:24%; height:37%;'><div class='strip'><figure><a href='detail-estacionamento.html' class='strip_info'  onclick='openestacionamento2(" + JSON.stringify(estacionamento) + ")'><small>" + estacionamento.local_morada + "</small><div class='item_title'><h3>" + estacionamento.establishment_name + "</h3><small>" + estacionamento.parking_lot_number_spots + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/

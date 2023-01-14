@@ -218,6 +218,8 @@ router.get('/showrandomsuggestcomments', async function(req, res, next) {
 
 });
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/getacomodacoes/:idestabelecimento', async function(req, res, next) {
@@ -800,12 +802,27 @@ router.post('/insertresmesa', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertresspot', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReservaSpot(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
 
 router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
   let id_user = req.params.iduser;
   console.log("[artigosRoutes] Update pedido with id: " + id_user);
   let result = await usersModel.UpdateMesaUnavailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/setspotunavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateSpotUnavailable(id_user);
   res.status(result.status).send(result.data);
 
 });
@@ -870,6 +887,17 @@ router.post('/insertlocalizacaoplace/restaurante', async function(req, res, next
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
   let result = await usersModel.savePositionRestaurante(newPedido);
   res.sendStatus(result.status).send(result.data);
+});
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+router.get('/getlugares/estacionamento/:idrestaurant', async function(req, res, next) {
+
+  let user_id = req.params.idrestaurant;
+  let result = await usersModel.getLugarAvailable(user_id);
+  res.status(result.status).send(result.data);
+
 });
 
 module.exports = router;

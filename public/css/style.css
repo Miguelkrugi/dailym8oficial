@@ -3169,6 +3169,18 @@ ul#top_menu li a.login:before {
 
 }
 
+#organizereserva2 {
+
+  width: 94%;
+  height:90%;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  
+  margin-top: 6%;
+  margin-left: 2%;
+
+}
+
 #this1 {
 
   width: 67%;
@@ -3351,6 +3363,7 @@ ul#top_menu li a.login:before {
   background-color: transparent;
   position: absolute;
   z-index: 1;
+  overflow-y: scroll;
 }
 
 #organize15 {
