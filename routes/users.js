@@ -407,6 +407,24 @@ router.get('/getreservas/:idrestaurant', async function(req, res, next) { //TIPO
 
 });
 
+router.get('/getreservas/acomodacao/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getAcomodacaoReservas(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getreservas/estacionamento/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getEstacionamentoReservas(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
 ////////////// OBTER O MENU ///////////////
 
 router.get('/getmenu/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
