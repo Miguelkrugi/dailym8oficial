@@ -1169,6 +1169,22 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 }
 
+module.exports.DeleteResMesa = async function(id_reservation){
+
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM reserva_mesa " + "WHERE id_reservation = " + id_reservation;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.saveReservaSpot = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
 

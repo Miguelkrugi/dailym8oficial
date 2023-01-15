@@ -619,6 +619,16 @@ router.delete('/deletemesa/:idmesa', async function(req, res, next){
 
 });
 
+router.delete('/deleteresmesa/:idres', async function(req, res, next){
+
+  let id_reservation = req.params.idres;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteResMesa(id_reservation);
+  res.status(result.status).send(result.data);
+
+});
+
 /*router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
