@@ -675,7 +675,7 @@ module.exports.getRestaurantMenuUnavailable = async function(est_id) {
 
 module.exports.getLugaresAvailable = async function(est_id) {
     try {
-        let sql = "SELECT *, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name FROM acomodacao INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id WHERE acomodacao.acomodacao_equipment_service_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0'";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
@@ -688,7 +688,7 @@ module.exports.getLugaresAvailable = async function(est_id) {
 
 module.exports.getAcomodacoesAvailable = async function(est_id) {
     try {
-        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0'";
+        let sql = "SELECT *, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name FROM acomodacao INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id WHERE acomodacao.acomodacao_equipment_service_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
