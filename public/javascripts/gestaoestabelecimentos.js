@@ -385,27 +385,57 @@ async function getLikedAcomodacao(id_user){
 
       addposition(local_morada, ref_system_id, geometry_info_point, local_restaurante_id, local_latitude, local_longitude);
       
-    });
-
-   // document.getElementById("botaounico").addEventListener("click", myFunction(rest_id));
-
-// -> FUNCIONAL -> document.getElementById("placeidtext").innerHTML = "ID do Local: " + restaurante.restaurant_id; //FUNCIONAL
-////////// BUTTON TO SAVE POSITION /////////
-
-
-
-/*document.querySelector('.button200').addEventListener("click", function() {
-		  
-  console.log("BOTAO CLICADO");
-    //criarPosicao(rest_id);
-		  
-});*/
-
-    
-
-    
+    });    
   }
 
+
+  function openmodal2(restaurante){
+    console.log("chamada");
+
+    sessionStorage.setItem('equipment_service_id', restaurante.equipment_service_id);
+    document.querySelector('.bg-modal15').style.display = "flex";
+
+    var rest_id = restaurante.equipment_service_id;
+
+    document.getElementById('botaounico').addEventListener("click", function() {
+      
+      let local_morada = document.getElementById("locality").value;
+      let ref_system_id = 4326;
+      let local_latitude = document.getElementById("latitude").value;
+      let local_longitude = document.getElementById("longitude").value;
+      let local_servico_acomodacoes_id = restaurante.equipment_service_id;
+     // let geometry_info_point = "'POINT(" + local_latitude + local_longitude + ")'";
+     let geometry_info_point = "POINT(${local_latitude} ${local_longitude})"
+     // let geometry_info_point = '"POINT(" local_latitude + " " + local_longitude + ")'
+
+      addposition(local_morada, ref_system_id, geometry_info_point, local_servico_acomodacoes_id, local_latitude, local_longitude);
+      
+    });    
+  }
+
+  function openmodal3(restaurante){
+    console.log("chamada");
+
+    sessionStorage.setItem('parking_lot_id', restaurante.parking_lot_id);
+    document.querySelector('.bg-modal15').style.display = "flex";
+
+    var rest_id = restaurante.parking_lot_id;
+
+    document.getElementById('botaounico').addEventListener("click", function() {
+      
+      let local_morada = document.getElementById("locality").value;
+      let ref_system_id = 4326;
+      let local_latitude = document.getElementById("latitude").value;
+      let local_longitude = document.getElementById("longitude").value;
+      let local_estacionamento_id = restaurante.parking_lot_id;
+     // let geometry_info_point = "'POINT(" + local_latitude + local_longitude + ")'";
+     let geometry_info_point = "POINT(${local_latitude} ${local_longitude})"
+     // let geometry_info_point = '"POINT(" local_latitude + " " + local_longitude + ")'
+
+      addposition(local_morada, ref_system_id, geometry_info_point, local_estacionamento_id, local_latitude, local_longitude);
+      
+    });    
+  }
   
 
 function myFunction(rest_id) {
@@ -431,14 +461,12 @@ function createlikedrestaurantHTML(restaurante){
 }
 ///////////////////////////////////////////////////////////////
 
-function createallrestaurantesincompletosHTML(restaurante){
-  
-  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
- 
-  return "<div   class='item' style='width:23%; height:35%;'><div class='strip'><figure><a class='strip_info' ><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div><button id='button15' onclick='openmodal(" + JSON.stringify(restaurante) + ")'' style='margin-left: 6%; margin-top:15%;'>EDITAR LOCAL</button></a></figure></div></div>"
-  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
- /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+/////////////////////////////////////////////////////////////////////////////INCOMPLETOS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+function createallrestaurantesincompletosHTML(restaurante){
+   
+  return "<div   class='item' style='width:23%; height:35%;'><div class='strip'><figure><a class='strip_info' ><small>" + restaurante.type_restaurant_name + "</small><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.restaurante_number_tables + "</small></div><button id='button15' onclick='openmodal(" + JSON.stringify(restaurante) + ")'' style='margin-left: 6%; margin-top:15%;'>EDITAR LOCAL</button></a></figure></div></div>"
 
 }
 
@@ -476,18 +504,6 @@ async function getAlllRestaurants(id_user){
 
       console.log("NADA ENCONTRADO");
 
-    
-
-
-  //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
-   // console.log("NADA ENCONTRADO");
-
-  
-  console.log("OBTEVE");
-  //  recipeName.innerHTML = html;
-  
- // restaurantesElem.innerHTML = html;
-
    restaurantesElem.innerHTML = html;
   
   
@@ -496,12 +512,110 @@ async function getAlllRestaurants(id_user){
   }
   }
 
+  function createallacomodacaoincompletosHTML(restaurante){
+   
+    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a class='strip_info' ><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.number_acomodacoes + "</small></div><button id='button15' onclick='openmodal2(" + JSON.stringify(restaurante) + ")'' style='margin-left: 6%; margin-top:15%;'>EDITAR LOCAL</button></a></figure></div></div>"
+  
+  }
+
+  async function getAlllAcomodacoes(id_user){
+
+    console.log("Obtendo os restaurantes");
+    
+    // let recipeName = document.getElementById("nome1")
+     let restaurantesElem = document.getElementById("organize16");
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedrestaurants = await $.ajax({
+    
+    url: "/users/getincomplete/acomodacoes/" + id_user,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+    
+    let html = "";
+    
+     
+  
+        for(let restaurant of suggestedrestaurants){
+         console.log("Restaurante: " + restaurant);
+         html += createallacomodacaoincompletosHTML(restaurant);
+        }
+  
+      
+  
+        console.log("NADA ENCONTRADO");
+  
+     restaurantesElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
+
+    function createallestacionamentoincompletosHTML(restaurante){
+   
+      return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a class='strip_info' ><div class='item_title'><h3>" + restaurante.establishment_name + "</h3><small>" + restaurante.parking_lot_number_spots + "</small></div><button id='button15' onclick='openmodal3(" + JSON.stringify(restaurante) + ")'' style='margin-left: 6%; margin-top:15%;'>EDITAR LOCAL</button></a></figure></div></div>"
+    
+    }
+
+    async function getAlllEstacionamentos(id_user){
+
+      console.log("Obtendo os restaurantes");
+      
+      // let recipeName = document.getElementById("nome1")
+       let restaurantesElem = document.getElementById("organize16");
+       var utilizador_id = sessionStorage.getItem("utilizador_id");
+       console.log("setItem->userId = " + utilizador_id);
+      
+      try{
+      
+      let suggestedrestaurants = await $.ajax({
+      
+      url: "/users/getincomplete/parkinglot/" + id_user,
+      method: "get",
+      dataType: "json",
+      
+      });
+      
+      console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+      
+      let html = "";
+      
+       
+    
+          for(let restaurant of suggestedrestaurants){
+           console.log("Restaurante: " + restaurant);
+           html += createallestacionamentoincompletosHTML(restaurant);
+          }
+    
+        
+    
+          console.log("NADA ENCONTRADO");
+    
+       restaurantesElem.innerHTML = html;
+      
+      
+      } catch(err){
+       console.log(err);
+      }
+      }
+    
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   function createallestacionamentoHTML(servico_acomodacao){
   
     console.log("Função chamada para criar o div da acomodação");
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-estacionamento.html' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -624,7 +738,7 @@ function createacomodacaoHTML(servico_acomodacao){
   console.log("Função chamada para criar o div da acomodação");
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-restaurant.html' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
+  return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-acomodacao.html' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -901,13 +1015,53 @@ document.getElementById('favoritosoption').addEventListener("click", function(){
 
 });
 
+document.getElementById('resteoptionincompletos').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getAlllRestaurants(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
+  document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Estabelecimentos Incompletos";
+
+});
+
+document.getElementById('acomoptionincompletos').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getAlllAcomodacoes(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
+  document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Estabelecimentos Incompletos";
+
+});
+
+document.getElementById('parkingoptionincompletos').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getAlllEstacionamentos(utilizador_id);
+  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
+  document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Estabelecimentos Incompletos";
+
+});
+
 document.getElementById('incompletosoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getAlllRestaurants(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
-  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
   document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Estabelecimentos Incompletos";
 

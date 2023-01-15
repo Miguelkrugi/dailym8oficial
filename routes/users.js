@@ -732,6 +732,24 @@ router.get('/getincomplete/restaurante/:iduser', async function(req, res, next) 
 
 });
 
+router.get('/getincomplete/acomodacoes/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getGetIncompleteAcomodacoes(user_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getincomplete/parkinglot/:iduser', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getGetIncompleteParking(user_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
 router.put('/alterarestado/emanalise/restaurante/:idrestaurant', async function(req, res, next){
 
   let id_user = req.params.idrestaurant;

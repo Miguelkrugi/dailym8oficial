@@ -1391,7 +1391,31 @@ module.exports.getGetIncompleteRestaurants = async function(est_id) {
     }
 }
 
+module.exports.getGetIncompleteAcomodacoes = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM equipment_service where equipment_service.establishment_utilizador_id = " + est_id + " and equipment_service.establishment_state_place_id =  1 ";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
+module.exports.getGetIncompleteParking = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM parking_lot where parking_lot.establishment_utilizador_id = " + est_id + " and parking_lot.establishment_state_place_id =  1 ";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
 module.exports.UpdateEstadoEmAnalise = async function(id_rest){
 
