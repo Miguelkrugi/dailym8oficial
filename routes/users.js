@@ -464,6 +464,25 @@ router.get('/gettables/unavailable/:idrestaurant', async function(req, res, next
   res.status(result.status).send(result.data);
 
 });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+router.get('/getlugares/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getLugaresAvailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getacomodacoes/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getAcomodacoesAvailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
 
 ///////////////////////////////// VERIFICAR LIKE //////////////////////////////////
 

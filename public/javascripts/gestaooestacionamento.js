@@ -144,7 +144,7 @@ function createtableHTML(mesa){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Mesa: <i>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Numero de Pessoas: <i>" + mesa.mesa_size + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>"+ mesa.mesa_type_name +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+  return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Mesa: <i>" + mesa.spot_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Numero de Pessoas: <i>" + mesa.spot_price + " </i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
 
@@ -163,7 +163,7 @@ async function getMesas(id_restaurante){
   
   let suggestedestacionamentos = await $.ajax({
   
-  url: "/users/gettables/" + id_restaurante,
+  url: "/users/getlugares/" + id_restaurante,
   method: "get",
   dataType: "json",
   
@@ -412,7 +412,7 @@ async function getMenu(id_restaurante){
     console.log("Obtendo os reports")
     
     // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizereserva"); //VERIFICAR O ID
+     let lugaresElem = document.getElementById("organizereserva2"); //VERIFICAR O ID
      var utilizador_id = sessionStorage.getItem("utilizador_id");
      console.log("setItem->userId = " + utilizador_id);
     
@@ -507,7 +507,7 @@ window.onload = function exampleFunction() {
 
    getReservasRestaurante(restaurant_id);
 
-   getMenu(restaurant_id);
+  // getMenu(restaurant_id);
 
    getMesas(restaurant_id);
 
