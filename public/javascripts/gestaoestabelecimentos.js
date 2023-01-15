@@ -610,12 +610,32 @@ async function getAlllRestaurants(id_user){
     
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  async function openestacionamento(restaurante){
+
+    console.log("FUNÇÃO CHAMADA!");
+    console.log("NOME: " + restaurante.establishment_name)
+      console.log("DESCRICAO: " + restaurante.establishment_description)
+      console.log("ID: " + restaurante.restaurant_id)
+      console.log("STATE ID: " + restaurante.state_id)
+      
+      sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+      sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+      sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+      sessionStorage.setItem('restaurant_id', restaurante.parking_lot_id);
+      sessionStorage.setItem('restaurante_number_tables', restaurante.parking_lot_number_spots);
+      sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+      sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+      sessionStorage.setItem('state_id', restaurante.state_id);
+  
+  
+  }
+
   function createallestacionamentoHTML(servico_acomodacao){
   
     console.log("Função chamada para criar o div da acomodação");
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-estacionamento.html' onclick='openacomodacao(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
+    return "<div class='item' style='width:23%; height:35%;'><div class='strip'><figure><a href='detail-estacionamento.html' onclick='openestacionamento(" + JSON.stringify(servico_acomodacao) + ")' class='strip_info'><small>Rua: " + servico_acomodacao.local_morada + "</small><div class='item_title'><h3>Nome: " + servico_acomodacao.establishment_name + "</h3><small>Estado: " + servico_acomodacao.state_name + "</small></div></a></figure></div></div>"
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -732,6 +752,26 @@ async function getLikedRestaurants(id_user){
   }
 
 ///////////////////////// aACOMODACOES DO UTILIZADOR ///////////////////////////
+
+async function openacomodacao(restaurante){
+
+  console.log("FUNÇÃO CHAMADA!");
+  console.log("NOME: " + restaurante.establishment_name)
+    console.log("DESCRICAO: " + restaurante.establishment_description)
+    console.log("ID: " + restaurante.restaurant_id)
+    console.log("STATE ID: " + restaurante.state_id)
+    
+    sessionStorage.setItem('establishment_id', restaurante.establishment_id);
+    sessionStorage.setItem('establishment_name', restaurante.establishment_name);
+    sessionStorage.setItem('establishment_description', restaurante.establishment_description);
+    sessionStorage.setItem('restaurant_id', restaurante.equipment_service_id);
+    sessionStorage.setItem('restaurante_number_tables', restaurante.number_acomodacoes);
+    sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
+    sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
+    sessionStorage.setItem('state_id', restaurante.state_id);
+
+
+}
 
 function createacomodacaoHTML(servico_acomodacao){
   
