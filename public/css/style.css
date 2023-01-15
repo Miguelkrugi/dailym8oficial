@@ -3162,8 +3162,10 @@ ul#top_menu li a.login:before {
   width: 67%;
   height:90%;
   background-color: rgb(246, 246, 246);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   position: absolute;
-  
   margin-top: 6%;
   margin-left: 2%;
 
@@ -3238,7 +3240,7 @@ ul#top_menu li a.login:before {
 #organizeinfrestaurant {
 
   width: 37%;
-  height:60%;
+  height:50%;
   background-color: lightgray;
   position: absolute;
   margin-top: 53%;
