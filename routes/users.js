@@ -342,6 +342,15 @@ router.get('/get/myestablishments/acomodacao/:iduser', async function(req, res, 
 
 });
 
+router.get('/get/myestablishments/parkinglot/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyEstacionamentos(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
 ////////////////////////////////// OBTER RESERVAS DE MESAS /////////////////////////////////////
 
 

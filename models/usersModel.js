@@ -540,6 +540,18 @@ module.exports.getMyAcomodacao = async function(est_id) {
     }
 }
 
+module.exports.getMyEstacionamentos = async function(est_id) {
+    try {
+        let sql = "SELECT *, state_type.state_id, state_type.state_name, place_estacionamento.local_morada, place_estacionamento.local_id, place_estacionamento.ref_system_id, place_estacionamento.geometry_info_point, place_estacionamento.local_estacionamento_id, place_estacionamento.local_latitude, place_estacionamento.local_longitude, utilizador.utilizador_id, utilizador.utilizador_username FROM parking_lot INNER JOIN  state_type ON state_type.state_id = parking_lot.state_id INNER JOIN place_estacionamento ON place_estacionamento.local_estacionamento_id = parking_lot.parking_lot_id INNER JOIN utilizador ON utilizador.utilizador_id = parking_lot.establishment_utilizador_id where utilizador.utilizador_id = " + est_id;
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
 
 module.exports.getMyReservasRestaurant = async function(est_id) {
     try {
@@ -677,7 +689,7 @@ module.exports.getLugarAvailable = async function(est_id) {
 
 module.exports.getLugarAvailableDecrescente = async function(est_id) {
     try {
-        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY DESC";
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY spot.spot_price DESC";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
@@ -690,7 +702,7 @@ module.exports.getLugarAvailableDecrescente = async function(est_id) {
 
 module.exports.getLugarAvailableCrescente = async function(est_id) {
     try {
-        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY ASC";
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '0' ORDER BY spot.spot_price ASC";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
@@ -1378,6 +1390,8 @@ module.exports.getGetIncompleteRestaurants = async function(est_id) {
         return { status: 500, data: err };
     }
 }
+
+
 
 module.exports.UpdateEstadoEmAnalise = async function(id_rest){
 

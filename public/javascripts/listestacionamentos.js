@@ -29,7 +29,7 @@ async function openestacionamento2(restaurante){
     sessionStorage.setItem('parking_lot_number_spots', restaurante.parking_lot_number_spots);
     sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
     sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
-    sessionStorage.setItem('state_id', restaurante.state_id)
+    sessionStorage.setItem('state_id', restaurante.state_id);
 
 }
 
