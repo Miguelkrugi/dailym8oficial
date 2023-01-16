@@ -169,7 +169,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Mesa: <i>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Numero de Pessoas: <i>" + mesa.mesa_size + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>"+ mesa.mesa_type_name +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Acomodação: <i>" + mesa.acomodacao_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>" + mesa.acomodacao_type_name + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.acomodacao_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Linha: <i>"+ mesa.position_line + " | Coluna: " + mesa.position_column +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
@@ -188,7 +188,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     let suggestedestacionamentos = await $.ajax({
     
-    url: "/users/gettables/" + id_restaurante,
+    url: "/users/getacomodacoes/" + id_restaurante,
     method: "get",
     dataType: "json",
     
