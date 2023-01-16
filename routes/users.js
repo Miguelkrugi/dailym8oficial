@@ -1052,4 +1052,32 @@ router.get('/getlugares/filtercrescente/:idrestaurant', async function(req, res,
 
 });
 
+///////////////////////// CONTAR NUMERO DE LUGARES/MESAS/ACOMODACOES DISPONIVEIS //////////////////////////////
+
+router.get('/count/lugares/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountLugares(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/count/mesas/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountMesas(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/count/acomodacoes/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountAcomodacoes(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 module.exports = router;
