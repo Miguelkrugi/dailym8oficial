@@ -115,14 +115,39 @@ async function criarPlate(rest_id, tipo_prato_id){
 
  async function removerMesa(mesa){
 
-  var del = mesa.mesa_id;
+  var del = mesa.spot_id;
   console.log("ID da mesa: "+del);
  try {
 
    //ENVIAR METODO
    let asd = await $.ajax({
 
-    url: "/users/deletemesa/" + del,
+    url: "/users/deletelugar/" + del,
+    method: "delete",
+    contentType: "application/json",
+    dataType: "json"
+  
+  });
+
+
+ } catch (err){
+console.log(err);
+  window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+
+ }
+
+}
+
+async function removerReserva(reserva){
+
+  var del = reserva.id_reservation;
+  console.log("ID da mesa: "+del);
+ try {
+
+   //ENVIAR METODO
+   let asd = await $.ajax({
+
+    url: "/users/deletereserva/" + del,
     method: "delete",
     contentType: "application/json",
     dataType: "json"
@@ -400,7 +425,7 @@ async function getMenu(id_restaurante){
   
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 60%; height:23%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva.utilizador_name + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva.spot_number + "</h3><h3 id='tipoetamanhoname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tamanho: <i>" + reserva.spot_price + "</i></h3><h3 id='dataname' style='margin-left: 1.6%;  margin-top: -1.2%;'>Data: " + reserva.date_marcada_reservation + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9'>CANCELAR A RESERVA</button></div>";
+    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 60%; height:23%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva.utilizador_name + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva.spot_number + "</h3><h3 id='tipoetamanhoname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tamanho: <i>" + reserva.spot_price + "</i></h3><h3 id='dataname' style='margin-left: 1.6%;  margin-top: -1.2%;'>Data: " + reserva.date_marcada_reservation + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9' onclick='removerReserva(" + JSON.stringify(reserva) + ")'>CANCELAR A RESERVA</button></div>";
     // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -456,6 +481,66 @@ async function getMenu(id_restaurante){
     }
 
 
+    ////// ADICIONAR UM LUGAR \\\\\\
+
+    async function criarLugar(rest_id){
+
+      var value_for_availability = 2;
+    
+      if(document.getElementById("lugardisponibilidadeinput").value == "Sim"){
+    
+        value_for_availability = 0;
+    
+      } else if(document.getElementById("lugardisponibilidadeinput").value == "Não"){
+    
+        value_for_availability = 1;
+      } else {
+    
+        console.log("Nada selecionado!")
+      }
+    
+    
+    
+      try {
+     
+       
+       var parking_lot_id = rest_id;
+     
+    
+        let data = {
+     
+         spot_price: document.getElementById("lugarprecoinput").value,
+         spot_availability: value_for_availability,
+         spot_parking_lot_id: parking_lot_id,
+         spot_number: document.getElementById("lugarnumberinput").value
+     
+        }
+     
+        //ENVIAR METODO
+        let newExercise = await $.ajax({
+         url: "/users/insertlugar/",
+         method: "post",
+         data: JSON.stringify(data),
+         contentType: "application/json",
+         dataType: "json"
+         });
+     
+        // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+     
+     
+      } catch (err){
+     
+       window.alert("Prato criado com sucesso.");
+     
+      }
+     
+     
+     
+     }
+    
+
+    ////////////////////////////////
+
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
@@ -493,7 +578,7 @@ window.onload = function exampleFunction() {
 
    document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
   // document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
-   document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
+   document.getElementById('restaurantinfo').innerHTML = "Numero de Lugares: " + restaurante_number_tables;
 
    document.getElementById('button9').addEventListener("click", function() {
 	  
@@ -594,8 +679,9 @@ window.onload = function exampleFunction() {
 
   document.getElementById('criarlugarbtn').addEventListener("click", function() {
 	  
-    console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
-    criarLugar(restaurant_id, tipo_mesa_id);
+    //console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
+    criarLugar(restaurant_id);
+
   });
 
 

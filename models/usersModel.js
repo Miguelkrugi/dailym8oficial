@@ -1169,6 +1169,38 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 }
 
+module.exports.DeleteLugar = async function(mesa_id){
+
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM spot " + "WHERE spot_id = " + mesa_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeleteReservaEstacionamento = async function(mesa_id){
+
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM reserva_spot " + "WHERE id_reservation = " + mesa_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.saveReservaSpot = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
 
@@ -1370,6 +1402,40 @@ module.exports.savePlate = async function(pedido) {
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
         let result = await pool.query(sql, [pedido.plate_name, pedido.plate_price, pedido.plate_restaurant_id, pedido.plate_availability, pedido.plate_type_identifier, pedido.plate_type_description]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
+module.exports.saveLugar = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+      // INSERT ->  INSERT INTO restaurant (establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) VALUES('Maré dos Golfinhos', 'Restaurante da maré dos golfinhos', 1, 7, 46,1,1)
+
+
+
+        let sql =
+            "INSERT " +
+            "INTO spot " +
+            "(spot_price, spot_availability, spot_parking_lot_id, spot_number) " +
+            "VALUES ($1, $2, $3, $4) " +
+            "RETURNING spot_id";
+
+           // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [spot.spot_price, spot.spot_availability, spot.spot_parking_lot_id, spot.spot_number]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
@@ -1603,6 +1669,62 @@ module.exports.UpdateAcomodacaoUnavailable = async function(id_plate){
 
 }
 
+///GET DE PACKS DISPONIVEIS DE ESTACIONAMENTO
+
+module.exports.getAvailablePacksEstacionamento = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, parking_lot.establishment_id, parking_lot.establishment_name, parking_lot.establishment_description, parking_lot.establishment_utilizador_id, parking_lot.parking_lot_id, parking_lot.parking_lot_number_spots, utilizador.utilizador_id, utilizador.utilizador_name FROM pack_estacionamento INNER JOIN parking_lot ON parking_lot.parking_lot_id = pack_estacionamento.pack_estacionamento_id INNER JOIN utilizador ON utilizador.utilizador_id = parking_lot.establishment_utilizador_id WHERE pack_estacionamento.pack_estacionamento_id = " + restaurant_id + " AND pack_estacionamento.pack_availability = '0' ORDER BY pack_estacionamento.created_at DESC";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+module.exports.getAvailableTablesEst = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, restaurant.establishment_name, restaurant.establishment_id FROM mesa INNER JOIN restaurant ON restaurant.restaurant_id = mesa.mesa_restaurant_id WHERE restaurant.establishment_utilizador_id = " + restaurant_id + " AND mesa.mesa_availability = '0'";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getAvailableAcomodacoesEst = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, equipment_service.establishment_name, equipment_service.establishment_id FROM acomodacao INNER JOIN equipment_service ON equipment_service.equipment_service_id = acomodacao.acomodacao_equipment_service_id WHERE equipment_service.establishment_utilizador_id = " + restaurant_id + " AND acomodacao.acomodacao_availability = '0'";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
+
+module.exports.getAvailableLugaresEst = async function(restaurant_id) {
+    try {
+        let sql = "SELECT *, parking_lot.establishment_name, parking_lot.establishment_id FROM spot INNER JOIN parking_lot ON parking_lot.parking_lot_id = spot.spot_parking_lot_id WHERE parking_lot.establishment_utilizador_id = " + restaurant_id + " AND spot.spot_availability = '0'";
+        let result = await pool.query(sql);
+       let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
 ///GET DE PACKS DISPONIVEIS DE UM RESTAURANTE///
 module.exports.getAvailablePacksRestaurante = async function(restaurant_id) {
     try {
@@ -1616,6 +1738,7 @@ module.exports.getAvailablePacksRestaurante = async function(restaurant_id) {
         return { status: 500, data: err };
     }
 }
+
 
 
 module.exports.getAvailableAcomodacoesRest = async function(restaurant_id) {

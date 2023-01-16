@@ -619,6 +619,26 @@ router.delete('/deletemesa/:idmesa', async function(req, res, next){
 
 });
 
+router.delete('/deletelugar/:idlugar', async function(req, res, next){
+
+  let mesa_id = req.params.idlugar;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteLugar(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deletereserva/:idreserva', async function(req, res, next){
+
+  let mesa_id = req.params.idreserva;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteReservaEstacionamento(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
 /*router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
@@ -639,6 +659,14 @@ router.post('/insertplate', async function(req, res, next) {
   let result = await usersModel.savePlate(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
+
+router.post('/insertlugar', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveLugar(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -900,7 +928,46 @@ router.put('/setacomodacaounavailable/:iduserrrr', async function(req, res, next
 
 });
 
-////GET DE PACKS DISPONIVEIS////
+///GET DE PACKS DISPONIVEIS - ESTACIONAMENTO///
+
+router.get('/getavailable/parkinglot/packs/:idrestaurante', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getAvailablePacksEstacionamento(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/parkinglot/acomodacoes/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableAcomodacoesEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/parkinglot/lugares/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableLugaresEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/mesas/lugares/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableTablesEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
+////GET DE PACKS DISPONIVEIS - RESTAURANTE////
 
 router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req, res, next) {
 
@@ -910,6 +977,8 @@ router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req,
   res.status(result.status).send(result.data);
 
 });
+
+
 
 router.get('/getavailable/acomodacoes/items/:idutilizador', async function(req, res, next) {
 
@@ -928,6 +997,8 @@ router.get('/getavailable/lugares/items/:idutilizador', async function(req, res,
   res.status(result.status).send(result.data);
 
 });
+
+
 
 
 
