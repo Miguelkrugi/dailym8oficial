@@ -1,3 +1,5 @@
+const { getFilterServicesAcomodacaoCrescente } = require("../../models/usersModel");
+
 async function criarMesa(rest_id, tipo_mesa_id){
 
     var value_for_availability = 2;
@@ -432,6 +434,110 @@ async function criarMesa(rest_id, tipo_mesa_id){
          console.log(err);
        }
       }
+
+
+      /////////////////////////////////////////// FILTRAGEM DE ACOMODACOES ///////////////////////////////////////////
+
+      async function filtragemAcomodacao(id_restaurante, tipo_acom_id){
+    
+        console.log("Obtendo os reports")
+        
+        // let recipeName = document.getElementById("nome1")
+         let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
+         var utilizador_id = sessionStorage.getItem("utilizador_id");
+         console.log("setItem->userId = " + utilizador_id);
+        
+        try{
+        
+        let suggestedestacionamentos = await $.ajax({
+        
+        url: "/users/getacomodacoes/filter/" + id_restaurante + "/" + tipo_acom_id, //O tipo_acom_id PODE SER 1 ou 2, DEPENDERÁ DA OPÇÃO SELECIONADA
+        method: "get",
+        dataType: "json",
+        
+        });
+        
+        console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+        
+        let html = "";
+        
+       
+        for(let reserva of suggestedestacionamentos){
+         console.log("Reserva: " + reserva);
+         html += createtableHTML(reserva);
+        }
+       
+      
+          //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+          console.log("NADA ENCONTRADO");
+      
+        
+        
+        console.log("OBTEVE");
+        //  recipeName.innerHTML = html;
+        
+       // restaurantesElem.innerHTML = html;
+      
+         lugaresElem.innerHTML = html;
+        
+        
+        } catch(err){
+         console.log(err);
+        }
+        }
+
+
+///////////////////////////////// FILTRAR DISPONIBILIDADE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
+    
+    console.log("Obtendo os reports")
+    
+    // let recipeName = document.getElementById("nome1")
+     let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedestacionamentos = await $.ajax({
+    
+    url: "/users/getacomodacoes/filter/disponibilidade/" + id_restaurante + "/" + tipo_disponibilidade_id, //O tipo_acom_id PODE SER 1 ou 2, DEPENDERÁ DA OPÇÃO SELECIONADA
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+    
+    let html = "";
+    
+   
+    for(let reserva of suggestedestacionamentos){
+     console.log("Reserva: " + reserva);
+     html += createtableHTML(reserva);
+    }
+   
+  
+      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+      console.log("NADA ENCONTRADO");
+  
+    
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     lugaresElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
+
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   
   window.onload = function exampleFunction() {
@@ -523,7 +629,32 @@ async function criarMesa(rest_id, tipo_mesa_id){
       console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
       criarLugar(restaurant_id, tipo_mesa_id);
     });
+
+    ///////////////////////////////// TIPO DE ACOMODAÇÃO /////////////////////////////////
+
+    document.getElementById('toldofilteroption').addEventListener("click", function() {
+
+        tipo_mesa_id = 1; //TOLDO
+        filtragemAcomodacao(restaurant_id ,tipo_mesa_id);
+      });
   
+      document.getElementById('palhotafilteroption').addEventListener("click", function() {
+          
+        tipo_mesa_id = 2; //PALHOTA
+        filtragemAcomodacao(restaurant_id ,tipo_mesa_id);
+      });
+
+      document.getElementById('disponiveloption').addEventListener("click", function() {
+
+        tipo_disponibilidade_id = 0; //TOLDO
+        filtragemDisponivel(restaurant_id ,tipo_disponibilidade_id);
+      });
+
+      document.getElementById('indisponiveloption').addEventListener("click", function() {
+
+        tipo_disponibilidade_id = 1; //TOLDO
+        filtragemDisponivel(restaurant_id ,tipo_disponibilidade_id);
+      });
   
   }
   

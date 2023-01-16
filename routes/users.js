@@ -231,6 +231,28 @@ router.get('/getacomodacoes/:idestabelecimento', async function(req, res, next) 
 
 });
 
+router.get('/getacomodacoes/filter/:idestabelecimento/:idtipoacomodacaoid', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let tipo_acom_id = req.params.idtipoacomodacaoid;
+
+  let result = await usersModel.getAcomodacoesServiceFilter(estabelecimento_id, tipo_acom_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getacomodacoes/filter/disponibilidade/:idestabelecimento/:idtipodisponibilidadeid', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let tipo_disp_id = req.params.idtipodisponibilidadeid;
+
+  let result = await usersModel.getAcomodacoesServiceFilterDisp(estabelecimento_id, tipo_disp_id);
+  res.status(result.status).send(result.data);
+
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.get('/getlatestreports', async function(req, res, next) {
 
   let result = await usersModel.getLatestReports();
