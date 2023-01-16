@@ -115,14 +115,14 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
    async function removerMesa(mesa){
   
-    var del = mesa.mesa_id;
+    var del = mesa.acomodacao_id;
     console.log("ID da mesa: "+del);
    try {
   
      //ENVIAR METODO
      let asd = await $.ajax({
   
-      url: "/users/deletemesa/" + del,
+      url: "/users/deleteacomodacao/" + del,
       method: "delete",
       contentType: "application/json",
       dataType: "json"
@@ -147,7 +147,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
      //ENVIAR METODO
      let asd = await $.ajax({
   
-      url: "/users/deleteresmesa/" + del,
+      url: "/users/deleteresacomodacao/" + del,
       method: "delete",
       contentType: "application/json",
       dataType: "json"
@@ -169,7 +169,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Acomodação: <i>" + mesa.acomodacao_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>" + mesa.acomodacao_type_name + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.acomodacao_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Linha: <i>"+ mesa.position_line + " | Coluna: " + mesa.position_column +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Acomodação: <i>" + mesa.acomodacao_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>" + mesa.acomodacao_type_name + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.acomodacao_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Linha: <i>"+ mesa.position_line + " | Coluna: " + mesa.position_column +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR ACOMODAÇÃO</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
@@ -180,7 +180,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     console.log("Obtendo os reports")
     
     // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizeinfoestauranttables"); //VERIFICAR O ID
+     let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
      var utilizador_id = sessionStorage.getItem("utilizador_id");
      console.log("setItem->userId = " + utilizador_id);
     
@@ -410,6 +410,28 @@ async function criarMesa(rest_id, tipo_mesa_id){
        console.log(err);
       }
       }
+
+      async function getCountAvailableLugares(restaurant_id){
+
+       
+        try{
+      
+          let suggestedestacionamentos = await $.ajax({
+          
+          url: "/users/count/acomodacoes/" + restaurant_id,
+          method: "get",
+          dataType: "json",
+          
+          });
+          
+          console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
+  
+          document.getElementById("restaurantavailable").innerHTML = "Numero de Lugares Disponiveis: " + suggestedestacionamentos[0].count;
+  
+       } catch (err){
+         console.log(err);
+       }
+      }
   
   
   window.onload = function exampleFunction() {
@@ -464,68 +486,15 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
      getReservasRestaurante(restaurant_id);
   
-     getMenu(restaurant_id);
+   //  getMenu(restaurant_id);
   
      getMesas(restaurant_id);
+
+     getCountAvailableLugares(restaurant_id);
   
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   
       var tipo_prato_id = 0;
-  
-  
-      document.getElementById('aperitivooption').addEventListener("click", function() {
-          
-        tipo_prato_id = 1;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Aperitivo" 
-  
-      });
-  
-      document.getElementById('entradaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 2;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Entrada"  
-        
-      });
-  
-      document.getElementById('pratoprincipaloption').addEventListener("click", function() {
-          
-        tipo_prato_id = 3;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato Principal"
-        
-      });
-  
-      document.getElementById('sobremesaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 4;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Sobremesa" 
-        
-      });
-  
-      document.getElementById('pratododiaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 5;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato do Dia" 
-        
-      });
-  
-     
-  
-     document.getElementById('criarpratobtn').addEventListener("click", function() {
-        
-      console.log("TIPO PRATO: " + tipo_prato_id);
-      criarPlate(restaurant_id, tipo_prato_id);
-  
-  
-  
-      document.getElementById("bg-modal").style.display = "none";
-  
-     
-    });
   
     /////////////////////////////////////////////////////////////////////////////////////////
   

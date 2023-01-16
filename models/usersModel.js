@@ -1182,6 +1182,22 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 }
 
+module.exports.DeleteAcomodacao = async function(mesa_id){
+
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM acomodacao " + "WHERE acomodacao_id = " + mesa_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.DeleteLugar = async function(mesa_id){
 
     try{
@@ -1221,7 +1237,21 @@ module.exports.DeleteResMesa = async function(id_reservation){
         console.log(err);
         return { status: 500, data: err };
     }
- 
+
+}
+
+module.exports.DeleteResAcomodacao = async function(id_reservation){
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM reserva_acomodacao " + "WHERE id_reservation = " + id_reservation;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
 
 }
 
@@ -1925,7 +1955,7 @@ module.exports.getCountLugares = async function(est_id) {
     }
 }
 
-module.exports.geCountMesas = async function(est_id) {
+module.exports.getCountMesas = async function(est_id) {
     try {
         let sql = "SELECT COUNT(*) FROM mesa WHERE mesa.mesa_availability = '0' AND mesa.mesa_restaurant_id = " + est_id;
         let result = await pool.query(sql);
@@ -1938,7 +1968,7 @@ module.exports.geCountMesas = async function(est_id) {
     }
 }
 
-module.exports.geCountAcomodacoes = async function(est_id) {
+module.exports.getCountAcomodacoes = async function(est_id) {
     try {
         let sql = "SELECT COUNT(*) FROM acomodacao WHERE acomodacao.acomodacao_availability = '0' AND acomodacao.acomodacao_equipment_service_id = " + est_id;
         let result = await pool.query(sql);
