@@ -164,7 +164,6 @@ console.log(err);
 }
 
 
-
 function createtableHTML(mesa){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
@@ -499,14 +498,10 @@ async function getMenu(id_restaurante){
         console.log("Nada selecionado!")
       }
     
-    
+      var parking_lot_id = rest_id;
     
       try {
      
-       
-       var parking_lot_id = rest_id;
-     
-    
         let data = {
      
          spot_price: document.getElementById("lugarprecoinput").value,
@@ -525,7 +520,7 @@ async function getMenu(id_restaurante){
          dataType: "json"
          });
      
-        // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+        window.alert("CreATED");
      
      
       } catch (err){
@@ -659,27 +654,10 @@ window.onload = function exampleFunction() {
 
   var tipo_mesa_id = 0;
 
-  document.getElementById('interioroption').addEventListener("click", function() {
-	    
-    tipo_mesa_id = 1;
-    document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Interior" 
-  });
-
-  document.getElementById('exterioroption').addEventListener("click", function() {
-	    
-    tipo_mesa_id = 2;
-    document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Exterior" 
-  });
-
-  document.getElementById('criarmesabtn').addEventListener("click", function() {
-	  
-    console.log("TIPO MESA: " + tipo_mesa_id);
-    criarMesa(restaurant_id, tipo_mesa_id);
-  });
 
   document.getElementById('criarlugarbtn').addEventListener("click", function() {
 	  
-    //console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
+    console.log("CHAMADA");
     criarLugar(restaurant_id);
 
   });

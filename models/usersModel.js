@@ -1169,7 +1169,6 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 }
 
-<<<<<<< HEAD
 module.exports.DeleteLugar = async function(mesa_id){
 
     try{
@@ -1191,13 +1190,16 @@ module.exports.DeleteReservaEstacionamento = async function(mesa_id){
     try{
         console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
         let sql = "DELETE FROM reserva_spot " + "WHERE id_reservation = " + mesa_id;
-=======
-module.exports.DeleteResMesa = async function(id_reservation){
+    } catch(err){
+        console.log(err);
+        return {status: 500, data: err};
+      }
+    }
 
+module.exports.DeleteResMesa = async function(id_reservation){
     try{
         console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
         let sql = "DELETE FROM reserva_mesa " + "WHERE id_reservation = " + id_reservation;
->>>>>>> 24d0a321bd022f674c395504c329385967de23a6
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
@@ -1206,6 +1208,7 @@ module.exports.DeleteResMesa = async function(id_reservation){
         console.log(err);
         return { status: 500, data: err };
     }
+ 
 
 }
 
@@ -1443,7 +1446,7 @@ module.exports.saveLugar = async function(pedido) {
             "RETURNING spot_id";
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
-        let result = await pool.query(sql, [spot.spot_price, spot.spot_availability, spot.spot_parking_lot_id, spot.spot_number]);
+        let result = await pool.query(sql, [pedido.spot_price, pedido.spot_availability, pedido.spot_parking_lot_id, pedido.spot_number]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {

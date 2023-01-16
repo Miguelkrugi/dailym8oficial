@@ -525,7 +525,6 @@ async function criarMesa(rest_id, tipo_mesa_id){
      // getAleatorioRestaurantes();
   
      document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
-     document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
      document.getElementById('button8').addEventListener("click", function() {
