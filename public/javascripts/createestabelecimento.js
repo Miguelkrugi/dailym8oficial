@@ -85,7 +85,7 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
 
 
 
-   async function criarAcomodacao(user_id,acomodacao_tipo_id){
+   async function criarServicoAcomodacao(user_id,equipment_service_id){
 
     try {
    
@@ -95,19 +95,22 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
 
       let data = {
    
-       acomodacao_number: document.getElementById("nomeinput").value,
-       acomodacao_availability: 0,
-       acomodacao_type_id: acomodacao_tipo_id,
-       acomodacao_equipment_service_id: 1, //DEFAULT FOR NOW
-       acomodacao_price: document.getElementById("numeroacomodacoesinput").value,
+       establishment_name: document.getElementById("nomeinput").value,
        acomodacao_description: document.getElementById("descricaoinput").value,
-       state_id: 1
+       number_acomodacoes: document.getElementById("numeroacomodacoesinput").value,
+       equipment_service_name: document.getElementById("nomeinput").value,
+       type_service_identifier:2,
+       state_id: 1,
+       establishment_utilizador_id: user_id
+
+
+
    
       }
    
       //ENVIAR METODO
       let newExercise = await $.ajax({
-       url: "/users/insertnewacomodacao",
+       url: "/users/insertnewserviceacomodacao",
        method: "post",
        data: JSON.stringify(data),
        contentType: "application/json",
@@ -252,7 +255,7 @@ window.onload = function exampleFunction() {
       document.getElementById('createacomodacao').addEventListener("click", function(){
 
         console.log("Funcao Chamada");
-        criarAcomodacao(utilizador_id,acomodacao_tipo_id);
+        criarServicoAcomodacao(utilizador_id,acomodacao_tipo_id);
         
       
       });

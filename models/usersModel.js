@@ -1027,19 +1027,19 @@ module.exports.saveEstacionamento = async function(pedido) {
     }
 }
 
-module.exports.saveAcomodacao = async function(pedido) {
+module.exports.saveServicoAcomodacao = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
 
     try {
 
         let sql =
             "INSERT " +
-            "INTO acomodacao " +
-            "(acomodacao_number, acomodacao_availability, acomodacao_type_id, acomodacao_equipment_service_id, acomodacao_price, acomodacao_description) " +
-            "VALUES ($1, $2, $3, $4, $5, $6) " +
-            "RETURNING acomodacao_id";
+            "INTO equipment_service " +
+            "(establishment_name,establishment_description, establishment_utilizador_id, number_acomodacoes, equipment_service_name) " +
+            "VALUES ($1, $2, $3, $4, $5) " +
+            "RETURNING equipment_service_id";
 
-        let result = await pool.query(sql, [pedido.acomodacao_number, pedido.acomodacao_availability, pedido.acomodacao_type_id, pedido.acomodacao_equipment_service_id, pedido.acomodacao_price, pedido.acomodacao_description]);
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.number_acomodacoes, pedido.equipment_service_name]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
