@@ -1169,6 +1169,7 @@ module.exports.DeleteMesa = async function(mesa_id){
 
 }
 
+<<<<<<< HEAD
 module.exports.DeleteLugar = async function(mesa_id){
 
     try{
@@ -1190,6 +1191,13 @@ module.exports.DeleteReservaEstacionamento = async function(mesa_id){
     try{
         console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
         let sql = "DELETE FROM reserva_spot " + "WHERE id_reservation = " + mesa_id;
+=======
+module.exports.DeleteResMesa = async function(id_reservation){
+
+    try{
+        console.log("---------------------------------------------------------------------------------------------------------------------------------------------");
+        let sql = "DELETE FROM reserva_mesa " + "WHERE id_reservation = " + id_reservation;
+>>>>>>> 24d0a321bd022f674c395504c329385967de23a6
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));

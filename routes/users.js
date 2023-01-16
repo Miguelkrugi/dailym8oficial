@@ -619,6 +619,7 @@ router.delete('/deletemesa/:idmesa', async function(req, res, next){
 
 });
 
+<<<<<<< HEAD
 router.delete('/deletelugar/:idlugar', async function(req, res, next){
 
   let mesa_id = req.params.idlugar;
@@ -635,6 +636,14 @@ router.delete('/deletereserva/:idreserva', async function(req, res, next){
 
  // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
   let result = await usersModel.DeleteReservaEstacionamento(mesa_id);
+=======
+router.delete('/deleteresmesa/:idres', async function(req, res, next){
+
+  let id_reservation = req.params.idres;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteResMesa(id_reservation);
+>>>>>>> 24d0a321bd022f674c395504c329385967de23a6
   res.status(result.status).send(result.data);
 
 });
