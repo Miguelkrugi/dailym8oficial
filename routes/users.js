@@ -591,6 +591,13 @@ router.post('/insertnewmesa', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewacomodacao', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveAcomodacao(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 router.post('/insertnewplate', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
@@ -656,6 +663,16 @@ router.delete('/deleteacomodacao/:idmesa', async function(req, res, next){
 
  // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
   let result = await usersModel.DeleteAcomodacao(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deleteposicaoacomodacao/:idmesa', async function(req, res, next){
+
+  let mesa_id = req.params.idmesa;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeletePositionAcomodacao(mesa_id);
   res.status(result.status).send(result.data);
 
 });

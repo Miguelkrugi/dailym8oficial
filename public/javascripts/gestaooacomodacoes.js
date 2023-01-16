@@ -1,4 +1,3 @@
-const { getFilterServicesAcomodacaoCrescente } = require("../../models/usersModel");
 
 async function criarMesa(rest_id, tipo_mesa_id){
 
@@ -119,27 +118,62 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
     var del = mesa.acomodacao_id;
     console.log("ID da mesa: "+del);
-   try {
+
+    //PASSO 1- FAZER DELETE DA POSIÇÃO DA ACOMODAÇÃO
+
+    try {
   
-     //ENVIAR METODO
-     let asd = await $.ajax({
-  
-      url: "/users/deleteacomodacao/" + del,
-      method: "delete",
-      contentType: "application/json",
-      dataType: "json"
-    
-    });
-  
-  
-   } catch (err){
-  console.log(err);
-    window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
-  
-   }
+        //ENVIAR METODO
+        let asd = await $.ajax({
+     
+         url: "/users/deleteposicaoacomodacao/" + del,
+         method: "delete",
+         contentType: "application/json",
+         dataType: "json"
+       
+       });
+     
+     
+      } catch (err){
+     console.log(err);
+       window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+     
+      }
+
+      deleteAcomodation(del);
+   
   
   }
   
+
+
+  ///////
+
+  async function deleteAcomodation(del){
+   //PASSO 2- FAZER DELETE DA ACOMODAÇÃO
+
+   try {
+  
+    //ENVIAR METODO
+    let asd = await $.ajax({
+ 
+     url: "/users/deleteacomodacao/" + del,
+     method: "delete",
+     contentType: "application/json",
+     dataType: "json"
+   
+   });
+ 
+ 
+  } catch (err){
+ console.log(err);
+   window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+ 
+  }
+
+}
+
+  ///////
   async function removerReservaMesa(reserva_mesa){
   
     var del = reserva_mesa.id_reservation;
@@ -537,6 +571,65 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
     }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    async function postAcomodacao(rest_id, type_acom_id){
+
+        var value_for_availability = 2;
+  
+        if(document.getElementById("dispacom").value == "Sim"){
+      
+          value_for_availability = 0;
+      
+        } else if(document.getElementById("dispacom").value == "Não"){
+      
+          value_for_availability = 1;
+        } else {
+      
+          console.log("Nada selecionado!")
+        }
+
+        try {
+       
+         var resta_id = rest_id
+         var userr_id = type_acom_id
+       
+          let data = {
+       
+           acomodacao_number: document.getElementById("numacom").value,
+           acomodacao_availability: value_for_availability,
+           acomodacao_type_id: userr_id,
+           acomodacao_equipment_service_id: resta_id,
+           acomodacao_price: document.getElementById("priceacom").value,
+           acomodacao_description: document.getElementById("descacom").value
+
+          }
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewacomodacao/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+       
+           location.reload();
+          // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+       
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+       
+       
+       
+       }
+
+
+    
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   
@@ -606,29 +699,8 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
   
     var tipo_mesa_id = 0;
   
-    document.getElementById('interioroption').addEventListener("click", function() {
-          
-      tipo_mesa_id = 1;
-      document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Interior" 
-    });
   
-    document.getElementById('exterioroption').addEventListener("click", function() {
-          
-      tipo_mesa_id = 2;
-      document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Exterior" 
-    });
-  
-    document.getElementById('criarmesabtn').addEventListener("click", function() {
-        
-      console.log("TIPO MESA: " + tipo_mesa_id);
-      criarMesa(restaurant_id, tipo_mesa_id);
-    });
-  
-    document.getElementById('criarlugarbtn').addEventListener("click", function() {
-        
-      console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
-      criarLugar(restaurant_id, tipo_mesa_id);
-    });
+    
 
     ///////////////////////////////// TIPO DE ACOMODAÇÃO /////////////////////////////////
 
@@ -655,6 +727,59 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
         tipo_disponibilidade_id = 1; //TOLDO
         filtragemDisponivel(restaurant_id ,tipo_disponibilidade_id);
       });
+
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      var tipo_acomodacao_selected = 0
+      document.getElementById('toldobtn').addEventListener("click", function() {
+
+         if(tipo_acomodacao_selected == 0){
+
+            tipo_acomodacao_selected = 1;
+            document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Toldo";
+
+            console.log(tipo_acomodacao_selected);
+
+         } else {
+            tipo_acomodacao_selected = 1;
+            document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Toldo";
+
+            console.log(tipo_acomodacao_selected);
+
+         }
+
+      });
+
+      document.getElementById('palhotabtn').addEventListener("click", function() {
+
+        if(tipo_acomodacao_selected == 0){
+           tipo_acomodacao_selected = 2;
+           document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Palhota";
+
+           console.log(tipo_acomodacao_selected);
+
+        } else {
+
+           tipo_acomodacao_selected = 2;
+           document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Palhota";
+
+           console.log(tipo_acomodacao_selected);
+
+        }
+        
+     });
+
+     document.getElementById('button4').addEventListener("click", function() {
+
+        postAcomodacao(restaurant_id, tipo_acomodacao_selected);
+
+      });
+
+     
+
+     
+ 
   
   }
   

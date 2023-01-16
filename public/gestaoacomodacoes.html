@@ -119,15 +119,15 @@
        <button style="position:absolute; margin-top: 5.7%; margin-left: 77%;" id="button5" class="button">VER TODOS</button>
         <button style="position:absolute; margin-top: 53.4%; margin-left: 18%;" id="button3" class="button">CRIAR ACOMODAÇÃO</button>
         <div class="dropdown" style="position: absolute; margin-top: 52%; margin-left:45.5%;">
-            <button class="dropbtn">Filtrar Data</button>
+            <button class="dropbtn">Disponibilidade</button>
             <div class="dropdown-content">
                 
                     <a href="#">Todos</a>
                       
                 
-              <a href="#">Mais Recentes</a>
+              <a href="#" id="disponiveloption">Disponiveis</a>
                 
-              <a href="#">Mais Antigos</a>
+              <a href="#" id="indisponiveloption">Indisponiveis</a>
             
             </div>
         </div>
@@ -151,9 +151,9 @@
                     <a href="#">Todos</a>
                       
                 
-              <a href="#" id="disponiveloption">Disponiveis</a>
+              <a href="#">Disponiveis</a>
                 
-              <a href="#" id="indisponiveloption">Indisponiveis</a>
+              <a href="#">Indisponiveis</a>
             
             </div>
         </div>
@@ -237,20 +237,25 @@
 		
 				<form action="">
 					<input style="width: 70%;" type="text" placeholder="Nome">
-					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>
-					<a href="#" class="button" id="button4" style="margin-top: 40.6%; margin-left: 1.3%; position: absolute; font-size: 21px; " onclick="createTable()">Criar Acomodação</a>
-					<input style="width: 26%;" type="number" id="foodprice" name="roodprice" min="0" maxlength="300" placeholder="Preço">
-					<input style="width: 38%;margin-left: 27.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número da Acomodação">
+					<textarea style="height:200px; margin-left: -30.8%; width: 70%;" type="email" id="descacom" placeholder="Descrição (até 300 caracteres)"></textarea>
+					<a href="#" class="button" id="button4" style="margin-top: 40.6%; margin-left: 1.3%; position: absolute; font-size: 21px; ">Criar Acomodação</a>
+					<input style="width: 26%;" type="number" id="foodprice" name="priceacom" min="0" maxlength="300" placeholder="Preço">
+					<input style="width: 38%;margin-left: 27.4%; position: absolute; margin-top: -7.5%;" type="number" id="numacom" name="roodprice"min="0" max="300" placeholder="Número da Acomodação">
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input style="width: 70%;" type="text" maxlength="3" id="dispacom" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
 					<h4 style="position: absolute; margin-top: -54.4%; margin-left: 66.7%; font-size: 19px;">Tipo de Acomodação:</h4>
 
-					<button style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1">Toldo</button>
-					<button style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2">Palhota</button>
+					<a style=" position: absolute; margin-left: 20%; margin-top: -50%;" value="1" id="toldobtn">Toldo</a>
+					<a style=" position: absolute; margin-left: 20%; margin-top: -45%;" value="2" id="palhotabtn">Palhota</a>
 
-					<h5 style="position: absolute; margin-top: -40.5%; margin-left: 67.7%; font-size: 11px;">Tipo selecionado:</h5>
+					<h5 style="position: absolute; margin-top: -40.5%; margin-left: 67.7%; font-size: 11px;" id="selectedtypeacom">Tipo selecionado:</h5>
+
+				<!---	<input style="width: 26%; position: absolute; margin-top: -37%; margin-left: 67.7%;" type="number" id="linefield" name="roodprice" min="1" max="6" placeholder="Linha (1-6)">
+
+					<input style="width: 26%; position: absolute; margin-top: -30%; margin-left: 67.7%;" type="number" id="columnfield" name="roodprice" min="1" max="6" placeholder="Coluna (1-6)">-->
+
 				</form>
 		
 			</div>
