@@ -538,10 +538,10 @@ router.post('/insertnewestacionamento', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
-router.post('/insertnewacomodacao', async function(req, res, next) {
+router.post('/insertnewserviceacomodacao', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
-  let result = await usersModel.saveAcomodacao(newPedido);
+  let result = await usersModel.saveServicoAcomodacao(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
 
