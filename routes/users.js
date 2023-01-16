@@ -880,6 +880,16 @@ router.put('/updateadmin/:iduser', async function(req, res, next){
 
 });
 
+router.put('/updatecliente/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  console.log("--------------------------------------------------------------------------------------------------------")
+  let result = await usersModel.UpdateCliente(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.get('/numberreports/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
