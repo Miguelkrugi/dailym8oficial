@@ -222,6 +222,54 @@ async function getMesas(id_restaurante){
   }
   }
 
+  async function getMesasIndisponivel(id_restaurante){
+  
+    console.log("Obtendo os reports")
+    
+    // let recipeName = document.getElementById("nome1")
+     let lugaresElem = document.getElementById("organizeinfoestauranttables"); //VERIFICAR O ID
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedestacionamentos = await $.ajax({
+    
+    url: "/users/getlugares/indisponivel/" + id_restaurante,
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+    
+    let html = "";
+    
+   
+    for(let reserva of suggestedestacionamentos){
+     console.log("Reserva: " + reserva);
+     html += createtableHTML(reserva);
+    }
+   
+  
+      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+      console.log("NADA ENCONTRADO");
+  
+    
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     lugaresElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////7
 
 
@@ -682,6 +730,23 @@ window.onload = function exampleFunction() {
     criarLugar(restaurant_id);
 
   });
+
+  ////////////////////////////////////////////////////////// DISPONIBILIDADE DOS LUGARES /////////////////////////////////////////////////////////////
+
+  document.getElementById('lugaresdisponiveisoption').addEventListener("click", function() {
+	    
+    getMesas(restaurant_id);
+    
+  });
+
+  document.getElementById('lugaresindisponiveisoption').addEventListener("click", function() {
+	    
+    getMesasIndisponivel(restaurant_id);
+    
+  });
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

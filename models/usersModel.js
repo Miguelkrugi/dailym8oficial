@@ -686,6 +686,19 @@ module.exports.getLugaresAvailable = async function(est_id) {
     }
 }
 
+module.exports.getLugaresUnavailable = async function(est_id) {
+    try {
+        let sql = "SELECT * FROM spot WHERE spot.spot_parking_lot_id = " + est_id + " AND spot.spot_availability = '1'";
+        let result = await pool.query(sql);
+        let users = result.rows;
+        console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
+        return { status: 200, data: users };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+}
+
 module.exports.getAcomodacoesAvailable = async function(est_id) {
     try {
         let sql = "SELECT *, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name FROM acomodacao INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id WHERE acomodacao.acomodacao_equipment_service_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
@@ -1899,7 +1912,7 @@ module.exports.savePositionRestaurante = async function(pedido) {
 }
 
 
-module.exports.geCountLugares = async function(est_id) {
+module.exports.getCountLugares = async function(est_id) {
     try {
         let sql = "SELECT COUNT(*) FROM spot WHERE spot.spot_availability = '0' AND spot.spot_parking_lot_id = " + est_id;
         let result = await pool.query(sql);
