@@ -1603,6 +1603,22 @@ module.exports.UpdateAdmin = async function(id_rest){
 
 }
 
+module.exports.UpdateCliente = async function(id_rest){
+
+    try {
+        let sql = "UPDATE utilizador " + "SET utilizador_type_id = 1 " + "WHERE utilizador_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("--------------------------------------------------------------------------------------------------------")
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.getNumberReports = async function(restaurant_id) {
     try {
         let sql = "SELECT COUNT(*) FROM report_restaurante WHERE report_restaurante_id = " + restaurant_id;

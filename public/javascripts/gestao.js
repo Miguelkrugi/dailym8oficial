@@ -30,6 +30,68 @@ window.onload = function exampleFunction() {
 
 }
 
+async function setAdmin(users){
+  var ind = users.utilizador_id;
+    try{
+  
+      let plates = await $.ajax({
+  
+        url: "/users/updateadmin/" + ind,
+        method: "put",
+        dataType: "json",
+  
+      });
+  
+      //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+      
+  
+  
+   } catch(err){
+     console.log(err);
+   }
+  
+  
+}
+
+async function setCliente(users){
+  var ind = users.utilizador_id;
+    try{
+  
+      let plates = await $.ajax({
+  
+        url: "/users/updatecliente/" + ind,
+        method: "put",
+        dataType: "json",
+  
+      });
+  
+      //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+      
+  
+  
+   } catch(err){
+     console.log(err);
+   }
+  
+  
+}
+
+function makeAdmin(users){
+
+
+  setAdmin(users);
+
+}
+
+function removerAdmin(users){
+
+
+  setCliente(users);
+
+}
+
 function openpopupdetails2(){
 
   document.getElementById('button10').addEventListener("click", function() {
@@ -49,7 +111,7 @@ function createusersHTML(users){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:9%; position: relative ;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Nome: " + users.utilizador_name + "</h3> <h3 id='restaurantename' style='margin-left: 1.6%; font-size: 16px; margin-top: -1%;'>Username: " + users.utilizador_username  + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1%;'>Criado por: <i>" + users.utilizador_type_name + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -5%; position: absolute;'>PROMOVER A ADMINISTRADOR</button><button style='margin-left:83%; margin-top: -5%; position: absolute;' id='button10' onclick='openpopupdetails2()'>DESPROMOVER A CLIENTE</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:9%; position: relative ;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Nome: " + users.utilizador_name + "</h3> <h3 id='restaurantename' style='margin-left: 1.6%; font-size: 16px; margin-top: -1%;'>Username: " + users.utilizador_username  + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1%;'>Criado por: <i>" + users.utilizador_type_name + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -5%; position: absolute;'onclick='makeAdmin(" + JSON.stringify(users)+")'>PROMOVER A ADMINISTRADOR</button><button style='margin-left:83%; margin-top: -5%; position: absolute;' id='button9' onclick='removerAdmin(" + JSON.stringify(users)+")'>DESPROMOVER A CLIENTE</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
