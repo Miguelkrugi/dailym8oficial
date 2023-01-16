@@ -314,75 +314,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     deletePrato(plate);
   
   }
-  
-  function createplateHTML(plate){
-    
-    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
-   
-    //return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; position: absolute;' id='button9'>ELIMINAR PRATO</button></div>";
-    return "<div id='reportitem' style='border: 2px; display: inline-block ;position: relative ; border-color: black; background-color: rgb(236, 236, 236); width: 88%; height:30%;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9' onclick='updateAvailability(" + JSON.stringify(plate)+")'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; ' id='button9' onclick='deletePlates(" + JSON.stringify(plate)+")'>ELIMINAR PRATO</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
-  
-   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  async function getMenu(id_restaurante){
-    
-    console.log("Obtendo os reports")
-    
-    // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizemenu"); //VERIFICAR O ID
-     var utilizador_id = sessionStorage.getItem("utilizador_id");
-     console.log("setItem->userId = " + utilizador_id);
-    
-    try{
-    
-    let suggestedestacionamentos = await $.ajax({
-    
-    url: "/users/getmenu/" + id_restaurante,
-    method: "get",
-    dataType: "json",
-    
-    });
-    
-    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
-    
-    let html = "";
-    
-   
-    for(let reserva of suggestedestacionamentos){
-     console.log("Reserva: " + reserva);
-     html += createplateHTML(reserva);
-    }
-   
-  
-      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
-      console.log("NADA ENCONTRADO");
-  
-    
-    
-    console.log("OBTEVE");
-    //  recipeName.innerHTML = html;
-    
-   // restaurantesElem.innerHTML = html;
-  
-     lugaresElem.innerHTML = html;
-    
-    
-    } catch(err){
-     console.log(err);
-    }
-    }
-   
-   
+     
    /////////////////////// OBTER A MORADA //////////////////////////
   
   
@@ -517,15 +449,15 @@ async function criarMesa(rest_id, tipo_mesa_id){
      // getAleatorioRestaurantes();
   
      document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
-     document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
+    // document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
-     document.getElementById('button9').addEventListener("click", function() {
+     document.getElementById('button4').addEventListener("click", function() {
         
       //console.log("TIPO MESA: " + tipo_mesa_id);
      // criarMesa(restaurant_id, tipo_mesa_id);
   
-      document.getElementById("bg-modal666").style.display = "flex";
+      document.getElementById("bg-modal2").style.display = "flex";
     });
   
      getMorada(restaurant_id);
