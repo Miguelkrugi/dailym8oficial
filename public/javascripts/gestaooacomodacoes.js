@@ -138,14 +138,38 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
   }
   
+  async function removerReservaMesa(reserva_mesa){
+  
+    var del = reserva_mesa.id_reservation;
+    console.log("ID da mesa: "+del);
+   try {
+  
+     //ENVIAR METODO
+     let asd = await $.ajax({
+  
+      url: "/users/deleteresmesa/" + del,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+    
+    });
+  
+  
+   } catch (err){
+  console.log(err);
+    window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+  
+   }
+  
+  }
+  
   
   
   function createtableHTML(mesa){
     
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Mesa: <i>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Numero de Pessoas: <i>" + mesa.mesa_size + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>"+ mesa.mesa_type_name +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
@@ -156,7 +180,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     console.log("Obtendo os reports")
     
     // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
+     let lugaresElem = document.getElementById("organizeinfoestauranttables"); //VERIFICAR O ID
      var utilizador_id = sessionStorage.getItem("utilizador_id");
      console.log("setItem->userId = " + utilizador_id);
     
@@ -290,75 +314,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     deletePrato(plate);
   
   }
-  
-  function createplateHTML(plate){
-    
-    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
-   
-    //return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; position: absolute;' id='button9'>ELIMINAR PRATO</button></div>";
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9' onclick='updateAvailability(" + JSON.stringify(plate)+")'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; position: absolute;' id='button9' onclick='deletePlates(" + JSON.stringify(plate)+")'>ELIMINAR PRATO</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
-  
-   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  async function getMenu(id_restaurante){
-    
-    console.log("Obtendo os reports")
-    
-    // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizemenu"); //VERIFICAR O ID
-     var utilizador_id = sessionStorage.getItem("utilizador_id");
-     console.log("setItem->userId = " + utilizador_id);
-    
-    try{
-    
-    let suggestedestacionamentos = await $.ajax({
-    
-    url: "/users/getmenu/" + id_restaurante,
-    method: "get",
-    dataType: "json",
-    
-    });
-    
-    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
-    
-    let html = "";
-    
-   
-    for(let reserva of suggestedestacionamentos){
-     console.log("Reserva: " + reserva);
-     html += createplateHTML(reserva);
-    }
-   
-  
-      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
-      console.log("NADA ENCONTRADO");
-  
-    
-    
-    console.log("OBTEVE");
-    //  recipeName.innerHTML = html;
-    
-   // restaurantesElem.innerHTML = html;
-  
-     lugaresElem.innerHTML = html;
-    
-    
-    } catch(err){
-     console.log(err);
-    }
-    }
-   
-   
+     
    /////////////////////// OBTER A MORADA //////////////////////////
   
   
@@ -396,49 +352,17 @@ async function criarMesa(rest_id, tipo_mesa_id){
     }
   
     ///////////////////////////////////////////////////////////////////////////////////
-    // FUNÇÃO PARA ABRIR DETALHES DO PACK E EDITÁ-LO
-
-    async function openpack(pack){
-
-        console.log("FUNÇÃO CHAMADA!");
-        /*console.log("NOME: " + restaurante.establishment_name)
-          console.log("DESCRICAO: " + restaurante.establishment_description)
-          console.log("ID: " + restaurante.restaurant_id)*/
-      
-          console.log("NOMEEEEEEE: " + pack.pack_name);
-          
-          sessionStorage.setItem('pack_id', pack.pack_id);
-          sessionStorage.setItem('pack_name', pack.pack_name);
-          sessionStorage.setItem('pack_restaurante_id', pack.pack_restaurante_id);
-          sessionStorage.setItem('pack_availability', pack.pack_availability);
-
-         
-      
-      
-        /*  sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
-          sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
-          sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
-          sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
-          sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);*/
-      
-      
-      }
-
-    ///////////////////////////////
   
-    ////CRIAÇÃO DOS ITEMS DOS PACKS PARA EDITAR////
-    function createreservaHTML(reserva){
+    function createreservaHTML(reserva_mesa){ //A FAZER...
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:13%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px; margin-top: 2%;'>" + reserva.pack_name + "</h3><a href='packedit.html'><button style='margin-left:73%; margin-top: -2.4%; position: absolute;' onclick='openpack(" + JSON.stringify(reserva) + ")' id='button9'>EDITAR PACK</button></a></div>";
-      // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva_mesa.utilizador_name + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva_mesa.acomodacao_number + "</h3><h3 id='tipoetamanhoname' style='margin-left: 1.6%; margin-top: -1.6%;'>Linha: <i>" + reserva_mesa.position_line + " | Coluna:  " + reserva_mesa.position_column + "</i> | Tipo: <i>" + reserva_mesa.acomodacao_type_name + "</i></h3><h3 id='dataname' style='margin-left: 1.6%;  margin-top: -1.2%;'>Data: " + reserva_mesa.date_marcada_reservation + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9' onclick='removerReservaMesa(" + JSON.stringify(reserva_mesa) + ")'>CANCELAR A RESERVA</button></div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
     
     }
     
-
     async function getReservasRestaurante(id_restaurante){
     
       console.log("Obtendo os reports")
@@ -452,7 +376,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
       let suggestedestacionamentos = await $.ajax({
       
-      url: "/users/getavailable/restaurante/packs/" + id_restaurante,
+      url: "/users/getreservas/acomodacao/" + id_restaurante,
       method: "get",
       dataType: "json",
       
@@ -504,8 +428,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
       var estabelecimento_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
       var type_service_identifier = sessionStorage.getItem('type_service_identifier');
-      var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
-      var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
+
       var state_id = sessionStorage.getItem('state_id');  //EXPLICAR
     
       console.log("USERNAME: " + utilizador_username);
@@ -526,29 +449,24 @@ async function criarMesa(rest_id, tipo_mesa_id){
      // getAleatorioRestaurantes();
   
      document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
-     document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
+    // document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
-     document.getElementById('button8').addEventListener("click", function() {
+     document.getElementById('button4').addEventListener("click", function() {
         
       //console.log("TIPO MESA: " + tipo_mesa_id);
      // criarMesa(restaurant_id, tipo_mesa_id);
   
-      document.getElementById("bg-modal666").style.display = "flex";
+      document.getElementById("bg-modal2").style.display = "flex";
     });
   
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // getMorada(restaurant_id);
+     getMorada(restaurant_id);
   
      getReservasRestaurante(restaurant_id);
   
-   //  getMenu(restaurant_id);
+     getMenu(restaurant_id);
   
-   //  getMesas(restaurant_id);
+     getMesas(restaurant_id);
   
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   
@@ -631,6 +549,11 @@ async function criarMesa(rest_id, tipo_mesa_id){
       criarMesa(restaurant_id, tipo_mesa_id);
     });
   
+    document.getElementById('criarlugarbtn').addEventListener("click", function() {
+        
+      console.log("TIPO MESA: " + tipo_mesa_id); //A FAZER
+      criarLugar(restaurant_id, tipo_mesa_id);
+    });
   
   
   }

@@ -441,6 +441,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
 
     async function getReservasRestaurante(id_restaurante){
     
+        //O ID DO RESTAURANTE É O ID DO PARKING_LOT
       console.log("Obtendo os reports")
       
       // let recipeName = document.getElementById("nome1")
@@ -452,7 +453,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
       let suggestedestacionamentos = await $.ajax({
       
-      url: "/users/getavailable/restaurante/packs/" + id_restaurante,
+      url: "/users/getavailable/parkinglot/packs/" + id_restaurante,
       method: "get",
       dataType: "json",
       
@@ -500,12 +501,10 @@ async function criarMesa(rest_id, tipo_mesa_id){
       var estabelecimento_id = sessionStorage.getItem('establishment_id');
       var estabelecimento_name = sessionStorage.getItem('establishment_name');
       var estabelecimento_description = sessionStorage.getItem('establishment_description');
-      var restaurant_id = sessionStorage.getItem('restaurant_id');
-      var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
+      var restaurant_id = sessionStorage.getItem('parking_lot_id');
+      var restaurante_number_tables = sessionStorage.getItem('parking_lot_number_spots');
       var estabelecimento_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
       var type_service_identifier = sessionStorage.getItem('type_service_identifier');
-      var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
-      var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
       var state_id = sessionStorage.getItem('state_id');  //EXPLICAR
     
       console.log("USERNAME: " + utilizador_username);
@@ -526,7 +525,6 @@ async function criarMesa(rest_id, tipo_mesa_id){
      // getAleatorioRestaurantes();
   
      document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
-     document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
      document.getElementById('button8').addEventListener("click", function() {
