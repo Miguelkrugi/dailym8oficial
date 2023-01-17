@@ -1936,6 +1936,27 @@ module.exports.UpdateEstadoEmAnalise = async function(id_rest){
 
 }
 
+/////////////////////////////// UPDATE DE PACK (TORNAR PACK INDISPONIVEL APÓS RESERVA) ////////////////////////////////
+
+module.exports.UpdateTurnOff = async function(id_rest){
+
+    try {
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+
+
+
+
 module.exports.UpdateEstadoVerificado = async function(id_rest){
 
     try {

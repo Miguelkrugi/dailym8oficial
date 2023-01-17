@@ -352,6 +352,17 @@ router.put('/become/gestor/:idutilizador', async function(req, res, next){
 
 });
 
+////////////////////////////// TORNAR UM PACK INDISPONIVEL APÓS RESERVA ///////////////////////////////////
+
+router.put('/turnoff/available/pack/:idutilizador', async function(req, res, next){
+
+  let id_user = req.params.idutilizador;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateTurnOff(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 
 ////////////////////////////////////////////////
 
