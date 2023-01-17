@@ -1191,6 +1191,21 @@ module.exports.DeletePlaceRestaurante = async function(rest_id){
 
 }
 
+module.exports.DeleteLikeRestaurante = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM like_restaurante WHERE like_restaurante.like_restaurante = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.DeleteRestauranteEstabelecimento = async function(rest_id){
 
     try{

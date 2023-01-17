@@ -301,8 +301,15 @@ async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
                     contentType: "application/json",
                     dataType: "json"
                     });
+
+                    let newExercise20 = await $.ajax({
+                      url: "/users/delete/like/restaurante/" + rest_id,
+                      method: "delete",
+                      contentType: "application/json",
+                      dataType: "json"
+                      });
  
-                let newExercise20 = await $.ajax({
+                let newExercise21 = await $.ajax({
                   url: "/users/delete/restaurante/restaurante/" + rest_id,
                   method: "delete",
                   contentType: "application/json",
