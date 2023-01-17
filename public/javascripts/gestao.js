@@ -1,4 +1,4 @@
-window.onload = function exampleFunction() {
+window.onload = function exampleFunction() {report
     console.log('The Script will load now.');
   
     var utilizador_id = sessionStorage.getItem("utilizador_id")
@@ -184,7 +184,7 @@ async function newChangeReports(){
 
   document.getElementById('textominhasreservas').style.visibility = "hidden";
   document.getElementById('textominhaconta').style.visibility = "hidden";
-  document.getElementById('textomeusestabelecimentos').innerHTML = "Reports";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Reports / Em Analise";
   document.getElementById('tipocliente').style.visibility = "hidden";
  // document.getElementById('tipoestabelecimento').style.visibility = "visible";
   document.getElementById('textomeusfavoritos').style.visibility = "hidden";
@@ -743,7 +743,7 @@ function createreportHTML(report){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:15%; position:relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3><h3 id='statename' style='margin-left: 1.6%; margin-top: -0.8%;'>Estado do Local:" + report.state_name + "</h3><h3 id='datename' style='margin-left: 1.6%; margin-top: -0.8%;'>Data do Report:" + report.report_restaurante_date + "</h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -9.5%; position: absolute;'onclick='putanalysis(" + JSON.stringify(report) + ")'>COLOCAR SOBRE ANÁLISE</button><button style='margin-left:83%; margin-top: -9.5%; position: absolute;' id='button9' onclick='openpopupdetails(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:15%; position:relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3><h3 id='statename' style='margin-left: 1.6%; margin-top: -0.8%;'>Estado do Local:" + report.state_name + "</h3><h3 id='datename' style='margin-left: 1.6%; margin-top: -0.8%;'>Data do Report:" + report.report_restaurante_date + "</h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -9.5%; position: absolute;'onclick='putanalysis(" + JSON.stringify(report) + ")'>COLOCAR SOBRE ANÁLISE</button><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -7%; position: absolute;'onclick='verifyplace(" + JSON.stringify(report) + ")'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -9.5%; position: absolute;' id='button9' onclick='openpopupdetails(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
