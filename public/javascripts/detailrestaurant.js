@@ -326,7 +326,6 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
      let newExercise2 = await $.ajax({
       url: "/users/setmesaunavailable/" + id_mesa,
       method: "put",
-      data: JSON.stringify(data),
       contentType: "application/json",
       dataType: "json"
       });

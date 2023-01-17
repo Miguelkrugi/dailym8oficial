@@ -209,17 +209,14 @@ async function verifyplace(report){
   
   let ementas = await $.ajax({
 
-    url: "users/alterarestado/verificado/restaurante/" + report.restaurante_id,
+    url: "users/alterarestado/verificado/restaurante/" + report.restaurant_id,
     method: "put",
     dataType: "json",
 
   });
 
   console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-
   
-
-
 } catch(err){
  console.log(err);
 }
