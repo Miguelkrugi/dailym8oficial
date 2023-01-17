@@ -393,7 +393,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva_mesa.utilizador_name + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva_mesa.acomodacao_number + "</h3><h3 id='tipoetamanhoname' style='margin-left: 1.6%; margin-top: -1.6%;'>Linha: <i>" + reserva_mesa.position_line + " | Coluna:  " + reserva_mesa.position_column + "</i> | Tipo: <i>" + reserva_mesa.acomodacao_type_name + "</i></h3><h3 id='dataname' style='margin-left: 1.6%;  margin-top: -1.2%;'>Data: " + reserva_mesa.date_marcada_reservation + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9' onclick='removerReservaMesa(" + JSON.stringify(reserva_mesa) + ")'>CANCELAR A RESERVA</button></div>";
+      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva_mesa.acomodacao_number + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva_mesa.acomodacao_price + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9' onclick='editPosition(" + JSON.stringify(reserva_mesa) + ")'>EDITAR POSIÇÃO</button></div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
     
@@ -411,8 +411,8 @@ async function criarMesa(rest_id, tipo_mesa_id){
       try{
       
       let suggestedestacionamentos = await $.ajax({
-      
-      url: "/users/getreservas/acomodacao/" + id_restaurante,
+      //OBTER AS ACOMODAÇÕES QUE NÃO POSSUEM POSIÇÃO
+      url: "/users/getacomodacao/setposition/" + id_restaurante,
       method: "get",
       dataType: "json",
       

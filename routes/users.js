@@ -417,6 +417,21 @@ router.get('/getinformacao/:idutilizador', async function(req, res, next) { //TI
 
 });
 
+/////////////////////// OBTER ACOMODACOES SEM POSICAO PARA EDITAR/ADICIONAR POSIÇÃO ///////////////////////
+
+router.get('/getacomodacao/setposition/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getAcomodacaoPositions(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////// OBTER ULTIMAS RESERVAS ///////////////
 
