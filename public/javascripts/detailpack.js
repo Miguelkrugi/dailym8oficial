@@ -15,7 +15,7 @@ function createtableHTML(mesapack){
       
       let ementas = await $.ajax({
   
-        url: "/users/turnoff/available/pack/" + id,
+        url: "/users/turnoff/available/pack/" + pack_id,
         method: "put",
         dataType: "json",
   
