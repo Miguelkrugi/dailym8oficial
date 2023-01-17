@@ -676,9 +676,9 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
      document.getElementById('button4').addEventListener("click", function() {
         
       //console.log("TIPO MESA: " + tipo_mesa_id);
-     // criarMesa(restaurant_id, tipo_mesa_id);
+      criarMesa(restaurant_id, tipo_mesa_id);
   
-      document.getElementById("bg-modal2").style.display = "flex";
+    //  document.getElementById("bg-modal2").style.display = "flex";
     });
   
      getMorada(restaurant_id);
