@@ -3157,8 +3157,9 @@ ul#top_menu li a.login:before {
   z-index: 1;
 }
 
-#organizereserva {
 
+<<<<<<< HEAD
+=======
   width: 67%;
   height: 70%;
   background-color: rgb(246, 246, 246);
@@ -3172,6 +3173,7 @@ ul#top_menu li a.login:before {
   overflow-y: scroll;
 
 }
+>>>>>>> ef85b5deda2d416c781a97a32a4bf3edba518084
 
 #organizereserva2 {
 
@@ -3179,7 +3181,6 @@ ul#top_menu li a.login:before {
   height:90%;
   background-color: rgb(246, 246, 246);
   position: absolute;
-  
   margin-top: 6%;
   margin-left: 2%;
 
@@ -3239,12 +3240,28 @@ ul#top_menu li a.login:before {
 
 }
 
+#organizereserva {
+
+  width: 67%;
+  height: 70%;
+  background-color: rgb(246, 246, 246);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 2%;
+  overflow-y: scroll;
+  
+
+}
+
 #organizeinfrestaurant {
 
   width: 37%;
   height:50%;
   background-color: lightgray;
-  position: absolute;
+  position: relative;
   margin-top: 53%;
   margin-left: 60%;
   border-radius: 10px;
@@ -3269,7 +3286,8 @@ ul#top_menu li a.login:before {
   width: 56%;
   height:60%;
   background-color: lightgray;
-  position: absolute;
+  position: relative;
+  display: inline;
   margin-top: 53%;
   margin-left: 2%;
   border-radius: 10px;
