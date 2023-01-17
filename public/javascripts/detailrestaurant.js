@@ -292,7 +292,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   console.log(payment_credit_card_number);
   console.log(payment_cvc_number);
 
-  var id_mesa = mesa_identifier_reservation;
+  let id_mesa = mesa_identifier_reservation;
 
   try {
  
@@ -326,6 +326,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
      let newExercise2 = await $.ajax({
       url: "/users/setmesaunavailable/" + id_mesa,
       method: "put",
+      data: JSON.stringify(data),
       contentType: "application/json",
       dataType: "json"
       });
