@@ -1,4 +1,4 @@
-window.onload = function exampleFunction() {report
+window.onload = function exampleFunction() {
     console.log('The Script will load now.');
   
     var utilizador_id = sessionStorage.getItem("utilizador_id")
