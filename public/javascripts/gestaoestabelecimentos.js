@@ -28,14 +28,151 @@ async function myAccountUtilizador(id){
     }
 
 }
+/////////////////////////////////// OBTER RESERVAS DO ESTACIONAMENTO \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+async function removerReservaSpot(reserva){
+
+  console.log("READY TO DELETE");
+
+  //PASSO 1 - APAGAR A RESERVA\\
+ try {
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/deletereservaest/" + reserva.id_reservation,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    //UPDATE -> //TORNAR A MESA DISPONIVEL NOVAMENTE\\
+
+    let newExercise2 = await $.ajax({
+      url: "/users/setspotavailable/" + reserva.mesa_id,
+      method: "put",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+ 
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+}
+
+
+function createreservaspotHTML(reserva){
+  
+  console.log("Função chamada para criar o div da acomodação");
+  //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
+ 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.spot_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.spot_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;' onclick='removerReservaSpot(" + JSON.stringify(reserva) + ")'>CANCELAR RESERVA</button><button id='presencamarcacao' style='margin-left: 50%; margin-top: -4.8%; position: absolute;' onclick='removerReservaSpot(" + JSON.stringify(reserva) + ")'>MARCAR PRESENÇA</button></div>" 
+  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+
+ /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
+
+}
+
+async function getMyReservasEstacionamento(id_user){
+
+  console.log("Obtendo os restaurantes");
+  
+  // let recipeName = document.getElementById("nome1")
+   let restaurantesElem = document.getElementById("showreservas");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+  try{
+  
+  let suggestedrestaurants = await $.ajax({
+  
+  url: "/users/get/myreservas/spot/" + id_user,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedrestaurants));
+  
+  let html = "";
+  
+   
+
+      for(let restaurant of suggestedrestaurants){
+       console.log("Restaurante: " + restaurant);
+       html += createreservaspotHTML(restaurant);
+      }
+
+    
+
+      console.log("NADA ENCONTRADO");
+
+    
+
+
+  //  document.getElementById("withoutresultsrestaurantes").style.visibility = "visible";
+   // console.log("NADA ENCONTRADO");
+
+  
+  console.log("OBTEVE");
+  //  recipeName.innerHTML = html;
+  
+ // restaurantesElem.innerHTML = html;
+
+   restaurantesElem.innerHTML = html;
+  
+  
+  } catch(err){
+   console.log(err);
+  }
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function removerReservaAcom(reserva){
+
+  console.log("READY TO DELETE");
+
+  //PASSO 1 - APAGAR A RESERVA\\
+ try {
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/deleteresacomodacao/" + reserva.id_reservation,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    //UPDATE -> //TORNAR A MESA DISPONIVEL NOVAMENTE\\
+
+    let newExercise2 = await $.ajax({
+      url: "/users/setacomodacaoavailable/" + reserva.mesa_id,
+      method: "put",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+ 
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+}
 
 function createreservaacomodacaoHTML(reserva){
   
   console.log("Função chamada para criar o div da acomodação");
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.acomodacao_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Acomodação: " + reserva.mesa_type_name + " | Linha: " + reserva.position_line + " | Coluna: " + reserva.position_column + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.acomodacao_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button></div>" 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.acomodacao_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Acomodação: " + reserva.mesa_type_name + " | Linha: " + reserva.position_line + " | Coluna: " + reserva.position_column + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.acomodacao_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;' onclick='removerReservaAcom(" + JSON.stringify(reserva) + ")'>CANCELAR RESERVA</button><button id='presencamarcacao' style='margin-left: 50%; margin-top: -4.8%; position: absolute;' onclick='removerReservaAcom(" + JSON.stringify(reserva) + ")'>MARCAR PRESENÇA</button></div>" 
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -47,7 +184,7 @@ async function getMyReservasAcomodacoes(id_user){
   console.log("Obtendo os restaurantes");
   
   // let recipeName = document.getElementById("nome1")
-   let restaurantesElem = document.getElementById("organize16");
+   let restaurantesElem = document.getElementById("showreservas");
    var utilizador_id = sessionStorage.getItem("utilizador_id");
    console.log("setItem->userId = " + utilizador_id);
   
@@ -96,7 +233,43 @@ async function getMyReservasAcomodacoes(id_user){
   }
   }
 
-/////////////////////// MINHAS RESERVAS - AINDA N FOI APLICADO //////////////////////
+  ////////////////// REMOVER RESERVA E TORNAR A MESA DISPONIVEL \\\\\\\\\\\\\\\\\\\
+
+  async function removerReservaMesa(reserva){
+
+    console.log("READY TO DELETE");
+
+    //PASSO 1 - APAGAR A RESERVA\\
+   try {
+  
+     //ENVIAR METODO
+     let newExercise = await $.ajax({
+      url: "/users/deleteresmesa/" + reserva.id_reservation,
+      method: "delete",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+
+      //UPDATE -> //TORNAR A MESA DISPONIVEL NOVAMENTE\\
+  
+      let newExercise2 = await $.ajax({
+        url: "/users/setmesaavailable/" + reserva.mesa_id,
+        method: "put",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "json"
+        });
+   
+  
+   } catch (err){
+  
+    window.alert("Receita Criada.");
+  
+   }
+  }
+
+/////////////////////// MINHAS RESERVAS //////////////////////
 
 
 function createreservamesaHTML(reserva){
@@ -104,7 +277,7 @@ function createreservamesaHTML(reserva){
   console.log("Função chamada para criar o div da acomodação");
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.mesa_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Mesa: " + reserva.mesa_type_name + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.mesa_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button><button id='presencamarcacao' style='margin-left: 50%; margin-top: -4.8%; position: absolute;'>MARCAR PRESENÇA</button></div>" 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.mesa_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Mesa: " + reserva.mesa_type_name + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.mesa_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;' onclick='removerReservaMesa(" + JSON.stringify(reserva) + ")'>CANCELAR RESERVA</button><button id='presencamarcacao' style='margin-left: 50%; margin-top: -4.8%; position: absolute;' onclick='removerReservaMesa(" + JSON.stringify(reserva) + ")'>MARCAR PRESENÇA</button></div>" 
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -973,6 +1146,33 @@ async function criarPlate(rest_id, tipo_prato_id){
   }
  }
 
+ /////////////////////////////////////// APAGAR CONTA //////////////////////////////////////////
+
+ async function deleteConta(id_user){
+
+  console.log("READY TO DELETE");
+
+  //PASSO 1 - APAGAR A RESERVA\\
+ try {
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/deleteaccount/" + id_user,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    location.assign("http://localhost:3000/register.html");
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1161,7 +1361,9 @@ document.getElementById('todosoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
-  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -1175,7 +1377,9 @@ document.getElementById('resteoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
-  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -1188,7 +1392,26 @@ document.getElementById('acomoption3').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasAcomodacoes(utilizador_id);
-  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "visible";
+  document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
+  document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas - Acomodações";
+
+
+});
+
+
+
+document.getElementById('estoption3').addEventListener("click", function(){
+
+  console.log("USER ID: " + utilizador_id)
+  getMyReservasEstacionamento(utilizador_id);
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
@@ -1277,6 +1500,18 @@ document.getElementById('myaccountoption').addEventListener("click", function(){
 
 
 });
+
+/////////////////// APAGAR CONTA \\\\\\\\\\\\\\\\\\\\\
+
+document.getElementById('deleteaccount').addEventListener("click", function(){
+
+  window.alert("Deseja apagar?");
+  deleteConta(utilizador_id);
+
+
+});
+
+///////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
   

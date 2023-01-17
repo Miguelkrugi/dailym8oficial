@@ -396,6 +396,18 @@ router.get('/get/myreservas/acomodacao/:iduser', async function(req, res, next) 
 
 });
 
+/////////////////////////////////// OBTER RESERVAS DE LUGARES ////////////////////////////////////////
+
+router.get('/get/myreservas/spot/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyReservasEstacionamento(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
 
 router.get('/getlocation/restaurante/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
 
@@ -560,6 +572,13 @@ router.post('/insertnewlike', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewreportrest', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReportRest(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 router.delete('/deletelike/restaurante/:idutilizador/:idrestaurante', async function(req, res, next){
 
   let utilizador_id = req.params.idutilizador;
@@ -719,7 +738,7 @@ router.delete('/deletelugar/:idlugar', async function(req, res, next){
 
 });
 
-router.delete('/deletereserva/:idreserva', async function(req, res, next){
+router.delete('/deletereservaest/:idreserva', async function(req, res, next){
 
   let mesa_id = req.params.idreserva;
 
@@ -747,6 +766,21 @@ router.delete('/deleteresacomodacao/:idres', async function(req, res, next){
   res.status(result.status).send(result.data);
 
 });
+
+////////////////// DELETE ACCOUNT /////////////////////
+
+router.delete('/deleteaccount/:idres', async function(req, res, next){
+
+  let id_utilizador = req.params.idres;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteAccount(id_utilizador);
+  res.status(result.status).send(result.data);
+
+});
+
+
+///////////////////////////////////////////////////////
 
 /*router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
@@ -1029,6 +1063,16 @@ router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
 });
 
+router.put('/setmesaavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateMesaAvailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+
 router.put('/setspotunavailable/:iduser', async function(req, res, next){
 
   let id_user = req.params.iduser;
@@ -1038,11 +1082,29 @@ router.put('/setspotunavailable/:iduser', async function(req, res, next){
 
 });
 
+router.put('/setspotavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateSpotAvailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 router.put('/setacomodacaounavailable/:iduserrrr', async function(req, res, next){
 
   let id_user = req.params.iduserrrr;
   console.log("[artigosRoutes] Update pedido with id: " + id_user);
   let result = await usersModel.UpdateAcomodacaoUnavailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/setacomodacaoavailable/:iduserrrr', async function(req, res, next){
+
+  let id_user = req.params.iduserrrr;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateAcomodacaoAvailable(id_user);
   res.status(result.status).send(result.data);
 
 });

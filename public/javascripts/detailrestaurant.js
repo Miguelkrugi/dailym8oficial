@@ -166,13 +166,57 @@ async function getChangeLike(utilizador_id ,restaurant_id){
 
 }
 
+/////////////////// REPORTAR POST ////////////////////////
 
-async function putLike(rest_id, user_id){
+
+async function reportRest(rest_id){
+
+  const date = new Date();
+  const current_date_hours = date.getHours();
+  const current_date_minutes = date.getMinutes();
+  const current_date_seconds = date.getSeconds();
+  let resta_id = rest_id;
 
  try {
 
-  var resta_id = rest_id
-  var userr_id = user_id
+  
+
+   let data = {
+
+    report_restaurante_id: resta_id,
+    report_restaurante_date: "2023-01-18" + " " + current_date_hours + ":" + current_date_minutes + ":" + current_date_seconds
+
+   }
+
+   //ENVIAR METODO
+   let newExercise = await $.ajax({
+    url: "/users/insertnewreportrest/",
+    method: "post",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    location.reload();
+   // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+}
+
+//////////////////////////////////////////////////////////
+
+async function putLike(rest_id, user_id){
+
+  let resta_id = rest_id
+  let userr_id = user_id
+ try {
+
+  
 
    let data = {
 
@@ -495,6 +539,12 @@ window.onload = function exampleFunction() {
 
 
    getAvailableTables(restaurant_id);
+
+   document.getElementById('reportrestaurant').addEventListener("click", function(){
+
+    reportRest(restaurant_id);
+
+  });
 
     //getAleatorioRestaurantes();
 
