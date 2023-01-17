@@ -431,7 +431,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:13%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px; margin-top: 2%;'>" + reserva.pack_name + "</h3><a href='packedit.html'><button style='margin-left:73%; margin-top: -2.4%; position: absolute;' onclick='openpack(" + JSON.stringify(reserva) + ")' id='button9'>EDITAR PACK</button></a></div>";
+      return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:13%; display: inline-block ; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px; margin-top: 2%;'>" + reserva.pack_name + "</h3><a href='packedit.html'><button style='margin-left:73%; margin-top: -2.4%; position: absolute;' onclick='openpack(" + JSON.stringify(reserva) + ")' id='button9'>EDITAR PACK</button></a></div>";
       // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
