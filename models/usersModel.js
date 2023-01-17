@@ -1749,7 +1749,6 @@ module.exports.UpdateEstadoVerificado = async function(id_rest){
         console.log(err);
         return { status: 500, data: err };
     }
-
 }
 
 module.exports.UpdateAdmin = async function(id_rest){
