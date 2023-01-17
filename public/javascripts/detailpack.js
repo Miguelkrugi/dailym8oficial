@@ -165,30 +165,6 @@ async function reservartable(id_pack){
        turnavailabilityoff(id_pack);
        console.log(err);
       }
-
-      
-
-   /////////////////////// POR FIM, O ESTADO DO PACK É ALTERADO PARA INDISPONIVEL - VER DEPOIS ////////////////////
-
-     
- 
-      try{
-
-        let plates = await $.ajax({
-
-          url: "/users/become/packavailability/off/" + id_pack,
-          method: "put",
-          dataType: "json",
-
-        });
-        console.log("ai3");
-        //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-
-     } catch(err){
-       console.log(err);
-     }
-     
-
 }
 
 async function getMesasFromPack(id_pack){

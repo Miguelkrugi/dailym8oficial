@@ -14,7 +14,8 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
        restaurant_type_id: tipo_restaurant_id, //DEFAULT FOR NOW
        restaurante_number_tables: document.getElementById("numeromesasinput").value,
        type_service_identifier: 1,
-       state_id: 1
+       state_id: 1,
+       establishment_state_place_id: 1
    
       }
    
@@ -95,14 +96,12 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
        establishment_name: document.getElementById("nomeinput").value,
        acomodacao_description: document.getElementById("descricaoinput").value,
        number_acomodacoes: document.getElementById("numeroacomodacoesinput").value,
+       establishment_utilizador_id: user_id,
        equipment_service_name: document.getElementById("nomeinput").value,
        type_service_identifier:2,
        state_id: 1,
-       establishment_utilizador_id: user_id
+       establishment_state_place_id: 1
 
-
-
-   
       }
    
       //ENVIAR METODO

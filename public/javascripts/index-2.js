@@ -43,9 +43,11 @@ window.onload = function exampleFunction() {
 
         document.getElementById("gerirestabelecimentos").innerHTML = "Administração do website"
         document.getElementById("gerirestabelecimentos").style.visibility = "visible";
-        document.getElementById("comecaragerir").innerHTML = "Começar a administrar e moderar o website."
-        document.getElementById("comecaragerir").style.visibility = "visible";
+        document.getElementById("comecaragerir2").style.visibility = "visible";
         document.getElementById("gotoadmin").style.visibility = "visible";
+        document.getElementById("gotogestor").style.visibility = "visible";
+        document.getElementById("meusestabelecimentos").style.visibility = "visible";
+
 
 
     } 

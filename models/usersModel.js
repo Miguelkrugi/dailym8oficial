@@ -1273,12 +1273,12 @@ module.exports.saveRestaurant = async function(pedido) {
         let sql =
             "INSERT " +
             "INTO restaurant " +
-            "(establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id) " +
-            "VALUES ($1, $2, $3, $4, $5, $6, $7) " +
+            "(establishment_name, establishment_description, establishment_utilizador_id, restaurant_type_id, restaurante_number_tables, type_service_identifier, state_id, establishment_state_place_id) " +
+            "VALUES ($1, $2, $3, $4, $5, $6, $7, $8) " +
             "RETURNING restaurant_id";
 
            // console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
-        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.restaurant_type_id, pedido.restaurante_number_tables, pedido.type_service_identifier, pedido.state_id]);
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.restaurant_type_id, pedido.restaurante_number_tables, pedido.type_service_identifier, pedido.state_id, pedido.establishment_state_place_id]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
@@ -1298,11 +1298,11 @@ module.exports.saveEstacionamento = async function(pedido) {
         let sql =
             "INSERT " +
             "INTO parking_lot " +
-            "(establishment_name, establishment_description, establishment_utilizador_id, parking_lot_number_spots, type_service_identifier, state_id) " +
-            "VALUES ($1, $2, $3, $4, $5, $6) " +
+            "(establishment_name, establishment_description, establishment_utilizador_id, parking_lot_number_spots, type_service_identifier, state_id, establishment_state_place_id) " +
+            "VALUES ($1, $2, $3, $4, $5, $6, $7) " +
             "RETURNING parking_lot_id";
 
-        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.parking_lot_number_spots, pedido.type_service_identifier, pedido.state_id]);
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.parking_lot_number_spots, pedido.type_service_identifier, pedido.state_id, pedido.establishment_state_place_id]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
@@ -1322,11 +1322,11 @@ module.exports.saveServicoAcomodacao = async function(pedido) {
         let sql =
             "INSERT " +
             "INTO equipment_service " +
-            "(establishment_name,establishment_description, establishment_utilizador_id, number_acomodacoes, equipment_service_name) " +
-            "VALUES ($1, $2, $3, $4, $5) " +
+            "(establishment_name,establishment_description, establishment_utilizador_id, number_acomodacoes, equipment_service_name, type_service_identifier, state_id, establishment_state_place_id) " +
+            "VALUES ($1, $2, $3, $4, $5, $6, $7, $8) " +
             "RETURNING equipment_service_id";
 
-        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.number_acomodacoes, pedido.equipment_service_name]);
+        let result = await pool.query(sql, [pedido.establishment_name, pedido.establishment_description, pedido.establishment_utilizador_id, pedido.number_acomodacoes, pedido.equipment_service_name, pedido.type_service_identifier,pedido.state_id, pedido.establishment_state_place_id]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {
