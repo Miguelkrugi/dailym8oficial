@@ -54,7 +54,8 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
        establishment_utilizador_id: user_id,
        parking_lot_number_spots: document.getElementById("numerolugaresinput").value,
        type_service_identifier: 3,
-       state_id: 1
+       state_id: 1,
+       establishment_state_place_id: 1
    
       }
    
