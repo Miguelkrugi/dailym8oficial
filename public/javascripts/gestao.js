@@ -25,6 +25,10 @@ window.onload = function exampleFunction() {
     
    // getAleatorioRestaurantes();
 
+   /////////////BOTÕES PARA VER DETALHES NOS ESTABELECIMENTOS EM ANÁLISE//////////////
+
+
+   ///////////////////////////////////////////////////////////////////////////////////
 
    getReports();
 
@@ -92,32 +96,7 @@ function removerAdmin(users){
 
 }
 
-function openpopupdetails2(report){
 
-  document.getElementById('button10').addEventListener("click", function() {
-
-    document.querySelector('.bg-modal8').style.display = "flex";
-
-    document.getElementById("popuprestaurantname").innerHTML = report.establishment_name;
-
-    document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
-
-    document.getElementById("statelocal").innerHTML = report.state_name;
-
-    document.getElementById("placecreatedby").innerHTML = report.utilizador_username;
-
-    getNumberOfReports(report.report_restaurante_id);
-	    
-
-  });
-
-  document.querySelector('.close9').addEventListener("click", function() {
-  
-    document.querySelector('.bg-modal8').style.display = "none";
-  });
-
-
-}
 
 function createusersHTML(users){
   
@@ -244,6 +223,111 @@ async function verifyplace(report){
  } catch(err){
    console.log(err);
  }
+
+}
+
+///////////////////////////////////// MÉTODO PARA APAGAR UM RESTAURANTE ////////////////////////////////////
+
+async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
+
+  ///1. PASSO - APAGAR AS RESERVAS
+  console.log("READY TO DELETE");
+
+ try {
+
+   //ENVIAR METODO - APAGAR AS RESERVAS
+   let newExercise = await $.ajax({
+    url: "/users/delete/reservas/restaurante/" + rest_id,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+
+  //ENVIAR METODO - APAGAR AS MESAS
+
+  let newExercise2 = await $.ajax({
+    url: "/users/delete/mesas/restaurante/" + rest_id,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    //ENVIAR MÉTODO - APAGAR O RESTAURANTE
+
+    let newExercise3 = await $.ajax({
+      url: "/users/delete/restaurante/restaurante/" + rest_id,
+      method: "delete",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json"
+      });
+
+
+
+   // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+   //location.reload();
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+ 
+
+
+ 
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function openpopupdetails2(report){
+
+  document.getElementById('button10').addEventListener("click", function() {
+
+    document.querySelector('.bg-modal8').style.display = "flex";
+
+    document.getElementById("popuprestaurantname").innerHTML = "Nome: " + report.establishment_name;
+
+    document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
+
+    document.getElementById("statelocal").innerHTML = "Estado: " + report.state_name;
+
+    document.getElementById("placecreatedby").innerHTML = "Criador: " + report.utilizador_username;
+
+
+
+    getNumberOfReports(report.restaurante_id);
+	    
+
+  });
+
+  document.querySelector('.close9').addEventListener("click", function() {
+  
+    document.querySelector('.bg-modal8').style.display = "none";
+  });
+
+  ///////////////////////// BOTOES ////////////////////////////
+
+  document.getElementById('deleterestaurante').addEventListener("click", function(){
+
+   
+    document.querySelector('.bg-modal8').style.display = "flex";
+
+    deleteRest(report.restaurante_id); //CHAMA A FUNCAO PARA APAGAR O RESTAURANTE (COMEÇANDO POR POSSIVEIS RESERVAS, POSTERIORMENTE AS MESAS E SÓ DEPOIS, O RESTAURANTE)
+    //deleteRest(report.restaurant_id);
+
+  });
+
+  document.getElementById('seedetails').addEventListener("click", function(){
+
+   
+   // reportRest(restaurant_id);
+
+  });
 
 }
 
@@ -445,7 +529,7 @@ async function getNumberOfReports(rest_id){
   let html = "";
   
  
-  document.getElementById("popupnumberreports").innerHTML = suggestedestacionamentos[0].count;
+  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
  
 
     //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
@@ -469,8 +553,9 @@ async function getNumberOfReports(rest_id){
 
 function openpopupdetails(report){
 
-  document.getElementById('button9').addEventListener("click", function() {
+  document.getElementById('button999').addEventListener("click", function() {
 	    
+   // document.getElementById("bg-modal8").style.display = "flex";
     document.querySelector('.bg-modal8').style.display = "flex";
 
     document.getElementById("popuprestaurantname").innerHTML = report.establishment_name;
@@ -480,6 +565,7 @@ function openpopupdetails(report){
     document.getElementById("statelocal").innerHTML = report.state_name;
 
     document.getElementById("placecreatedby").innerHTML = report.utilizador_username;
+
 
     getNumberOfReports(report.report_restaurante_id);
 
