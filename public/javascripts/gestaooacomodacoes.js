@@ -224,7 +224,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     let suggestedestacionamentos = await $.ajax({
     
-    url: "/users/getacomodacoes/" + id_restaurante,
+    url: "/users/getacomodacoesss/" + id_restaurante,
     method: "get",
     dataType: "json",
     
