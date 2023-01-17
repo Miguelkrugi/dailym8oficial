@@ -228,6 +228,73 @@ async function verifyplace(report){
 
 ///////////////////////////////////// MÉTODO PARA APAGAR UM RESTAURANTE ////////////////////////////////////
 
+async function apagarRest(rest_id){
+
+  try {
+  
+  //ENVIAR METODO - APAGAR AS MESAS
+  
+  //ENVIAR MÉTODO - APAGAR O RESTAURANTE
+
+  let newExercise4 = await $.ajax({
+    url: "/users/delete/restaurante/restaurante/" + rest_id,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+  
+  
+  } catch(err){
+    console.log(err);
+  }
+  
+  }
+
+async function apagarPratos(rest_id){
+
+  try {
+  
+  //ENVIAR METODO - APAGAR AS MESAS
+  
+  let newExercise3 = await $.ajax({
+    url: "/users/delete/pratos/restaurante/" + rest_id,
+    method: "delete",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json"
+    });
+  
+    apagarRest(rest_id);
+  
+  } catch(err){
+    console.log(err);
+  }
+  
+  }
+
+async function apagarMesas(rest_id){
+
+try {
+
+//ENVIAR METODO - APAGAR AS MESAS
+
+let newExercise2 = await $.ajax({
+  url: "/users/delete/mesas/restaurante/" + rest_id,
+  method: "delete",
+  data: JSON.stringify(data),
+  contentType: "application/json",
+  dataType: "json"
+  });
+
+  apagarPratos(rest_id);
+
+} catch(err){
+  console.log(err);
+}
+
+}
+
 async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
 
   ///1. PASSO - APAGAR AS RESERVAS
@@ -244,35 +311,8 @@ async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
     dataType: "json"
     });
 
+    apagarMesas(rest_id);
 
-  //ENVIAR METODO - APAGAR AS MESAS
-
-  let newExercise2 = await $.ajax({
-    url: "/users/delete/mesas/restaurante/" + rest_id,
-    method: "delete",
-    data: JSON.stringify(data),
-    contentType: "application/json",
-    dataType: "json"
-    });
-
-    let newExercise3 = await $.ajax({
-      url: "/users/delete/pratos/restaurante/" + rest_id,
-      method: "delete",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
-      });
-  
-
-    //ENVIAR MÉTODO - APAGAR O RESTAURANTE
-
-    let newExercise4 = await $.ajax({
-      url: "/users/delete/restaurante/restaurante/" + rest_id,
-      method: "delete",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
-      });
 
 
 
@@ -284,10 +324,6 @@ async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
   window.alert("Receita Criada.");
 
  }
- 
-
-
- 
 }
 
 
@@ -301,7 +337,7 @@ function openpopupdetails2(report){
 
     document.getElementById("popuprestaurantname").innerHTML = "Nome: " + report.establishment_name;
 
-    document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
+    //document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
 
     document.getElementById("statelocal").innerHTML = "Estado: " + report.state_name;
 
