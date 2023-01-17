@@ -479,6 +479,34 @@ async function getMenu(id_restaurante){
     }
     }
 
+    async function getMesasAvailableQuantity(restaurant_id){
+
+      console.log("Obtendo os reports")
+    
+      // let recipeName = document.getElementById("nome1")
+       let lugaresElem = document.getElementById("organizereserva"); //VERIFICAR O ID
+       var utilizador_id = sessionStorage.getItem("utilizador_id");
+       console.log("setItem->userId = " + utilizador_id);
+      
+      try{
+      
+      let suggestedestacionamentos = await $.ajax({
+      
+      url: "/users/count/mesas/" + restaurant_id,
+      method: "get",
+      dataType: "json",
+      
+      });
+      
+         document.getElementById("restauranteavailabletables").innerHTML = "Numero de Mesas Disponiveis: " + suggestedestacionamentos[0].count;
+      
+      } catch(err){
+       console.log(err);
+      }
+
+
+    }
+
 
 window.onload = function exampleFunction() {
     console.log('The Script will load now.');
@@ -536,6 +564,8 @@ window.onload = function exampleFunction() {
    getMenu(restaurant_id);
 
    getMesas(restaurant_id);
+
+   getMesasAvailableQuantity(restaurant_id);
 
    //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
 
