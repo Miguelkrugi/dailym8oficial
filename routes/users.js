@@ -907,12 +907,12 @@ router.delete('/deleteaccount/:idres', async function(req, res, next){
 
 ///////////////////////////////////////////////////////
 
-/*router.post('/insertnewreservamesa', async function(req, res, next) {
+router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
   let result = await usersModel.saveReservaMesa(newPedido);
   res.sendStatus(result.status).send(result.data);
-});*/
+});
 
 router.post('/insertnewreservaacomodacao', async function(req, res, next) {
   let newPedido = req.body;
