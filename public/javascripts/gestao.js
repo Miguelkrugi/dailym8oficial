@@ -340,11 +340,11 @@ function openpopupdetails2(report){
 
 }
 
-function createrestaurantHTML(rest){
+function createrestaurantHTML(report){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:7%; position: relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + rest.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + rest.utilizador_username + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -4.8%; position: absolute;'onclick='verifyplace(" + JSON.stringify(rest) + ")'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -4.8%; position: absolute;' id='button10' onclick='openpopupdetails2(" + JSON.stringify(rest) + ")'>VER DETALHES</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:7%; position: relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -4.8%; position: absolute;'onclick='verifyplace(" + JSON.stringify(report) + ")'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -4.8%; position: absolute;' id='button10' onclick='openpopupdetails2(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
