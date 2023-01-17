@@ -184,7 +184,7 @@ async function newChangeReports(){
 
   document.getElementById('textominhasreservas').style.visibility = "hidden";
   document.getElementById('textominhaconta').style.visibility = "hidden";
-  document.getElementById('textomeusestabelecimentos').innerHTML = "Reports / Em Analise";
+  document.getElementById('textomeusestabelecimentos').innerHTML = "Reports";
   document.getElementById('tipocliente').style.visibility = "hidden";
  // document.getElementById('tipoestabelecimento').style.visibility = "visible";
   document.getElementById('textomeusfavoritos').style.visibility = "hidden";
