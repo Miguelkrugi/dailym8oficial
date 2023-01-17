@@ -672,7 +672,7 @@ router.delete('/delete/place/restaurante/:idrestaurante', async function(req, re
 
 });
 
-router.delete('/delete/place/like/:idrestaurante', async function(req, res, next){
+router.delete('/delete/place/like/restaurante/:idrestaurante', async function(req, res, next){
 
   let restaurant_id = req.params.idrestaurante;
  // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
