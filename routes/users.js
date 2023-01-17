@@ -618,6 +618,43 @@ router.delete('/delete/pratos/restaurante/:idrestaurante', async function(req, r
 
 });
 
+router.delete('/delete/item/mesas/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemMesaRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/item/acomodacao/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemAcomodacaoRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/item/lugar/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemLugarRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/packs/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemPacksRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
 router.delete('/delete/restaurante/restaurante/:idrestaurante', async function(req, res, next){
 
   let restaurant_id = req.params.idrestaurante;
@@ -1295,3 +1332,5 @@ router.get('/count/acomodacoes/:idestacionamento', async function(req, res, next
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;
+
+

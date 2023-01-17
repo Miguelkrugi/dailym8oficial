@@ -239,7 +239,6 @@ async function apagarRest(rest_id){
   let newExercise4 = await $.ajax({
     url: "/users/delete/restaurante/restaurante/" + rest_id,
     method: "delete",
-    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
     });
@@ -251,6 +250,90 @@ async function apagarRest(rest_id){
   
   }
 
+  async function apagarPacksRest(rest_id){
+
+    try {
+    
+    //ENVIAR METODO - APAGAR AS MESAS
+    
+    let newExercise3 = await $.ajax({
+      url: "/users/delete/packs/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+    
+      apagarRest(rest_id);
+    
+    } catch(err){
+      console.log(err);
+    }
+    
+    }
+
+  async function apagarItemLugarPackRest(rest_id){
+
+    try {
+    
+    //ENVIAR METODO - APAGAR AS MESAS
+    
+    let newExercise3 = await $.ajax({
+      url: "/users/delete/item/lugar/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+    
+      apagarPacksRest(rest_id);
+    
+    } catch(err){
+      console.log(err);
+    }
+    
+    }
+
+  async function apagarItemAcomPackRest(rest_id){
+
+    try {
+    
+    //ENVIAR METODO - APAGAR AS MESAS
+    
+    let newExercise3 = await $.ajax({
+      url: "/users/delete/item/acomodacao/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+    
+      apagarItemLugarPackRest(rest_id);
+    
+    } catch(err){
+      console.log(err);
+    }
+    
+    }
+
+  async function apagarItemMesaPackRest(rest_id){
+
+    try {
+    
+    //ENVIAR METODO - APAGAR AS MESAS
+    
+    let newExercise3 = await $.ajax({
+      url: "/users/delete/item/mesas/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+    
+      apagarItemAcomPackRest(rest_id);
+    
+    } catch(err){
+      console.log(err);
+    }
+    
+    }
+
 async function apagarPratos(rest_id){
 
   try {
@@ -260,12 +343,11 @@ async function apagarPratos(rest_id){
   let newExercise3 = await $.ajax({
     url: "/users/delete/pratos/restaurante/" + rest_id,
     method: "delete",
-    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
     });
   
-    apagarRest(rest_id);
+    apagarItemMesaPackRest(rest_id);
   
   } catch(err){
     console.log(err);
@@ -282,7 +364,6 @@ try {
 let newExercise2 = await $.ajax({
   url: "/users/delete/mesas/restaurante/" + rest_id,
   method: "delete",
-  data: JSON.stringify(data),
   contentType: "application/json",
   dataType: "json"
   });
@@ -306,28 +387,58 @@ async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
    let newExercise = await $.ajax({
     url: "/users/delete/reservas/restaurante/" + rest_id,
     method: "delete",
-    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json"
     });
 
     apagarMesas(rest_id);
 
-
-
-
-   // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-   //location.reload();
-
  } catch (err){
 
   window.alert("Receita Criada.");
 
  }
+ 
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function getNumberOfReports2(rest_id){
+
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizeitems");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+   console.log("REST ID: " + rest_id);
+   
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/numberreports/" + rest_id,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
+  
+  let html = "";
+  
+ 
+  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
+ 
+  
+  } catch(err){
+   console.log(err);
+  }
+  
+
+}
 
 function openpopupdetails2(report){
 
@@ -345,7 +456,7 @@ function openpopupdetails2(report){
 
 
 
-    getNumberOfReports2(report.restaurante_id);
+    getNumberOfReports2(report.restaurant_id);
 	    
 
   });
@@ -361,9 +472,10 @@ function openpopupdetails2(report){
 
    
     document.querySelector('.bg-modal8').style.display = "flex";
+    console.log(report.restaurant_id);
 
-    deleteRest(report.restaurante_id); //CHAMA A FUNCAO PARA APAGAR O RESTAURANTE (COMEÇANDO POR POSSIVEIS RESERVAS, POSTERIORMENTE AS MESAS E SÓ DEPOIS, O RESTAURANTE)
-    //deleteRest(report.restaurant_id);
+    deleteRest(report.restaurant_id); //CHAMA A FUNCAO PARA APAGAR O RESTAURANTE (COMEÇANDO POR POSSIVEIS RESERVAS, POSTERIORMENTE AS MESAS E SÓ DEPOIS, O RESTAURANTE)
+   
 
   });
 
@@ -550,41 +662,7 @@ async function getFilterReportsRestaurant(){
 
 }
 
-async function getNumberOfReports2(rest_id){
 
-  console.log("Obtendo os reports")
-  
-  // let recipeName = document.getElementById("nome1")
-   let lugaresElem = document.getElementById("organizeitems");
-   var utilizador_id = sessionStorage.getItem("utilizador_id");
-   console.log("setItem->userId = " + utilizador_id);
-  
-   console.log("REST ID: " + rest_id);
-   /*
-  try{
-  
-  let suggestedestacionamentos = await $.ajax({
-  
-  url: "/users/numberreports/" + rest_id,
-  method: "get",
-  dataType: "json",
-  
-  });
-  
-  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
-  
-  let html = "";
-  
- 
-  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
- 
-  
-  } catch(err){
-   console.log(err);
-  }
-  */
-
-}
 
 /*
 async function getNumberOfReports(rest_id){
@@ -633,34 +711,7 @@ async function getNumberOfReports(rest_id){
 
 }
 */
-/*
-function openpopupdetails(report){
 
-  document.getElementById('button999').addEventListener("click", function() {
-	    
-   // document.getElementById("bg-modal8").style.display = "flex";
-    document.querySelector('.bg-modal8').style.display = "flex";
-
-    document.getElementById("popuprestaurantname").innerHTML = report.establishment_name;
-
-    document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
-
-    document.getElementById("statelocal").innerHTML = report.state_name;
-
-    document.getElementById("placecreatedby").innerHTML = report.utilizador_username;
-
-
-    getNumberOfReports(report.report_restaurante_id);
-
-  });
-
-  document.querySelector('.close9').addEventListener("click", function() {
-  
-    document.querySelector('.bg-modal8').style.display = "none";
-  });
-
-  
-}*/
 
 async function putanalysis(report){
 
