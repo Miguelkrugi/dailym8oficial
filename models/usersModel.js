@@ -1056,6 +1056,52 @@ module.exports.DeleteLike = async function(user_id, rest_id){
 
 }
 
+module.exports.DeleteReservasRestaurante = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM reserva_mesa WHERE reserva_mesa.mesa_identifier_reservation IN (SELECT mesa.mesa_id FROM mesa WHERE mesa.mesa_restaurant_id = " + rest_id + ")";
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeleteMesasRestaurante = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM mesa WHERE mesa.mesa_restaurant_id = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeleteRestauranteEstabelecimento = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM restaurant WHERE restaurant.restaurant_id = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+
 
 module.exports.saveRestaurant = async function(pedido) {
     console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
