@@ -517,7 +517,19 @@ window.onload = function exampleFunction() {
     //getNumberLikesRestaurant(restaurant_id);
 
     
+    navigator.geolocation.getCurrentPosition(
 
+      function (position) {
+        initMap(position.coords.latitude, position.coords.longitude)
+
+        console.log("LATITUDE: " + position.coords.latitude + "| LONGITUDE: " + position.coords.longitude);
+        
+      },
+      function errorCallback(error) {
+        console.log(error)
+      }
+  
+     );
     
 
    // getAperitivos(restaurant_id, 1);
