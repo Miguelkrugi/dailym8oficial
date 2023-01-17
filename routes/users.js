@@ -613,6 +613,23 @@ router.post('/insertnewacomodacao', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewacomodacaoposition', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveAcomodacaoPosition(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.put('/turnplacestate1/:idplate', async function(req, res, next){
+
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateTurn(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+
 router.post('/insertnewplate', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));

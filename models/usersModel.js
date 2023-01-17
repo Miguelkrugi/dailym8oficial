@@ -742,7 +742,7 @@ module.exports.getLugaresUnavailable = async function(est_id) {
 
 module.exports.getAcomodacoesAvailable = async function(est_id) {
     try {
-        let sql = "SELECT *, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name, position_acomodacao.position_acomodacao_id, position_acomodacao.position_line, position_acomodacao.position_column, position_acomodacao.acomodacao_identifier FROM acomodacao INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id INNER JOIN position_acomodacao ON position_acomodacao.acomodacao_identifier = acomodacao.acomodacao_id WHERE acomodacao.acomodacao_equipment_service_id = " + est_id + " AND acomodacao.acomodacao_availability = '0'";
+        let sql = "SELECT *, acomodacao_type.acomodacao_type_id, acomodacao_type.acomodacao_type_name, position_acomodacao.position_acomodacao_id, position_acomodacao.position_line, position_acomodacao.position_column, position_acomodacao.acomodacao_identifier FROM acomodacao INNER JOIN acomodacao_type ON acomodacao_type.acomodacao_type_id = acomodacao.acomodacao_type_id INNER JOIN position_acomodacao ON position_acomodacao.acomodacao_identifier = acomodacao.acomodacao_id WHERE acomodacao.acomodacao_equipment_service_id = " + est_id + " AND acomodacao.acomodacao_availability = '0' AND acomodacao.acomodacao_position_acquired = '1'";
         let result = await pool.query(sql);
         let users = result.rows;
         console.log("[usersModel.getUsers] users = " + JSON.stringify(users));
@@ -1158,6 +1158,21 @@ module.exports.savePratoo = async function(pedido) {
         else
             return { status: 500, data: err };
     }
+}
+
+module.exports.UpdateTurn = async function(id_plate){
+
+    try {
+        let sql = "UPDATE acomodacao " + "SET acomodacao_position_acquired = '1' " + "WHERE acomodacao_id = " + id_plate;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
 }
 
 ///////AINDA N FOI APLICADO///////
@@ -2074,6 +2089,38 @@ module.exports.saveAcomodacao = async function(pedido) {
 
             //console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
         let result = await pool.query(sql, [pedido.acomodacao_number, pedido.acomodacao_availability, pedido.acomodacao_type_id, pedido.acomodacao_equipment_service_id, pedido.acomodacao_price, pedido.acomodacao_description, pedido.acomodacao_position_acquired]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
+
+module.exports.saveAcomodacaoPosition = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+
+        let sql =
+            "INSERT " +
+            "INTO position_acomodacao " + //A TERMINAR
+            "(position_line, position_column, acomodacao_identifier) " +
+            "VALUES ($1, $2, $3) " +
+            "RETURNING position_acomodacao_id";
+
+            //console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.position_line, pedido.position_column, pedido.acomodacao_identifier]);
         let pedidooo = result.rows[0].pedido_id;
         return { status: 200, data: pedidooo };
     } catch (err) {

@@ -33,7 +33,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
-	<script src="./javascripts/gestaooacomodacoes.js"></script>
+	<script src="./javascripts/gestaooacomodacoes2.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBVH9zsDCTHoGTwNdw3tA6f1MtfW2s1n5Y"></script>
 
@@ -290,8 +290,8 @@
 
          <!----------------------POPUP PARA ADICIONAR POSIÇÃO PARA UM x ESTABELECIMENTO------------------->
 
-		 <div class="bg-modal3">
-			<div class="modal-contents3">
+		 <div class="bg-modal3" id="bg-modal33">
+			<div class="modal-contents3" style="margin-top: -15%;">
 		
 				<div class="close4">+</div>
 				<img src="https://richardmiddleton.me/comic-100.png" alt="">
@@ -300,31 +300,12 @@
 					<hr style="margin-top: -1%;">
 		
 				<form action="">
-				  <button style=" position: absolute; margin-left: -46%; margin-top: 4.5%;" value="1">Linha 1</button>
-				  <button style=" position: absolute; margin-left: -32%; margin-top: 4.5%;" value="2">Linha 2</button>
-				  <button style=" position: absolute; margin-left: -18%; margin-top: 4.5%;" value="3">Linha 3</button>
-				  <button style=" position: absolute; margin-left: -4%; margin-top: 4.5%;" value="4">Linha 4</button>
-				  <button style=" position: absolute; margin-left: 10%; margin-top: 4.5%;" value="5">Linha 5</button>
-				 
-				 
-					<h4 style="margin-left: 0.1%; margin-top: -2%; position: absolute;">Selecionar Linha (relativamente ao mar): </h4>
-				 
-					<h4 style="margin-left: 0.5%; margin-top: 10%; position: absolute; font-size: 12px;">Linha Selecionada: </h4>
-	
-					<h4 style="margin-left: 0.5%; margin-top: 13%; position: absolute;">Selecionar Coluna (relativamente ao mar): </h4>
-					
-				   
-	
-					<button style=" position: absolute; margin-left: -44%; margin-top:19.5% ;" value="1">Coluna 1</button>
-				  <button style=" position: absolute; margin-left: -29%; margin-top: 19.5%;" value="2">Coluna 2</button>
-				  <button style=" position: absolute; margin-left: -13%; margin-top: 19.5%;" value="3">Coluna 3</button>
-				  <button style=" position: absolute; margin-left: 3%; margin-top: 19.5%;" value="4">Coluna 4</button>
-				  <button style=" position: absolute; margin-left: 19%; margin-top: 19.5%;" value="5">Coluna 5</button>
-					
-				  <h4 style="margin-left: 0.5%; margin-top: 26%; position: absolute; font-size: 12px;">Coluna Selecionada: </h4>
-	
-				  <button style="position: absolute; margin-top: 30%; margin-left: 17%;">ADICIONAR POSIÇÃO</button>
+                    <input style="width: 26%; position: absolute; margin-top: 7%; margin-left: 27.7%;" type="number" id="linefield" name="roodprice" min="1" max="6" placeholder="Linha (1-6)">
+
+					<input style="width: 26%; position: absolute; margin-top: 15%; margin-left: 27.7%;" type="number" id="columnfield" name="roodprice" min="1" max="6" placeholder="Coluna (1-6)">
 				</form>
+
+                <button id="addpos" style="position: absolute; margin-top: 25%; margin-left: -18%;">ADICIONAR POSIÇÃO</button>
 		
 			</div>
 		</div>

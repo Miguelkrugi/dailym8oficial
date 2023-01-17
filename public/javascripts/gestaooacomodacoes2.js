@@ -388,12 +388,107 @@ async function criarMesa(rest_id, tipo_mesa_id){
     }
   
     ///////////////////////////////////////////////////////////////////////////////////
+
+    async function updatePlaceState(id){
+    
+        console.log("IDENTIFICADOR (DEVE SER 3): " + id);
+    
+    
+    
+            try{
+          
+              let ementas = await $.ajax({
+          
+                url: "/users/turnplacestate1/" + id,
+                method: "put",
+                dataType: "json",
+          
+              });
+          
+              console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+          
+              
+          
+          
+           } catch(err){
+             console.log(err);
+           }
+          
+          
+           }
+
+    async function postPosition(acom_id, linhavalue, colunavalue){
+
+        console.log("POST ACOMODACAO CHAMADA");
+        
+    
+
+        try {
+       
+        
+            let data = {
+       
+                position_line: linhavalue,
+                position_column: colunavalue,
+                acomodacao_identifier: acom_id
+
+            }
+
+      /*    let data = {
+       
+           acomodacao_number: document.getElementById("numacom").value,
+           acomodacao_availability: value_for_availability,
+           acomodacao_type_id: userr_id,
+           acomodacao_equipment_service_id: resta_id,
+           acomodacao_price: document.getElementById("priceacom").value,
+           acomodacao_description: document.getElementById("descacom").value
+
+          }*/
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewacomodacaoposition/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+              
+           updatePlaceState(acom_id);
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+       
+
+       
+       
+       }
+
+    function editPosition(acomodacao_object){
+
+       document.getElementById("bg-modal33").style.display = "flex";
+
+       let acom_id = acomodacao_object.acomodacao_id;
+       let linhaacom = document.getElementById("linefield").value;
+       let colunaacom = document.getElementById("columnfield").value;
+
+       document.getElementById('addpos').addEventListener("click", function() {
+
+       
+        postPosition(acom_id, linhaacom, colunaacom);
+
+      });
+
+    }
   
     function createreservaHTML(reserva_mesa){ //A FAZER...
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>" + reserva_mesa.acomodacao_number + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + reserva_mesa.acomodacao_price + "</h3><button style='margin-left:73%; margin-top: -10%; position: absolute;' id='button9' onclick='editPosition(" + JSON.stringify(reserva_mesa) + ")'>EDITAR POSIÇÃO</button></div>";
+      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>Numero: " + reserva_mesa.acomodacao_number + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: 3%;'>Preço:" + reserva_mesa.acomodacao_price + "</h3><button style='margin-left:73%; margin-top: -5%; position: absolute;' id='button9' onclick='editPosition(" + JSON.stringify(reserva_mesa) + ")'>EDITAR POSIÇÃO</button></div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
     
