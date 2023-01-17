@@ -1086,6 +1086,21 @@ module.exports.DeleteMesasRestaurante = async function(rest_id){
 
 }
 
+module.exports.DeletePratosRestaurante = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM plate WHERE plate.plate_restaurant_id = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
 module.exports.DeleteRestauranteEstabelecimento = async function(rest_id){
 
     try{
