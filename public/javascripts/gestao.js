@@ -205,24 +205,24 @@ async function newChangeReports(){
 async function verifyplace(report){
 
 
-  try{
+ try{
+  
+  let ementas = await $.ajax({
 
-    let ementas = await $.ajax({
+    url: "users/alterarestado/verificado/restaurante/" + report.report_restaurante_id,
+    method: "put",
+    dataType: "json",
 
-      url: "users/alterarestado/verificado/restaurante/" + report.report_restaurante_id,
-      method: "put",
-      dataType: "json",
+  });
 
-    });
+  console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
 
-    console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-
-    
+  
 
 
- } catch(err){
-   console.log(err);
- }
+} catch(err){
+ console.log(err);
+}
 
 }
 
