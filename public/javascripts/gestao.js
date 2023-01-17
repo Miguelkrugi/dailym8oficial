@@ -25,31 +25,84 @@ window.onload = function exampleFunction() {
     
    // getAleatorioRestaurantes();
 
+   /////////////BOTÕES PARA VER DETALHES NOS ESTABELECIMENTOS EM ANÁLISE//////////////
+
+
+   ///////////////////////////////////////////////////////////////////////////////////
 
    getReports();
 
 }
 
-function openpopupdetails2(){
-
-  document.getElementById('button10').addEventListener("click", function() {
-	    
-    document.querySelector('.bg-modal8').style.display = "flex";
-  });
-
-  document.querySelector('.close9').addEventListener("click", function() {
+async function setAdmin(users){
+  var ind = users.utilizador_id;
+    try{
   
-    document.querySelector('.bg-modal8').style.display = "none";
-  });
+      let plates = await $.ajax({
+  
+        url: "/users/updateadmin/" + ind,
+        method: "put",
+        dataType: "json",
+  
+      });
+  
+      //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+      
+  
+  
+   } catch(err){
+     console.log(err);
+   }
+  
+  
+}
 
+async function setCliente(users){
+  var ind = users.utilizador_id;
+    try{
+  
+      let plates = await $.ajax({
+  
+        url: "/users/updatecliente/" + ind,
+        method: "put",
+        dataType: "json",
+  
+      });
+  
+      //console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+      
+  
+  
+   } catch(err){
+     console.log(err);
+   }
+  
+  
+}
+
+function makeAdmin(users){
+
+
+  setAdmin(users);
 
 }
+
+function removerAdmin(users){
+
+
+  setCliente(users);
+
+}
+
+
 
 function createusersHTML(users){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:9%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Nome: " + users.utilizador_name + "</h3> <h3 id='restaurantename' style='margin-left: 1.6%; font-size: 16px; margin-top: -1%;'>Username: " + users.utilizador_username  + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1%;'>Criado por: <i>" + users.utilizador_type_name + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -5%; position: absolute;'>PROMOVER A ADMINISTRADOR</button><button style='margin-left:83%; margin-top: -5%; position: absolute;' id='button10' onclick='openpopupdetails2()'>DESPROMOVER A CLIENTE</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:9%; position: relative ;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Nome: " + users.utilizador_name + "</h3> <h3 id='restaurantename' style='margin-left: 1.6%; font-size: 16px; margin-top: -1%;'>Username: " + users.utilizador_username  + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1%;'>Criado por: <i>" + users.utilizador_type_name + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -5%; position: absolute;'onclick='makeAdmin(" + JSON.stringify(users)+")'>PROMOVER A ADMINISTRADOR</button><button style='margin-left:83%; margin-top: -5%; position: absolute;' id='button9' onclick='removerAdmin(" + JSON.stringify(users)+")'>DESPROMOVER A CLIENTE</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -152,32 +205,215 @@ async function newChangeReports(){
 async function verifyplace(report){
 
 
-  try{
+ try{
+  
+  let ementas = await $.ajax({
 
-    let ementas = await $.ajax({
+    url: "users/alterarestado/verificado/restaurante/" + report.restaurant_id,
+    method: "put",
+    dataType: "json",
 
-      url: "/alterarestado/verificado/restaurante/" + report.report_restaurante_id,
-      method: "put",
-      dataType: "json",
+  });
 
-    });
-
-    console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
-
-    
-
-
- } catch(err){
-   console.log(err);
- }
+  console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+} catch(err){
+ console.log(err);
+}
 
 }
 
-function createrestaurantHTML(rest){
+///////////////////////////////////// MÉTODO PARA APAGAR UM RESTAURANTE ////////////////////////////////////
+
+
+//APAGAR PRIMEIRO OS ITEMS E DEPOIS MESAS
+
+async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
+
+  ///1. PASSO - APAGAR AS RESERVAS
+  console.log("READY TO DELETE");
+
+ try {
+
+   //ENVIAR METODO - APAGAR AS RESERVAS
+   let newExercise = await $.ajax({
+    url: "/users/delete/reservas/restaurante/" + rest_id,
+    method: "delete",
+    contentType: "application/json",
+    dataType: "json"
+    });
+
+    let newExercise12 = await $.ajax({
+      url: "/users/delete/item/mesas/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+
+      let newExercise13 = await $.ajax({
+        url: "/users/delete/item/acomodacao/restaurante/" + rest_id,
+        method: "delete",
+        contentType: "application/json",
+        dataType: "json"
+        });
+
+        let newExercise14 = await $.ajax({
+          url: "/users/delete/item/lugar/restaurante/" + rest_id,
+          method: "delete",
+          contentType: "application/json",
+          dataType: "json"
+          });
+      
+          let newExercise15 = await $.ajax({
+            url: "/users/delete/mesas/restaurante/" + rest_id,
+            method: "delete",
+            contentType: "application/json",
+            dataType: "json"
+            });
+          
+            let newExercise16 = await $.ajax({
+              url: "/users/delete/pratos/restaurante/" + rest_id,
+              method: "delete",
+              contentType: "application/json",
+              dataType: "json"
+              });
+
+              let newExercise17 = await $.ajax({
+                url: "/users/delete/packs/restaurante/" + rest_id,
+                method: "delete",
+                contentType: "application/json",
+                dataType: "json"
+                });
+
+                let newExercise18 = await $.ajax({
+                  url: "/users/delete/report/restaurante/" + rest_id,
+                  method: "delete",
+                  contentType: "application/json",
+                  dataType: "json"
+                  });
+
+                  let newExercise19 = await $.ajax({
+                    url: "/users/delete/place/restaurante/" + rest_id,
+                    method: "delete",
+                    contentType: "application/json",
+                    dataType: "json"
+                    });
+
+                    let newExercise20 = await $.ajax({
+                      url: "/users/delete/place/like/restaurante/" + rest_id,
+                      method: "delete",
+                      contentType: "application/json",
+                      dataType: "json"
+                      });
+ 
+                let newExercise21 = await $.ajax({
+                  url: "/users/delete/restaurante/restaurante/" + rest_id,
+                  method: "delete",
+                  contentType: "application/json",
+                  dataType: "json"
+                  });
+
+
+ } catch (err){
+
+  window.alert("Receita Criada.");
+
+ }
+ 
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function getNumberOfReports2(rest_id){
+
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizeitems");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+   console.log("REST ID: " + rest_id);
+   
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/numberreports/" + rest_id,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
+  
+  let html = "";
+  
+ 
+  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
+ 
+  
+  } catch(err){
+   console.log(err);
+  }
+  
+
+}
+
+function openpopupdetails2(report){
+
+  document.getElementById('button10').addEventListener("click", function() {
+
+    document.querySelector('.bg-modal8').style.display = "flex";
+
+    document.getElementById("popuprestaurantname").innerHTML = "Nome: " + report.establishment_name;
+
+    //document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
+
+    document.getElementById("statelocal").innerHTML = "Estado: " + report.state_name;
+
+    document.getElementById("placecreatedby").innerHTML = "Criador: " + report.utilizador_username;
+
+
+
+    getNumberOfReports2(report.restaurant_id);
+	    
+
+  });
+
+  document.querySelector('.close9').addEventListener("click", function() {
+  
+    document.querySelector('.bg-modal8').style.display = "none";
+  });
+
+  ///////////////////////// BOTOES ////////////////////////////
+
+  document.getElementById('deleterestaurante').addEventListener("click", function(){
+
+   
+    document.querySelector('.bg-modal8').style.display = "flex";
+    console.log(report.restaurant_id);
+
+    deleteRest(report.restaurant_id); //CHAMA A FUNCAO PARA APAGAR O RESTAURANTE (COMEÇANDO POR POSSIVEIS RESERVAS, POSTERIORMENTE AS MESAS E SÓ DEPOIS, O RESTAURANTE)
+   
+
+  });
+
+  document.getElementById('seedetails').addEventListener("click", function(){
+
+   
+   // reportRest(restaurant_id);
+
+  });
+
+}
+
+function createrestaurantHTML(report){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:7%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + rest.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + rest.utilizador_username + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -4.8%; position: absolute;' onclick='verifyplace(" + JSON.stringify(rest) + ")'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -4.8%; position: absolute;' id='button10' onclick='openpopupdetails2()'>VER DETALHES</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:7%; position: relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3></h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -4.8%; position: absolute;'onclick='verifyplace(" + JSON.stringify(report) + ")'>VERIFICAR LOCAL</button><button style='margin-left:83%; margin-top: -4.8%; position: absolute;' id='button10' onclick='openpopupdetails2(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -347,6 +583,9 @@ async function getFilterReportsRestaurant(){
 
 }
 
+
+
+/*
 async function getNumberOfReports(rest_id){
 
   console.log("Obtendo os reports")
@@ -371,7 +610,7 @@ async function getNumberOfReports(rest_id){
   let html = "";
   
  
-  document.getElementById("popupnumberreports").innerHTML = suggestedestacionamentos[0].count;
+  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
  
 
     //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
@@ -392,32 +631,8 @@ async function getNumberOfReports(rest_id){
   }
 
 }
+*/
 
-function openpopupdetails(report){
-
-  document.getElementById('button9').addEventListener("click", function() {
-	    
-    document.querySelector('.bg-modal8').style.display = "flex";
-
-    document.getElementById("popuprestaurantname").innerHTML = report.establishment_name;
-
-    document.getElementById("popupnumberreports").innerHTML = report.establishment_name;
-
-    document.getElementById("statelocal").innerHTML = report.state_name;
-
-    document.getElementById("placecreatedby").innerHTML = report.utilizador_username;
-
-    getNumberOfReports(report.report_restaurante_id);
-
-  });
-
-  document.querySelector('.close9').addEventListener("click", function() {
-  
-    document.querySelector('.bg-modal8').style.display = "none";
-  });
-
-
-}
 
 async function putanalysis(report){
 
@@ -426,7 +641,7 @@ async function putanalysis(report){
   
       let ementas = await $.ajax({
   
-        url: "/alterarestado/emanalise/restaurante/" + report.report_restaurante_id,
+        url: "users/alterarestado/emanalise/restaurante/" + report.report_restaurante_id,
         method: "put",
         dataType: "json",
   
@@ -443,18 +658,20 @@ async function putanalysis(report){
 
 }
 
+
+
 function createreportHTML(report){
   
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:15%; position:absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3><h3 id='statename' style='margin-left: 1.6%; margin-top: -0.8%;'>Estado do Local:" + report.state_name + "</h3><h3 id='datename' style='margin-left: 1.6%; margin-top: -0.8%;'>Data do Report:" + report.report_restaurante_date + "</h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -9.5%; position: absolute;' onclick='putanalysis(" + JSON.stringify(report) + ")'>COLOCAR SOBRE ANÁLISE</button><button style='margin-left:83%; margin-top: -9.5%; position: absolute;' id='button9' onclick='openpopupdetails(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:15%; position:relative;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>" + report.establishment_name + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Criado por: <i>" + report.utilizador_username + "</i></h3><h3 id='statename' style='margin-left: 1.6%; margin-top: -0.8%;'>Estado do Local:" + report.state_name + "</h3><h3 id='datename' style='margin-left: 1.6%; margin-top: -0.8%;'>Data do Report:" + report.report_restaurante_date + "</h3><button id='colocarsobanalise' style='margin-left: 60%; margin-top: -9.5%; position: absolute;'onclick='putanalysis(" + JSON.stringify(report) + ")'>COLOCAR SOBRE ANÁLISE</button><button style='margin-left:83%; margin-top: -9.5%; position: absolute;' id='button9' onclick='openpopupdetails(" + JSON.stringify(report) + ")'>VER DETALHES</button></div>";
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
 
 }
 
-async function getReports(){
+async function getReports(){ //REPORTS DE RESTAURANTE
 
   console.log("Obtendo os reports")
   

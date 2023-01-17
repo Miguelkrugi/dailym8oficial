@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Foogra - Discover & Book the best restaurants at the best price">
     <meta name="author" content="Ansonika">
-    <title>Foogra - Discover & Book the best restaurants at the best price</title>
+    <title>DailyM8</title>
 
     <!--CSS W3SCHOOLS-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -27,6 +27,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+
+
     <!-- SPECIFIC CSS -->
     <link href="css/listing.css" rel="stylesheet">
 
@@ -42,9 +45,10 @@
 	<header class="header_in clearfix">
 		<div class="container">
 		<div id="logo">
-			<a href="index.html">
-				<img src="img/logo_sticky.svg" width="140" height="35" alt="">
-			</a>
+			<a href="index-2.html">
+				<img src="img/logo-removebg-preview.png" width="200" height="200" alt="" class="logo_normal">
+			
+		</a>
 		</div>
 		<ul id="top_menu">
 			<li><a href="#sign-in-dialog" id="sign-in" class="login">Sign In</a></li>
@@ -98,8 +102,8 @@
                 <li>
                     <a href="#" onclick="newChangeReports()">Reports</a>
                 </li>
-                <li>
-                    <a href="#" onclick="newChange()">Estabelecimentos em Análise</a>
+				<li>
+                    <a href="#" onclick="newChange()">Em Análise</a>
                 </li>
 				<li>
                     <a href="#" onclick="newChangePromotion()">Promoção</a>
@@ -244,15 +248,15 @@
 				<form action="">
 				  <h4 id="popuprestaurantname" style="position: absolute; margin-top: -0.2%;">Nome do Estabelecimento: Nome</h4>
 				  
-				  <h4 id="popupnumberreports" style="position: absolute; margin-top: 7%;">Nº de Reports: 2</h4>
+				  <h4 id="popupnumberreports" style="position: absolute; margin-top: 7%;"></h4>
 	
 				  <h4 id="statelocal" style="position: absolute; margin-top: 14%;">Estado do Local: Estado</h4>
 	
 				  <h4 id="placecreatedby" style="position: absolute; margin-top: 21%;">Local criado por: <i>Username</i></h4>
 	
-				  <button style="margin-top: 35%; margin-left: -1%;">ELIMINAR ESTABELECIMENTO</button>
+				  <button style="margin-top: 35%; margin-left: -1%;" id="deleterestaurante">ELIMINAR ESTABELECIMENTO</button>
 	
-				  <button style="margin-top: 35%; margin-left: 17%;">VER DETALHES DO LOCAL</button>
+				  <button style="margin-top: 35%; margin-left: 17%;" id="seedetails">VER DETALHES DO LOCAL</button>
 	
 				</form>
 		

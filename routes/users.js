@@ -231,6 +231,28 @@ router.get('/getacomodacoes/:idestabelecimento', async function(req, res, next) 
 
 });
 
+router.get('/getacomodacoes/filter/:idestabelecimento/:idtipoacomodacaoid', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let tipo_acom_id = req.params.idtipoacomodacaoid;
+
+  let result = await usersModel.getAcomodacoesServiceFilter(estabelecimento_id, tipo_acom_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getacomodacoes/filter/disponibilidade/:idestabelecimento/:idtipodisponibilidadeid', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idestabelecimento;
+  let tipo_disp_id = req.params.idtipodisponibilidadeid;
+
+  let result = await usersModel.getAcomodacoesServiceFilterDisp(estabelecimento_id, tipo_disp_id);
+  res.status(result.status).send(result.data);
+
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.get('/getlatestreports', async function(req, res, next) {
 
   let result = await usersModel.getLatestReports();
@@ -374,6 +396,18 @@ router.get('/get/myreservas/acomodacao/:iduser', async function(req, res, next) 
 
 });
 
+/////////////////////////////////// OBTER RESERVAS DE LUGARES ////////////////////////////////////////
+
+router.get('/get/myreservas/spot/:iduser', async function(req, res, next) {
+
+  let user_id = req.params.iduser;
+
+  let result = await usersModel.getMyReservasEstacionamento(user_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
 
 router.get('/getlocation/restaurante/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
 
@@ -394,6 +428,21 @@ router.get('/getinformacao/:idutilizador', async function(req, res, next) { //TI
   res.status(result.status).send(result.data);
 
 });
+
+/////////////////////// OBTER ACOMODACOES SEM POSICAO PARA EDITAR/ADICIONAR POSIÇÃO ///////////////////////
+
+router.get('/getacomodacao/setposition/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getAcomodacaoPositions(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ////////////// OBTER ULTIMAS RESERVAS ///////////////
@@ -475,7 +524,16 @@ router.get('/getlugares/:idrestaurant', async function(req, res, next) { //TIPO 
 
 });
 
-router.get('/getacomodacoes/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+router.get('/getlugares/indisponivel/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
+
+  let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
+
+  let result = await usersModel.getLugaresUnavailable(restaurant_id); //FUNCAO É CHAMADA DO FICHEIRO usersModel
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getacomodacoesss/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO
 
   let restaurant_id = req.params.idrestaurant; //ARMAZENAS O INPUT DO URL NUMA VARIAVEL
 
@@ -514,6 +572,13 @@ router.post('/insertnewlike', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
+router.post('/insertnewreportrest', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveReportRest(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 router.delete('/deletelike/restaurante/:idutilizador/:idrestaurante', async function(req, res, next){
 
   let utilizador_id = req.params.idutilizador;
@@ -523,6 +588,111 @@ router.delete('/deletelike/restaurante/:idutilizador/:idrestaurante', async func
   res.status(result.status).send(result.data);
 
 });
+
+///////////////////////////////////// ROTAS PARA APAGAR UM RESTAURANTE /////////////////////////////////////
+
+router.delete('/delete/reservas/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteReservasRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/mesas/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteMesasRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/pratos/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeletePratosRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/item/mesas/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemMesaRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/item/acomodacao/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemAcomodacaoRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/item/lugar/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemLugarRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/packs/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteItemPacksRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/report/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteReportRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/place/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeletePlaceRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/place/like/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteLikeRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/delete/restaurante/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteRestauranteEstabelecimento(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.post('/insertnewrestaurant', async function(req, res, next) {
   let newPedido = req.body;
@@ -538,10 +708,10 @@ router.post('/insertnewestacionamento', async function(req, res, next) {
   res.sendStatus(result.status).send(result.data);
 });
 
-router.post('/insertnewacomodacao', async function(req, res, next) {
+router.post('/insertnewserviceacomodacao', async function(req, res, next) {
   let newPedido = req.body;
   console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
-  let result = await usersModel.saveAcomodacao(newPedido);
+  let result = await usersModel.saveServicoAcomodacao(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
 
@@ -559,6 +729,30 @@ router.post('/insertnewmesa', async function(req, res, next) {
   let result = await usersModel.saveMesa(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
+
+router.post('/insertnewacomodacao', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveAcomodacao(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.post('/insertnewacomodacaoposition', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveAcomodacaoPosition(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
+router.put('/turnplacestate1/:idplate', async function(req, res, next){
+
+  let id_user = req.params.idplate;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateTurn(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.post('/insertnewplate', async function(req, res, next) {
   let newPedido = req.body;
@@ -619,6 +813,45 @@ router.delete('/deletemesa/:idmesa', async function(req, res, next){
 
 });
 
+router.delete('/deleteacomodacao/:idmesa', async function(req, res, next){
+
+  let mesa_id = req.params.idmesa;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteAcomodacao(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deleteposicaoacomodacao/:idmesa', async function(req, res, next){
+
+  let mesa_id = req.params.idmesa;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeletePositionAcomodacao(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deletelugar/:idlugar', async function(req, res, next){
+
+  let mesa_id = req.params.idlugar;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteLugar(mesa_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.delete('/deletereservaest/:idreserva', async function(req, res, next){
+
+  let mesa_id = req.params.idreserva;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteReservaEstacionamento(mesa_id);
+  res.status(result.status).send(result.data);
+});
+
 router.delete('/deleteresmesa/:idres', async function(req, res, next){
 
   let id_reservation = req.params.idres;
@@ -628,6 +861,31 @@ router.delete('/deleteresmesa/:idres', async function(req, res, next){
   res.status(result.status).send(result.data);
 
 });
+
+router.delete('/deleteresacomodacao/:idres', async function(req, res, next){
+
+  let id_reservation = req.params.idres;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteResAcomodacao(id_reservation);
+  res.status(result.status).send(result.data);
+
+});
+
+////////////////// DELETE ACCOUNT /////////////////////
+
+router.delete('/deleteaccount/:idres', async function(req, res, next){
+
+  let id_utilizador = req.params.idres;
+
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteAccount(id_utilizador);
+  res.status(result.status).send(result.data);
+
+});
+
+
+///////////////////////////////////////////////////////
 
 /*router.post('/insertnewreservamesa', async function(req, res, next) {
   let newPedido = req.body;
@@ -649,6 +907,14 @@ router.post('/insertplate', async function(req, res, next) {
   let result = await usersModel.savePlate(newPedido);
   res.sendStatus(result.status).send(result.data);
 });
+
+router.post('/insertlugar', async function(req, res, next) {
+  let newPedido = req.body;
+  console.log("[pedidosRoutes] Saving pedido " + JSON.stringify(newPedido));
+  let result = await usersModel.saveLugar(newPedido);
+  res.sendStatus(result.status).send(result.data);
+});
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -824,6 +1090,16 @@ router.put('/updateadmin/:iduser', async function(req, res, next){
 
 });
 
+router.put('/updatecliente/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  console.log("--------------------------------------------------------------------------------------------------------")
+  let result = await usersModel.UpdateCliente(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
 
 router.get('/numberreports/:idrestaurant', async function(req, res, next) { //TIPO | PATH PARA O METODO // AINDA N FOI APLICADO
 
@@ -892,11 +1168,30 @@ router.put('/setmesaunavailable/:iduser', async function(req, res, next){
 
 });
 
+router.put('/setmesaavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateMesaAvailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+
 router.put('/setspotunavailable/:iduser', async function(req, res, next){
 
   let id_user = req.params.iduser;
   console.log("[artigosRoutes] Update pedido with id: " + id_user);
   let result = await usersModel.UpdateSpotUnavailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+router.put('/setspotavailable/:iduser', async function(req, res, next){
+
+  let id_user = req.params.iduser;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateSpotAvailable(id_user);
   res.status(result.status).send(result.data);
 
 });
@@ -910,7 +1205,55 @@ router.put('/setacomodacaounavailable/:iduserrrr', async function(req, res, next
 
 });
 
-////GET DE PACKS DISPONIVEIS////
+router.put('/setacomodacaoavailable/:iduserrrr', async function(req, res, next){
+
+  let id_user = req.params.iduserrrr;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateAcomodacaoAvailable(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+///GET DE PACKS DISPONIVEIS - ESTACIONAMENTO///
+
+router.get('/getavailable/parkinglot/packs/:idrestaurante', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idrestaurante;
+
+  let result = await usersModel.getAvailablePacksEstacionamento(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/parkinglot/acomodacoes/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableAcomodacoesEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/parkinglot/lugares/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableLugaresEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/getavailable/mesas/lugares/items/:idutilizador', async function(req, res, next) {
+
+  let estabelecimento_id = req.params.idutilizador;
+
+  let result = await usersModel.getAvailableTablesEst(estabelecimento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+
+////GET DE PACKS DISPONIVEIS - RESTAURANTE////
 
 router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req, res, next) {
 
@@ -920,6 +1263,8 @@ router.get('/getavailable/restaurante/packs/:idrestaurante', async function(req,
   res.status(result.status).send(result.data);
 
 });
+
+
 
 router.get('/getavailable/acomodacoes/items/:idutilizador', async function(req, res, next) {
 
@@ -938,6 +1283,8 @@ router.get('/getavailable/lugares/items/:idutilizador', async function(req, res,
   res.status(result.status).send(result.data);
 
 });
+
+
 
 
 
@@ -982,4 +1329,34 @@ router.get('/getlugares/filtercrescente/:idrestaurant', async function(req, res,
 
 });
 
+///////////////////////// CONTAR NUMERO DE LUGARES/MESAS/ACOMODACOES DISPONIVEIS //////////////////////////////
+
+router.get('/count/lugares/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountLugares(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/count/mesas/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountMesas(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+router.get('/count/acomodacoes/:idestacionamento', async function(req, res, next) {
+
+  let estacionamento_id = req.params.idestacionamento;
+  let result = await usersModel.getCountAcomodacoes(estacionamento_id);
+  res.status(result.status).send(result.data);
+
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 module.exports = router;
+
+

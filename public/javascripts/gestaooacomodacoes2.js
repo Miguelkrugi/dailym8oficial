@@ -1,3 +1,4 @@
+
 async function criarMesa(rest_id, tipo_mesa_id){
 
     var value_for_availability = 2;
@@ -115,14 +116,74 @@ async function criarMesa(rest_id, tipo_mesa_id){
   
    async function removerMesa(mesa){
   
-    var del = mesa.mesa_id;
+    var del = mesa.acomodacao_id;
+    console.log("ID da mesa: "+del);
+
+    //PASSO 1- FAZER DELETE DA POSIÇÃO DA ACOMODAÇÃO
+
+    try {
+  
+        //ENVIAR METODO
+        let asd = await $.ajax({
+     
+         url: "/users/deleteposicaoacomodacao/" + del,
+         method: "delete",
+         contentType: "application/json",
+         dataType: "json"
+       
+       });
+     
+     
+      } catch (err){
+     console.log(err);
+       window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+     
+      }
+
+      deleteAcomodation(del);
+   
+  
+  }
+  
+
+
+  ///////
+
+  async function deleteAcomodation(del){
+   //PASSO 2- FAZER DELETE DA ACOMODAÇÃO
+
+   try {
+  
+    //ENVIAR METODO
+    let asd = await $.ajax({
+ 
+     url: "/users/deleteacomodacao/" + del,
+     method: "delete",
+     contentType: "application/json",
+     dataType: "json"
+   
+   });
+ 
+ 
+  } catch (err){
+ console.log(err);
+   window.alert("Não pode apagar a mesa, pois tem reservas associadas à mesma.");
+ 
+  }
+
+}
+
+  ///////
+  async function removerReservaMesa(reserva_mesa){
+  
+    var del = reserva_mesa.id_reservation;
     console.log("ID da mesa: "+del);
    try {
   
      //ENVIAR METODO
      let asd = await $.ajax({
   
-      url: "/users/deletemesa/" + del,
+      url: "/users/deleteresacomodacao/" + del,
       method: "delete",
       contentType: "application/json",
       dataType: "json"
@@ -144,8 +205,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
    
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>" + mesa.mesa_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + mesa.mesa_price + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.mesa_size + "</i> | Tipo: <i>" + mesa.mesa_type_name + "</i></h3><button style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR MESA</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+    return "<div id='reportitem' style='border: 2px; display: inline-block ; position: relative; border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:35%;'><h3 id='mesanumbername' style='margin-left: 1.6%; font-size: 27px;'>Número da Acomodação: <i>" + mesa.acomodacao_number + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Tipo: <i>" + mesa.acomodacao_type_name + " </h3><h3 id='precoetiponame' font-size: 27px; padding-top: 10px; style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + mesa.acomodacao_price + " € </i>" + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%;padding-top: 10px; font-size: 27px; margin-top: -2%;'>Linha: <i>"+ mesa.position_line + " | Coluna: " + mesa.position_column +  "</i></h3><button padding-top: 10px;style='margin-left:50%; margin-top: -5%; position: absolute;' id='button9' onclick='removerMesa(" + JSON.stringify(mesa) + ")'>ELIMINAR ACOMODAÇÃO</button></div>";  // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
   
    /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
   
@@ -156,7 +216,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     console.log("Obtendo os reports")
     
     // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizeinforestauranttables"); //VERIFICAR O ID
+     let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
      var utilizador_id = sessionStorage.getItem("utilizador_id");
      console.log("setItem->userId = " + utilizador_id);
     
@@ -164,7 +224,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     
     let suggestedestacionamentos = await $.ajax({
     
-    url: "/users/gettables/" + id_restaurante,
+    url: "/users/getacomodacoes/" + id_restaurante,
     method: "get",
     dataType: "json",
     
@@ -290,75 +350,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
     deletePrato(plate);
   
   }
-  
-  function createplateHTML(plate){
-    
-    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
-   
-    //return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; position: absolute;' id='button9'>ELIMINAR PRATO</button></div>";
-    return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:23%; position: absolute;'><h3 id='pratoname' style='margin-left: 1.6%; font-size: 27px;'>" + plate.plate_name + "</h3><h3 id='platedescriptionname' style='margin-left: 1.6%; font-size: 16px; margin-top: -2%;'>" + plate.plate_type_description + "</h3><h3 id='precoetiponame' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço: <i>" + plate.plate_price + "</i> | Tipo: <i>" + plate.plate_type_name + "</i></h3><button style='margin-left:2%; margin-top: -0.2%; position: absolute;' id='button9' onclick='updateAvailability(" + JSON.stringify(plate)+")'>ALTERAR DISPONIBILIDADE</button><button style='margin-left:65%; margin-top: -0.2%; position: absolute;' id='button9' onclick='deletePlates(" + JSON.stringify(plate)+")'>ELIMINAR PRATO</button></div>";
-    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
-  
-   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  async function getMenu(id_restaurante){
-    
-    console.log("Obtendo os reports")
-    
-    // let recipeName = document.getElementById("nome1")
-     let lugaresElem = document.getElementById("organizemenu"); //VERIFICAR O ID
-     var utilizador_id = sessionStorage.getItem("utilizador_id");
-     console.log("setItem->userId = " + utilizador_id);
-    
-    try{
-    
-    let suggestedestacionamentos = await $.ajax({
-    
-    url: "/users/getmenu/" + id_restaurante,
-    method: "get",
-    dataType: "json",
-    
-    });
-    
-    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
-    
-    let html = "";
-    
-   
-    for(let reserva of suggestedestacionamentos){
-     console.log("Reserva: " + reserva);
-     html += createplateHTML(reserva);
-    }
-   
-  
-      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
-      console.log("NADA ENCONTRADO");
-  
-    
-    
-    console.log("OBTEVE");
-    //  recipeName.innerHTML = html;
-    
-   // restaurantesElem.innerHTML = html;
-  
-     lugaresElem.innerHTML = html;
-    
-    
-    } catch(err){
-     console.log(err);
-    }
-    }
-   
-   
+     
    /////////////////////// OBTER A MORADA //////////////////////////
   
   
@@ -396,49 +388,112 @@ async function criarMesa(rest_id, tipo_mesa_id){
     }
   
     ///////////////////////////////////////////////////////////////////////////////////
-    // FUNÇÃO PARA ABRIR DETALHES DO PACK E EDITÁ-LO
 
-    async function openpack(pack){
-
-        console.log("FUNÇÃO CHAMADA!");
-        /*console.log("NOME: " + restaurante.establishment_name)
-          console.log("DESCRICAO: " + restaurante.establishment_description)
-          console.log("ID: " + restaurante.restaurant_id)*/
-      
-          console.log("NOMEEEEEEE: " + pack.pack_name);
+    async function updatePlaceState(id){
+    
+        console.log("IDENTIFICADOR (DEVE SER 3): " + id);
+    
+    
+    
+            try{
           
-          sessionStorage.setItem('pack_id', pack.pack_id);
-          sessionStorage.setItem('pack_name', pack.pack_name);
-          sessionStorage.setItem('pack_restaurante_id', pack.pack_restaurante_id);
-          sessionStorage.setItem('pack_availability', pack.pack_availability);
+              let ementas = await $.ajax({
+          
+                url: "/users/turnplacestate1/" + id,
+                method: "put",
+                dataType: "json",
+          
+              });
+          
+              console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+          
+              
+          
+          
+           } catch(err){
+             console.log(err);
+           }
+          
+          
+           }
 
-         
-      
-      
-        /*  sessionStorage.setItem('restaurante_number_tables', restaurante.restaurante_number_tables);
-          sessionStorage.setItem('establishment_utilizador_id', restaurante.establishment_utilizador_id);
-          sessionStorage.setItem('type_service_identifier', restaurante.type_service_identifier);
-          sessionStorage.setItem('type_restaurant_id', restaurante.type_restaurant_id);
-          sessionStorage.setItem('type_restaurant_name', restaurante.type_restaurant_name);*/
-      
-      
-      }
+    async function postPosition(acom_id, linhavalue, colunavalue){
 
-    ///////////////////////////////
+        console.log("POST ACOMODACAO CHAMADA");
+        
+    
+
+        try {
+       
+        
+            let data = {
+       
+                position_line: linhavalue,
+                position_column: colunavalue,
+                acomodacao_identifier: acom_id
+
+            }
+
+      /*    let data = {
+       
+           acomodacao_number: document.getElementById("numacom").value,
+           acomodacao_availability: value_for_availability,
+           acomodacao_type_id: userr_id,
+           acomodacao_equipment_service_id: resta_id,
+           acomodacao_price: document.getElementById("priceacom").value,
+           acomodacao_description: document.getElementById("descacom").value
+
+          }*/
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewacomodacaoposition/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+              
+           updatePlaceState(acom_id);
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+       
+
+       
+       
+       }
+
+    function editPosition(acomodacao_object){
+
+       document.getElementById("bg-modal33").style.display = "flex";
+
+       let acom_id = acomodacao_object.acomodacao_id;
+
+       document.getElementById('addpos').addEventListener("click", function() {
+
+       
+        let linhaacom = document.getElementById("linefield").value;
+       let colunaacom = document.getElementById("columnfield").value;
+        postPosition(acom_id, linhaacom, colunaacom);
+
+      });
+
+    }
   
-    ////CRIAÇÃO DOS ITEMS DOS PACKS PARA EDITAR////
-    function createreservaHTML(reserva){
+    function createreservaHTML(reserva_mesa){ //A FAZER...
     
       //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
      
-      return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 100%; height:13%; position: absolute;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px; margin-top: 2%;'>" + reserva.pack_name + "</h3><a href='packedit.html'><button style='margin-left:73%; margin-top: -2.4%; position: absolute;' onclick='openpack(" + JSON.stringify(reserva) + ")' id='button9'>EDITAR PACK</button></a></div>";
-      // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
+      return "<div id='reportitem' style='border: 2px;  border-color: black; display: inline-block; background-color: rgb(236, 236, 236); width: 70%; height: 23%; position: relative;'><h3 id='utilizadorname' style='margin-left: 1.6%; font-size: 27px;'>Numero: " + reserva_mesa.acomodacao_number + "</h3><h3 id='numeromesaname' style='margin-left: 1.6%; font-size: 16px; margin-top: 3%;'>Preço:" + reserva_mesa.acomodacao_price + "</h3><button style='margin-left:73%; margin-top: -5%; position: absolute;' id='button9' onclick='editPosition(" + JSON.stringify(reserva_mesa) + ")'>EDITAR POSIÇÃO</button></div>";
     
      /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
     
     }
     
-
     async function getReservasRestaurante(id_restaurante){
     
       console.log("Obtendo os reports")
@@ -451,8 +506,8 @@ async function criarMesa(rest_id, tipo_mesa_id){
       try{
       
       let suggestedestacionamentos = await $.ajax({
-      
-      url: "/users/getavailable/restaurante/packs/" + id_restaurante,
+      //OBTER AS ACOMODAÇÕES QUE NÃO POSSUEM POSIÇÃO
+      url: "/users/getacomodacao/setposition/" + id_restaurante,
       method: "get",
       dataType: "json",
       
@@ -486,6 +541,203 @@ async function criarMesa(rest_id, tipo_mesa_id){
        console.log(err);
       }
       }
+
+      async function getCountAvailableLugares(restaurant_id){
+
+       
+        try{
+      
+          let suggestedestacionamentos = await $.ajax({
+          
+          url: "/users/count/acomodacoes/" + restaurant_id,
+          method: "get",
+          dataType: "json",
+          
+          });
+          
+          console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
+  
+          document.getElementById("restaurantavailable").innerHTML = "Numero de Lugares Disponiveis: " + suggestedestacionamentos[0].count;
+  
+       } catch (err){
+         console.log(err);
+       }
+      }
+
+
+      /////////////////////////////////////////// FILTRAGEM DE ACOMODACOES ///////////////////////////////////////////
+
+      async function filtragemAcomodacao(id_restaurante, tipo_acom_id){
+    
+        console.log("Obtendo os reports")
+        
+        // let recipeName = document.getElementById("nome1")
+         let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
+         var utilizador_id = sessionStorage.getItem("utilizador_id");
+         console.log("setItem->userId = " + utilizador_id);
+        
+        try{
+        
+        let suggestedestacionamentos = await $.ajax({
+        
+        url: "/users/getacomodacoes/filter/" + id_restaurante + "/" + tipo_acom_id, //O tipo_acom_id PODE SER 1 ou 2, DEPENDERÁ DA OPÇÃO SELECIONADA
+        method: "get",
+        dataType: "json",
+        
+        });
+        
+        console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+        
+        let html = "";
+        
+       
+        for(let reserva of suggestedestacionamentos){
+         console.log("Reserva: " + reserva);
+         html += createtableHTML(reserva);
+        }
+       
+      
+          //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+          console.log("NADA ENCONTRADO");
+      
+        
+        
+        console.log("OBTEVE");
+        //  recipeName.innerHTML = html;
+        
+       // restaurantesElem.innerHTML = html;
+      
+         lugaresElem.innerHTML = html;
+        
+        
+        } catch(err){
+         console.log(err);
+        }
+        }
+
+
+///////////////////////////////// FILTRAR DISPONIBILIDADE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
+    
+    console.log("Obtendo os reports")
+    
+    // let recipeName = document.getElementById("nome1")
+     let lugaresElem = document.getElementById("organizeinforestauratables"); //VERIFICAR O ID
+     var utilizador_id = sessionStorage.getItem("utilizador_id");
+     console.log("setItem->userId = " + utilizador_id);
+    
+    try{
+    
+    let suggestedestacionamentos = await $.ajax({
+    
+    url: "/users/getacomodacoes/filter/disponibilidade/" + id_restaurante + "/" + tipo_disponibilidade_id, //O tipo_acom_id PODE SER 1 ou 2, DEPENDERÁ DA OPÇÃO SELECIONADA
+    method: "get",
+    dataType: "json",
+    
+    });
+    
+    console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos));
+    
+    let html = "";
+    
+   
+    for(let reserva of suggestedestacionamentos){
+     console.log("Reserva: " + reserva);
+     html += createtableHTML(reserva);
+    }
+   
+  
+      //document.getElementById("withoutresultsestacionamentos").style.visibility = "visible";
+      console.log("NADA ENCONTRADO");
+  
+    
+    
+    console.log("OBTEVE");
+    //  recipeName.innerHTML = html;
+    
+   // restaurantesElem.innerHTML = html;
+  
+     lugaresElem.innerHTML = html;
+    
+    
+    } catch(err){
+     console.log(err);
+    }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    async function postAcomodacao(rest_id, type_acom_id){
+
+        console.log("POST ACOMODACAO CHAMADA");
+        
+        var value_for_availability = 2;
+  
+        if(document.getElementById("dispacom").value == "Sim"){
+      
+          value_for_availability = 0;
+      
+        } else if(document.getElementById("dispacom").value == "Não"){
+      
+          value_for_availability = 1;
+        } else {
+      
+          console.log("Nada selecionado!")
+        }
+
+        let resta_id = rest_id
+        let userr_id = type_acom_id
+
+        try {
+       
+        
+            let data = {
+       
+                acomodacao_number: document.getElementById("numacom").value,
+                acomodacao_availability: value_for_availability,
+                acomodacao_type_id: type_acom_id,
+                acomodacao_equipment_service_id: resta_id, //PAREI DE VERIFICAR AQUI
+                acomodacao_price: 15,
+                acomodacao_description: document.getElementById("descacom").value,
+                acomodacao_position_acquired: '0'
+     
+               }
+
+      /*    let data = {
+       
+           acomodacao_number: document.getElementById("numacom").value,
+           acomodacao_availability: value_for_availability,
+           acomodacao_type_id: userr_id,
+           acomodacao_equipment_service_id: resta_id,
+           acomodacao_price: document.getElementById("priceacom").value,
+           acomodacao_description: document.getElementById("descacom").value
+
+          }*/
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewacomodacao/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+              
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+       
+       
+       
+       }
+
+
+    
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   
   window.onload = function exampleFunction() {
@@ -504,8 +756,7 @@ async function criarMesa(rest_id, tipo_mesa_id){
       var restaurante_number_tables = sessionStorage.getItem('restaurante_number_tables');
       var estabelecimento_utilizador_id = sessionStorage.getItem('establishment_utilizador_id');
       var type_service_identifier = sessionStorage.getItem('type_service_identifier');
-      var type_restaurant_id = sessionStorage.getItem('type_restaurant_id');
-      var type_restaurant_name = sessionStorage.getItem('type_restaurant_name');
+
       var state_id = sessionStorage.getItem('state_id');  //EXPLICAR
     
       console.log("USERNAME: " + utilizador_username);
@@ -526,112 +777,106 @@ async function criarMesa(rest_id, tipo_mesa_id){
      // getAleatorioRestaurantes();
   
      document.getElementById('restaurantnameinfo').innerHTML = "Nome: " + estabelecimento_name;
-     document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
+    // document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
-     document.getElementById('button8').addEventListener("click", function() {
-        
-      //console.log("TIPO MESA: " + tipo_mesa_id);
-     // criarMesa(restaurant_id, tipo_mesa_id);
+     
   
-      document.getElementById("bg-modal666").style.display = "flex";
-    });
-  
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // getMorada(restaurant_id);
+     getMorada(restaurant_id);
   
      getReservasRestaurante(restaurant_id);
   
    //  getMenu(restaurant_id);
   
-   //  getMesas(restaurant_id);
+     getMesas(restaurant_id);
+
+     getCountAvailableLugares(restaurant_id);
   
      //VARIAVEL QUE ARMAZENA O VALOR DO TIPO DE PRATO
   
       var tipo_prato_id = 0;
   
-  
-      document.getElementById('aperitivooption').addEventListener("click", function() {
-          
-        tipo_prato_id = 1;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Aperitivo" 
-  
-      });
-  
-      document.getElementById('entradaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 2;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Entrada"  
-        
-      });
-  
-      document.getElementById('pratoprincipaloption').addEventListener("click", function() {
-          
-        tipo_prato_id = 3;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato Principal"
-        
-      });
-  
-      document.getElementById('sobremesaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 4;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Sobremesa" 
-        
-      });
-  
-      document.getElementById('pratododiaoption').addEventListener("click", function() {
-          
-        tipo_prato_id = 5;
-        console.log(tipo_prato_id);
-        document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Prato do Dia" 
-        
-      });
-  
-     
-  
-     document.getElementById('criarpratobtn').addEventListener("click", function() {
-        
-      console.log("TIPO PRATO: " + tipo_prato_id);
-      criarPlate(restaurant_id, tipo_prato_id);
-  
-  
-  
-      document.getElementById("bg-modal").style.display = "none";
-  
-     
-    });
-  
     /////////////////////////////////////////////////////////////////////////////////////////
   
     var tipo_mesa_id = 0;
   
-    document.getElementById('interioroption').addEventListener("click", function() {
-          
-      tipo_mesa_id = 1;
-      document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Interior" 
-    });
   
-    document.getElementById('exterioroption').addEventListener("click", function() {
-          
-      tipo_mesa_id = 2;
-      document.getElementById("tiposelecionadotext2").innerHTML = "Tipo selecionado: Exterior" 
-    });
+    
+
+    ///////////////////////////////// TIPO DE ACOMODAÇÃO /////////////////////////////////
+
+    document.getElementById('toldofilteroption').addEventListener("click", function() {
+
+        tipo_mesa_id = 1; //TOLDO
+        filtragemAcomodacao(restaurant_id ,tipo_mesa_id);
+      });
   
-    document.getElementById('criarmesabtn').addEventListener("click", function() {
+      document.getElementById('palhotafilteroption').addEventListener("click", function() {
+          
+        tipo_mesa_id = 2; //PALHOTA
+        filtragemAcomodacao(restaurant_id ,tipo_mesa_id);
+      });
+
+      document.getElementById('disponiveloption').addEventListener("click", function() {
+
+        tipo_disponibilidade_id = 0; //TOLDO
+        filtragemDisponivel(restaurant_id ,tipo_disponibilidade_id);
+      });
+
+      document.getElementById('indisponiveloption').addEventListener("click", function() {
+
+        tipo_disponibilidade_id = 1; //TOLDO
+        filtragemDisponivel(restaurant_id ,tipo_disponibilidade_id);
+      });
+
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      var tipo_acomodacao_selected = 0
+      document.getElementById('toldobtn').addEventListener("click", function() {
+
+         if(tipo_acomodacao_selected == 0){
+
+            tipo_acomodacao_selected = 1;
+            document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Toldo";
+
+            console.log(tipo_acomodacao_selected);
+
+         } else {
+            tipo_acomodacao_selected = 1;
+            document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Toldo";
+
+            console.log(tipo_acomodacao_selected);
+
+         }
+
+      });
+
+      document.getElementById('palhotabtn').addEventListener("click", function() {
+
+        if(tipo_acomodacao_selected == 0){
+           tipo_acomodacao_selected = 2;
+           document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Palhota";
+
+           console.log(tipo_acomodacao_selected);
+
+        } else {
+
+           tipo_acomodacao_selected = 2;
+           document.getElementById("selectedtypeacom").innerHTML = "Tipo selecionado: Palhota";
+
+           console.log(tipo_acomodacao_selected);
+
+        }
         
-      console.log("TIPO MESA: " + tipo_mesa_id);
-      criarMesa(restaurant_id, tipo_mesa_id);
-    });
-  
-  
+     });
+
+     document.getElementById('button444').addEventListener("click", function() {
+
+        console.log("CHAMADA" + restaurant_id + "|" + tipo_acomodacao_selected);
+        postAcomodacao(restaurant_id, tipo_acomodacao_selected);
+
+      });
   
   }
   

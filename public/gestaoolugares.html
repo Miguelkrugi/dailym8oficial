@@ -117,7 +117,7 @@
 	
 		<button id="button8" style="position: absolute; margin-left: 30%; margin-top:2.8%;">CRIAR PACK</button>
 		
-		<a href="gestaoopacks.html"><button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%;">EDITAR PACK</button></a>
+		<a href="gestaoopackslugares.html"><button id="button9" style="position: absolute; margin-left: 36%; margin-top:2.8%;">EDITAR PACK</button></a>
         <!--DIV DAS 10 ULTIMAS RESERVAS-->
 
         <h3 style="margin-left: 2%; margin-top: 5.5%; position: absolute;">ÚLTIMAS RESERVAS</h3>
@@ -131,9 +131,9 @@
                     <a href="#">Todos</a>
                       
                 
-              <a href="#">Disponiveis</a>
+              <a href="#" id="lugaresdisponiveisoption">Disponiveis</a>
                 
-              <a href="#">Indisponiveis</a>
+              <a href="#" id="lugaresindisponiveisoption">Indisponiveis</a>
             
             </div>
         </div>
@@ -167,8 +167,9 @@
 
             <h3 id="restaurantnameinfo" style="margin-left: 4%; margin-top: 4%;">Nome: </h3>
             <h3 id="restauranttypeinfo" style="margin-left: 4%; margin-top: 4%;">Tipo: </h3>
-            <h3 id="restaurantinfo" style="margin-left: 4%; margin-top: 4%;">Numero de Mesas: </h3>
+            <h3 id="restaurantinfo" style="margin-left: 4%; margin-top: 4%;">Numero de Lugares: </h3>
             <h3 id="restaurantmorada" style="margin-left: 4%; margin-top: 4%;">Morada: </h3>
+			<h3 id="restaurantavailable" style="margin-left: 4%; margin-top: 4%;">Numero de Lugares Disponiveis: </h3>
 
         </div>
 
@@ -242,13 +243,13 @@
 				<form action="">
 				<!---	<input style="width: 70%;" type="text" id="mesanameinput" placeholder="Nome">
 					<textarea id="mesadescricaoinput" style="height:200px; margin-left: -30.8%; width: 70%;" type="email" placeholder="Descrição (até 300 caracteres)"></textarea>-->
-					<a href="#" id="criarlugarbtn" class="button" style="margin-top: 20.6%; margin-left: 25%; position: absolute; font-size: 23px; " >Criar Lugar</a>
-					<input style="width: 11%;" type="number" id="mesaprecoinput" name="roodprice" min="0" maxlength="300" max = "300" placeholder="Preço">
-					<input id="mesanumberinput" style="width: 23%;margin-left: 42.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número de Lugar">
+					<button id="criarlugarbtn">Criar Lugar</button>
+					<input style="width: 11%;" type="number" id="lugarprecoinput" name="roodprice" min="0" maxlength="300" max = "300" placeholder="Preço">
+					<input id="lugarnumberinput" style="width: 23%;margin-left: 42.4%; position: absolute; margin-top: -7.5%;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Número de Lugar">
                     <input id="mesasizeinput" style="width: 29%;margin-left: 12%; position: absolute; margin-top: -7.5%; visibility: hidden;" type="number" id="foodprice" name="roodprice"min="0" max="300" placeholder="Capacidade (Nº Pessoas)">  
 
 					<!--DETERMINAR SE IRÁ FICAR DISPONIVEL OU NÃO-->
-					<input id="mesadisponibilidadeinput"  style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
+					<input id="lugardisponibilidadeinput"  style="width: 70%;" type="text" maxlength="3" placeholder="Digite 'Sim' ou 'Não' (Sim = Disponivel | Não = Indisponivel)">
 
 					
 				</form>
