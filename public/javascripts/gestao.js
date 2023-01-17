@@ -528,7 +528,7 @@ function createreportHTML(report){
 
 }
 
-async function getReports(){
+async function getReports(){ //REPORTS DE RESTAURANTE
 
   console.log("Obtendo os reports")
   
