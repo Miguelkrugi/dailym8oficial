@@ -345,7 +345,7 @@ function openpopupdetails2(report){
 
 
 
-    getNumberOfReports(report.restaurante_id);
+    getNumberOfReports2(report.restaurante_id);
 	    
 
   });
@@ -550,6 +550,43 @@ async function getFilterReportsRestaurant(){
 
 }
 
+async function getNumberOfReports2(rest_id){
+
+  console.log("Obtendo os reports")
+  
+  // let recipeName = document.getElementById("nome1")
+   let lugaresElem = document.getElementById("organizeitems");
+   var utilizador_id = sessionStorage.getItem("utilizador_id");
+   console.log("setItem->userId = " + utilizador_id);
+  
+   console.log("REST ID: " + rest_id);
+   /*
+  try{
+  
+  let suggestedestacionamentos = await $.ajax({
+  
+  url: "/users/numberreports/" + rest_id,
+  method: "get",
+  dataType: "json",
+  
+  });
+  
+  console.log("[utilizador] utilizador = " + JSON.stringify(suggestedestacionamentos[0].count));
+  
+  let html = "";
+  
+ 
+  document.getElementById("popupnumberreports").innerHTML = "Numero de Reports: " + suggestedestacionamentos[0].count;
+ 
+  
+  } catch(err){
+   console.log(err);
+  }
+  */
+
+}
+
+/*
 async function getNumberOfReports(rest_id){
 
   console.log("Obtendo os reports")
@@ -595,7 +632,8 @@ async function getNumberOfReports(rest_id){
   }
 
 }
-
+*/
+/*
 function openpopupdetails(report){
 
   document.getElementById('button999').addEventListener("click", function() {
@@ -622,7 +660,7 @@ function openpopupdetails(report){
   });
 
   
-}
+}*/
 
 async function putanalysis(report){
 
