@@ -104,7 +104,7 @@ function createreservamesaHTML(reserva){
   console.log("Função chamada para criar o div da acomodação");
   //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
  
-  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.mesa_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Mesa: " + reserva.mesa_type_name + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.mesa_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button></div>" 
+  return "<div id='reportitem' style='border: 2px;  border-color: black; background-color: rgb(236, 236, 236); width: 70%; height:26%; position: absolute;'><h3 id='restaurantname' style='margin-left: 1.6%; font-size: 27px;'>Numero da Mesa: " + reserva.mesa_number + "</h3><h3 id='createdbyname' style='margin-left: 1.6%; margin-top: -1.6%;'>Restaurante: " + reserva.establishment_name + "</h3><h3 id='dataname' style='margin-left: 1.6%; margin-top: -1.6%;'>Data da Reserva: " + reserva.date_marcada_reservation + "</h3><h3 id='moradaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Morada: " + reserva.local_morada + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Tipo de Mesa: " + reserva.mesa_type_name + "</h3><h3 id='tipomesaname' style='margin-left: 1.6%; margin-top: -1.6%;'>Preço da Reserva: " + reserva.mesa_price + "</h3><button id='colocarsobanalise' style='margin-left: 80%; margin-top: -4.8%; position: absolute;'>CANCELAR RESERVA</button><button id='presencamarcacao' style='margin-left: 50%; margin-top: -4.8%; position: absolute;'>MARCAR PRESENÇA</button></div>" 
   // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
 
  /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/
@@ -118,7 +118,7 @@ async function getMyReservasRestaurantes(id_user){
   console.log("Obtendo os restaurantes");
   
   // let recipeName = document.getElementById("nome1")
-   let restaurantesElem = document.getElementById("organize16");
+   let restaurantesElem = document.getElementById("showreservas");
    var utilizador_id = sessionStorage.getItem("utilizador_id");
    console.log("setItem->userId = " + utilizador_id);
   
@@ -1014,6 +1014,8 @@ document.getElementById('alloption').addEventListener("click", function(){
   console.log("USER ID: " + utilizador_id)
   myAllEstabelecimentos(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Estabelecimentos";
   document.getElementById("criarestabelecimentobutton").style.visibility = "visible";
 
@@ -1026,6 +1028,8 @@ document.getElementById('resteoption').addEventListener("click", function(){
   myAllEstabelecimentos(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Restaurantes";
  
 });
@@ -1036,6 +1040,8 @@ document.getElementById('acomodacaooption').addEventListener("click", function()
   getMyAcomodacoes(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById("criarestabelecimentobutton").style.visibility = "visible";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Acomodações";
 
@@ -1048,6 +1054,8 @@ document.getElementById('favoritosoption').addEventListener("click", function(){
   getLikedRestaurants(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Meus Favoritos";
@@ -1061,6 +1069,9 @@ document.getElementById('resteoptionincompletos').addEventListener("click", func
   getAlllRestaurants(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
+
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
   document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
@@ -1073,6 +1084,8 @@ document.getElementById('acomoptionincompletos').addEventListener("click", funct
   console.log("USER ID: " + utilizador_id)
   getAlllAcomodacoes(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
@@ -1086,6 +1099,8 @@ document.getElementById('parkingoptionincompletos').addEventListener("click", fu
   console.log("USER ID: " + utilizador_id)
   getAlllEstacionamentos(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
@@ -1099,6 +1114,8 @@ document.getElementById('incompletosoption').addEventListener("click", function(
   console.log("USER ID: " + utilizador_id)
   getAlllRestaurants(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoincompletos').style.visibility = "visible";
@@ -1113,6 +1130,8 @@ document.getElementById('estacionamentosoption').addEventListener("click", funct
   console.log("USER ID: " + utilizador_id)
   getMyEstacionamentos(utilizador_id);
   document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "hidden";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "visible";
   document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
@@ -1125,12 +1144,15 @@ document.getElementById('reservasoption').addEventListener("click", function(){
 
   console.log("USER ID: " + utilizador_id)
   getMyReservasRestaurantes(utilizador_id);
-  document.getElementById("organize16").style.visibility = "visible";
+  document.getElementById("organize16").style.visibility = "hidden";
+  document.getElementById("organize199").style.visibility = "hidden";
+  document.getElementById("showreservas").style.visibility = "visible";
   document.getElementById('tipoestabelecimento').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentofavoritos').style.visibility = "hidden";
   document.getElementById('tipoestabelecimentoreservas').style.visibility = "visible";
   document.getElementById("criarestabelecimentobutton").style.visibility = "hidden";
   document.getElementById('textomeusestabelecimentos').innerHTML = "Minhas Reservas";
+  document.getElementById("informacoesdiv").style.visibility = "hidden";
 
 
 });

@@ -472,12 +472,12 @@ async function criarMesa(rest_id, tipo_mesa_id){
        document.getElementById("bg-modal33").style.display = "flex";
 
        let acom_id = acomodacao_object.acomodacao_id;
-       let linhaacom = document.getElementById("linefield").value;
-       let colunaacom = document.getElementById("columnfield").value;
 
        document.getElementById('addpos').addEventListener("click", function() {
 
        
+        let linhaacom = document.getElementById("linefield").value;
+       let colunaacom = document.getElementById("columnfield").value;
         postPosition(acom_id, linhaacom, colunaacom);
 
       });
