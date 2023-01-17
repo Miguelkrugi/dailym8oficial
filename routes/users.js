@@ -654,6 +654,14 @@ router.delete('/delete/packs/restaurante/:idrestaurante', async function(req, re
 
 });
 
+router.delete('/delete/report/restaurante/:idrestaurante', async function(req, res, next){
+
+  let restaurant_id = req.params.idrestaurante;
+ // console.log("[artigosRoutes] Deleting pedido with id: " + pedido_id);
+  let result = await usersModel.DeleteReportRestaurante(restaurant_id);
+  res.status(result.status).send(result.data);
+
+});
 
 router.delete('/delete/restaurante/restaurante/:idrestaurante', async function(req, res, next){
 

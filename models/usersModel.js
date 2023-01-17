@@ -1104,7 +1104,7 @@ module.exports.DeletePratosRestaurante = async function(rest_id){
 module.exports.DeleteItemMesaRestaurante = async function(rest_id){
 
     try{
-        let sql = "DELETE FROM item_mesa_restaurant WHERE item_mesa_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id;
+        let sql = "DELETE FROM item_mesa_restaurant WHERE item_mesa_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id + ")";
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
@@ -1119,7 +1119,7 @@ module.exports.DeleteItemMesaRestaurante = async function(rest_id){
 module.exports.DeleteItemAcomodacaoRestaurante = async function(rest_id){
 
     try{
-        let sql = "DELETE FROM item_acomodacao_restaurant WHERE item_acomodacao_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id;
+        let sql = "DELETE FROM item_acomodacao_restaurant WHERE item_acomodacao_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id + ")";
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
@@ -1134,7 +1134,7 @@ module.exports.DeleteItemAcomodacaoRestaurante = async function(rest_id){
 module.exports.DeleteItemLugarRestaurante = async function(rest_id){
 
     try{
-        let sql = "DELETE FROM item_spot_restaurant WHERE item_spot_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id;
+        let sql = "DELETE FROM item_spot_restaurant WHERE item_spot_restaurant.item_pack_restaurante_id IN (SELECT pack_restaurante.pack_id FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id + ")";
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
@@ -1150,6 +1150,21 @@ module.exports.DeleteItemPacksRestaurante = async function(rest_id){
 
     try{
         let sql = "DELETE FROM pack_restaurante WHERE pack_restaurante.pack_restaurante_id = " + rest_id;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+module.exports.DeleteReportRestaurante = async function(rest_id){
+
+    try{
+        let sql = "DELETE FROM report_restaurante WHERE report_restaurante.report_restaurante_id = " + rest_id;
         let result = await pool.query(sql);
         let pedidofound = result.rows;
         console.log("[artigoModel.getArtigoCategory] pedido = " + JSON.stringify(pedidofound));

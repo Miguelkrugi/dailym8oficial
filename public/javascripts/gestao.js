@@ -228,153 +228,8 @@ async function verifyplace(report){
 
 ///////////////////////////////////// MÉTODO PARA APAGAR UM RESTAURANTE ////////////////////////////////////
 
-async function apagarRest(rest_id){
 
-  try {
-  
-  //ENVIAR METODO - APAGAR AS MESAS
-  
-  //ENVIAR MÉTODO - APAGAR O RESTAURANTE
-
-  let newExercise4 = await $.ajax({
-    url: "/users/delete/restaurante/restaurante/" + rest_id,
-    method: "delete",
-    contentType: "application/json",
-    dataType: "json"
-    });
-  
-  
-  } catch(err){
-    console.log(err);
-  }
-  
-  }
-
-  async function apagarPacksRest(rest_id){
-
-    try {
-    
-    //ENVIAR METODO - APAGAR AS MESAS
-    
-    let newExercise3 = await $.ajax({
-      url: "/users/delete/packs/restaurante/" + rest_id,
-      method: "delete",
-      contentType: "application/json",
-      dataType: "json"
-      });
-    
-      apagarRest(rest_id);
-    
-    } catch(err){
-      console.log(err);
-    }
-    
-    }
-
-  async function apagarItemLugarPackRest(rest_id){
-
-    try {
-    
-    //ENVIAR METODO - APAGAR AS MESAS
-    
-    let newExercise3 = await $.ajax({
-      url: "/users/delete/item/lugar/restaurante/" + rest_id,
-      method: "delete",
-      contentType: "application/json",
-      dataType: "json"
-      });
-    
-      apagarPacksRest(rest_id);
-    
-    } catch(err){
-      console.log(err);
-    }
-    
-    }
-
-  async function apagarItemAcomPackRest(rest_id){
-
-    try {
-    
-    //ENVIAR METODO - APAGAR AS MESAS
-    
-    let newExercise3 = await $.ajax({
-      url: "/users/delete/item/acomodacao/restaurante/" + rest_id,
-      method: "delete",
-      contentType: "application/json",
-      dataType: "json"
-      });
-    
-      apagarItemLugarPackRest(rest_id);
-    
-    } catch(err){
-      console.log(err);
-    }
-    
-    }
-
-  async function apagarItemMesaPackRest(rest_id){
-
-    try {
-    
-    //ENVIAR METODO - APAGAR AS MESAS
-    
-    let newExercise3 = await $.ajax({
-      url: "/users/delete/item/mesas/restaurante/" + rest_id,
-      method: "delete",
-      contentType: "application/json",
-      dataType: "json"
-      });
-    
-      apagarItemAcomPackRest(rest_id);
-    
-    } catch(err){
-      console.log(err);
-    }
-    
-    }
-
-async function apagarPratos(rest_id){
-
-  try {
-  
-  //ENVIAR METODO - APAGAR AS MESAS
-  
-  let newExercise3 = await $.ajax({
-    url: "/users/delete/pratos/restaurante/" + rest_id,
-    method: "delete",
-    contentType: "application/json",
-    dataType: "json"
-    });
-  
-    apagarItemMesaPackRest(rest_id);
-  
-  } catch(err){
-    console.log(err);
-  }
-  
-  }
-
-async function apagarMesas(rest_id){
-
-try {
-
-//ENVIAR METODO - APAGAR AS MESAS
-
-let newExercise2 = await $.ajax({
-  url: "/users/delete/mesas/restaurante/" + rest_id,
-  method: "delete",
-  contentType: "application/json",
-  dataType: "json"
-  });
-
-  apagarPratos(rest_id);
-
-} catch(err){
-  console.log(err);
-}
-
-}
+//APAGAR PRIMEIRO OS ITEMS E DEPOIS MESAS
 
 async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
 
@@ -391,7 +246,62 @@ async function deleteRest(rest_id){ //Sendo o rest_id o ID do restaurante.
     dataType: "json"
     });
 
-    apagarMesas(rest_id);
+    let newExercise12 = await $.ajax({
+      url: "/users/delete/item/mesas/restaurante/" + rest_id,
+      method: "delete",
+      contentType: "application/json",
+      dataType: "json"
+      });
+
+      let newExercise13 = await $.ajax({
+        url: "/users/delete/item/acomodacao/restaurante/" + rest_id,
+        method: "delete",
+        contentType: "application/json",
+        dataType: "json"
+        });
+
+        let newExercise14 = await $.ajax({
+          url: "/users/delete/item/lugar/restaurante/" + rest_id,
+          method: "delete",
+          contentType: "application/json",
+          dataType: "json"
+          });
+      
+          let newExercise15 = await $.ajax({
+            url: "/users/delete/mesas/restaurante/" + rest_id,
+            method: "delete",
+            contentType: "application/json",
+            dataType: "json"
+            });
+          
+            let newExercise16 = await $.ajax({
+              url: "/users/delete/pratos/restaurante/" + rest_id,
+              method: "delete",
+              contentType: "application/json",
+              dataType: "json"
+              });
+
+              let newExercise17 = await $.ajax({
+                url: "/users/delete/packs/restaurante/" + rest_id,
+                method: "delete",
+                contentType: "application/json",
+                dataType: "json"
+                });
+
+                let newExercise18 = await $.ajax({
+                  url: "/users/delete/report/restaurante/" + rest_id,
+                  method: "delete",
+                  contentType: "application/json",
+                  dataType: "json"
+                  });
+ 
+                let newExercise19 = await $.ajax({
+                  url: "/users/delete/restaurante/restaurante/" + rest_id,
+                  method: "delete",
+                  contentType: "application/json",
+                  dataType: "json"
+                  });
+
 
  } catch (err){
 
