@@ -3158,6 +3158,22 @@ ul#top_menu li a.login:before {
 }
 
 
+<<<<<<< HEAD
+=======
+  width: 67%;
+  height: 70%;
+  background-color: rgb(246, 246, 246);
+  display: inline-block;
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 2%;
+  gap:10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+}
+>>>>>>> ef85b5deda2d416c781a97a32a4bf3edba518084
 
 #organizereserva2 {
 

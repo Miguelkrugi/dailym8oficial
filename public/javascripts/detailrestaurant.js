@@ -197,7 +197,6 @@ async function reportRest(rest_id){
     dataType: "json"
     });
 
-    location.reload();
    // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
 
 
@@ -280,6 +279,25 @@ async function deleteLike(rest_id, user_id){
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
+async function testArrive(mesa_id){
+  console.log("ID OF TABLE: " + mesa_id);
+
+  try{
+
+  let newExercise2 = await $.ajax({
+    url: "/users/setmesaunavailable/" + mesa_id,
+    method: "put",
+    dataType: "json",
+    });
+
+  } catch (err){
+
+     console.log("ERRO");
+
+  }
+
+}
+
 
 async function sentPost(date_marcacao_reservation, user_identifier_reservation, mesa_identifier_reservation, date_marcada_reservation, payment_credit_card_number, payment_cvc_number){
 
@@ -292,7 +310,7 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
   console.log(payment_credit_card_number);
   console.log(payment_cvc_number);
 
-  let id_mesa = mesa_identifier_reservation;
+  
 
   try {
  
@@ -319,38 +337,29 @@ async function sentPost(date_marcacao_reservation, user_identifier_reservation, 
       contentType: "application/json",
       dataType: "json"
       });
+      
 
-      console.log("CHEGOU");
+      console.log("CHEGOU:");
+
   
-     //ENVIAR METODO
+     /*ENVIAR METODO
      let newExercise2 = await $.ajax({
-      url: "/users/setmesaunavailable/" + id_mesa,
+      url: "/users/setmesaunavailable/" + mesa_identifier_reservation,
       method: "put",
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      dataType: "json"
+      dataType: "json",
       });
+      */
   
      // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
   
   
    } catch (err){
   
+    testArrive(mesa_identifier_reservation);
+
     window.alert("Reserva criada.");
   
    }
-
-
-   /////////// 2º PASSO - TORNAR A MESA INDISPONIVEL ////////////
-
- 
-    
-  
-     // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
-  
-  
-   
-
   }
 
 async function showValuee(table){

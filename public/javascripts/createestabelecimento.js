@@ -36,9 +36,6 @@ async function criarRestaurant(user_id,tipo_restaurant_id){
      window.alert("Receita Criada.");
    
     }
-   
-   
-   
    }
 
    async function criarEstacionamento(user_id){
@@ -228,21 +225,7 @@ window.onload = function exampleFunction() {
       
     });
 
-    document.getElementById('toldooption').addEventListener("click", function() {
-	    
-      acomodacao_tipo_id = 1;
-      console.log(acomodacao_tipo_id);
-      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Toldo" 
-      
-    });
-
-    document.getElementById('palhotaoption').addEventListener("click", function() {
-	    
-      acomodacao_tipo_id = 2;
-      console.log(acomodacao_tipo_id);
-      document.getElementById("tiposelecionadotext").innerHTML = "Tipo selecionado: Palhota" 
-      
-    });
+ 
 
     document.getElementById('createrestaurant').addEventListener("click", function(){
 
@@ -305,11 +288,11 @@ function createAcomodacao() {
 
     document.getElementById('textomeusestabelecimentos').innerHTML = "Criar Serviço de Acomodação"
 
-    document.getElementById('numeromesastexto').innerHTML = "Preço da Acomodação"
+    document.getElementById('numeromesastexto').innerHTML = "Número de Acomodações"
 
     document.getElementById('nometexto').innerHTML = "Número da Acomodação"
 
-    document.getElementById('dropdown1').style.visibility = "visible"
+    document.getElementById('dropdown1').style.visibility = "hidden"
   
     document.getElementById('numeromesasinput').style.visibility = "hidden"
 
@@ -322,6 +305,8 @@ function createAcomodacao() {
     document.getElementById('createacomodacao').style.visibility = "visible"
 
     document.getElementById('createestacionamento').style.visibility = "hidden"
+
+  
 
 }
 

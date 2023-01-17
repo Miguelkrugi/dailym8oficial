@@ -9,6 +9,28 @@ function createtableHTML(mesapack){
  
  }
 
+ async function turnavailabilityoff(pack_id){
+
+   try{
+      
+      let ementas = await $.ajax({
+  
+        url: "/users/turnoff/available/pack/" + pack_id,
+        method: "put",
+        dataType: "json",
+  
+      });
+  
+      console.log("[utilizador] utilizador = " + JSON.stringify(ementas));
+  
+      
+  
+  
+   } catch(err){
+     console.log(err);
+   }
+
+ }
 
 
 async function reservartable(id_pack){
@@ -139,6 +161,8 @@ async function reservartable(id_pack){
       console.log("OBTEVE");
 
       } catch(err){
+
+       turnavailabilityoff(id_pack);
        console.log(err);
       }
 
@@ -214,7 +238,7 @@ function createacomodacaoHTML(acomodacaopack){
   
    //return "<div class='item2' style='height:300px; background-color:white;'>" + "<div class='strip'>"  + " <div class='item_title'>" + "<h3>" + restaurante.establishment_name + "</h3>" + "<small>" + restaurante.restaurante_number_tables + "</small><button onclick='" + JSON.stringify(restaurante) + "'>VER MAIS</button></div></figure></div></div>"
   
-   return "<div class='menu_item' style='background-color:lightgray; width:100%; height:15%;'><em>Preço: " + acomodacaopack.acomodacao_price + " $</em><h4>Numero: " + acomodacaopack.acomodacao_number + " | Tipo: " + acomodacaopack.acomodacao_type_name + "</h4></div><hr>"
+   return "<div class='menu_item' style='background-color:lightgray; gap:10px; width:100%; height:15%;'><em>Preço: " + acomodacaopack.acomodacao_price + " $</em><h4>Numero: " + acomodacaopack.acomodacao_number + " | Tipo: " + acomodacaopack.acomodacao_type_name + "</h4></div><hr>"
    // return "<div class='selectbox5' id='selectbox55'>" + recipe.receita_titulo + "</div>";
  
   /*<p name="criador1" id="criador1" style="text-align: center;font-size: 90%; margin-top: 2%;">CRIADOR DA RECEITA </p>*/

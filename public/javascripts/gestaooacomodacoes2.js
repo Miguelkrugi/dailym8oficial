@@ -454,9 +454,11 @@ async function criarMesa(rest_id, tipo_mesa_id){
            dataType: "json"
            });
               
-           updatePlaceState(acom_id);
+           
        
         } catch (err){
+
+          updatePlaceState(acom_id);
        
          window.alert("Receita Criada.");
        

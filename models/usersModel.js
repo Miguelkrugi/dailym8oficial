@@ -1007,6 +1007,39 @@ module.exports.saveReportRest = async function(pedido) {
     }
 }
 
+////////////////////////////// CRIAR UM PACK /////////////////////////////////////////
+
+module.exports.savePack = async function(pedido) {
+    console.log("[pedidosModel.savePedido] pedido = " + JSON.stringify(pedido));
+    /* checks all fields needed and ignores other fields
+    if (typeof user != "object" || failUser(user)) {
+        if (user.errMsg)
+            return { status: 400, data: { msg: user.errMsg } };
+        else
+            return { status: 400, data: { msg: "Malformed data" } };
+    }*/
+    try {
+
+        let sql =
+            "INSERT " +
+            "INTO pack_restaurante " +
+            "(pack_name, pack_restaurante_id, pack_availability, pack_description, created_at) " +
+            "VALUES ($1, $2, $3, $4, $5) " +
+            "RETURNING pack_id";
+
+          //  console.log(pedido.like_utilizador + "|" + pedido.like_restaurante);
+        let result = await pool.query(sql, [pedido.pack_name, pedido.pack_restaurante_id, pedido.pack_availability, pedido.pack_description, pedido.created_at]);
+        let pedidooo = result.rows[0].pedido_id;
+        return { status: 200, data: pedidooo };
+    } catch (err) {
+        console.log(err);
+        if (err.errno == 23503) // FK error
+            return { status: 400, data: { msg: "Type not found" } };
+        else
+            return { status: 500, data: err };
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1902,6 +1935,27 @@ module.exports.UpdateEstadoEmAnalise = async function(id_rest){
     }
 
 }
+
+/////////////////////////////// UPDATE DE PACK (TORNAR PACK INDISPONIVEL APÓS RESERVA) ////////////////////////////////
+
+module.exports.UpdateTurnOff = async function(id_rest){
+
+    try {
+        let sql = "UPDATE pack_restaurante " + "SET pack_availability = '1' " + "WHERE pack_id = " + id_rest;
+        let result = await pool.query(sql);
+        let pedidofound = result.rows;
+        console.log("[ementasModel.getEmentasUser] pedido = " + JSON.stringify(pedidofound));
+        return { status: 200, data: pedidofound };
+    } catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
+}
+
+
+
+
 
 module.exports.UpdateEstadoVerificado = async function(id_rest){
 

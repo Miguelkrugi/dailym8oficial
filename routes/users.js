@@ -27,6 +27,15 @@ router.post('/insertnewuser', async function(req, res, next) {
   res.status(result.status).send(result.result);
 });
 
+//////////////////////// CRIAR O OBJETO PACK //////////////////////////
+
+router.post('/insertnewpack', async function(req, res, next) {
+  let newUser = req.body;
+
+  let result = await usersModel.savePack(newUser);
+  res.status(result.status).send(result.result);
+});
+
 //A FAZER
 router.post('/loginuser', async function(req, res, next){
   let username = req.body;
@@ -339,6 +348,17 @@ router.put('/become/gestor/:idutilizador', async function(req, res, next){
   let id_user = req.params.idutilizador;
   console.log("[artigosRoutes] Update pedido with id: " + id_user);
   let result = await usersModel.UpdateGestor(id_user);
+  res.status(result.status).send(result.data);
+
+});
+
+////////////////////////////// TORNAR UM PACK INDISPONIVEL APÓS RESERVA ///////////////////////////////////
+
+router.put('/turnoff/available/pack/:idutilizador', async function(req, res, next){
+
+  let id_user = req.params.idutilizador;
+  console.log("[artigosRoutes] Update pedido with id: " + id_user);
+  let result = await usersModel.UpdateTurnOff(id_user);
   res.status(result.status).send(result.data);
 
 });
