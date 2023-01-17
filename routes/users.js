@@ -27,6 +27,15 @@ router.post('/insertnewuser', async function(req, res, next) {
   res.status(result.status).send(result.result);
 });
 
+//////////////////////// CRIAR O OBJETO PACK //////////////////////////
+
+router.post('/insertnewpack', async function(req, res, next) {
+  let newUser = req.body;
+
+  let result = await usersModel.savePack(newUser);
+  res.status(result.status).send(result.result);
+});
+
 //A FAZER
 router.post('/loginuser', async function(req, res, next){
   let username = req.body;

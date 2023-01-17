@@ -436,6 +436,22 @@ async function criarMesa(rest_id, tipo_mesa_id){
      
     }
 
+
+    async function turnUnavailableAcom(item_acom_identifier){
+
+      try{
+      let newExercise2 = await $.ajax({
+        url: "/users/setacomodacaounavailable/" + item_acom_identifier,
+        method: "put",
+        dataType: "json"
+        });
+      } catch(err) {
+
+        console.log("ERRO");
+
+      }
+
+    }
     
 
     async function sentPostTT3(item_acomodacao_identifier_reservation, item_date_marcacao_reservation, item_date_marcada_reservation, item_pack_restaurante_id){
@@ -468,23 +484,11 @@ async function criarMesa(rest_id, tipo_mesa_id){
       
           window.alert("Mesa adicionada ao Pack");
 
-          try{
-      
-           //ENVIAR METODO
-           let newExercise2 = await $.ajax({
-            url: "/users/setacomodacaounavailable/" + item_acomodacao_identifier_reservation,
-            method: "put",
-            data: JSON.stringify(data),
-            contentType: "application/json",
-            dataType: "json"
-            });
-
-          } catch (err){
-
-            window.alert("RECEITA CRIADA");
-          }
+         
       
        } catch (err){
+
+        turnUnavailableAcom(item_acomodacao_identifier_reservation);
       
         window.alert("Receita Criada.");
       

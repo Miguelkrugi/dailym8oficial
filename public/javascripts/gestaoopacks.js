@@ -487,6 +487,49 @@ async function criarMesa(rest_id, tipo_mesa_id){
       }
       }
   
+      ////////////////////////////////////////// CRIAR UM PACK \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+      async function createPack(value_for_availability, nomepack, descricaopack, restaurant_id){
+
+        const date = new Date();
+        const current_date_hours = date.getHours();
+        const current_date_minutes = date.getMinutes();
+        const current_date_seconds = date.getSeconds();
+
+        try {
+
+          let data = {
+       
+           pack_name: nomepack,
+           pack_restaurante_id: restaurant_id,
+           pack_availability: value_for_availability,
+           pack_description: descricaopack,
+           created_at: "2023-01-18" + " " + current_date_hours + ":" + current_date_minutes + ":" + current_date_seconds
+       
+          }
+       
+          //ENVIAR METODO
+          let newExercise = await $.ajax({
+           url: "/users/insertnewpack/",
+           method: "post",
+           data: JSON.stringify(data),
+           contentType: "application/json",
+           dataType: "json"
+           });
+       
+           location.reload();
+          // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
+       
+       
+        } catch (err){
+       
+         window.alert("Receita Criada.");
+       
+        }
+       }
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////
   
   window.onload = function exampleFunction() {
       console.log('The Script will load now.');
@@ -631,7 +674,29 @@ async function criarMesa(rest_id, tipo_mesa_id){
       criarMesa(restaurant_id, tipo_mesa_id);
     });
   
-  
+    document.getElementById('criarpack').addEventListener("click", function() {
+          
+      var value_for_availability = 2;
+
+  if(document.getElementById("disponibilidadepack").value == "Sim"){
+
+    value_for_availability = 0;
+
+  } else if(document.getElementById("disponibilidadepack").value == "Não"){
+
+    value_for_availability = 1;
+  } else {
+
+    console.log("Nada selecionado!")
+  }
+
+     var nomepack = document.getElementById("namepack").value;
+     var descricaopack = document.getElementById("descpack").value;
+
+     createPack(value_for_availability, nomepack, descricaopack, restaurant_id);
+
+      
+    });
   
   }
   
