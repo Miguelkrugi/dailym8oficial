@@ -614,7 +614,7 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
            dataType: "json"
            });
        
-           location.reload();
+           
           // window.alert("Created recipe with id: " + newExercise.ementa_receita_id);
        
        
@@ -673,13 +673,7 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
     // document.getElementById('restauranttypeinfo').innerHTML = "Tipo: " + type_restaurant_name;
      document.getElementById('restaurantinfo').innerHTML = "Numero de Mesas: " + restaurante_number_tables;
   
-     document.getElementById('button4').addEventListener("click", function() {
-        
-      //console.log("TIPO MESA: " + tipo_mesa_id);
-      criarMesa(restaurant_id, tipo_mesa_id);
-  
-    //  document.getElementById("bg-modal2").style.display = "flex";
-    });
+     
   
      getMorada(restaurant_id);
   
@@ -770,16 +764,11 @@ async function filtragemDisponivel(id_restaurante, tipo_disponibilidade_id){
         
      });
 
-     document.getElementById('button4').addEventListener("click", function() {
+     document.getElementById('button444').addEventListener("click", function() {
 
         postAcomodacao(restaurant_id, tipo_acomodacao_selected);
 
       });
-
-     
-
-     
- 
   
   }
   
